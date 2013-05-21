@@ -1,0 +1,35 @@
+- Player movement
+-- strafing: left, right, up, down
+-- look direction
+-- cursor movement
+-- smooth camera follow
+
+- Player Animations
+-- move: forwards, backwards, left, right
+-- idle
+
+- Player stats
+-- health
+-- speed/animation speed
+
+- Weapons
+-- name/id
+-- firerate
+-- ammo
+-- reload speed
+-- cost
+-- damage
+-- upgrades
+
+- Weapon Switching
+-- slowmo
+-- hold up to 4 weapons
+
+- Enemies
+-- look direction
+-- speed
+-- damage
+-- types
+-- name/id
+-- health
+-- abilities
