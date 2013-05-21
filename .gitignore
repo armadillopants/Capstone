@@ -1,0 +1,30 @@
+CapstoneProject/Temp/
+CapstoneProject/Library/
+CapstoneProject/.obj/
+CapstoneProject/*.svd
+
+!Library/*.asset
+!Library/AssetImportState
+!Library/AssetVersioning.db
+!Library/BuildPlayer.prefs
+!Library/ScriptMapper
+!Library/assetservercachev3
+!Library/expandedItems
+!Library/guidmapper
+!Library/unity default resources
+!Library/unity editor resources
+
+/CapstoneProject/Project.userprefs
+/CapstoneProject/Assembly-CSharp.csproj
+/CapstoneProject/Assembly-CSharp.pidb
+/CapstoneProject/Assembly-CSharp-Editor.csproj
+/CapstoneProject/Assembly-CSharp-Editor.pidb
+/CapstoneProject/Assembly-CSharp-Editor-vs.csproj
+/CapstoneProject/Assembly-CSharp-firstpass.csproj
+/CapstoneProject/Assembly-CSharp-firstpass.pidb
+/CapstoneProject/Assembly-CSharp-firstpass-vs.csproj
+/CapstoneProject/Assembly-CSharp-vs.csproj
+/CapstoneProject/Assembly-UnityScript-firstpass.pidb
+/CapstoneProject/Assembly-UnityScript-firstpass.unityproj
+/CapstoneProject/Assembly-UnityScript-firstpass-vs.unityproj
+/CapstoneProject/Project.suo
