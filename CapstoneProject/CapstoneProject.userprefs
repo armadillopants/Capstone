@@ -1,11 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Crosshair.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BaseWeapon.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="7" Column="46" />
-      <File FileName="Assets\Scripts\LocalInput.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Health.cs" Line="35" Column="4" />
-      <File FileName="Assets\Scripts\Crosshair.cs" Line="1" Column="14" />
+      <File FileName="Assets\Scripts\BaseWeapon.cs" Line="78" Column="86" />
+      <File FileName="Assets\Scripts\Bullet.cs" Line="19" Column="11" />
+      <File FileName="Assets\Scripts\Projectile.cs" Line="36" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

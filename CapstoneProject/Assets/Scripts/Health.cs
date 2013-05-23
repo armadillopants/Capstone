@@ -32,7 +32,11 @@ public class Health : MonoBehaviour {
 			curHealth = Mathf.Max(minHealth, curHealth-damage);
 		}
 		if(curHealth == 0){
-			
+			Die();
 		}
+	}
+
+	public void Die(){
+		
 	}
 }

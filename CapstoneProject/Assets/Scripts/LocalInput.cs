@@ -9,7 +9,7 @@ public class LocalInput : MonoBehaviour {
 	private Vector3 screenMovementForward;
 	private Vector3 screenMovementRight;
 	private float camSmooth = 0.1f;
-	private float camDistFromPlayer = 1.2f;
+	private float camDistFromPlayer = 1.5f;
 	private Vector3 playerOffset;
 	private Vector3 cameraVelocity = Vector3.zero;
 	
