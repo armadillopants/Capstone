@@ -1,12 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BaseWeapon.cs">
-    <Files>
-      <File FileName="Assets\Scripts\BaseWeapon.cs" Line="78" Column="86" />
-      <File FileName="Assets\Scripts\Bullet.cs" Line="19" Column="11" />
-      <File FileName="Assets\Scripts\Projectile.cs" Line="36" Column="3" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

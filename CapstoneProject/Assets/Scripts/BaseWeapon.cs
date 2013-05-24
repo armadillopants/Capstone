@@ -23,19 +23,17 @@ public class BaseWeapon : MonoBehaviour {
 	public Transform muzzlePos;
 	
 	public bool isReloading = false;
-	public bool canShoot = false;
 	protected float nextFireTime = 0.0f;
 	protected float lastFrameShot = -1;
 	protected ParticleEmitter hitParticles;
 
 	public virtual void Start(){
-		canShoot = true;
 		maxClips = clips;
 		bulletsLeft = bulletsPerClip;
 	}
 	
 	public virtual void Update(){
-		if(Input.GetButton("Fire1") && canShoot){
+		if(Input.GetButton("Fire1") && WeaponSelection.canShoot){
 			Fire();
 		}
 	}
