@@ -13,10 +13,7 @@ public class WeaponSelection : MonoBehaviour {
 	void Awake(){
 		GameObject player = GameObject.Find("Player");
 		manager = player.GetComponentInChildren<WeaponManager>();
-		weaponSlots[0] = manager.equippedWeapons[0];
-		weaponSlots[1] = manager.equippedWeapons[1];
-		weaponSlots[2] = manager.equippedWeapons[2];
-		weaponSlots[3] = manager.equippedWeapons[3];
+		UpdateWeaponsSlots();
 	}
 	
 	void Start(){
@@ -59,17 +56,25 @@ public class WeaponSelection : MonoBehaviour {
 	void OnGUI(){
 		if(changingWeapons){
 			// Display 4 GUI buttons: top, bottom, left, right
-			if(GUI.Button(new Rect(Screen.width/3.0f,Screen.height/2.1f,120,40), "Machine Gun")){
-				SelectWeapon(0);
+			if(weaponSlots[0] != null){
+				if(GUI.Button(new Rect(Screen.width/3.0f,Screen.height/2.1f,120,40), weaponSlots[0].name)){
+					SelectWeapon(0);
+				}
 			}
-			if(GUI.Button(new Rect(Screen.width/1.7f,Screen.height/2.1f,120,40), "Pistol")){
-				SelectWeapon(1);
+			if(weaponSlots[1] != null){
+				if(GUI.Button(new Rect(Screen.width/1.7f,Screen.height/2.1f,120,40), weaponSlots[1].name)){
+					SelectWeapon(1);
+				}
 			}
-			if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/3.2f,120,40), "Rocket Launcher")){
-				SelectWeapon(2);
+			if(weaponSlots[2] != null){
+				if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/3.2f,120,40), weaponSlots[2].name)){
+					SelectWeapon(2);
+				}
 			}
-			if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/1.6f,120,40), "Flame Thrower")){
-				SelectWeapon(3);
+			if(weaponSlots[3] != null){
+				if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/1.6f,120,40), weaponSlots[3].name)){
+					SelectWeapon(3);
+				}
 			}
 		}
 	}
@@ -87,5 +92,12 @@ public class WeaponSelection : MonoBehaviour {
 				transform.GetChild(i).gameObject.SetActive(false);
 			}
 		}
+	}
+	
+	public void UpdateWeaponsSlots(){
+		weaponSlots[0] = manager.equippedWeapons[0];
+		weaponSlots[1] = manager.equippedWeapons[1];
+		weaponSlots[2] = manager.equippedWeapons[2];
+		weaponSlots[3] = manager.equippedWeapons[3];
 	}
 }

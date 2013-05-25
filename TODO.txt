@@ -1,4 +1,6 @@
-- Player movement
+3 +++ means fully complete
+
+- Player movement+
 -- strafing: left, right, up, down
 -- look direction
 -- cursor movement
@@ -8,11 +10,11 @@
 -- move: forwards, backwards, left, right
 -- idle
 
-- Player stats
+- Player stats+
 -- health
 -- speed/animation speed
 
-- Weapons
+- Weapons+
 -- name/id
 -- firerate
 -- ammo
@@ -21,9 +23,14 @@
 -- damage
 -- upgrades
 
-- Weapon Switching
+- Weapon Switching+
 -- slowmo
 -- hold up to 4 weapons
+
+- Weapon Management+
+- keep track of equipped weapons
+- keep track of owned/unowned weapons
+- keep track of different types of weapons: rifles, pistols, launchers, specials
 
 - Enemies
 -- look direction

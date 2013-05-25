@@ -26,10 +26,20 @@ public class BaseWeapon : MonoBehaviour {
 	protected float nextFireTime = 0.0f;
 	protected float lastFrameShot = -1;
 	protected ParticleEmitter hitParticles;
-
-	public virtual void Start(){
+	
+	void Awake(){
+		hitParticles = GetComponentInChildren<ParticleEmitter>();
+	}
+	
+	void Start(){
 		maxClips = clips;
-		bulletsLeft = bulletsPerClip;
+		
+		if(hitParticles){
+			hitParticles.emit = false;
+			bulletsLeft = bulletsPerClip;
+		} else {
+			bulletsLeft = bulletsPerClip;
+		}
 	}
 	
 	public virtual void Update(){
@@ -39,6 +49,10 @@ public class BaseWeapon : MonoBehaviour {
 	}
 
 	public virtual void Fire(){
+		if(clips <= 0 && bulletsLeft <= 0){
+			return;
+		}
+		
 		if(bulletsLeft <= 0 && !isReloading){
 			StartCoroutine("Reload");
 			return;
@@ -58,11 +72,17 @@ public class BaseWeapon : MonoBehaviour {
 		// Spawn visual bullet
 		Quaternion coneRandomRotation = 
 			Quaternion.Euler(Random.Range(-coneAngle, coneAngle),Random.Range(-coneAngle, coneAngle),0);
-		GameObject visibleProj = (GameObject)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
+		GameObject visibleProj = null;
+		if(projectile){
+			visibleProj = (GameObject)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
+		}
 		
 		switch(state){
 		case WeaponState.RAYCAST:
-			Bullet bullet = visibleProj.GetComponent<Bullet>();
+			Bullet bullet = null;
+			if(visibleProj){
+				bullet = visibleProj.GetComponent<Bullet>();
+			}
 		    Vector3 direction = transform.TransformDirection(Vector3.forward);
 		  	RaycastHit hit;
 			//LayerMask layermaskPlayer = 8;
@@ -75,7 +95,9 @@ public class BaseWeapon : MonoBehaviour {
 				if(hit.rigidbody){
 					hit.rigidbody.AddForceAtPosition(force * direction, hit.point, ForceMode.Impulse);
 				}
-				bullet.distance = hit.distance;
+				if(bullet){
+					bullet.distance = hit.distance;
+				}
 				// Place the particle system for spawing out of place where we hit the surface!
 				// And spawn a couple of particles
 				if(hitParticles){
@@ -87,7 +109,9 @@ public class BaseWeapon : MonoBehaviour {
 				// Send a damage message to the hit object
 				hit.collider.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
 		  	} else {
-				bullet.distance = range;
+				if(bullet){
+					bullet.distance = range;
+				}
 		    	Debug.DrawRay(transform.position, direction * range, Color.green);
 		  	}
 			

@@ -1,0 +1,12 @@
+<WeaponData>
+	<MachineGun>
+		<range> range= "100" </range>
+		<fireRate> fireRate= "0.09" </fireRate>
+		<force> force= "1" </force>
+		<bulletsPerClip> bulletsPerClip= "40" </bulletsPerClip>
+		<clips> clips= "6" </clips>
+		<reloadSpeed> reloadSpeed= "1.2" </reloadSpeed>
+		<damage> damage= "10" </damage>
+		<coneAngle> coneAngle= "1.5" </coneAngle>
+	</MachineGun>
+</WeaponData>
