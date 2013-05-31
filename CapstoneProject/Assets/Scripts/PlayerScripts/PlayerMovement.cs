@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 	[System.NonSerialized]
 	public Vector3 moveDirection = Vector3.zero;
 	public float moveSpeed = 6f;
+	private float moveSnap = 50f;
 	
 	private CharacterController controller;
 	private Transform trans;
@@ -18,8 +19,18 @@ public class PlayerMovement : MonoBehaviour {
 	void Update(){
 		PlayerLookDirection();
 		moveDirection *= moveSpeed;
+		moveDirection.y -= 10f * Time.deltaTime;
 		controller.Move(moveDirection * Time.deltaTime);
 	}
+	
+	/*void FixedUpdate(){
+		Vector3 targetVel = moveDirection * moveSpeed;
+		Vector3 deltaVel = targetVel - rigidbody.velocity;
+		if(rigidbody.useGravity){
+			deltaVel.y = 0;
+		}
+		rigidbody.AddForce(deltaVel * moveSnap, ForceMode.Acceleration);
+	}*/
 	
 	void PlayerLookDirection(){
 		// Generate a plane that intersects the transform's position with an upwards normal.

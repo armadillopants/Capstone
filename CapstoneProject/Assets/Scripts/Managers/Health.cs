@@ -8,13 +8,11 @@ public class Health : MonoBehaviour {
 	private float maxHealth;
 	public bool canTakeDamage = true;
 
-	// Use this for initialization
-	void Start () {
+	void Start(){
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update(){
 	
 	}
 	
