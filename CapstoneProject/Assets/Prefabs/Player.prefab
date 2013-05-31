@@ -177,7 +177,7 @@ GameObject:
   - 4: {fileID: 400020}
   - 33: {fileID: 3300006}
   - 23: {fileID: 2300006}
-  - 114: {fileID: 11400014}
+  - 114: {fileID: 11400018}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 651b1e111f32dd2409be4cd0c5e6bc23, type: 3}
   m_Name: 
-  state: 1
+  state: 0
   weaponName: Flame Thrower
   fireRate: .100000001
   range: 5
@@ -654,6 +654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6925b88e680ed848872fa0f205a0e26, type: 3}
   m_Name: 
   changingWeapons: 0
+  canShoot: 0
   weaponSlots:
   - {fileID: 0}
   - {fileID: 0}
@@ -682,51 +683,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 100012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737856c3cb8591e4a969fde0f855fe5f, type: 3}
+  m_Script: {fileID: 11500000, guid: a577834e0e9e5c140b7cb6a0dadcd066, type: 3}
   m_Name: 
   state: 1
-  weaponName: Rocket Launcher
-  fireRate: .5
+  weaponName: 
+  fireRate: .0900000036
   range: 100
   force: 1
   bulletsLeft: 0
   bulletsPerClip: 5
   clips: 6
   maxClips: 0
-  reloadSpeed: 1.5
+  reloadSpeed: 1.20000005
   damage: 10
-  coneAngle: 2
+  coneAngle: 1.5
   roundsPerBurst: 0
   lagBetweenShots: 0
   projectile: {fileID: 100000, guid: f264e17109caebf4280186e8762281d3, type: 2}
   muzzlePos: {fileID: 400010}
-  isReloading: 0
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737856c3cb8591e4a969fde0f855fe5f, type: 3}
-  m_Name: 
-  state: 0
-  weaponName: Pistol
-  fireRate: .300000012
-  range: 100
-  force: 1
-  bulletsLeft: 0
-  bulletsPerClip: 10
-  clips: 6
-  maxClips: 0
-  reloadSpeed: .5
-  damage: 10
-  coneAngle: 1
-  roundsPerBurst: 0
-  lagBetweenShots: 0
-  projectile: {fileID: 100000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
-  muzzlePos: {fileID: 400016}
   isReloading: 0
 --- !u!114 &11400016
 MonoBehaviour:
@@ -754,6 +728,33 @@ MonoBehaviour:
   lagBetweenShots: 0
   projectile: {fileID: 100000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
   muzzlePos: {fileID: 400008}
+  isReloading: 0
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a577834e0e9e5c140b7cb6a0dadcd066, type: 3}
+  m_Name: 
+  state: 0
+  weaponName: Pistol
+  fireRate: .0900000036
+  range: 100
+  force: 1
+  bulletsLeft: 0
+  bulletsPerClip: 10
+  clips: 6
+  maxClips: 0
+  reloadSpeed: 1.20000005
+  damage: 10
+  coneAngle: 1.5
+  roundsPerBurst: 0
+  lagBetweenShots: 0
+  projectile: {fileID: 100000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
+  muzzlePos: {fileID: 400016}
   isReloading: 0
 --- !u!143 &14300000
 CharacterController:

@@ -26,9 +26,11 @@ public class BaseWeapon : MonoBehaviour {
 	protected float nextFireTime = 0.0f;
 	protected float lastFrameShot = -1;
 	protected ParticleEmitter hitParticles;
+	protected WeaponSelection selection;
 	
 	void Awake(){
 		hitParticles = GetComponentInChildren<ParticleEmitter>();
+		selection = GameObject.Find("Player").GetComponentInChildren<WeaponSelection>();
 	}
 	
 	void Start(){
@@ -43,7 +45,7 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	public virtual void Update(){
-		if(Input.GetButton("Fire1") && WeaponSelection.canShoot){
+		if(Input.GetButton("Fire1") && selection.canShoot){
 			Fire();
 		}
 	}
@@ -85,12 +87,9 @@ public class BaseWeapon : MonoBehaviour {
 			}
 		    Vector3 direction = transform.TransformDirection(Vector3.forward);
 		  	RaycastHit hit;
-			//LayerMask layermaskPlayer = 8;
-			//LayerMask layermaskFort = 9;
-			//LayerMask layermaskFinal = ~((1<<layermaskPlayer)|1<<layermaskFort);
 			
 		  	// Does the ray intersect any objects excluding the player and fort layer
-		  	if(Physics.Raycast(transform.position, direction, out hit, range)){//, layermaskFinal)){
+		  	if(Physics.Raycast(transform.position, direction, out hit, range)){
 				// Apply a force to the rigidbody we hit
 				if(hit.rigidbody){
 					hit.rigidbody.AddForceAtPosition(force * direction, hit.point, ForceMode.Impulse);
@@ -100,11 +99,11 @@ public class BaseWeapon : MonoBehaviour {
 				}
 				// Place the particle system for spawing out of place where we hit the surface!
 				// And spawn a couple of particles
-				if(hitParticles){
+				/*if(hitParticles){
 					hitParticles.transform.position = hit.point;
 					hitParticles.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 					hitParticles.Emit();
-				}
+				}*/
 				Debug.DrawRay(transform.position, direction * hit.distance, Color.blue);
 				// Send a damage message to the hit object
 				hit.collider.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);

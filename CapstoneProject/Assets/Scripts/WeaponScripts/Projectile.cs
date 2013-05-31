@@ -5,19 +5,19 @@ public class Projectile : MonoBehaviour {
 	
 	private Transform trans;
 	public GameObject explosion;
+	private BaseWeapon weapon;
 	public float bulletSpeed = 0.0f;
 	public float lifeTime = 0.0f;
 	public float radius = 0.0f;
-	public float damage = 0f;
-	public float forceAmount = 0f;
 	public GameObject target;
 	public bool isHoming = false;
 	public float damp = 6.0f;
 
-	// Use this for initialization
 	void Start(){
 		trans = transform;
 		Invoke("Kill", lifeTime);
+		GameObject player = GameObject.Find("Player");
+		weapon = player.GetComponentInChildren<BaseWeapon>();
 	}
 	
 	void Update(){
@@ -40,10 +40,10 @@ public class Projectile : MonoBehaviour {
 			if(hit.isTrigger){
 				continue;
 			}
-			hit.collider.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+			hit.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);
 			
 			if(hit.rigidbody){
-				Vector3 force = trans.forward * forceAmount;
+				Vector3 force = trans.forward * weapon.force;
 				hit.rigidbody.AddForce(force, ForceMode.Impulse);
 			}
 			collided = true;

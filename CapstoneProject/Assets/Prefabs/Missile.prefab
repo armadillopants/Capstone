@@ -81,10 +81,8 @@ MonoBehaviour:
   bulletSpeed: 15
   lifeTime: 2
   radius: .100000001
-  damage: 10
-  forceAmount: 0
   target: {fileID: 0}
-  isHoming: 1
+  isHoming: 0
   damp: 6
 --- !u!1001 &100100000
 Prefab:

@@ -6,7 +6,7 @@ public class WeaponSelection : MonoBehaviour {
 	
 	public bool changingWeapons = false;
 	private float slowmoTime = 2f;
-	public static bool canShoot = false;
+	public bool canShoot = false;
 	public List<GameObject> weaponSlots = new List<GameObject>();
 	private WeaponManager manager;
 	

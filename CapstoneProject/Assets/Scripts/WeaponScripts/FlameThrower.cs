@@ -4,7 +4,7 @@ using System.Collections;
 public class FlameThrower : BaseWeapon {
 	
 	public override void Update(){
-		if(Input.GetButton("Fire1") && WeaponSelection.canShoot){
+		if(Input.GetButton("Fire1") && selection.canShoot){
 			Fire();
 		} else {
 			hitParticles.emit = false;
