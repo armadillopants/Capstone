@@ -19,8 +19,9 @@ public class BaseWeapon : MonoBehaviour {
 	public float coneAngle = 1.5f;
 	public float roundsPerBurst = 0f;
 	public float lagBetweenShots = 0f;
-	public GameObject projectile;
+	public Rigidbody projectile;
 	public Transform muzzlePos;
+	public Renderer muzzleFlash;
 	
 	public bool isReloading = false;
 	protected float nextFireTime = 0.0f;
@@ -49,6 +50,32 @@ public class BaseWeapon : MonoBehaviour {
 			Fire();
 		}
 	}
+	
+	void LateUpdate(){
+		if(muzzleFlash){
+			// We shot this frame, enable the muzzle flash
+			if(lastFrameShot == Time.frameCount){
+				muzzleFlash.transform.localRotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
+				muzzleFlash.enabled = true;
+				
+				if(audio){
+					if(!audio.isPlaying){
+						audio.Play();
+						audio.loop = true;
+					}
+				}
+			} else {
+				// We didn't disable the muzzle flash
+				muzzleFlash.enabled = false;
+				enabled = false;
+				
+				// Play sound
+				if(audio){
+					audio.loop = false;
+				}
+			}
+		}
+	}
 
 	public virtual void Fire(){
 		if(clips <= 0 && bulletsLeft <= 0){
@@ -73,10 +100,10 @@ public class BaseWeapon : MonoBehaviour {
 	public void CreateProjectile(){
 		// Spawn visual bullet
 		Quaternion coneRandomRotation = 
-			Quaternion.Euler(Random.Range(-coneAngle, coneAngle),Random.Range(-coneAngle, coneAngle),0);
-		GameObject visibleProj = null;
+			Quaternion.Euler(Random.Range(-coneAngle, coneAngle), Random.Range(-coneAngle, coneAngle), 0);
+		Rigidbody visibleProj = null;
 		if(projectile){
-			visibleProj = (GameObject)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
+			visibleProj = (Rigidbody)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
 		}
 		
 		switch(state){
@@ -88,8 +115,12 @@ public class BaseWeapon : MonoBehaviour {
 		    Vector3 direction = transform.TransformDirection(Vector3.forward);
 		  	RaycastHit hit;
 			
+			LayerMask layerMaskPlayer = 8;
+			LayerMask layerMaskFort = 9;
+			LayerMask layerMaskFinal = ~((1<<layerMaskPlayer)|1<<layerMaskFort);
+			
 		  	// Does the ray intersect any objects excluding the player and fort layer
-		  	if(Physics.Raycast(transform.position, direction, out hit, range)){
+		  	if(Physics.Raycast(transform.position, direction, out hit, range, layerMaskFinal)){
 				// Apply a force to the rigidbody we hit
 				if(hit.rigidbody){
 					hit.rigidbody.AddForceAtPosition(force * direction, hit.point, ForceMode.Impulse);
@@ -119,7 +150,7 @@ public class BaseWeapon : MonoBehaviour {
 			// Register that we shot this frame,
 			// so that the LateUpdate function enabled the muzzleflash renderer for one frame
 			lastFrameShot = Time.frameCount;
-			//enabled = true;
+			enabled = true;
 			break;
 		case WeaponState.PROJECTILE:
 			bulletsLeft--;
@@ -127,7 +158,7 @@ public class BaseWeapon : MonoBehaviour {
 			// Register that we shot this frame,
 			// so that the LateUpdate function enabled the muzzleflash renderer for one frame
 			lastFrameShot = Time.frameCount;
-			//enabled = true;
+			enabled = true;
 			break;
 		}
 	}

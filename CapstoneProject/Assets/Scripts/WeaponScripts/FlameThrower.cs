@@ -5,6 +5,7 @@ public class FlameThrower : BaseWeapon {
 	
 	public override void Update(){
 		if(Input.GetButton("Fire1") && selection.canShoot){
+			ParticleManager.MoveParticlesWithPlayerVelocity();
 			Fire();
 		} else {
 			hitParticles.emit = false;

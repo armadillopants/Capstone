@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- WEAPON VALUES -->
-<!-- RANGE: How far away you are able to hit an enemy with a projectile. Doesnt apply to launcher types -->
+<!-- RANGE: How far away you are able to hit an enemy with a projectile. For launcher types applies to lifetime before it destroys itself-->
 <!-- FIRE RATE: How fast the weapon shoots -->
 <!-- FORCE: How much force from the bullet applies to rigidbody characters -->
 <!-- BULLETS PER CLIP: How many bullets per clip the weapon stores -->
@@ -30,6 +30,7 @@
 		coneAngle= "1">
 	</Pistol>
 	<RocketLauncher
+		range = "2"
 		fireRate= "0.09"
 		force= "1"
 		bulletsPerClip= "5"
@@ -39,6 +40,7 @@
 		coneAngle= "2">
 	</RocketLauncher>
 	<FlameThrower
+		range = "5"
 		fireRate= "0.1"
 		force= "0.01"
 		bulletsPerClip= "300"

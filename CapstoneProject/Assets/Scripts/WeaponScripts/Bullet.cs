@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	void Update(){
-		trans.position += trans.forward * bulletSpeed * Time.deltaTime;
+		rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
 		distance -= bulletSpeed * Time.deltaTime;
 		if(Time.time > spawnTime + lifeTime || distance < 0){
 			Destroy(gameObject);

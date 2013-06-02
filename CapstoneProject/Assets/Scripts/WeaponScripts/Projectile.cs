@@ -7,56 +7,57 @@ public class Projectile : MonoBehaviour {
 	public GameObject explosion;
 	private BaseWeapon weapon;
 	public float bulletSpeed = 0.0f;
-	public float lifeTime = 0.0f;
-	public float radius = 0.0f;
 	public GameObject target;
 	public bool isHoming = false;
 	public float damp = 6.0f;
-
-	void Start(){
-		trans = transform;
-		Invoke("Kill", lifeTime);
+	
+	void Awake(){
 		GameObject player = GameObject.Find("Player");
 		weapon = player.GetComponentInChildren<BaseWeapon>();
+	}
+	
+	void Start(){
+		trans = transform;
+		Invoke("Kill", weapon.range);
 	}
 	
 	void Update(){
 		if(isHoming){
 			target = FindNearestTarget();
 			if(target){
-				trans.Translate(Vector3.forward*bulletSpeed*Time.deltaTime);
+				rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
 				Quaternion rotate = Quaternion.LookRotation(target.transform.position - trans.position);
 				trans.rotation = Quaternion.Slerp(trans.rotation, rotate, Time.deltaTime * damp);
 			} else {
-				trans.Translate(Vector3.forward*bulletSpeed*Time.deltaTime);
+				rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
 			}
 		} else {
-			trans.Translate(Vector3.forward*bulletSpeed*Time.deltaTime);
-		}
-		
-		Collider[] hits = Physics.OverlapSphere(trans.position, radius);
-		bool collided = false;
-		foreach(Collider hit in hits){
-			if(hit.isTrigger){
-				continue;
-			}
-			hit.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);
-			
-			if(hit.rigidbody){
-				Vector3 force = trans.forward * weapon.force;
-				hit.rigidbody.AddForce(force, ForceMode.Impulse);
-			}
-			collided = true;
-		}
-		if(collided){
-			Kill();
+			rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
 		}
 	}
 	
-	void Kill(){
-		if(explosion != null){
-			Instantiate(explosion, trans.position, trans.rotation);
+	void OnCollisionEnter(Collision collision){
+		// Instantiate explosion at the impact point and rotate the explosion
+		// so that the y-axis faces along the surface normal
+		ContactPoint contact = collision.contacts[0];
+		Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+		Vector3 pos = contact.point;
+		if(explosion){
+			Instantiate(explosion, pos, rotation);
 		}
+		
+		collision.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);
+		
+		if(collision.rigidbody){
+			Vector3 force = trans.forward * weapon.force;
+			collision.rigidbody.AddForce(force, ForceMode.Impulse);
+		}
+	
+		// Call function to destroy the rocket
+		Kill();
+	}
+	
+	void Kill(){
 		// Stop emitting particles in any children
 		ParticleEmitter emitter = GetComponentInChildren<ParticleEmitter>();
 		if(emitter){

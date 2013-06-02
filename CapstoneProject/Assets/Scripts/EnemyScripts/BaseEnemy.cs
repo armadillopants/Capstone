@@ -34,9 +34,11 @@ public class BaseEnemy : MonoBehaviour {
 		}
 		
 		if(Vector3.Distance(target.position, trans.position) > distance){
-			SwitchTarget("Defend");
-		} else {
-			if(Vector3.Distance(playerTarget.position, trans.position) <= distance){
+			if(target){
+				SwitchTarget("Defend");
+			}
+		} else if(Vector3.Distance(playerTarget.position, trans.position) <= distance){
+			if(target){
 				SwitchTarget("Player");
 			}
 		}
@@ -49,12 +51,12 @@ public class BaseEnemy : MonoBehaviour {
 	}
 	
 	void SwitchTarget(string targetName){
-		target = GameObject.Find(targetName).transform;
+		target = GameObject.FindWithTag(targetName).transform;
 	}
 	
 	void OnCollisionStay(Collision collision){
 		// If we collide with the target
-		if(collision.gameObject.tag == target.name){
+		if(collision.gameObject.tag == target.tag){
 			// Start dealing damage
 			doDamage = true;
 			Attack(collision.gameObject);
