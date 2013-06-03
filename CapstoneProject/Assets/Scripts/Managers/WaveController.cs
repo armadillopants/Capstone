@@ -33,6 +33,6 @@ public class WaveController : MonoBehaviour {
 	}
 	
 	void OnGUI(){
-		GUILayout.Label("Wave Number: " + waveNumber);
+		GUI.Box(new Rect(0, 300, 200, 20), "Wave Number: " + waveNumber);
 	}
 }

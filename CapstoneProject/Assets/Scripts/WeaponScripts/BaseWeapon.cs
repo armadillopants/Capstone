@@ -6,7 +6,6 @@ public class BaseWeapon : MonoBehaviour {
 	public enum WeaponState { RAYCAST, PROJECTILE };
 	public WeaponState state;
 	
-	public string weaponName = "";
 	public float fireRate = 0.09f;
 	public float range = 100f;
 	public float force = 1.0f;

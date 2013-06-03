@@ -5,8 +5,8 @@ using System.Xml;
 public class XMLReader : MonoBehaviour {
 	
 	private BaseWeapon[] weapons;
-	private XmlDocument doc = new XmlDocument();
-	private XmlNode firstNode;
+	public XmlDocument doc = new XmlDocument();
+	public XmlNode firstNode;
 	
 	void Awake(){
 		GameObject player = GameObject.Find("Player");

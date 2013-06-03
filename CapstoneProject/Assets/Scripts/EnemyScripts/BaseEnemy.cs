@@ -5,6 +5,7 @@ public class BaseEnemy : MonoBehaviour {
 	
 	public Transform target;
 	private Transform playerTarget;
+	private Transform defendTarget;
 	public float moveSpeed = 0f;
 	public bool doDamage = false;
 	public float currentCoolDown = 0f;
@@ -14,14 +15,25 @@ public class BaseEnemy : MonoBehaviour {
 	private Transform trans;
 
 	void Start(){
-		target = GameObject.Find("Player").transform;
+		target = GameObject.FindWithTag("Player").transform;
 		playerTarget = target;
+		defendTarget = GameObject.FindWithTag("Defend").transform;
 		trans = transform;
 		currentCoolDown = coolDownLength;
 	}
 	
 	void Update(){
-		Vector3 adjustedTargetHeight = target.position; // Sets target's height to a variable
+		if(defendTarget == null){
+			SwitchTarget("Player");
+			return;
+		}
+		
+		if(playerTarget == null){
+			Destroy(gameObject);
+			return;
+		}
+		
+		Vector3	adjustedTargetHeight = target.position; // Sets target's height to a variable
 		adjustedTargetHeight.y = trans.position.y; // Target's height is always equal to enemy height
 		
 		trans.rotation = Quaternion.Slerp(trans.rotation, 
@@ -33,12 +45,10 @@ public class BaseEnemy : MonoBehaviour {
 			currentCoolDown -= Time.deltaTime;
 		}
 		
-		if(Vector3.Distance(target.position, trans.position) > distance){
-			if(target){
+		if(defendTarget){
+			if(Vector3.Distance(playerTarget.position, trans.position) > distance){
 				SwitchTarget("Defend");
-			}
-		} else if(Vector3.Distance(playerTarget.position, trans.position) <= distance){
-			if(target){
+			} else if(Vector3.Distance(playerTarget.position, trans.position) <= distance){
 				SwitchTarget("Player");
 			}
 		}

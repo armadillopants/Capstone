@@ -4,18 +4,29 @@ using System.Collections;
 public class Fortification : MonoBehaviour {
 	
 	public enum FortState { MAIN_SCREEN, BUILD_SCREEN, UPGRADE_SCREEN, BUY_SCREEN };
-	private FortState state;
+	private FortState state = FortState.MAIN_SCREEN;
+	private Wave buildWave;
+	private WeaponSelection selection;
+	private float infinity = Mathf.Infinity;
 
-	void Start(){
-		
+	void Awake(){
+		selection = GameObject.Find("Player").GetComponentInChildren<WeaponSelection>();
+		selection.canShoot = false;
 	}
 	
 	void Update(){
-	
+		selection.canShoot = false;
 	}
 	
 	public void StartFortifying(Wave wave){
-		state = FortState.MAIN_SCREEN;
+		buildWave = wave;
+		StartCoroutine("FortifyHandling");
+	}
+	
+	IEnumerator FortifyHandling(){
+		buildWave.StopWave(); // Stops the wave
+		// And displays the fortification screen
+		yield return new WaitForSeconds(infinity); // Allows unlimited amount of time to select fortifications
 	}
 	
 	void OnGUI(){
@@ -36,6 +47,11 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void DrawMainScreen(){
+		if(GUI.Button(new Rect(Screen.width/2, Screen.height/2, 100, 50), "Begin Wave")){
+			selection.canShoot = true;
+			buildWave.BeginWave();
+			Destroy(this);
+		}
 	}
 	
 	void DrawBuildScreen(){

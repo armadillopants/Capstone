@@ -5,23 +5,21 @@ public class Wave : MonoBehaviour {
 	
 	private int waveNumber = 1;
 	private const int WAVES_BETWEEN_FORTIFICATION = 5;
-	private bool beginWave = false;
+	public bool beginWave = false;
 	public bool endWave = false;
 	private WaveController controller;
 	private float waitTime = 5.0f;
+	public int numEnemies;
+	private float spawnAmount;
+	private Spawner spawner;
 
-	void Start(){
+	void Awake(){
+		spawner = GetComponentInChildren<Spawner>();
 	}
 	
 	public void StartWave(WaveController wave, int waveNum) {
 		// Spawn amount based on wave number
-		/*spawn_amountW = Mathf.FloorToInt(wave_Num * 0.5f) + 6;
-		if(wave_Num>=3){
-			spawn_amountR = Mathf.FloorToInt(wave_Num * 0.5f) + 3;
-		}
-		if(wave_Num>=5){
-			spawn_amountB = Mathf.FloorToInt(wave_Num * 0.5f) + 1;
-		}*/
+		spawnAmount = Mathf.FloorToInt(waveNum * 0.5f) + 6;
 		
 		controller = wave;
 		waveNumber = waveNum;
@@ -49,7 +47,7 @@ public class Wave : MonoBehaviour {
 	// Never call this function directly as it is to be called through BeginWave
 	IEnumerator BeginNewWave() {
 		yield return new WaitForSeconds(waitTime);
-		waitTime = 0;
+		//waitTime = 0;
 		
 		beginWave = true;
 	}
@@ -71,6 +69,18 @@ public class Wave : MonoBehaviour {
 		if(endWave){
       		controller.StartNextWave();
 			Destroy(this);
-    	}
+		}
+		
+		// Spawn enemies here
+		if(beginWave && spawnAmount > 0){
+			spawner.SpawnEnemy();
+			spawnAmount--;
+		}
+		
+		numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+		
+		if(spawnAmount <= 0 && numEnemies <= 0){
+			endWave = true;
+		}
 	}
 }

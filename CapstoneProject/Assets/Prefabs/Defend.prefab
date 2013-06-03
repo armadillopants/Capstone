@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
-  curHealth: 100
+  curHealth: 300
   canTakeDamage: 1
 --- !u!1001 &100100000
 Prefab:

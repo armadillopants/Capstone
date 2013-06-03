@@ -21,14 +21,16 @@ public class Console : MonoBehaviour {
 	public BaseWeapon weapon;
 	public List<GameObject> equippedWeapons = new List<GameObject>();
 	private WeaponSelection selection;
-	GameObject player;
+	private GameObject player;
 	public bool displayValues = false;
 	private Rect screen = new Rect(0, 0, 400, 300);
+	private XMLReader reader;
 
-	void Start(){
-		GameObject player = GameObject.Find("Player");
+	void Awake(){
+		player = GameObject.Find("Player");
 		selection = player.GetComponentInChildren<WeaponSelection>();
 		weapon = player.GetComponentInChildren<BaseWeapon>();
+		reader = GetComponent<XMLReader>();
 	}
 	
 	void Update(){
@@ -53,19 +55,22 @@ public class Console : MonoBehaviour {
 			selection.canShoot = false;
 		}
 		
-		if(equippedWeapons[0].activeInHierarchy){
-			weapon = equippedWeapons[0].GetComponent<BaseWeapon>();
-		} else if(equippedWeapons[1].activeInHierarchy){
-			weapon = equippedWeapons[1].GetComponent<BaseWeapon>();
-		} else if(equippedWeapons[2].activeInHierarchy){
-			weapon = equippedWeapons[2].GetComponent<BaseWeapon>();
-		} else if(equippedWeapons[3].activeInHierarchy){
-			weapon = equippedWeapons[3].GetComponent<BaseWeapon>();
+		if(player){
+			if(equippedWeapons[0].activeInHierarchy){
+				weapon = equippedWeapons[0].GetComponent<BaseWeapon>();
+			} else if(equippedWeapons[1].activeInHierarchy){
+				weapon = equippedWeapons[1].GetComponent<BaseWeapon>();
+			} else if(equippedWeapons[2].activeInHierarchy){
+				weapon = equippedWeapons[2].GetComponent<BaseWeapon>();
+			} else if(equippedWeapons[3].activeInHierarchy){
+				weapon = equippedWeapons[3].GetComponent<BaseWeapon>();
+			}
 		}
 	}
 	
 	void OnGUI(){
 		if(displayValues){
+			
 			GUI.BeginGroup(screen);
 			
 			GUI.Box(screen, "\n\n\n\n\n\n\n\n\n\n\n\n\n\nWEAPON DATA");
@@ -124,6 +129,10 @@ public class Console : MonoBehaviour {
 			info.coneAngle = Regex.Replace(info.coneAngle, @"[^0-9.]", "");
 			if(info.coneAngle.Length > 0){
 				weapon.coneAngle = float.Parse(info.coneAngle);
+			}
+			
+			if(GUILayout.Button("Commit Changes")){
+				
 			}
 			
 			GUI.EndGroup();

@@ -7,6 +7,7 @@ public class Health : MonoBehaviour {
 	private float minHealth = 0f;
 	private float maxHealth;
 	public bool canTakeDamage = true;
+	private bool isDead = false;
 
 	void Start(){
 	
@@ -14,6 +15,10 @@ public class Health : MonoBehaviour {
 	
 	void Update(){
 	
+	}
+	
+	public bool IsDead(){
+		return isDead;
 	}
 	
 	public void ModifyHealth(float amount){
@@ -29,12 +34,13 @@ public class Health : MonoBehaviour {
 		if(canTakeDamage){
 			curHealth = Mathf.Max(minHealth, curHealth-damage);
 		}
-		if(curHealth == 0){
+		if(curHealth == 0 && !isDead){
 			Die();
 		}
 	}
 
 	public void Die(){
+		isDead = true;
 		Destroy(gameObject);
 	}
 }
