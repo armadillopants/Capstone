@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- WEAPON VALUES -->
+<!-- RANGE: How far away you are able to hit an enemy with a projectile. For launcher types applies to lifetime before it destroys itself-->
+<!-- FIRE RATE: How fast the weapon shoots -->
+<!-- FORCE: How much force from the bullet applies to rigidbody characters -->
+<!-- BULLETS PER CLIP: How many bullets per clip the weapon stores -->
+<!-- CLIPS: How many clips the weapon holds -->
+<!-- RELOAD SPEED: How fast the weapon reloads -->
+<!-- DAMAGE: How much damage the weapon does -->
+<!-- CONE ANGLE: How much rotation the projectile is given at first creation (adds more realism) -->
+<WeaponData>
+  <MachineGun range="100" fireRate="0.09" force="0.5" bulletsPerClip="40" clips="6" reloadSpeed="1.2" damage="10" coneAngle="1.5">
+  </MachineGun>
+  <Pistol range="100" fireRate="0.09" force="0.1" bulletsPerClip="10" clips="6" reloadSpeed="0.5" damage="10" coneAngle="1">
+  </Pistol>
+  <RocketLauncher range="2" fireRate="0.09" force="1" bulletsPerClip="5" clips="6" reloadSpeed="1.5" damage="10" coneAngle="2">
+  </RocketLauncher>
+  <FlameThrower range="5" fireRate="0.1" force="0.01" bulletsPerClip="300" clips="2" reloadSpeed="2.5" damage="10" coneAngle="2">
+  </FlameThrower>
+</WeaponData>

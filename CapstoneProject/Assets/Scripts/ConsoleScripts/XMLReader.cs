@@ -9,7 +9,7 @@ public class XMLReader : MonoBehaviour {
 	public XmlNode firstNode;
 	
 	void Awake(){
-		GameObject player = GameObject.Find("Player");
+		GameObject player = GameObject.FindWithTag("Player");
 		weapons = player.GetComponentsInChildren<BaseWeapon>();
 		
 		TextAsset asset = new TextAsset();

@@ -8,9 +8,10 @@ public class Fortification : MonoBehaviour {
 	private Wave buildWave;
 	private WeaponSelection selection;
 	private float infinity = Mathf.Infinity;
+	private Rect mainScreen = new Rect(Screen.width-250, Screen.height-(Screen.height-16), 200, 500);
 
 	void Awake(){
-		selection = GameObject.Find("Player").GetComponentInChildren<WeaponSelection>();
+		selection = GameObject.FindWithTag("Player").GetComponentInChildren<WeaponSelection>();
 		selection.canShoot = false;
 	}
 	
@@ -47,11 +48,28 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void DrawMainScreen(){
-		if(GUI.Button(new Rect(Screen.width/2, Screen.height/2, 100, 50), "Begin Wave")){
-			selection.canShoot = true;
-			buildWave.BeginWave();
-			Destroy(this);
+		GUI.BeginGroup(mainScreen);
+		
+		GUI.Box(new Rect(0, 0, mainScreen.width, mainScreen.height), "Fortifications");
+		string[] fortNames = new string[4]{"Fortify", "Weapons", "Upgrades", "Begin Wave"};
+		for(int i=0; i<fortNames.Length; i++){
+			string curFortName = fortNames[i];
+			if(GUI.Button(new Rect(mainScreen.width/4, mainScreen.height/10+(i*100), 100, 50), curFortName)){
+				if(curFortName == fortNames[0]){
+					Debug.Log("shit");
+				} else if(curFortName == fortNames[1]){
+					Debug.Log("Ass");
+				} else if(curFortName == fortNames[2]){
+					Debug.Log("wait");
+				} else {
+					selection.canShoot = true;
+					buildWave.BeginWave();
+					Destroy(this);
+				}
+			}
 		}
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawBuildScreen(){

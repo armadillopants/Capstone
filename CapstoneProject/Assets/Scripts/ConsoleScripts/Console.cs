@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 public class Console : MonoBehaviour {
 	
@@ -27,7 +28,7 @@ public class Console : MonoBehaviour {
 	private XMLReader reader;
 
 	void Awake(){
-		player = GameObject.Find("Player");
+		player = GameObject.FindWithTag("Player");
 		selection = player.GetComponentInChildren<WeaponSelection>();
 		weapon = player.GetComponentInChildren<BaseWeapon>();
 		reader = GetComponent<XMLReader>();
@@ -132,10 +133,29 @@ public class Console : MonoBehaviour {
 			}
 			
 			if(GUILayout.Button("Commit Changes")){
-				
+				//Debug.Log(reader.firstNode.Attributes.GetNamedItem("range").Value);
+				//reader.firstNode.Attributes.GetNamedItem("range").Value = GetValue(info.range, "range");
+				//reader.firstNode.Attributes.GetNamedItem("range").Value = info.range;
+				//reader.doc.Save("WeaponData.xml");
 			}
 			
 			GUI.EndGroup();
 		}
+	}
+	
+	public string GetValue(string num, string attributeVal){
+		string val = num;
+        XmlDocument doc = new XmlDocument();
+        TextAsset asset = new TextAsset();
+		asset = (TextAsset)Resources.Load("WeaponData", typeof(TextAsset));
+		doc.LoadXml(asset.text);
+        XmlNodeList list = doc.GetElementsByTagName("MachineGun");
+        for(int i=0; i<list.Count; i++){
+			if(list[i].Attributes[attributeVal] != null){
+				list[i].Attributes[attributeVal].Value = val;
+				doc.Save(asset.name);
+           	}
+		}
+		return val;
 	}
 }

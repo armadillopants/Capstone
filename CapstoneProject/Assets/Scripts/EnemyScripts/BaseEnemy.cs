@@ -14,10 +14,13 @@ public class BaseEnemy : MonoBehaviour {
 	public float distance = 10f;
 	private Transform trans;
 
-	void Start(){
+	void Awake(){
 		target = GameObject.FindWithTag("Player").transform;
 		playerTarget = target;
 		defendTarget = GameObject.FindWithTag("Defend").transform;
+	}
+	
+	void Start(){
 		trans = transform;
 		currentCoolDown = coolDownLength;
 	}

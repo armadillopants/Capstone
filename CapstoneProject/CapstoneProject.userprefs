@@ -1,13 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ConsoleScripts\Console.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Managers\Fortification.cs">
     <Files>
-      <File FileName="Assets\Scripts\Managers\GameController.cs" Line="15" Column="52" />
-      <File FileName="Assets\Scripts\Managers\UIManager.cs" Line="66" Column="27" />
-      <File FileName="Assets\Scripts\Managers\Health.cs" Line="44" Column="3" />
-      <File FileName="Assets\Scripts\EnemyScripts\BaseEnemy.cs" Line="31" Column="28" />
-      <File FileName="Assets\Scripts\ConsoleScripts\Console.cs" Line="134" Column="30" />
-      <File FileName="Assets\Scripts\ConsoleScripts\XMLReader.cs" Line="16" Column="11" />
+      <File FileName="Assets\Scripts\Managers\Fortification.cs" Line="63" Column="24" />
+      <File FileName="Assets\Scripts\Managers\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\Health.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyScripts\BaseEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WeaponScripts\WeaponSelection.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerScripts\PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\Wave.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

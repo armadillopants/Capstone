@@ -4,7 +4,7 @@ using System.Collections;
 public class Wave : MonoBehaviour {
 	
 	private int waveNumber = 1;
-	private const int WAVES_BETWEEN_FORTIFICATION = 5;
+	private const int WAVES_BETWEEN_FORTIFICATION = 2;
 	public bool beginWave = false;
 	public bool endWave = false;
 	private WaveController controller;
