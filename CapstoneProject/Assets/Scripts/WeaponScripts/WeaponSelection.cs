@@ -23,12 +23,12 @@ public class WeaponSelection : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(!changingWeapons && Input.GetKey(KeyCode.LeftShift)){
+		if(!changingWeapons && Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
 			changingWeapons = true;
 			StartCoroutine("SlowMotion");
 		}
 		
-		if(Input.GetKey(KeyCode.LeftShift)){
+		if(Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
 			changingWeapons = true;
 			canShoot = false;
 		} else {
@@ -80,7 +80,7 @@ public class WeaponSelection : MonoBehaviour {
 	}
 	
 	public void SelectWeapon(int index) {
-		for(int i=0;i<transform.childCount; i++){
+		for(int i=0; i<transform.childCount; i++){
 		// Activate the selected weapon
 		if(i == index){
 				transform.GetChild(i).gameObject.SetActive(true);

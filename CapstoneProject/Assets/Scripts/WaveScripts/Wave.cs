@@ -4,7 +4,7 @@ using System.Collections;
 public class Wave : MonoBehaviour {
 	
 	private int waveNumber = 1;
-	private const int WAVES_BETWEEN_FORTIFICATION = 2;
+	private const int WAVES_BETWEEN_FORTIFICATION = 5;
 	public bool beginWave = false;
 	public bool endWave = false;
 	private WaveController controller;
@@ -21,6 +21,7 @@ public class Wave : MonoBehaviour {
 		// Spawn amount based on wave number
 		spawnAmount = Mathf.FloorToInt(waveNum * 0.5f) + 6;
 		
+		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		controller = wave;
 		waveNumber = waveNum;
 		beginWave = false;
@@ -29,10 +30,12 @@ public class Wave : MonoBehaviour {
 	
 	private IEnumerator WaveHandling(){
 		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0){
+			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			Fortification fort = gameObject.AddComponent<Fortification>();
 			fort.StartFortifying(this);
 		} else {
 			BeginWave();
+			UIManager.Instance.uiState = UIManager.UIState.NEXTWAVE;
 		}
 		
 		while(!beginWave){
@@ -45,10 +48,9 @@ public class Wave : MonoBehaviour {
 	}
 	
 	// Never call this function directly as it is to be called through BeginWave
-	IEnumerator BeginNewWave() {
+	IEnumerator BeginNewWave(){
 		yield return new WaitForSeconds(waitTime);
-		//waitTime = 0;
-		
+		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		beginWave = true;
 	}
 	

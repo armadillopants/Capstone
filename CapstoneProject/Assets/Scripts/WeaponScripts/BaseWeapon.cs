@@ -21,6 +21,7 @@ public class BaseWeapon : MonoBehaviour {
 	public Rigidbody projectile;
 	public Transform muzzlePos;
 	public Renderer muzzleFlash;
+	public Light lightFlash;
 	
 	public bool isReloading = false;
 	protected float nextFireTime = 0.0f;
@@ -51,11 +52,12 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	void LateUpdate(){
-		if(muzzleFlash){
+		if(muzzleFlash || lightFlash){
 			// We shot this frame, enable the muzzle flash
 			if(lastFrameShot == Time.frameCount){
 				muzzleFlash.transform.localRotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
 				muzzleFlash.enabled = true;
+				lightFlash.enabled = true;
 				
 				if(audio){
 					if(!audio.isPlaying){
@@ -66,6 +68,7 @@ public class BaseWeapon : MonoBehaviour {
 			} else {
 				// We didn't disable the muzzle flash
 				muzzleFlash.enabled = false;
+				lightFlash.enabled = false;
 				enabled = false;
 				
 				// Play sound
@@ -77,10 +80,6 @@ public class BaseWeapon : MonoBehaviour {
 	}
 
 	public virtual void Fire(){
-		if(clips <= 0 && bulletsLeft <= 0){
-			return;
-		}
-		
 		if(bulletsLeft <= 0 && !isReloading){
 			StartCoroutine("Reload");
 			return;

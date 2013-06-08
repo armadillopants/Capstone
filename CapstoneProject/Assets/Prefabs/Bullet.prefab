@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106be3b2a2a2ca7429257105c0d157d3, type: 3}
   m_Name: 
-  bulletSpeed: 50
+  bulletSpeed: 100
   lifeTime: .5
   distance: 1000
 --- !u!1001 &100100000

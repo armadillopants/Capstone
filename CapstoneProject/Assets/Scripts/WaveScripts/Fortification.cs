@@ -9,6 +9,7 @@ public class Fortification : MonoBehaviour {
 	private WeaponSelection selection;
 	private float infinity = Mathf.Infinity;
 	private Rect mainScreen = new Rect(Screen.width-250, Screen.height-(Screen.height-16), 200, 500);
+	private Rect displayScreen = new Rect(Screen.width/3, Screen.height/5, 500, 500);
 
 	void Awake(){
 		selection = GameObject.FindWithTag("Player").GetComponentInChildren<WeaponSelection>();
@@ -31,10 +32,8 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void OnGUI(){
+		DrawMainScreen();
 		switch(state){
-		case FortState.MAIN_SCREEN:
-			DrawMainScreen();
-			break;
 		case FortState.BUILD_SCREEN:
 			DrawBuildScreen();
 			break;
@@ -56,11 +55,11 @@ public class Fortification : MonoBehaviour {
 			string curFortName = fortNames[i];
 			if(GUI.Button(new Rect(mainScreen.width/4, mainScreen.height/10+(i*100), 100, 50), curFortName)){
 				if(curFortName == fortNames[0]){
-					Debug.Log("shit");
+					state = FortState.BUILD_SCREEN;
 				} else if(curFortName == fortNames[1]){
-					Debug.Log("Ass");
+					state = FortState.BUY_SCREEN;
 				} else if(curFortName == fortNames[2]){
-					Debug.Log("wait");
+					state = FortState.UPGRADE_SCREEN;
 				} else {
 					selection.canShoot = true;
 					buildWave.BeginWave();
@@ -73,11 +72,26 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void DrawBuildScreen(){
+		GUI.BeginGroup(displayScreen);
+		
+		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Build Screen");
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawUpgradeScreen(){
+		GUI.BeginGroup(displayScreen);
+		
+		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Upgrade Screen");
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawBuyScreen(){
+		GUI.BeginGroup(displayScreen);
+		
+		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Weapons Screen");
+		
+		GUI.EndGroup();
 	}
 }

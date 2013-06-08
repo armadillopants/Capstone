@@ -49,4 +49,24 @@
 		damage= "10"
 		coneAngle= "2">
 	</FlameThrower>
+	<ThreeBurst
+		range= "100"
+		fireRate= "0.3"
+		force= "0.7"
+		bulletsPerClip= "30"
+		clips= "6"
+		reloadSpeed= "1.5"
+		damage= "15"
+		coneAngle= "1.2">
+	</ThreeBurst>
+	<Shotgun
+		range= "100"
+		fireRate= "0.09"
+		force= "0.5"
+		bulletsPerClip= "56"
+		clips= "3"
+		reloadSpeed= "1.5"
+		damage= "10"
+		coneAngle= "8">
+	</Shotgun>
 </WeaponData>

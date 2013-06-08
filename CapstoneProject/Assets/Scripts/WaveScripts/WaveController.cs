@@ -23,6 +23,7 @@ public class WaveController : MonoBehaviour {
 	}
 	
 	public void StartNextWave(){
+		UIManager.Instance.uiState = UIManager.UIState.WAVEWON;
 		StartCoroutine("WaveCompleted");
 	}
 	

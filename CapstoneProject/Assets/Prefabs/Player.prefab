@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400006}
+  - 114: {fileID: 11400020}
   m_Layer: 0
-  m_Name: Flame Thrower
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,6 +219,72 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100026
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400026}
+  - 33: {fileID: 3300010}
+  - 23: {fileID: 2300010}
+  - 114: {fileID: 11400006}
+  m_Layer: 0
+  m_Name: Flame Thrower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100028
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400028}
+  m_Layer: 0
+  m_Name: muzzlePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100030
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400030}
+  m_Layer: 0
+  m_Name: muzzlePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100032
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400032}
+  - 33: {fileID: 3300012}
+  - 23: {fileID: 2300012}
+  - 114: {fileID: 11400022}
+  m_Layer: 0
+  m_Name: Burst Rifle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -226,10 +292,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .786291003}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .699999988}
+  m_LocalScale: {x: .5, y: .5, z: .800000012}
   m_Children:
-  - {fileID: 400018}
   - {fileID: 400022}
   m_Father: {fileID: 400006}
 --- !u!4 &400002
@@ -269,6 +334,8 @@ Transform:
   - {fileID: 400024}
   - {fileID: 400020}
   - {fileID: 400012}
+  - {fileID: 400026}
+  - {fileID: 400032}
   - {fileID: 400000}
   m_Father: {fileID: 400014}
 --- !u!4 &400008
@@ -338,7 +405,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -.736442626}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
-  m_Father: {fileID: 400000}
+  m_Father: {fileID: 400026}
 --- !u!4 &400020
 Transform:
   m_ObjectHideFlags: 1
@@ -358,7 +425,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.17185545}
+  m_LocalPosition: {x: 0, y: 0, z: .827207327}
   m_LocalScale: {x: 2, y: 2, z: 1.25}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -373,6 +440,53 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: .800000012}
   m_Children:
   - {fileID: 400008}
+  m_Father: {fileID: 400006}
+--- !u!4 &400026
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .786291003}
+  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_Children:
+  - {fileID: 400018}
+  - {fileID: 400028}
+  m_Father: {fileID: 400006}
+--- !u!4 &400028
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.17185545}
+  m_LocalScale: {x: 2, y: 2, z: 1.25}
+  m_Children: []
+  m_Father: {fileID: 400026}
+--- !u!4 &400030
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .72655952}
+  m_LocalScale: {x: 2, y: 2, z: 1.25}
+  m_Children: []
+  m_Father: {fileID: 400032}
+--- !u!4 &400032
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .699999988}
+  m_LocalScale: {x: .5, y: .5, z: .800000012}
+  m_Children:
+  - {fileID: 400030}
   m_Father: {fileID: 400006}
 --- !u!12 &1200000
 ParticleAnimator:
@@ -521,6 +635,42 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
+--- !u!23 &2300010
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100026}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!23 &2300012
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
 --- !u!26 &2600000
 ParticleRenderer:
   m_ObjectHideFlags: 1
@@ -584,6 +734,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100024}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &3300010
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100026}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &3300012
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -622,13 +786,12 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100026}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 651b1e111f32dd2409be4cd0c5e6bc23, type: 3}
   m_Name: 
   state: 0
-  weaponName: Flame Thrower
   fireRate: .100000001
   range: 5
   force: 1
@@ -644,6 +807,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   muzzlePos: {fileID: 0}
   muzzleFlash: {fileID: 0}
+  lightFlash: {fileID: 0}
   isReloading: 0
 --- !u!114 &11400008
 MonoBehaviour:
@@ -676,7 +840,7 @@ MonoBehaviour:
   - {fileID: 100024}
   - {fileID: 100020}
   - {fileID: 100012}
-  - {fileID: 100000}
+  - {fileID: 100026}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -688,7 +852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a577834e0e9e5c140b7cb6a0dadcd066, type: 3}
   m_Name: 
   state: 1
-  weaponName: 
   fireRate: .0900000036
   range: 100
   force: 1
@@ -704,6 +867,7 @@ MonoBehaviour:
   projectile: {fileID: 5400000, guid: f264e17109caebf4280186e8762281d3, type: 2}
   muzzlePos: {fileID: 400010}
   muzzleFlash: {fileID: 0}
+  lightFlash: {fileID: 0}
   isReloading: 0
 --- !u!114 &11400014
 MonoBehaviour:
@@ -727,7 +891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737856c3cb8591e4a969fde0f855fe5f, type: 3}
   m_Name: 
   state: 0
-  weaponName: Machine Gun
   fireRate: .0900000036
   range: 100
   force: 1
@@ -743,6 +906,7 @@ MonoBehaviour:
   projectile: {fileID: 5400000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
   muzzlePos: {fileID: 400008}
   muzzleFlash: {fileID: 0}
+  lightFlash: {fileID: 0}
   isReloading: 0
 --- !u!114 &11400018
 MonoBehaviour:
@@ -755,7 +919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a577834e0e9e5c140b7cb6a0dadcd066, type: 3}
   m_Name: 
   state: 0
-  weaponName: Pistol
   fireRate: .0900000036
   range: 100
   force: 1
@@ -771,6 +934,63 @@ MonoBehaviour:
   projectile: {fileID: 5400000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
   muzzlePos: {fileID: 400016}
   muzzleFlash: {fileID: 0}
+  lightFlash: {fileID: 0}
+  isReloading: 0
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52e4986ead1b2a46add6ae382fa2444, type: 3}
+  m_Name: 
+  state: 0
+  fireRate: .0900000036
+  range: 100
+  force: 1
+  bulletsLeft: 0
+  bulletsPerClip: 40
+  clips: 6
+  maxClips: 0
+  reloadSpeed: 1.20000005
+  damage: 10
+  coneAngle: 1.5
+  roundsPerBurst: 8
+  lagBetweenShots: 0
+  projectile: {fileID: 5400000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
+  muzzlePos: {fileID: 400022}
+  muzzleFlash: {fileID: 0}
+  lightFlash: {fileID: 0}
+  isReloading: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f674a40efbef744ac56bfe0bdbc242, type: 3}
+  m_Name: 
+  state: 0
+  fireRate: .600000024
+  range: 100
+  force: 1
+  bulletsLeft: 0
+  bulletsPerClip: 40
+  clips: 6
+  maxClips: 0
+  reloadSpeed: 1.20000005
+  damage: 10
+  coneAngle: 1.5
+  roundsPerBurst: 3
+  lagBetweenShots: .100000001
+  projectile: {fileID: 5400000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
+  muzzlePos: {fileID: 400030}
+  muzzleFlash: {fileID: 0}
+  lightFlash: {fileID: 0}
   isReloading: 0
 --- !u!143 &14300000
 CharacterController:

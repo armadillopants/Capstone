@@ -3,7 +3,7 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 	
-	public enum UIState { PAUSE, WAVEWON, WAVELOST, GAMEOVER, NONE };
+	public enum UIState { PAUSE, WAVEWON, WAVELOST, NEXTWAVE, GAMEOVER, NONE };
 	public UIState uiState = UIState.NONE;
 	public bool isPaused = false;
 	private WeaponSelection selection;
@@ -47,6 +47,9 @@ public class UIManager : MonoBehaviour {
 		case UIState.WAVEWON:
 			DrawWaveWonScreen();
 			break;
+		case UIState.NEXTWAVE:
+			DrawNextWaveScreen();
+			break;
 		case UIState.WAVELOST:
 			DrawWaveLostScreen();
 			break;
@@ -64,9 +67,15 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawWaveWonScreen(){
+		GUI.Box(new Rect(Screen.width/2, Screen.height/2, 400, 300), "Wave Won");
 	}
 	
 	void DrawWaveLostScreen(){
+		GUI.Box(new Rect(Screen.width/2, Screen.height/2, 400, 300), "Wave Lost");
+	}
+
+	void DrawNextWaveScreen(){
+		GUI.Box(new Rect(Screen.width/2, Screen.height/2, 400, 300), "Next Wave");
 	}
 	
 	void DrawGameOverScreen(){
