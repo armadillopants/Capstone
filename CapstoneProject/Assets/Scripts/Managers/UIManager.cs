@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour {
 	public bool isPaused = false;
 	private WeaponSelection selection;
 	
+	#region Singleton
+	
 	private static UIManager _instance;
 
 	public static UIManager Instance {
@@ -27,6 +29,8 @@ public class UIManager : MonoBehaviour {
 	void OnApplicationQuit(){
 		_instance = null;
 	}
+	
+	#endregion
 	
 	void Update(){
 		if(isPaused){
@@ -67,19 +71,19 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawWaveWonScreen(){
-		GUI.Box(new Rect(Screen.width/2, Screen.height/2, 400, 300), "Wave Won");
+		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Wave Won");
 	}
 	
 	void DrawWaveLostScreen(){
-		GUI.Box(new Rect(Screen.width/2, Screen.height/2, 400, 300), "Wave Lost");
+		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Wave Lost");
 	}
 
 	void DrawNextWaveScreen(){
-		GUI.Box(new Rect(Screen.width/2, Screen.height/2, 400, 300), "Next Wave");
+		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Next Wave");
 	}
 	
 	void DrawGameOverScreen(){
-		if(GUI.Button(new Rect(Screen.width/2, Screen.height/2, 100, 50), "Restart")){
+		if(GUI.Button(new Rect(Screen.width/3, Screen.height/5, 100, 50), "Restart")){
 			Application.LoadLevel(Application.loadedLevel);
 		}
 	}

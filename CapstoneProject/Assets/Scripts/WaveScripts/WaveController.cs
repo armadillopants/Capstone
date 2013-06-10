@@ -15,6 +15,9 @@ public class WaveController : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
+			return;
+		}
 		if(!isWaiting){
 			curWave = gameObject.AddComponent<Wave>();
 			isWaiting = true;

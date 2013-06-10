@@ -22,6 +22,7 @@ public class XMLReader : MonoBehaviour {
 		SetWeapon(3, "/WeaponData/FlameThrower");
 		SetWeapon(4, "/WeaponData/ThreeBurst");
 		SetWeapon(5, "/WeaponData/Shotgun");
+		SetWeapon(6, "/WeaponData/MissileLauncher");
 	}
 	
 	void SetWeapon(int i, string path){

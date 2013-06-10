@@ -1,13 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\WeaponData.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuScripts\MoveToTarget.cs">
     <Files>
-      <File FileName="Assets\Resources\WeaponData.xml" Line="2" Column="23" />
+      <File FileName="Assets\Scripts\Managers\UIManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\WeaponScripts\WeaponSelection.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ConsoleScripts\XMLReader.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\WeaponScripts\BaseWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WeaponScripts\BurstShot.cs" Line="7" Column="58" />
-      <File FileName="Assets\Scripts\WeaponScripts\Explosion.cs" Line="29" Column="114" />
+      <File FileName="Assets\Resources\WeaponData.xml" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ConsoleScripts\XMLReader.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WeaponScripts\BurstShot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WeaponScripts\Explosion.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\WeaponManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Managers\MenuManager.cs" Line="38" Column="3" />
+      <File FileName="Assets\Scripts\MenuScripts\MoveToTarget.cs" Line="20" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

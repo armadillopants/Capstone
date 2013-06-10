@@ -18,6 +18,7 @@ public class BaseWeapon : MonoBehaviour {
 	public float coneAngle = 1.5f;
 	public float roundsPerBurst = 0f;
 	public float lagBetweenShots = 0f;
+	public int id;
 	public Rigidbody projectile;
 	public Transform muzzlePos;
 	public Renderer muzzleFlash;

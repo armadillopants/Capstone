@@ -26,7 +26,7 @@ public class Explosion : MonoBehaviour {
 		}
 		// Apply explosion forces to all rigidbodies
 		// This needs to be in two steps for ragdolls to work correctly.
-		// (Enemies are first turned into ragdolls with ApplyDamage then we apply forces to all the spawned body parts)
+		// (Enemies are first turned into ragdolls with TakeDamage then we apply forces to all the spawned body parts)
 		foreach(Collider hit in colliders){
 			if(hit.rigidbody){
 				hit.rigidbody.AddExplosionForce(explosivePower, pos, blastRadius, 1.0f);
@@ -42,7 +42,7 @@ public class Explosion : MonoBehaviour {
 		Destroy(gameObject, timeOut);
 	}
 	
-	IEnumerator TurnOffParticles () {
+	IEnumerator TurnOffParticles(){
 		yield return new WaitForSeconds(0.5f);
 		particleEmitter.emit = false;
 	}

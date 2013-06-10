@@ -19,7 +19,7 @@ public class WeaponSelection : MonoBehaviour {
 	void Start(){
 		canShoot = true;
 		// Choose first weapon
-		SelectWeapon(0);
+		SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
 	}
 	
 	void Update(){
@@ -58,22 +58,22 @@ public class WeaponSelection : MonoBehaviour {
 			// Display 4 GUI buttons: top, bottom, left, right
 			if(weaponSlots[0] != null){
 				if(GUI.Button(new Rect(Screen.width/3.0f,Screen.height/2.1f,120,40), weaponSlots[0].name)){
-					SelectWeapon(0);
+					SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
 				}
 			}
 			if(weaponSlots[1] != null){
 				if(GUI.Button(new Rect(Screen.width/1.7f,Screen.height/2.1f,120,40), weaponSlots[1].name)){
-					SelectWeapon(1);
+					SelectWeapon(weaponSlots[1].GetComponent<BaseWeapon>().id);
 				}
 			}
 			if(weaponSlots[2] != null){
 				if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/3.2f,120,40), weaponSlots[2].name)){
-					SelectWeapon(2);
+					SelectWeapon(weaponSlots[2].GetComponent<BaseWeapon>().id);
 				}
 			}
 			if(weaponSlots[3] != null){
 				if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/1.6f,120,40), weaponSlots[3].name)){
-					SelectWeapon(3);
+					SelectWeapon(weaponSlots[3].GetComponent<BaseWeapon>().id);
 				}
 			}
 		}

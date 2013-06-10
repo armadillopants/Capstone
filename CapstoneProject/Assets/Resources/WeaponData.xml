@@ -65,8 +65,18 @@
 		force= "0.5"
 		bulletsPerClip= "56"
 		clips= "3"
-		reloadSpeed= "1.5"
+		reloadSpeed= "2"
 		damage= "10"
 		coneAngle= "8">
 	</Shotgun>
+	<MissileLauncher
+		range = "3"
+		fireRate= "0.09"
+		force= "1"
+		bulletsPerClip= "5"
+		clips= "6"
+		reloadSpeed= "1.7"
+		damage= "15"
+		coneAngle= "2">
+	</MissileLauncher>
 </WeaponData>
