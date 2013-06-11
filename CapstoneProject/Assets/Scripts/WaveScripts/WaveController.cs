@@ -7,6 +7,7 @@ public class WaveController : MonoBehaviour {
 	private int waveNumber = 1;
 	private float waitTime = 5.0f;
 	private static Wave curWave;
+	private bool displayGui;
 
 	void Start(){
 		if(waveNumber == 0){
@@ -16,7 +17,10 @@ public class WaveController : MonoBehaviour {
 	
 	void Update(){
 		if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
+			displayGui = false;
 			return;
+		} else {
+			displayGui = true;
 		}
 		if(!isWaiting){
 			curWave = gameObject.AddComponent<Wave>();
@@ -37,6 +41,8 @@ public class WaveController : MonoBehaviour {
 	}
 	
 	void OnGUI(){
-		GUI.Box(new Rect(0, 300, 200, 20), "Wave Number: " + waveNumber);
+		if(displayGui){
+			GUI.Box(new Rect(0, 300, 200, 20), "Wave Number: " + waveNumber);
+		}
 	}
 }

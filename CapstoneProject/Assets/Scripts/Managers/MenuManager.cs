@@ -3,8 +3,9 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour {
 	
-	public enum MenuState { INGAME, SETTINGS, EXIT, MAINMENU };
+	public enum MenuState { INGAME, SETTINGS, MAINMENU };
 	public MenuState menuState = MenuState.MAINMENU;
+	public bool drawMainMenu = false;
 	
 	#region Singleton
 	
@@ -31,9 +32,16 @@ public class MenuManager : MonoBehaviour {
 	void OnGUI(){
 		switch(menuState){
 		case MenuState.MAINMENU:
+			if(drawMainMenu){
+				DrawMainMenu();
+			}
 			break;
 		case MenuState.SETTINGS:
 			break;
 		}
+	}
+	
+	void DrawMainMenu(){
+		
 	}
 }

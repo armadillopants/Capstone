@@ -5,7 +5,7 @@ public class MoveToTarget : MonoBehaviour {
 	
 	public Transform[] wayPoints;
 	public int curWaypoint = 0;
-	private int totalWayPoints;
+	public int totalWayPoints;
 	private Transform trans;
 	private Vector3 curTarget;
 	private Vector3 moveDirection;
