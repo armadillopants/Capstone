@@ -7,8 +7,8 @@ public class ParticleManager : MonoBehaviour {
 	private static PlayerMovement move;
 	
 	public static void MoveParticlesWithPlayerVelocity(){
-		move = GameObject.Find("Player").GetComponent<PlayerMovement>();
+		move = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
 		particles = move.GetComponentInChildren<ParticleEmitter>();
-		particles.worldVelocity = move.moveDirection * move.moveSpeed;
+		particles.worldVelocity = move.moveDirection;
 	}
 }

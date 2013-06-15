@@ -17,12 +17,16 @@ public class WeaponSelection : MonoBehaviour {
 	}
 	
 	void Start(){
-		canShoot = true;
+		//canShoot = true;
 		// Choose first weapon
 		SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
 	}
 	
 	void Update(){
+		if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME || UIManager.Instance.uiState == UIManager.UIState.NONE){
+			return;
+		}
+		
 		if(!changingWeapons && Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
 			changingWeapons = true;
 			StartCoroutine("SlowMotion");

@@ -217,12 +217,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0c948ce5f8ae44ab0704593f3d8671, type: 3}
   m_Name: 
   target: {fileID: 0}
-  moveSpeed: 4
+  moveSpeed: 3
   doDamage: 0
   currentCoolDown: 0
-  coolDownLength: 1
+  coolDownLength: 3
   damageAmount: 10
   distance: 10
+  turnSpeed: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
-  curHealth: 100
+  curHealth: 75
   canTakeDamage: 1
 --- !u!136 &13600000
 CapsuleCollider:

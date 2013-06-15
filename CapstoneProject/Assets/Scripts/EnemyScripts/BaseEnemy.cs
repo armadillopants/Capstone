@@ -12,6 +12,7 @@ public class BaseEnemy : MonoBehaviour {
 	public float coolDownLength = 1f;
 	public float damageAmount = 10f;
 	public float distance = 10f;
+	public float turnSpeed = 1f;
 	private Transform trans;
 
 	void Awake(){
@@ -28,7 +29,6 @@ public class BaseEnemy : MonoBehaviour {
 	void Update(){
 		if(defendTarget == null){
 			SwitchTarget("Player");
-			return;
 		}
 		
 		if(playerTarget == null){
@@ -40,7 +40,7 @@ public class BaseEnemy : MonoBehaviour {
 		adjustedTargetHeight.y = trans.position.y; // Target's height is always equal to enemy height
 		
 		trans.rotation = Quaternion.Slerp(trans.rotation, 
-			Quaternion.LookRotation(adjustedTargetHeight - trans.position), 1);
+			Quaternion.LookRotation(adjustedTargetHeight - trans.position), turnSpeed);
 		
 		trans.position += trans.forward * moveSpeed * Time.deltaTime;
 		
@@ -69,10 +69,12 @@ public class BaseEnemy : MonoBehaviour {
 	
 	void OnCollisionStay(Collision collision){
 		// If we collide with the target
-		if(collision.gameObject.tag == target.tag){
-			// Start dealing damage
-			doDamage = true;
-			Attack(collision.gameObject);
+		if(target != null){
+			if(collision.gameObject.tag == target.tag){
+				// Start dealing damage
+				doDamage = true;
+				Attack(collision.gameObject);
+			}
 		}
 	}
 	

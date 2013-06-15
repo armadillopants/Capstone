@@ -8,6 +8,8 @@ public class WaveController : MonoBehaviour {
 	private float waitTime = 5.0f;
 	private static Wave curWave;
 	private bool displayGui;
+	private bool canBeginWave = false;
+	private float timer = 20f;
 
 	void Start(){
 		if(waveNumber == 0){
@@ -20,12 +22,19 @@ public class WaveController : MonoBehaviour {
 			displayGui = false;
 			return;
 		} else {
-			displayGui = true;
+			timer -= Time.deltaTime;
+			if(timer <= 0){
+				timer = 0;
+				displayGui = true;
+				canBeginWave = true;
+			}
 		}
-		if(!isWaiting){
-			curWave = gameObject.AddComponent<Wave>();
-			isWaiting = true;
-			curWave.StartWave(this, waveNumber);
+		if(canBeginWave){
+			if(!isWaiting){
+				curWave = gameObject.AddComponent<Wave>();
+				isWaiting = true;
+				curWave.StartWave(this, waveNumber);
+			}
 		}
 	}
 	

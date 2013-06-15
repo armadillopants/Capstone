@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 	
-	[System.NonSerialized]
+	//[System.NonSerialized]
 	public Vector3 moveDirection = Vector3.zero;
 	public float moveSpeed = 6f;
 	private float moveSnap = 50f;

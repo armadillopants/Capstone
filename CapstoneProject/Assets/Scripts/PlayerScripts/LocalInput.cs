@@ -16,16 +16,16 @@ public class LocalInput : MonoBehaviour {
 	private Transform cam;
 
 	void Awake(){
-		controller = GetComponent<PlayerMovement>();
 		cam = Camera.main.transform;
 		
 		playerOffset = cam.position - transform.position;
 	}
 	
 	void Start(){
+		controller = GetComponent<PlayerMovement>();
 		screenMovementSpace = Quaternion.Euler(0, cam.eulerAngles.y, 0);
 		screenMovementForward = screenMovementSpace * Vector3.forward;
-		screenMovementRight = screenMovementSpace * Vector3.right;	
+		screenMovementRight = screenMovementSpace * Vector3.right;
 	}
 	
 	void Update(){

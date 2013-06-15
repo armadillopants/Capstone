@@ -15,7 +15,11 @@ public class GameController : MonoBehaviour {
 		if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
 			return;
 		}
-		if(defendHealth.IsDead() || playerHealth.IsDead()){
+		if(playerHealth.IsDead()){
+			SwitchUIState(UIManager.UIState.GAMEOVER);
+		}
+		
+		if(playerHealth.IsDead() && defendHealth.IsDead()){
 			SwitchUIState(UIManager.UIState.GAMEOVER);
 		}
 		

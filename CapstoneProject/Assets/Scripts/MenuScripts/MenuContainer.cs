@@ -13,18 +13,16 @@ public class MenuContainer : MonoBehaviour {
 		boxCols = GetComponentsInChildren<BoxCollider>();
 		rends = GetComponentsInChildren<Renderer>();
 		
-		foreach(BoxCollider col in boxCols){
-			col.enabled = false;
-		}
-		
-		foreach(Renderer rend in rends){
-			rend.enabled = false;
-		}
+		UnRenderMenu();
 	}
 	
 	void Update(){
-		if(target.curWaypoint == target.totalWayPoints){
+		if(target.curWaypoint == target.totalWayPoints && MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
 			StartCoroutine("FadeMenu");
+		}
+		
+		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
+			UnRenderMenu();
 		}
 		
 		RaycastHit hit;
@@ -47,6 +45,16 @@ public class MenuContainer : MonoBehaviour {
 		
 		foreach(Renderer rend in rends){
 			rend.enabled = true;
+		}
+	}
+	
+	void UnRenderMenu(){
+		foreach(BoxCollider col in boxCols){
+			col.enabled = false;
+		}
+		
+		foreach(Renderer rend in rends){
+			rend.enabled = false;
 		}
 	}
 }

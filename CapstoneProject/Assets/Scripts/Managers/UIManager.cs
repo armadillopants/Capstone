@@ -3,7 +3,7 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 	
-	public enum UIState { PAUSE, WAVEWON, WAVELOST, NEXTWAVE, GAMEOVER, NONE };
+	public enum UIState { PAUSE, WAVEWON, WAVELOST, NEXTWAVE, GAMEOVER, NONE, CURWAVE };
 	public UIState uiState = UIState.NONE;
 	public bool isPaused = false;
 	private WeaponSelection selection;
@@ -54,6 +54,9 @@ public class UIManager : MonoBehaviour {
 		case UIState.NEXTWAVE:
 			DrawNextWaveScreen();
 			break;
+		case UIState.CURWAVE:
+			DrawCurWaveScreen();
+			break;
 		case UIState.WAVELOST:
 			DrawWaveLostScreen();
 			break;
@@ -86,5 +89,9 @@ public class UIManager : MonoBehaviour {
 		if(GUI.Button(new Rect(Screen.width/3, Screen.height/5, 100, 50), "Restart")){
 			Application.LoadLevel(Application.loadedLevel);
 		}
+	}
+	
+	void DrawCurWaveScreen(){
+		
 	}
 }

@@ -50,7 +50,7 @@ public class Wave : MonoBehaviour {
 	// Never call this function directly as it is to be called through BeginWave
 	IEnumerator BeginNewWave(){
 		yield return new WaitForSeconds(waitTime);
-		UIManager.Instance.uiState = UIManager.UIState.NONE;
+		UIManager.Instance.uiState = UIManager.UIState.CURWAVE;
 		beginWave = true;
 	}
 	
