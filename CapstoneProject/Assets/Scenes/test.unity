@@ -321,6 +321,10 @@ Prefab:
       propertyPath: isWaiting
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: baf877ad78cc17c48b8590574aff60cd, type: 2}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 100000, guid: 31a2e620f28e3654cadc568f5f050442, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: baf877ad78cc17c48b8590574aff60cd, type: 2}
   m_RootGameObject: {fileID: 44960712}
@@ -3623,7 +3627,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41752ce8ab6023c41a39ae01b070cfff, type: 3}
   m_Name: 
-  enemy: {fileID: 100000, guid: 912f65a48b2c6fe4abaef6324da85ee0, type: 2}
+  enemy: {fileID: 100000, guid: 31a2e620f28e3654cadc568f5f050442, type: 2}
 --- !u!1 &2125290831
 GameObject:
   m_ObjectHideFlags: 0

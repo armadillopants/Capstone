@@ -19,6 +19,11 @@ public class StartGameButton : MonoBehaviour {
 	}
 	
 	void Update(){
+		
+		if(UIManager.Instance.uiState == UIManager.UIState.GAMEOVER){
+			return;
+		}
+		
 		if(beginGame){
 			cam.position = Vector3.Lerp(cam.position, new Vector3(player.position.x, player.position.y+15, player.position.z), 0.5f*Time.deltaTime);
 			cam.rotation = Quaternion.Lerp(cam.rotation, Quaternion.Euler(new Vector3(85, 0, 0)), 0.5f*Time.deltaTime);

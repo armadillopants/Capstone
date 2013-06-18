@@ -3,6 +3,9 @@ using System.Collections;
 
 public class BaseEnemy : MonoBehaviour {
 	
+	public enum EnemyState { CHASINGPLAYER, CHASINGSHIP, ATTACKINGPLAYER, ATTACKINGSHIP, ATTACKINGFORT };
+	public EnemyState state = EnemyState.CHASINGPLAYER;
+	
 	public Transform target;
 	private Transform playerTarget;
 	private Transform defendTarget;
@@ -13,53 +16,60 @@ public class BaseEnemy : MonoBehaviour {
 	public float damageAmount = 10f;
 	public float distance = 10f;
 	public float turnSpeed = 1f;
-	private Transform trans;
+	public bool canAttackBoth = false;
+	protected Transform trans;
 
-	void Awake(){
+	public virtual void Awake(){
 		target = GameObject.FindWithTag("Player").transform;
 		playerTarget = target;
 		defendTarget = GameObject.FindWithTag("Defend").transform;
 	}
 	
-	void Start(){
+	public virtual void Start(){
 		trans = transform;
 		currentCoolDown = coolDownLength;
 	}
 	
-	void Update(){
+	public virtual void Update(){
+		switch(state){
+		case EnemyState.CHASINGPLAYER:
+			SwitchTarget("Player");
+			ChaseObject();
+			break;
+		case EnemyState.CHASINGSHIP:
+			SwitchTarget("Defend");
+			ChaseObject();
+			break;
+		case EnemyState.ATTACKINGPLAYER:
+			break;
+		case EnemyState.ATTACKINGFORT:
+			break;
+		case EnemyState.ATTACKINGSHIP:
+			break;
+		}
+		
 		if(defendTarget == null){
 			SwitchTarget("Player");
 		}
-		
-		if(playerTarget == null){
-			Destroy(gameObject);
-			return;
-		}
-		
-		Vector3	adjustedTargetHeight = target.position; // Sets target's height to a variable
-		adjustedTargetHeight.y = trans.position.y; // Target's height is always equal to enemy height
-		
-		trans.rotation = Quaternion.Slerp(trans.rotation, 
-			Quaternion.LookRotation(adjustedTargetHeight - trans.position), turnSpeed);
-		
-		trans.position += trans.forward * moveSpeed * Time.deltaTime;
 		
 		if(currentCoolDown > 0){
 			currentCoolDown -= Time.deltaTime;
 		}
 		
-		if(defendTarget){
-			if(Vector3.Distance(playerTarget.position, trans.position) > distance){
-				SwitchTarget("Defend");
-			} else if(Vector3.Distance(playerTarget.position, trans.position) <= distance){
-				SwitchTarget("Player");
+		if(canAttackBoth){
+			if(defendTarget){
+				if(Vector3.Distance(playerTarget.position, trans.position) > distance){
+					SwitchTarget("Defend");
+				} else if(Vector3.Distance(playerTarget.position, trans.position) <= distance){
+					SwitchTarget("Player");
+				}
 			}
 		}
 		
 		ClampCoolDownTime();
 	}
 	
-	void ClampCoolDownTime(){
+	public void ClampCoolDownTime(){
 		currentCoolDown = Mathf.Clamp(currentCoolDown, 0, coolDownLength);
 	}
 	
@@ -83,12 +93,22 @@ public class BaseEnemy : MonoBehaviour {
 		doDamage = false;
 	}
 	
-	void Attack(GameObject target){
+	public virtual void Attack(GameObject target){
 		if(doDamage){
 			if(currentCoolDown <= 0){
 				target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
 				currentCoolDown = coolDownLength;
 			}
 		}
+	}
+	
+	void ChaseObject(){
+		Vector3	adjustedTargetHeight = target.position; // Sets target's height to a variable
+		adjustedTargetHeight.y = trans.position.y; // Target's height is always equal to enemy height
+	
+		trans.rotation = Quaternion.Slerp(trans.rotation, 
+			Quaternion.LookRotation(adjustedTargetHeight - trans.position), turnSpeed);
+	
+		trans.position += trans.forward * moveSpeed * Time.deltaTime;
 	}
 }

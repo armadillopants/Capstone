@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour {
 	
 	private Health defendHealth;
 	private Health playerHealth;
+	private GameObject[] enemies;
 
 	void Awake(){
 		defendHealth = GameObject.FindWithTag("Defend").GetComponent<Health>();
@@ -15,11 +16,19 @@ public class GameController : MonoBehaviour {
 		if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
 			return;
 		}
+		
+		enemies = GameObject.FindGameObjectsWithTag("Enemy");
 		if(playerHealth.IsDead()){
+			foreach(GameObject enemy in enemies){
+				Destroy(enemy);
+			}
 			SwitchUIState(UIManager.UIState.GAMEOVER);
 		}
 		
 		if(playerHealth.IsDead() && defendHealth.IsDead()){
+			foreach(GameObject enemy in enemies){
+				Destroy(enemy);
+			}
 			SwitchUIState(UIManager.UIState.GAMEOVER);
 		}
 		
