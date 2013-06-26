@@ -2,13 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WeaponScripts\OrbitAbility.cs">
     <Files>
-      <File FileName="Assets\Scripts\Managers\GameController.cs" Line="20" Column="56" />
-      <File FileName="Assets\Scripts\EnemyScripts\BaseEnemy.cs" Line="53" Column="4" />
-      <File FileName="Assets\Scripts\EnemyScripts\CyberTiger.cs" Line="6" Column="40" />
-      <File FileName="Assets\Scripts\EnemyScripts\Kamikaze.cs" Line="13" Column="25" />
-      <File FileName="Assets\Scripts\MenuScripts\StartGameButton.cs" Line="32" Column="1" />
-      <File FileName="Assets\Scripts\WeaponScripts\OrbitAbility.cs" Line="46" Column="34" />
-      <File FileName="Assets\Scripts\WeaponScripts\BarrelOrbit.cs" Line="28" Column="2" />
+      <File FileName="Assets\Scripts\WeaponScripts\OrbitAbility.cs" Line="1" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

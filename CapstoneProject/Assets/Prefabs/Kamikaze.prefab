@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a76648eb848bd594ea8c13462dde53c8, type: 3}
   m_Name: 
+  state: 0
   target: {fileID: 0}
   moveSpeed: 13
   doDamage: 0
@@ -224,6 +225,7 @@ MonoBehaviour:
   damageAmount: 20
   distance: 10
   turnSpeed: 1
+  canAttackBoth: 0
   explosion: {fileID: 100006, guid: 927a7591b135d3945b4f087b9b0a029d, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -237,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   curHealth: 10
   canTakeDamage: 1
+  explosion: {fileID: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

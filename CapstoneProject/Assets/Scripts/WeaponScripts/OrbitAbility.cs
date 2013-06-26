@@ -9,11 +9,9 @@ public class OrbitAbility : MonoBehaviour {
 	private Transform player;
 	private bool attachItemsToPlayer = false;
 	private GameObject[] items;
-	private GameObject target;
 	
 	void Start(){
 		player = GameObject.FindWithTag("Player").transform;
-		items = GameObject.FindGameObjectsWithTag("InteractableItem");
 		
 		pos[0] = new Vector3(0,0,3);
 		pos[1] = new Vector3(3,0,0);
@@ -28,6 +26,15 @@ public class OrbitAbility : MonoBehaviour {
 	}
 	
 	void BeginAbility(){
+		Collider[] hits = Physics.OverlapSphere(player.position, Mathf.Infinity);
+		foreach(Collider hit in hits){
+			if(hit.tag == "InteractableItem"){
+				items = GameObject.FindGameObjectsWithTag(hit.tag);
+				DistanceComparer dComp = new DistanceComparer();
+				dComp.SetTarget(player.gameObject);
+				System.Array.Sort(items, dComp);
+			}
+		}
 		StartCoroutine("SpawnOrbitHolders");
 	}
 	
@@ -35,31 +42,25 @@ public class OrbitAbility : MonoBehaviour {
 		for(int i=0; i<pos.Length; i++){
 			hold[i] = (Transform)Instantiate(holder, player.position + new Vector3(pos[i].x, pos[i].y, pos[i].z), Quaternion.identity);
 			hold[i].gameObject.AddComponent<BarrelOrbit>();
+			items[i].gameObject.AddComponent<Health>().curHealth = 100;
+			items[i].gameObject.AddComponent<BarrelDamage>();
 		}
 		
-		yield return new WaitForSeconds(0.001f);
+		yield return new WaitForSeconds(0.00001f);
 		attachItemsToPlayer = true;
 	}
 	
 	void CollectItems(){
 		for(int i=0; i<hold.Length; i++){
-			items[i] = InteractbleItems();
-			items[i].transform.position = Vector3.Lerp(items[i].transform.position, hold[i].position, 10*Time.deltaTime);
-		}
-	}
-	
-	GameObject InteractbleItems(){
-		GameObject closest = null;
-		float distance = 30f;
-		
-		for(int i=0; i<items.Length; i++){
-			Vector3 diff = items[i].transform.position - hold[i].position;
-			float curDist = diff.sqrMagnitude;
-			if(curDist < distance){
-				closest = items[i];
-				distance = curDist;
+			if(items[i]){
+				items[i].transform.position = Vector3.Lerp(items[i].transform.position, hold[i].position, 10*Time.deltaTime);
+			}
+			
+			if(items[i] == null){
+				if(hold[i]){
+					Destroy(hold[i].gameObject);
+				}
 			}
 		}
-		return closest;
 	}
 }

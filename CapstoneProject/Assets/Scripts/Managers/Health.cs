@@ -8,6 +8,7 @@ public class Health : MonoBehaviour {
 	private float maxHealth;
 	public bool canTakeDamage = true;
 	private bool isDead = false;
+	public GameObject explosion;
 
 	void Start(){
 	
@@ -41,6 +42,9 @@ public class Health : MonoBehaviour {
 
 	public void Die(){
 		isDead = true;
+		if(explosion){
+			Instantiate(explosion, transform.position, Quaternion.identity);
+		}
 		Destroy(gameObject);
 	}
 }
