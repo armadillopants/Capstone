@@ -3,7 +3,7 @@ using UnityEngine;
 public class BarrelOrbit : MonoBehaviour {
 	
 	private Transform player;
-	private float orbitalDegrees = 180f;
+	private float orbitalDegrees = 360f;
 	private Vector3 distance = Vector3.zero;
 
 	void Start(){

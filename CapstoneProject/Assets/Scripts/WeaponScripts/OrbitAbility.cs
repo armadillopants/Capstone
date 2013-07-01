@@ -3,7 +3,7 @@ using System.Collections;
 
 public class OrbitAbility : MonoBehaviour {
 	
-	public Transform holder;
+	private Transform holder;
 	private Transform[] hold = new Transform[4];
 	private Vector3[] pos = new Vector3[4];
 	private Transform player;
@@ -12,6 +12,8 @@ public class OrbitAbility : MonoBehaviour {
 	
 	void Start(){
 		player = GameObject.FindWithTag("Player").transform;
+		
+		holder = (Transform)Resources.Load("OrbitHolder", typeof(Transform));
 		
 		pos[0] = new Vector3(0,0,3);
 		pos[1] = new Vector3(3,0,0);
@@ -60,6 +62,11 @@ public class OrbitAbility : MonoBehaviour {
 				if(hold[i]){
 					Destroy(hold[i].gameObject);
 				}
+			}
+			
+			if(hold[0] == null && hold[1] == null && hold[2] == null && hold[3] == null){
+				player.GetComponent<AbilitiesManager>().beginAbility = true;
+				attachItemsToPlayer = false;
 			}
 		}
 	}

@@ -50,7 +50,6 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: DestroyBeetle
   m_TagString: Enemy
@@ -207,25 +206,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e44f528aa2b0a7a46b6cb75f99aa62d2, type: 3}
-  m_Name: 
-  state: 1
-  target: {fileID: 0}
-  moveSpeed: 1
-  doDamage: 0
-  currentCoolDown: 0
-  coolDownLength: 10
-  damageAmount: 40
-  distance: 10
-  turnSpeed: .0799999982
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   curHealth: 200
   canTakeDamage: 1
+  explosion: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

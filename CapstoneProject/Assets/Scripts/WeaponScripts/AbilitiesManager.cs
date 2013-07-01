@@ -12,7 +12,7 @@ public class AbilitiesManager : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(Input.GetKeyDown(KeyCode.E) && beginAbility){
+		if(Input.GetKeyDown(KeyCode.E) && beginAbility && amount > 0){
 			holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
 			beginAbility = false;
 			amount--;
