@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WeaponScripts\RockRainAbility.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WaveScripts\DetermineQuadrant.cs">
     <Files>
-      <File FileName="Assets\Scripts\WeaponScripts\RockRainAbility.cs" Line="19" Column="123" />
-      <File FileName="Assets\Scripts\WeaponScripts\RockDamage.cs" Line="18" Column="4" />
+      <File FileName="Assets\Scripts\WaveScripts\DetermineQuadrant.cs" Line="21" Column="25" />
+      <File FileName="Assets\Scripts\WaveScripts\Dragable.cs" Line="51" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

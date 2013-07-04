@@ -8,6 +8,7 @@ public class Dragable : MonoBehaviour {
 	private bool destroyItem = false;
 	private bool checkPlaneHit = false;
 	private Vector3 worldSpaceLocation;
+	private DetermineQuadrant dq;
 	
 	void OnMouseOver(){
 		worldSpaceLocation = transform.position + new Vector3(3, 0, 0);
@@ -40,11 +41,26 @@ public class Dragable : MonoBehaviour {
 	
 	void Update(){
 		if(checkPlaneHit){
+			if(Input.GetKeyDown(KeyCode.E)){
+				transform.Rotate(0, 90, 0);
+			}
+			if(Input.GetKeyDown(KeyCode.Q)){
+				transform.Rotate(0, -90, 0);
+			}
+			
 			RaycastHit hit;
 			
-			if(Physics.Raycast(transform.position, Vector3.down, out hit, 1f)){
+			if(Physics.SphereCast(transform.position, 1f, Vector3.down, out hit, 1f)){
 				if(hit.transform.tag == "FortPlane"){
-					transform.position = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
+					dq = hit.transform.gameObject.GetComponent<DetermineQuadrant>();
+					Quaternion yRot = transform.rotation;
+					
+					if(yRot.eulerAngles.y == 0 || yRot.eulerAngles.y == 180){
+						dq.QuadrantOne(transform);
+					}
+					if((yRot.eulerAngles.y >= 90 && yRot.eulerAngles.y <= 91) || yRot.eulerAngles.y == 270){
+						dq.QuadrantTwo(transform);
+					}
 				}
 			}
 		}
