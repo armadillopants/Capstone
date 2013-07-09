@@ -17,16 +17,7 @@ public class DetermineQuadrant : MonoBehaviour {
 	}
 	
 	public void QuadrantOne(Transform hit){
-		if(Input.GetKey(KeyCode.Alpha1)){
-			hit.position = q1[0];
-		}
-		if(Input.GetKey(KeyCode.Alpha2)){
-			hit.position = q1[1];
-		}
-		if(Input.GetKey(KeyCode.Alpha3)){
-			hit.position = q1[2];
-		}
-		/*if(Vector3.Distance(q1[0], hit.position) < 1f){
+		if(Vector3.Distance(q1[0], hit.position) < 1f){
 			hit.position = q1[0];
 		}
 		if(Vector3.Distance(q1[1], hit.position) < 1f){
@@ -34,7 +25,7 @@ public class DetermineQuadrant : MonoBehaviour {
 		}
 		if(Vector3.Distance(q1[2], hit.position) < 1f){
 			hit.position = q1[2];
-		}*/
+		}
 	}
 	
 	public void QuadrantTwo(Transform hit){

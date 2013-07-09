@@ -9,6 +9,7 @@ public class Dragable : MonoBehaviour {
 	private bool checkPlaneHit = false;
 	private Vector3 worldSpaceLocation;
 	private DetermineQuadrant dq;
+	private FortPlane fp;
 	
 	void OnMouseOver(){
 		worldSpaceLocation = transform.position + new Vector3(3, 0, 0);
@@ -50,9 +51,9 @@ public class Dragable : MonoBehaviour {
 			
 			RaycastHit hit;
 			
-			if(Physics.SphereCast(transform.position, 1f, Vector3.down, out hit, 1f)){
+			if(Physics.SphereCast(transform.position, 0.1f, Vector3.down, out hit, 1f)){
 				if(hit.transform.tag == "FortPlane"){
-					dq = hit.transform.gameObject.GetComponent<DetermineQuadrant>();
+					/*dq = hit.transform.gameObject.GetComponent<DetermineQuadrant>();
 					Quaternion yRot = transform.rotation;
 					
 					if(yRot.eulerAngles.y == 0 || yRot.eulerAngles.y == 180){
@@ -60,7 +61,18 @@ public class Dragable : MonoBehaviour {
 					}
 					if((yRot.eulerAngles.y >= 90 && yRot.eulerAngles.y <= 91) || yRot.eulerAngles.y == 270){
 						dq.QuadrantTwo(transform);
+					}*/
+					fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
+					Quaternion yRot = transform.rotation;
+					
+					fp.DeterminePlane(transform, hit.transform.gameObject);
+					
+					/*if(yRot.eulerAngles.y == 0 || yRot.eulerAngles.y == 180){
+						fp.QuadrantOne(transform);
 					}
+					if((yRot.eulerAngles.y >= 90 && yRot.eulerAngles.y <= 91) || yRot.eulerAngles.y == 270){
+						fp.QuadrantTwo(transform);
+					}*/
 				}
 			}
 		}
