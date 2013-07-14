@@ -65,7 +65,7 @@ public class Dragable : MonoBehaviour {
 					fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
 					Quaternion yRot = transform.rotation;
 					
-					fp.DeterminePlane(transform, hit.transform.gameObject);
+					fp.DeterminePlane(transform, hit.transform.gameObject, hit.point);
 					
 					/*if(yRot.eulerAngles.y == 0 || yRot.eulerAngles.y == 180){
 						fp.QuadrantOne(transform);

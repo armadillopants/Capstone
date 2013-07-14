@@ -24,10 +24,12 @@ public class FortPlane : MonoBehaviour {
 				p.transform.parent = transform;
 				fortPlanes.Add(p);
 				
+				// For horizontal snapping
 				quadrants[0] = new Vector3(p.transform.position.x-1,0.5f,p.transform.position.z);
 				quadrants[1] = new Vector3(p.transform.position.x,0.5f,p.transform.position.z);
 				quadrants[2] = new Vector3(p.transform.position.x+1,0.5f,p.transform.position.z);
 				
+				// For vertical snapping
 				quadrants[3] = new Vector3(p.transform.position.x,0.5f,p.transform.position.z-1);
 				quadrants[4] = new Vector3(p.transform.position.x,0.5f,p.transform.position.z);
 				quadrants[5] = new Vector3(p.transform.position.x,0.5f,p.transform.position.z+1);
@@ -48,23 +50,45 @@ public class FortPlane : MonoBehaviour {
 		}*/
 	}
 	
-	public void DeterminePlane(Transform hit, GameObject p){
+	public void DeterminePlane(Transform hit, GameObject plane, Vector3 point){
 		if(fortPlanes != null){
-			if(fortPlanes.Contains(p)){
-				hit.transform.position = DetermineQuadrant(p.transform.position);
+			if(fortPlanes.Contains(plane)){
+				point = DetermineQuadrant(hit);
+				hit.position = point;
 			}
 		}
 	}
 	
-	Vector3 DetermineQuadrant(Vector3 quadrant){
-		if(quadrants != null){
+	Vector3 DetermineQuadrant(Transform hit){
+		Vector3 closestPoint = Vector3.zero;
+		if(hit.eulerAngles.y == 0 || hit.eulerAngles.y == 180){
+			for(int i=0; i<3; i++){
+				if(closestPoint == Vector3.zero){
+					closestPoint = quadrants[i];
+				} else if((closestPoint-hit.position).sqrMagnitude > (quadrants[i]-hit.position).sqrMagnitude){
+					closestPoint = quadrants[i];
+				}
+			}
+		}
+		
+		if(hit.eulerAngles.y == 90 || hit.eulerAngles.y == 270){
+			for(int i=3; i<6; i++){
+				if(closestPoint == Vector3.zero){
+					closestPoint = quadrants[i];
+				} else if((closestPoint-hit.position).sqrMagnitude > (quadrants[i]-hit.position).sqrMagnitude){
+					closestPoint = quadrants[i];
+				}
+			}
+		}
+		return closestPoint;
+		/*if(quadrants != null){
 			for(int i=0; i<quadrants.Length; i++){
 				if(quadrant == quadrants[i]){
 					return quadrant;
 				}
 			}
 		}
-		return Vector3.zero;
+		return Vector3.zero;*/
 	}
 	
 	public void EnablePlanes(){
