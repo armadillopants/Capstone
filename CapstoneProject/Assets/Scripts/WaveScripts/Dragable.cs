@@ -8,8 +8,9 @@ public class Dragable : MonoBehaviour {
 	private bool destroyItem = false;
 	private bool checkPlaneHit = false;
 	private Vector3 worldSpaceLocation;
-	private DetermineQuadrant dq;
 	private FortPlane fp;
+	
+	private Vector3 lastPosition;
 	
 	void OnMouseOver(){
 		worldSpaceLocation = transform.position + new Vector3(3, 0, 0);
@@ -33,6 +34,7 @@ public class Dragable : MonoBehaviour {
 
     	Vector3 curPos = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 		setY = new Vector3(curPos.x, transform.position.y, curPos.z); // Object moves with mouse location
+		lastPosition = transform.position;
 		transform.position = setY; // Fixes the objects Y postion
 	}
 	
@@ -53,26 +55,15 @@ public class Dragable : MonoBehaviour {
 			
 			if(Physics.SphereCast(transform.position, 0.1f, Vector3.down, out hit, 1f)){
 				if(hit.transform.tag == "FortPlane"){
-					/*dq = hit.transform.gameObject.GetComponent<DetermineQuadrant>();
-					Quaternion yRot = transform.rotation;
-					
-					if(yRot.eulerAngles.y == 0 || yRot.eulerAngles.y == 180){
-						dq.QuadrantOne(transform);
-					}
-					if((yRot.eulerAngles.y >= 90 && yRot.eulerAngles.y <= 91) || yRot.eulerAngles.y == 270){
-						dq.QuadrantTwo(transform);
-					}*/
 					fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
-					Quaternion yRot = transform.rotation;
 					
-					fp.DeterminePlane(transform, hit.transform.gameObject, hit.point);
+					NullableVector3 newPos = fp.DeterminePlane(transform, hit.transform.gameObject, hit.point);
 					
-					/*if(yRot.eulerAngles.y == 0 || yRot.eulerAngles.y == 180){
-						fp.QuadrantOne(transform);
-					}
-					if((yRot.eulerAngles.y >= 90 && yRot.eulerAngles.y <= 91) || yRot.eulerAngles.y == 270){
-						fp.QuadrantTwo(transform);
-					}*/
+					if(newPos != null){
+						transform.position = newPos.vector;
+					} 
+				} else{
+					transform.position = lastPosition;
 				}
 			}
 		}
