@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class NullableVector3 {
 	public Vector3 vector;

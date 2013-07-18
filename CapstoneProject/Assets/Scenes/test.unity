@@ -383,9 +383,10 @@ GameObject:
   - 33: {fileID: 99557362}
   - 23: {fileID: 99557361}
   - 114: {fileID: 99557363}
+  - 114: {fileID: 99557360}
   m_Layer: 0
   m_Name: Flame Thrower
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,6 +404,21 @@ Transform:
   - {fileID: 1079043816}
   - {fileID: 1886275831}
   m_Father: {fileID: 307272636}
+--- !u!114 &99557360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 99557358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Flame Thrower
+  description: Burn baby burn!
+  preview: {fileID: 0}
+  cost: 400
+  purchased: 0
 --- !u!23 &99557361
 Renderer:
   m_ObjectHideFlags: 0
@@ -746,6 +762,43 @@ Transform:
   m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &397862185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 397862186}
+  - 114: {fileID: 397862187}
+  m_Layer: 0
+  m_Name: ItemDisplayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &397862186
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 397862185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &397862187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 397862185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f98cc228bb01b4daf931b0c65eaf1c, type: 3}
+  m_Name: 
 --- !u!1 &404207392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,9 +1212,10 @@ GameObject:
   - 33: {fileID: 591766194}
   - 23: {fileID: 591766193}
   - 114: {fileID: 591766192}
+  - 114: {fileID: 591766195}
   m_Layer: 0
   m_Name: Burst Rifle
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1235,6 +1289,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2006061055}
   m_GameObject: {fileID: 591766190}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &591766195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 591766190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Burst Rifle
+  description: Rapid fire, three-burst rifle
+  preview: {fileID: 0}
+  cost: 200
+  purchased: 0
 --- !u!1 &625322871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,6 +1330,67 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1.25}
   m_Children: []
   m_Father: {fileID: 716152837}
+--- !u!1 &680767229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 680767231}
+  - 114: {fileID: 680767230}
+  - 114: {fileID: 680767232}
+  m_Layer: 0
+  m_Name: Vendor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &680767230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 680767229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353e1c52377c3a14382ce8c0adab394f, type: 3}
+  m_Name: 
+  weaponVendor:
+  - {fileID: 716152836}
+  - {fileID: 591766190}
+  - {fileID: 1554301470}
+  - {fileID: 99557358}
+  - {fileID: 1244511333}
+  icon: {fileID: 0}
+  offset:
+  - {x: 300, y: 50}
+  - {x: 300, y: 75}
+  - {x: 300, y: 100}
+  - {x: 300, y: 125}
+  - {x: 300, y: 150}
+--- !u!4 &680767231
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 680767229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!114 &680767232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 680767229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d20c26e9a55034fb43246fe06e7745, type: 3}
+  m_Name: 
 --- !u!1 &685923469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,9 +1440,10 @@ GameObject:
   - 33: {fileID: 716152840}
   - 23: {fileID: 716152839}
   - 114: {fileID: 716152841}
+  - 114: {fileID: 716152838}
   m_Layer: 0
   m_Name: Rocket Launcher
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1329,6 +1460,21 @@ Transform:
   m_Children:
   - {fileID: 625322872}
   m_Father: {fileID: 307272636}
+--- !u!114 &716152838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716152836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Rocket Launcher
+  description: Blasts baddies to bits
+  preview: {fileID: 0}
+  cost: 300
+  purchased: 0
 --- !u!23 &716152839
 Renderer:
   m_ObjectHideFlags: 0
@@ -2436,9 +2582,10 @@ GameObject:
   - 33: {fileID: 1244511337}
   - 23: {fileID: 1244511336}
   - 114: {fileID: 1244511335}
+  - 114: {fileID: 1244511338}
   m_Layer: 0
   m_Name: Missle Launcher
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2512,6 +2659,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2006061055}
   m_GameObject: {fileID: 1244511333}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1244511338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1244511333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Missile Launcher
+  description: Heat-seeking launcher
+  preview: {fileID: 0}
+  cost: 500
+  purchased: 0
 --- !u!1 &1247098365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,9 +3132,10 @@ GameObject:
   - 33: {fileID: 1554301474}
   - 23: {fileID: 1554301473}
   - 114: {fileID: 1554301472}
+  - 114: {fileID: 1554301475}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3046,6 +3209,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2006061055}
   m_GameObject: {fileID: 1554301470}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1554301475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1554301470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Shotgun
+  description: Sprays bullets
+  preview: {fileID: 0}
+  cost: 250
+  purchased: 0
 --- !u!1001 &1637530980
 Prefab:
   m_ObjectHideFlags: 0
@@ -3739,6 +3917,26 @@ Prefab:
     - target: {fileID: 400002, guid: 9ae88d05d16dcc243b388f5f8de12889, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: 9ae88d05d16dcc243b388f5f8de12889, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: 9ae88d05d16dcc243b388f5f8de12889, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ae88d05d16dcc243b388f5f8de12889, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 9ae88d05d16dcc243b388f5f8de12889, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: 9ae88d05d16dcc243b388f5f8de12889, type: 2}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ae88d05d16dcc243b388f5f8de12889, type: 2}

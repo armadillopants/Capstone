@@ -10,10 +10,14 @@ public class Fortification : MonoBehaviour {
 	private float infinity = Mathf.Infinity;
 	private Rect mainScreen = new Rect(Screen.width-250, Screen.height-(Screen.height-16), 200, 500);
 	private Rect displayScreen = new Rect(Screen.width/3, Screen.height/5, 500, 500);
+	
+	private WeaponVendor weaponVendor;
 
 	void Awake(){
 		selection = GameObject.FindWithTag("Player").GetComponentInChildren<WeaponSelection>();
 		selection.canShoot = false;
+		
+		weaponVendor = GameObject.Find("Vendor").GetComponent<WeaponVendor>();
 	}
 	
 	void Update(){
@@ -42,6 +46,7 @@ public class Fortification : MonoBehaviour {
 			break;
 		case FortState.BUY_SCREEN:
 			DrawBuyScreen();
+			weaponVendor.Vendor();
 			break;
 		}
 	}
@@ -62,6 +67,8 @@ public class Fortification : MonoBehaviour {
 					state = FortState.UPGRADE_SCREEN;
 				} else {
 					selection.canShoot = true;
+					SellableItemDisplayer display = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
+					display.Purge();
 					buildWave.BeginWave();
 					Destroy(this);
 				}

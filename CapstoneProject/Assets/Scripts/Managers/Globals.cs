@@ -1,5 +1,3 @@
-using UnityEngine;
-using System.Collections;
 
 public class Globals{
 	public static float ROTATION_H_LEFT = 0f;
