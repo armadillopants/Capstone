@@ -6,4 +6,6 @@ public class SellableItem : MonoBehaviour {
 	public Texture2D preview;
 	public int cost;
 	public bool purchased;
+	public int currentUpgrade;
+	public int id;
 }

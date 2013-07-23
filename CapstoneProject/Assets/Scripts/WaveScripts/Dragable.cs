@@ -8,11 +8,11 @@ public class Dragable : MonoBehaviour {
 	private bool destroyItem = false;
 	private bool checkPlaneHit = false;
 	private Vector3 worldSpaceLocation;
-	private FortPlane fp;
+	//private FortPlane fp;
 	
 	private Vector3 lastPosition;
-	float gridx = 1f;
-	float gridz = 1f;
+	private float gridx = 1f;
+	private float gridz = 1f;
 	
 	void OnMouseOver(){
 		worldSpaceLocation = transform.position + new Vector3(3, 0, 0);
@@ -58,9 +58,9 @@ public class Dragable : MonoBehaviour {
 			
 			if(Physics.Raycast(transform.position, Vector3.down, out hit, 1f)){
 				if(hit.transform.tag == "FortPlane"){
-					fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
+					//fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
 					
-					NullableVector3 newPos = fp.DeterminePlane(transform, hit.transform.gameObject, hit.point);
+					//NullableVector3 newPos = fp.DeterminePlane(transform, hit.transform.gameObject, hit.point);
 					
 					float yRot = transform.eulerAngles.y;
 					
@@ -82,10 +82,10 @@ public class Dragable : MonoBehaviour {
 					snapPos.z = Mathf.Round(snapPos.z / gridz) * gridz;
 					transform.position = snapPos;
 					
-					if(newPos != null){
-						//transform.position = newPos.vector;
-					} 
-				} else{
+					/*if(newPos != null){
+						transform.position = newPos.vector;
+					}*/
+				} else {
 					transform.position = lastPosition;
 				}
 			}

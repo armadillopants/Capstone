@@ -7,7 +7,7 @@ public class FortPlane : MonoBehaviour {
 		public GameObject plane;
 		public Vector3[] quadrants = new Vector3[6];
 		
-		public bool Equals(GameObject other) {
+		public bool Equals(GameObject other){
 			return plane == other;
 		}
 	}
@@ -23,7 +23,10 @@ public class FortPlane : MonoBehaviour {
 	private float spacing = 3f;
 	
 	void Awake(){
-		for(int x=0; x<gridX; x++){
+		GameObject p = (GameObject)Instantiate(plane, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
+		p.name = plane.name;
+		p.transform.parent = transform;
+		/*for(int x=0; x<gridX; x++){
 			for(int y=0; y<gridY; y++){
 				Vector3 pos = new Vector3(x, 0.1f, y) * spacing;
 				GameObject p = (GameObject)Instantiate(plane, pos, Quaternion.identity);
@@ -45,7 +48,7 @@ public class FortPlane : MonoBehaviour {
 				
 				planeData.Add(temp);
 			}
-		}
+		}*/
 	}
 	
 	void Start(){

@@ -1,16 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VendorScripts\SellableItemDisplayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyScripts\BaseEnemy.cs">
     <Files>
-      <File FileName="Assets\Scripts\WaveScripts\Fortification.cs" Line="90" Column="33" />
-      <File FileName="Assets\Scripts\Managers\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Managers\Globals.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\VendorScripts\SellableItemDisplayer.cs" Line="65" Column="14" />
-      <File FileName="Assets\Scripts\VendorScripts\SellableItem.cs" Line="7" Column="18" />
-      <File FileName="Assets\Scripts\VendorScripts\DisplayItem.cs" Line="6" Column="22" />
-      <File FileName="Assets\Scripts\VendorScripts\WeaponVendor.cs" Line="7" Column="18" />
-      <File FileName="Assets\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
-      <File FileName="Assets\Scripts\WaveScripts\Wave.cs" Line="6" Column="28" />
+      <File FileName="Assets\Scripts\EnemyScripts\BaseEnemy.cs" Line="49" Column="4" />
+      <File FileName="Assets\Scripts\WaveScripts\Fortification.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\VendorScripts\SellableItemDisplayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\VendorScripts\SellableItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\VendorScripts\DisplayItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WaveScripts\WaveController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WaveScripts\Wave.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\VendorData.xml" Line="251" Column="14" />
+      <File FileName="Assets\Scripts\VendorScripts\WeaponVendor.cs" Line="99" Column="55" />
+      <File FileName="Assets\Scripts\ConsoleScripts\XMLVendorReader.cs" Line="24" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -4,7 +4,7 @@ public class DisplayItem : ScriptableObject {
 	public GameObject item;
 	public SellableItem sellItem;
 	public bool upgrade;
-	public int id;
+	//public int id;
 
 	// Window Variables
 	public bool hasWorldspace;

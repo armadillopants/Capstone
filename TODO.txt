@@ -42,8 +42,9 @@
 -- health
 -- abilities: jumping, clawing, biting, charging etc.... think of more..
 -- Leaders....? but why though =(
+-- pathfinding....fuck
 
-- Fortifications
+- Fortifications++
 -- Buy weapons/foritifications
 -- Upgrade weapons/fortifications
 -- When weapon is bought, remove from buy screen. Place it in upgrade screen? Or place X through it to say its been bought?

@@ -326,7 +326,7 @@ Prefab:
     - target: {fileID: 11400002, guid: baf877ad78cc17c48b8590574aff60cd, type: 2}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 100000, guid: 31a2e620f28e3654cadc568f5f050442, type: 2}
+      objectReference: {fileID: 100004, guid: 681d10a6900d7ea48a4e2319522af4f2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: baf877ad78cc17c48b8590574aff60cd, type: 2}
   m_RootGameObject: {fileID: 44960712}
@@ -419,6 +419,8 @@ MonoBehaviour:
   preview: {fileID: 0}
   cost: 400
   purchased: 0
+  currentUpgrade: 1
+  id: 3
 --- !u!23 &99557361
 Renderer:
   m_ObjectHideFlags: 0
@@ -837,6 +839,7 @@ GameObject:
   - 65: {fileID: 410376135}
   - 23: {fileID: 410376134}
   - 114: {fileID: 410376138}
+  - 114: {fileID: 410376139}
   m_Layer: 9
   m_Name: Barrier
   m_TagString: Fortification
@@ -906,6 +909,24 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b57ff4b64a0a64458fd76692fc49079, type: 3}
   m_Name: 
+--- !u!114 &410376139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: e800730f582eca14c8cc63d37a20e98c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1637530980}
+  m_GameObject: {fileID: 410376133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Barrier
+  description: Standard barrier
+  preview: {fileID: 0}
+  cost: 200
+  purchased: 0
+  currentUpgrade: 0
+  id: 0
 --- !u!1 &437098745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,6 +1325,8 @@ MonoBehaviour:
   preview: {fileID: 0}
   cost: 200
   purchased: 0
+  currentUpgrade: 1
+  id: 4
 --- !u!1 &625322871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,13 +1386,16 @@ MonoBehaviour:
   - {fileID: 1554301470}
   - {fileID: 99557358}
   - {fileID: 1244511333}
+  upgradeVendor:
+  - {fileID: 2094159501}
+  - {fileID: 1726515184}
   icon: {fileID: 0}
   offset:
-  - {x: 300, y: 50}
-  - {x: 300, y: 75}
-  - {x: 300, y: 100}
-  - {x: 300, y: 125}
-  - {x: 300, y: 150}
+  - {x: 350, y: 50}
+  - {x: 350, y: 75}
+  - {x: 350, y: 100}
+  - {x: 350, y: 125}
+  - {x: 350, y: 150}
 --- !u!4 &680767231
 Transform:
   m_ObjectHideFlags: 0
@@ -1391,6 +1417,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81d20c26e9a55034fb43246fe06e7745, type: 3}
   m_Name: 
+  itemVendor:
+  - {fileID: 100000, guid: e800730f582eca14c8cc63d37a20e98c, type: 2}
+  icon: {fileID: 0}
+  offset: []
 --- !u!1 &685923469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1505,8 @@ MonoBehaviour:
   preview: {fileID: 0}
   cost: 300
   purchased: 0
+  currentUpgrade: 1
+  id: 2
 --- !u!23 &716152839
 Renderer:
   m_ObjectHideFlags: 0
@@ -2007,6 +2039,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5811853dd2356a41a42ef03600fa367, type: 3}
   m_Name: 
+  canDisplay: 1
 --- !u!1 &956733687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,6 +2477,7 @@ GameObject:
   - 4: {fileID: 1140889112}
   - 114: {fileID: 1140889113}
   - 114: {fileID: 1140889114}
+  - 114: {fileID: 1140889115}
   m_Layer: 0
   m_Name: XMLReader
   m_TagString: Untagged
@@ -2485,6 +2519,16 @@ MonoBehaviour:
   weapon: {fileID: 0}
   equippedWeapons: []
   displayValues: 0
+--- !u!114 &1140889115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1140889111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bf3b686142cdf4283534a880ef071a, type: 3}
+  m_Name: 
 --- !u!1 &1164985687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,6 +2718,8 @@ MonoBehaviour:
   preview: {fileID: 0}
   cost: 500
   purchased: 0
+  currentUpgrade: 1
+  id: 6
 --- !u!1 &1247098365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,6 +2859,7 @@ GameObject:
   - 65: {fileID: 1281986414}
   - 23: {fileID: 1281986413}
   - 114: {fileID: 1281986412}
+  - 114: {fileID: 1281986417}
   m_Layer: 9
   m_Name: Barrier
   m_TagString: Fortification
@@ -2882,6 +2929,24 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1281986417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: e800730f582eca14c8cc63d37a20e98c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2049908233}
+  m_GameObject: {fileID: 1281986411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Barrier
+  description: Standard barrier
+  preview: {fileID: 0}
+  cost: 200
+  purchased: 0
+  currentUpgrade: 0
+  id: 0
 --- !u!1 &1318216925
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,6 +3289,8 @@ MonoBehaviour:
   preview: {fileID: 0}
   cost: 250
   purchased: 0
+  currentUpgrade: 1
+  id: 5
 --- !u!1001 &1637530980
 Prefab:
   m_ObjectHideFlags: 0
@@ -3588,6 +3655,7 @@ GameObject:
   - 33: {fileID: 1726515188}
   - 23: {fileID: 1726515187}
   - 114: {fileID: 1726515189}
+  - 114: {fileID: 1726515186}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -3607,6 +3675,23 @@ Transform:
   m_Children:
   - {fileID: 799732714}
   m_Father: {fileID: 307272636}
+--- !u!114 &1726515186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726515184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Pistol
+  description: Standard Pistol
+  preview: {fileID: 0}
+  cost: 50
+  purchased: 1
+  currentUpgrade: 1
+  id: 1
 --- !u!23 &1726515187
 Renderer:
   m_ObjectHideFlags: 0
@@ -3687,7 +3772,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1775623491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10.5, y: 0, z: 10.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3701,7 +3786,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc50ecf29df8e864a87bf29bc32c37b6, type: 3}
   m_Name: 
-  plane: {fileID: 100000, guid: 86d64a4595534df4fa1da832ed4a0d8d, type: 2}
+  plane: {fileID: 100000, guid: 2f89bfd61df7f464fa864d4643e59a53, type: 2}
 --- !u!1 &1810398062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,6 +4079,7 @@ GameObject:
   - 33: {fileID: 2094159505}
   - 23: {fileID: 2094159503}
   - 114: {fileID: 2094159504}
+  - 114: {fileID: 2094159506}
   m_Layer: 0
   m_Name: Machine Gun
   m_TagString: Untagged
@@ -4070,6 +4156,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2006061055}
   m_GameObject: {fileID: 2094159501}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2094159506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2094159501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Machine Gun
+  description: Standard Rifle
+  preview: {fileID: 0}
+  cost: 100
+  purchased: 1
+  currentUpgrade: 1
+  id: 0
 --- !u!1 &2096335060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,7 +4211,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41752ce8ab6023c41a39ae01b070cfff, type: 3}
   m_Name: 
-  enemy: {fileID: 100000, guid: 31a2e620f28e3654cadc568f5f050442, type: 2}
+  enemy: {fileID: 100004, guid: 681d10a6900d7ea48a4e2319522af4f2, type: 2}
 --- !u!1 &2125290831
 GameObject:
   m_ObjectHideFlags: 0
