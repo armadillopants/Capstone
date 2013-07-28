@@ -7,23 +7,23 @@ public class WeaponVendor : MonoBehaviour {
 	public List<GameObject> weaponVendor = new List<GameObject>();// GameObject[] weaponVendor;
 	public List<GameObject> upgradeVendor = new List<GameObject>();// GameObject[] upgradeVendor;
 	public Texture2D icon;
-	public Vector2[] offset;
+	//public Vector2[] offset;
 	private bool isDisplaying = false;
 	private SellableItemDisplayer displayer;
 	private DisplayItem weapon;
 	private DisplayItem upgrade;
 	private XMLVendorReader vendor;
+	private WeaponManager manager;
 
 	void Start(){
 		displayer = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
 		vendor = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
-		//weaponVendor = GameObject.FindGameObjectsWithTag("Weapon");
+		manager = GameObject.FindWithTag("Player").GetComponentInChildren<WeaponManager>();
 	}
 	
 	public void Vendor(float x, float y){
 		if(!isDisplaying){
 			for(int i=0; i<weaponVendor.Count; i++){
-				//DisplayItem weapon;
 				weapon = ScriptableObject.CreateInstance<DisplayItem>();
 				isDisplaying = true;
 				weapon.item = weaponVendor[i].gameObject;
@@ -32,7 +32,7 @@ public class WeaponVendor : MonoBehaviour {
 				weapon.hasWorldspace = false;
 				weapon.worldspaceLocation = new Vector3(0,1,0);
 				weapon.windowSize = new Vector2(200,100);
-				weapon.pixelOffset = new Vector2(x, y+(i*100));//offset[i];
+				weapon.pixelOffset = new Vector2(x, y+(i*100));
 				weapon.icon = icon;
 				weapon.iconSize = 50;
 				weapon.invokingObject = this;
@@ -73,6 +73,7 @@ public class WeaponVendor : MonoBehaviour {
 			GameController.Instance.DeleteResources(sellItem.cost);
 			sellItem.purchased = true;
 			upgradeVendor.Add(sellItem.gameObject);
+			manager.DetermineWeaponType(sellItem);
 			Debug.Log("Purchased: " + sellItem.itemName);
 		} else if(sellItem.purchased){
 			Debug.Log("Item: " + sellItem.itemName + " was already purchased");

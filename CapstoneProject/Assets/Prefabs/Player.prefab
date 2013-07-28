@@ -11,9 +11,10 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400024}
+  - 114: {fileID: 11400028}
   m_Layer: 0
-  m_Name: Missle Launcher
-  m_TagString: Untagged
+  m_Name: Missile Launcher
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,9 +111,10 @@ GameObject:
   - 33: {fileID: 3300004}
   - 23: {fileID: 2300004}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400026}
   m_Layer: 0
   m_Name: Rocket Launcher
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,6 +179,7 @@ GameObject:
   - 33: {fileID: 3300006}
   - 23: {fileID: 2300006}
   - 114: {fileID: 11400018}
+  - 114: {fileID: 11400032}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -210,6 +213,7 @@ GameObject:
   - 33: {fileID: 3300008}
   - 23: {fileID: 2300008}
   - 114: {fileID: 11400016}
+  - 114: {fileID: 11400034}
   m_Layer: 0
   m_Name: Machine Gun
   m_TagString: Untagged
@@ -228,9 +232,10 @@ GameObject:
   - 33: {fileID: 3300010}
   - 23: {fileID: 2300010}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Flame Thrower
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,9 +281,10 @@ GameObject:
   - 33: {fileID: 3300012}
   - 23: {fileID: 2300012}
   - 114: {fileID: 11400022}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Burst Rifle
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,9 +315,10 @@ GameObject:
   - 33: {fileID: 3300014}
   - 23: {fileID: 2300014}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400030}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -855,6 +862,40 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100036}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Flame Thrower
+  description: Burn baby burn!
+  preview: {fileID: 0}
+  cost: 400
+  purchased: 0
+  currentUpgrade: 1
+  id: 3
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Burst Rifle
+  description: Rapid fire, three-burst rifle
+  preview: {fileID: 0}
+  cost: 200
+  purchased: 0
+  currentUpgrade: 1
+  id: 4
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -924,13 +965,25 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25435279329d7774e983baa8c9daf22c, type: 3}
   m_Name: 
+  allWeapons:
+  - {fileID: 11400016}
+  - {fileID: 11400018}
+  - {fileID: 11400012}
+  - {fileID: 11400006}
+  - {fileID: 11400022}
+  - {fileID: 11400020}
+  - {fileID: 11400024}
   equippedWeapons:
   - {fileID: 100024}
   - {fileID: 100020}
-  - {fileID: 100012}
-  - {fileID: 100026}
-  ownedWeapons: []
-  unOwnedWeapons: []
+  - {fileID: 0}
+  - {fileID: 0}
+  rifleWeapons:
+  - {fileID: 100024}
+  pistolWeapons:
+  - {fileID: 100020}
+  launcherWeapons: []
+  specialWeapons: []
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1116,6 +1169,91 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Rocket Launcher
+  description: Blasts baddies to bits
+  preview: {fileID: 0}
+  cost: 300
+  purchased: 0
+  currentUpgrade: 1
+  id: 2
+--- !u!114 &11400028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Missile Launcher
+  description: Heat-seeking launcher
+  preview: {fileID: 0}
+  cost: 500
+  purchased: 0
+  currentUpgrade: 1
+  id: 6
+--- !u!114 &11400030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Shotgun
+  description: Sprays bullets
+  preview: {fileID: 0}
+  cost: 250
+  purchased: 0
+  currentUpgrade: 1
+  id: 5
+--- !u!114 &11400032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Pistol
+  description: Standard Pistol
+  preview: {fileID: 0}
+  cost: 50
+  purchased: 1
+  currentUpgrade: 1
+  id: 1
+--- !u!114 &11400034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
+  m_Name: 
+  itemName: Machine Gun
+  description: Standard Rifle
+  preview: {fileID: 0}
+  cost: 100
+  purchased: 1
+  currentUpgrade: 1
+  id: 0
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1

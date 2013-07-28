@@ -5,7 +5,7 @@
 -- look direction
 -- cursor movement
 -- smooth camera follow
--- switch to rigidbody, character controller is doo-doo. Still tranlate though for move dir
+-- switch to rigidbody, character controller is doo-doo. Still translate though for move dir
 
 - Player Animations
 -- move: forwards, backwards, left, right
@@ -15,7 +15,7 @@
 -- health
 -- speed/animation speed
 
-- Weapons+
+- Weapons+++
 -- name/id
 -- firerate
 -- ammo
@@ -24,11 +24,11 @@
 -- damage
 -- upgrades
 
-- Weapon Switching++
+- Weapon Switching+++
 -- slowmo
 -- hold up to 4 weapons
 
-- Weapon Management+
+- Weapon Management+++
 - keep track of equipped weapons
 - keep track of owned/unowned weapons
 - keep track of different types of weapons: rifles, pistols, launchers, specials
@@ -51,3 +51,11 @@
 -- To upgrade fortification, hover over it in game and click on it to bring up its individual upgrade attributes.
 -- To equip new weapon have players current inventory displayed, click on weapon to equip and say "Yes" to equip? hmm...
 -- Grid snapping for fortifications, tile based? most likely....  can only place objects on tiles, but tiles surround a good portion of the map
+
+- Audio Manager
+-- Sounds for footsteps
+-- Gun sounds
+-- Enemy sounds
+-- Clicking noises
+-- Breaking of barriers
+-- Fire

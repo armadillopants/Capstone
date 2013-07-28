@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour {
 	private Health playerHealth;
 	private GameObject[] enemies;
 	
-	protected int amountOfResources = 1000;
+	protected int amountOfResources = 10000;
 	public bool canDisplay = true;
 	
 	#region Singleton

@@ -41,7 +41,7 @@ public class WeaponSelection : MonoBehaviour {
 		}
 	}
 	
-	private IEnumerator SlowMotion() {
+	private IEnumerator SlowMotion(){
 		float startUp = Time.realtimeSinceStartup;
 		// Set time to slow motion
 		Time.timeScale = 0.1f;
@@ -83,7 +83,7 @@ public class WeaponSelection : MonoBehaviour {
 		}
 	}
 	
-	public void SelectWeapon(int index) {
+	public void SelectWeapon(int index){
 		for(int i=0; i<transform.childCount; i++){
 		// Activate the selected weapon
 		if(i == index){

@@ -5,13 +5,11 @@ public class ItemVendor : MonoBehaviour {
 
 	public GameObject[] itemVendor;
 	public Texture2D icon;
-	public Vector2[] offset;
 	private bool isDisplaying = false;
 	private SellableItemDisplayer displayer;
 
 	void Start(){
 		displayer = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
-		//weaponVendor = GameObject.FindGameObjectsWithTag("Weapon");
 	}
 	
 	public void Vendor(float x, float y){
@@ -26,7 +24,7 @@ public class ItemVendor : MonoBehaviour {
 				weapon.hasWorldspace = false;
 				weapon.worldspaceLocation = new Vector3(0,1,0);
 				weapon.windowSize = new Vector2(200,100);
-				weapon.pixelOffset = new Vector2(x, y+(i*100));//offset[i];
+				weapon.pixelOffset = new Vector2(x, y+(i*100));
 				weapon.icon = icon;
 				weapon.iconSize = 50;
 				weapon.invokingObject = this;
