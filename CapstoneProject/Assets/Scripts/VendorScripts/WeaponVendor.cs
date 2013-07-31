@@ -7,13 +7,16 @@ public class WeaponVendor : MonoBehaviour {
 	public List<GameObject> weaponVendor = new List<GameObject>();// GameObject[] weaponVendor;
 	public List<GameObject> upgradeVendor = new List<GameObject>();// GameObject[] upgradeVendor;
 	public Texture2D icon;
-	//public Vector2[] offset;
 	private bool isDisplaying = false;
+	private bool isDisplayingUpgrades = false;
 	private SellableItemDisplayer displayer;
 	private DisplayItem weapon;
 	private DisplayItem upgrade;
 	private XMLVendorReader vendor;
 	private WeaponManager manager;
+	
+	private float rows = 5;
+	private float columns = 3;
 
 	void Start(){
 		displayer = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
@@ -23,45 +26,61 @@ public class WeaponVendor : MonoBehaviour {
 	
 	public void Vendor(float x, float y){
 		if(!isDisplaying){
-			for(int i=0; i<weaponVendor.Count; i++){
-				weapon = ScriptableObject.CreateInstance<DisplayItem>();
-				isDisplaying = true;
-				weapon.item = weaponVendor[i].gameObject;
-				weapon.sellItem = weaponVendor[i].GetComponent<SellableItem>();
-				weapon.upgrade = false;
-				weapon.hasWorldspace = false;
-				weapon.worldspaceLocation = new Vector3(0,1,0);
-				weapon.windowSize = new Vector2(200,100);
-				weapon.pixelOffset = new Vector2(x, y+(i*100));
-				weapon.icon = icon;
-				weapon.iconSize = 50;
-				weapon.invokingObject = this;
-				weapon.invokingType = this.GetType();
-				displayer.AddToDisplay(weapon);
+			int weaponIndex = 0;
+			for(float r=0; r<rows; r++){
+				for(float c=0; c<columns; c++){
+					if(weaponIndex >= weaponVendor.Count){
+						break;
+					}
+					weapon = ScriptableObject.CreateInstance<DisplayItem>();
+					isDisplaying = true;
+					weapon.item = weaponVendor[weaponIndex].gameObject;
+					weapon.sellItem = weaponVendor[weaponIndex].GetComponent<SellableItem>();
+					weapon.upgrade = false;
+					weapon.hasWorldspace = false;
+					weapon.worldspaceLocation = new Vector3(0,1,0);
+					weapon.windowSize = new Vector2(200,100);
+					Vector2 display = new Vector2(c*160, r*100);
+					weapon.pixelOffset = new Vector2(x, y) + display;
+					weapon.icon = icon;
+					weapon.iconSize = 50;
+					weapon.invokingObject = this;
+					weapon.invokingType = this.GetType();
+					displayer.AddToDisplay(weapon);
+					weaponIndex++;
+				}
 			}
 		}
 	}
 	
 	public void UpgradeVendor(float x, float y){
-		if(!isDisplaying){
-			for(int i=0; i<upgradeVendor.Count; i++){
-				upgrade = ScriptableObject.CreateInstance<DisplayItem>();
-				isDisplaying = true;
-				upgrade.item = upgradeVendor[i].gameObject;
-				upgrade.sellItem = upgradeVendor[i].GetComponent<SellableItem>();
-				if(upgrade.sellItem.currentUpgrade <= 4){
-					upgrade.sellItem.cost = vendor.GetCurrentCost(upgrade.sellItem.cost, upgrade.sellItem.id, upgrade.sellItem.itemName, upgrade.sellItem.currentUpgrade);
+		if(!isDisplayingUpgrades){
+			int upgradeIndex = 0;
+			for(float r=0; r<rows; r++){
+				for(float c=0; c<columns; c++){
+					if(upgradeIndex >= upgradeVendor.Count){
+						break;
+					}
+					upgrade = ScriptableObject.CreateInstance<DisplayItem>();
+					isDisplayingUpgrades = true;
+					upgrade.item = upgradeVendor[upgradeIndex].gameObject;
+					upgrade.sellItem = upgradeVendor[upgradeIndex].GetComponent<SellableItem>();
+					if(upgrade.sellItem.currentUpgrade <= 4){
+						upgrade.sellItem.cost = vendor.GetCurrentCost(upgrade.sellItem.cost, upgrade.sellItem.id, upgrade.sellItem.itemName, upgrade.sellItem.currentUpgrade);
+					}
+					upgrade.upgrade = true;
+					upgrade.hasWorldspace = false;
+					upgrade.worldspaceLocation = new Vector3(0,1,0);
+					upgrade.windowSize = new Vector2(200,100);
+					Vector2 display = new Vector2(c*160, r*100);
+					upgrade.pixelOffset = new Vector2(x, y) + display;
+					upgrade.icon = icon;
+					upgrade.iconSize = 50;
+					upgrade.invokingObject = this;
+					upgrade.invokingType = this.GetType();
+					displayer.AddToDisplay(upgrade);
+					upgradeIndex++;
 				}
-				upgrade.upgrade = true;
-				upgrade.hasWorldspace = false;
-				upgrade.worldspaceLocation = new Vector3(0,1,0);
-				upgrade.windowSize = new Vector2(200,100);
-				upgrade.pixelOffset = new Vector2(x, y+(i*100));
-				upgrade.icon = icon;
-				upgrade.iconSize = 50;
-				upgrade.invokingObject = this;
-				upgrade.invokingType = this.GetType();
-				displayer.AddToDisplay(upgrade);
 			}
 		}
 	}
@@ -103,6 +122,11 @@ public class WeaponVendor : MonoBehaviour {
 	
 	public void Cancel(){
 		isDisplaying = false;
+		displayer.Purge();
+	}
+	
+	public void CancelUpgrades(){
+		isDisplayingUpgrades = false;
 		displayer.Purge();
 	}
 }

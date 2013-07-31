@@ -8,4 +8,5 @@ public class SellableItem : MonoBehaviour {
 	public bool purchased;
 	public int currentUpgrade;
 	public int id;
+	public GameObject upgradedItem;
 }

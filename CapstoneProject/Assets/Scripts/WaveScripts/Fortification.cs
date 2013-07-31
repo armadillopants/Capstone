@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Fortification : MonoBehaviour {
 	
-	public enum FortState { MAIN_SCREEN, BUILD_SCREEN, UPGRADE_SCREEN, BUY_SCREEN, EQUIP_WEAPON_SCREEN };
-	private FortState state = FortState.MAIN_SCREEN;
+	public enum FortState { MAIN_SCREEN, BUILD_SCREEN, UPGRADE_SCREEN, BUY_SCREEN, EQUIP_WEAPON_SCREEN, FORT_UPGRADE_SCREEN };
+	public FortState state = FortState.MAIN_SCREEN;
 	private Wave buildWave;
 	private WeaponSelection selection;
 	private WeaponManager manager;
@@ -57,6 +57,9 @@ public class Fortification : MonoBehaviour {
 			case FortState.EQUIP_WEAPON_SCREEN:
 				DrawEquipWeaponScreen();
 				break;
+			case FortState.FORT_UPGRADE_SCREEN:
+				DrawFortUpgradeScreen();
+				break;
 			}
 		}
 	}
@@ -71,17 +74,28 @@ public class Fortification : MonoBehaviour {
 			if(GUI.Button(new Rect(mainScreen.width/4, mainScreen.height/10+(i*100), 100, 50), curFortName)){
 				GameController.Instance.canDisplay = true;
 				if(curFortName == fortNames[0]){
+					UIManager.Instance.uiState = UIManager.UIState.NONE;
 					weaponVendor.Cancel();
+					weaponVendor.CancelUpgrades();
 					state = FortState.BUILD_SCREEN;
 				} else if(curFortName == fortNames[1]){
+					UIManager.Instance.uiState = UIManager.UIState.NONE;
 					itemVendor.Cancel();
+					weaponVendor.CancelUpgrades();
 					state = FortState.BUY_SCREEN;
 				} else if(curFortName == fortNames[2]){
+					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					itemVendor.Cancel();
 					weaponVendor.Cancel();
 					state = FortState.UPGRADE_SCREEN;
 				} else if(curFortName == fortNames[3]){
+					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					itemVendor.Cancel();
+					weaponVendor.Cancel();
+					weaponVendor.CancelUpgrades();
 					state = FortState.EQUIP_WEAPON_SCREEN;
 				} else {
+					UIManager.Instance.uiState = UIManager.UIState.NONE;
 					selection.UpdateWeaponsSlots();
 					selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);
 					selection.canShoot = true;
@@ -119,6 +133,15 @@ public class Fortification : MonoBehaviour {
 		
 		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Upgrade Screen");
 		weaponVendor.UpgradeVendor(displayScreen.x, displayScreen.y);
+		
+		GUI.EndGroup();
+	}
+
+	void DrawFortUpgradeScreen(){
+		GUI.BeginGroup(displayScreen);
+		
+		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Upgrade Screen");
+		itemVendor.UpgradeVendor(displayScreen.x, displayScreen.y);
 		
 		GUI.EndGroup();
 	}

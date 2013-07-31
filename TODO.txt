@@ -35,11 +35,11 @@
 
 - Enemies+
 -- look direction
--- speed
--- damage
+-- speed (may increase...not sure, myabe just a little for some)
+-- damage (increases every so waves, will have to pull data from file)
 -- types
 -- name/id
--- health
+-- health (increases every so waves, will have to pull data from file)
 -- abilities: jumping, clawing, biting, charging etc.... think of more..
 -- Leaders....? but why though =(
 -- pathfinding....fuck
@@ -51,6 +51,7 @@
 -- To upgrade fortification, hover over it in game and click on it to bring up its individual upgrade attributes.
 -- To equip new weapon have players current inventory displayed, click on weapon to equip and say "Yes" to equip? hmm...
 -- Grid snapping for fortifications, tile based? most likely....  can only place objects on tiles, but tiles surround a good portion of the map
+-- Fortification stats: health(how much damage it can take), damage(how much damage it can do when an enemy is hitting it), cost(how much it costs),
 
 - Audio Manager
 -- Sounds for footsteps

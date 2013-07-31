@@ -3,24 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class FortPlane : MonoBehaviour {
-	public class PlaneData {
+	/*public class PlaneData {
 		public GameObject plane;
 		public Vector3[] quadrants = new Vector3[6];
 		
 		public bool Equals(GameObject other){
 			return plane == other;
 		}
-	}
+	}*/
 	
 	private MeshCollider[] meshColliders;
 	private Renderer[] rends;
 	
-	public List<PlaneData> planeData = new List<PlaneData>(); 
+	//public List<PlaneData> planeData = new List<PlaneData>(); 
 	
 	public GameObject plane;
-	private float gridX = 8f;
-	private float gridY = 8f;
-	private float spacing = 3f;
+	//private float gridX = 8f;
+	//private float gridY = 8f;
+	//private float spacing = 3f;
 	
 	void Awake(){
 		GameObject p = (GameObject)Instantiate(plane, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
@@ -64,7 +64,7 @@ public class FortPlane : MonoBehaviour {
 		}*/
 	}
 	
-	public NullableVector3 DeterminePlane(Transform hit, GameObject plane, Vector3 point){
+	/*public NullableVector3 DeterminePlane(Transform hit, GameObject plane, Vector3 point){
 		if(planeData != null){
 			PlaneData data = planeData.Find(x => x.Equals(plane));
 			
@@ -100,7 +100,7 @@ public class FortPlane : MonoBehaviour {
 			}
 		}
 		return closestPoint;
-	}
+	}*/
 	
 	public void EnablePlanes(){
 		foreach(MeshCollider mesh in meshColliders){
