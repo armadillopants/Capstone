@@ -3,7 +3,12 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 	
-	public enum UIState { PAUSE, WAVEWON, WAVELOST, NEXTWAVE, GAMEOVER, NONE, CURWAVE, FORTINFO, YESORNO };
+	public enum UIState { PAUSE, 
+		WAVEWON, WAVELOST, NEXTWAVE, 
+		GAMEOVER, NONE, CURWAVE, 
+		FORTINFO, YESORNO, BUILD_SCREEN, 
+		UPGRADE_SCREEN, BUY_SCREEN, EQUIP_WEAPON_SCREEN, 
+		FORT_UPGRADE_SCREEN };
 	public UIState uiState = UIState.NONE;
 	public bool isPaused = false;
 	private WeaponSelection selection;
@@ -143,9 +148,10 @@ public class UIManager : MonoBehaviour {
 			string curFortInfo = fortInfo[i];
 			if(GUI.Button(new Rect(displayScreen.width/4f, displayScreen.height/6f+(i*60), 100, 50), curFortInfo)){
 				if(curFortInfo == fortInfo[0]){
-					uiState = UIState.NONE;
-					Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
-					fort.state = Fortification.FortState.FORT_UPGRADE_SCREEN;
+					//uiState = UIState.NONE;
+					//Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
+					//fort.state = Fortification.FortState.FORT_UPGRADE_SCREEN;
+					uiState = UIState.FORT_UPGRADE_SCREEN;
 				} else if(curFortInfo == fortInfo[1]){
 					uiState = UIState.YESORNO;
 				} else if(curFortInfo == fortInfo[2]){

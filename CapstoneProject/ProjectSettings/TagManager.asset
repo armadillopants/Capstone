@@ -9,6 +9,8 @@ TagManager:
   - FortPlane
   - Fortification
   - Weapon
+  - Waypoint
+  - DynObj
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

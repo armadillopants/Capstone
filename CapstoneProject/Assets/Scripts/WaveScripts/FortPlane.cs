@@ -18,14 +18,33 @@ public class FortPlane : MonoBehaviour {
 	//public List<PlaneData> planeData = new List<PlaneData>(); 
 	
 	public GameObject plane;
-	//private float gridX = 8f;
-	//private float gridY = 8f;
-	//private float spacing = 3f;
+	public GameObject wayPoint;
+	public GameObject wayPointMaster;
+	public GameObject cube;
+	public GameObject sphere;
+	
+	//private float gridX = 10f;
+	//private float gridY = 10f;
+	public static int gridX = 10;
+	public static int gridY = 10;
+	private float spacing = 3f;
 	
 	void Awake(){
 		GameObject p = (GameObject)Instantiate(plane, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
 		p.name = plane.name;
 		p.transform.parent = transform;
+		
+		CalculateGrid();
+		
+		/*for(int x=0; x<gridX; x++){
+			for(int y=0; y<gridY; y++){
+				Vector3 pos = new Vector3(x, 0.3f, y) * spacing;
+				GameObject w = (GameObject)Instantiate(wayPoint, pos+new Vector3(-3,0,-3), Quaternion.identity);
+				w.name = wayPoint.name;
+				w.transform.parent = wayPointMaster.transform;
+			}
+		}*/
+		
 		/*for(int x=0; x<gridX; x++){
 			for(int y=0; y<gridY; y++){
 				Vector3 pos = new Vector3(x, 0.1f, y) * spacing;
@@ -62,6 +81,32 @@ public class FortPlane : MonoBehaviour {
 		foreach(Renderer rend in rends){
 			rend.enabled = false;
 		}*/
+	}
+	
+	public void CalculateGrid(){
+		try {
+			// Creating our grid
+			Tile[,] grid = new Tile[FortPlane.gridX, FortPlane.gridY];
+			
+			//GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			//GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			//cube.renderer.enabled = false;
+			//sphere.renderer.enabled = false;
+			
+			for(int i=0; i<FortPlane.gridX; i++){
+				for(int j=0; j<FortPlane.gridY; j++){
+					// Create a new tile
+					grid[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,1,j*3f), GameObject.CreatePrimitive(PrimitiveType.Cube), 
+						GameObject.CreatePrimitive(PrimitiveType.Sphere), cube.renderer.bounds.Intersects(plane.renderer.bounds) ? false : true);
+				}
+			}
+			
+			Pathfinder path = new Pathfinder(grid);
+			path.FindPath(new Vector2(0,0), new Vector2(9,9));
+		} catch(System.Exception e){
+			Debug.LogError(e.Message + ": " + e.InnerException);
+			Application.Quit();
+		}
 	}
 	
 	/*public NullableVector3 DeterminePlane(Transform hit, GameObject plane, Vector3 point){

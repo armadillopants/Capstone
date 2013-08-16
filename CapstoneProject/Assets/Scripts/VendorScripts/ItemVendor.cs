@@ -74,8 +74,9 @@ public class ItemVendor : MonoBehaviour {
 		
 		if(GameController.Instance.GetResources() >= sellItem.cost){
 			//GameController.Instance.canDisplay = false;
-			Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
-			fort.state = Fortification.FortState.MAIN_SCREEN;
+			//Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
+			//fort.state = Fortification.FortState.MAIN_SCREEN;
+			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			Cancel();
 			Instantiate(sellItem.gameObject, new Vector3(0, 0.5f, 0), Quaternion.identity);
 			GameController.Instance.DeleteResources(sellItem.cost);

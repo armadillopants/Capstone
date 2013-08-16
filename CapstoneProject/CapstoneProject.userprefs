@@ -1,15 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VendorScripts\WeaponVendor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WaveScripts\FortPlane.cs">
     <Files>
-      <File FileName="Assets\Scripts\VendorScripts\WeaponVendor.cs" Line="24" Column="8" />
-      <File FileName="Assets\Scripts\WaveScripts\Fortification.cs" Line="98" Column="58" />
-      <File FileName="Assets\Scripts\VendorScripts\SellableItemDisplayer.cs" Line="69" Column="1" />
-      <File FileName="Assets\Scripts\VendorScripts\ItemVendor.cs" Line="103" Column="55" />
-      <File FileName="Assets\Scripts\Managers\UIManager.cs" Line="146" Column="29" />
-      <File FileName="Assets\Scripts\WaveScripts\Dragable.cs" Line="24" Column="46" />
-      <File FileName="Assets\Scripts\ConsoleScripts\XMLVendorReader.cs" Line="55" Column="12" />
-      <File FileName="Assets\Scripts\WaveScripts\FortificationData.cs" Line="15" Column="104" />
+      <File FileName="Assets\Scripts\WaveScripts\FortPlane.cs" Line="93" Column="36" />
+      <File FileName="Assets\Scripts\Pathfinding\Tile.cs" Line="38" Column="50" />
+      <File FileName="Assets\Scripts\Pathfinding\Pathfinder.cs" Line="162" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

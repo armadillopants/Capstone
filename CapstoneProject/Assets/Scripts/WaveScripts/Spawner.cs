@@ -5,6 +5,8 @@ public class Spawner : MonoBehaviour {
 	
 	public GameObject enemy;
 	private Vector3 pos;
+	
+	public Transform[] spawnPoints;
 
 	// Use this for initialization
 	void Start(){
@@ -17,7 +19,7 @@ public class Spawner : MonoBehaviour {
 	
 	public void SpawnEnemy(){
 		pos = transform.position + 
-			new Vector3(Mathf.Cos(Random.Range(0,360)), transform.position.y, Mathf.Sin(Random.Range(0,360)))*(Random.Range(40,40));
+			new Vector3(Mathf.Cos(Random.Range(0,360)), transform.position.y, Mathf.Sin(Random.Range(0,360)))*(Random.Range(10,10));
 		Instantiate(enemy, pos, Quaternion.identity);
 	}
 }

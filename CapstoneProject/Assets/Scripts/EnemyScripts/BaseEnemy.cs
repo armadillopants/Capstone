@@ -18,11 +18,13 @@ public class BaseEnemy : MonoBehaviour {
 	public float turnSpeed = 1f;
 	public bool canAttackBoth = false;
 	protected Transform trans;
+	//private NavMeshAgent agent;
 
 	public virtual void Awake(){
 		target = GameObject.FindWithTag("Player").transform;
 		playerTarget = target;
 		defendTarget = GameObject.FindWithTag("Defend").transform;
+		//agent = GetComponent<NavMeshAgent>();
 	}
 	
 	public virtual void Start(){
@@ -34,6 +36,7 @@ public class BaseEnemy : MonoBehaviour {
 		switch(state){
 		case EnemyState.CHASINGPLAYER:
 			SwitchTarget("Player");
+			//agent.destination = playerTarget.position;
 			ChaseObject();
 			break;
 		case EnemyState.CHASINGSHIP:

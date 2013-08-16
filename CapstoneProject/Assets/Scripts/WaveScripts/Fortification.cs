@@ -43,7 +43,7 @@ public class Fortification : MonoBehaviour {
 	
 	void OnGUI(){
 		DrawMainScreen();
-		if(GameController.Instance.canDisplay){
+		/*if(GameController.Instance.canDisplay){
 			switch(state){
 			case FortState.BUILD_SCREEN:
 				DrawBuildScreen();
@@ -61,6 +61,23 @@ public class Fortification : MonoBehaviour {
 				DrawFortUpgradeScreen();
 				break;
 			}
+		}*/
+		switch(UIManager.Instance.uiState){
+		case UIManager.UIState.BUILD_SCREEN:
+			DrawBuildScreen();
+			break;
+		case UIManager.UIState.BUY_SCREEN:
+			DrawBuyScreen();
+			break;
+		case UIManager.UIState.UPGRADE_SCREEN:
+			DrawUpgradeScreen();
+			break;
+		case UIManager.UIState.EQUIP_WEAPON_SCREEN:
+			DrawEquipWeaponScreen();
+			break;
+		case UIManager.UIState.FORT_UPGRADE_SCREEN:
+			DrawFortUpgradeScreen();
+			break;
 		}
 	}
 	
@@ -72,29 +89,33 @@ public class Fortification : MonoBehaviour {
 		for(int i=0; i<fortNames.Length; i++){
 			string curFortName = fortNames[i];
 			if(GUI.Button(new Rect(mainScreen.width/4, mainScreen.height/10+(i*100), 100, 50), curFortName)){
-				GameController.Instance.canDisplay = true;
-				if(curFortName == fortNames[0]){
-					UIManager.Instance.uiState = UIManager.UIState.NONE;
+				//GameController.Instance.canDisplay = true;
+				if(curFortName == fortNames[0] && UIManager.Instance.uiState != UIManager.UIState.BUILD_SCREEN){
+					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					weaponVendor.Cancel();
 					weaponVendor.CancelUpgrades();
-					state = FortState.BUILD_SCREEN;
-				} else if(curFortName == fortNames[1]){
-					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					UIManager.Instance.uiState = UIManager.UIState.BUILD_SCREEN;
+					//state = FortState.BUILD_SCREEN;
+				} else if(curFortName == fortNames[1] && UIManager.Instance.uiState != UIManager.UIState.BUY_SCREEN){
+					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					itemVendor.Cancel();
 					weaponVendor.CancelUpgrades();
-					state = FortState.BUY_SCREEN;
-				} else if(curFortName == fortNames[2]){
-					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					//state = FortState.BUY_SCREEN;
+					UIManager.Instance.uiState = UIManager.UIState.BUY_SCREEN;
+				} else if(curFortName == fortNames[2] && UIManager.Instance.uiState != UIManager.UIState.UPGRADE_SCREEN){
+					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					itemVendor.Cancel();
 					weaponVendor.Cancel();
-					state = FortState.UPGRADE_SCREEN;
-				} else if(curFortName == fortNames[3]){
-					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					//state = FortState.UPGRADE_SCREEN;
+					UIManager.Instance.uiState = UIManager.UIState.UPGRADE_SCREEN;
+				} else if(curFortName == fortNames[3] && UIManager.Instance.uiState != UIManager.UIState.EQUIP_WEAPON_SCREEN){
+					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					itemVendor.Cancel();
 					weaponVendor.Cancel();
 					weaponVendor.CancelUpgrades();
-					state = FortState.EQUIP_WEAPON_SCREEN;
-				} else {
+					//state = FortState.EQUIP_WEAPON_SCREEN;
+					UIManager.Instance.uiState = UIManager.UIState.EQUIP_WEAPON_SCREEN;
+				} else if(curFortName == fortNames[4]){
 					UIManager.Instance.uiState = UIManager.UIState.NONE;
 					selection.UpdateWeaponsSlots();
 					selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);

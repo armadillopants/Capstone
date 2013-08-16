@@ -27,7 +27,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 	}
 	
 	void OnGUI(){
-		if(GameController.Instance.canDisplay){
+		//if(GameController.Instance.canDisplay){
 			for(int i=0; i<itemsToDisplay.Count; i++){
 				style.fontSize = FONT_SIZE;
 				style.normal.background = itemsToDisplay[i].sellItem.preview;
@@ -71,6 +71,6 @@ public class SellableItemDisplayer : MonoBehaviour {
 					}
 				}
 			}
-		}
+		//}
 	}
 }

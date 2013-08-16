@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class WeaponVendor : MonoBehaviour {
 	
-	public List<GameObject> weaponVendor = new List<GameObject>();// GameObject[] weaponVendor;
-	public List<GameObject> upgradeVendor = new List<GameObject>();// GameObject[] upgradeVendor;
+	public List<GameObject> weaponVendor = new List<GameObject>();
+	public List<GameObject> upgradeVendor = new List<GameObject>();
 	public Texture2D icon;
 	private bool isDisplaying = false;
 	private bool isDisplayingUpgrades = false;

@@ -18,8 +18,8 @@ public class Dragable : MonoBehaviour {
 		// If we right click on a gameobject, display destroy item screen
 		if(Input.GetMouseButton(1)){
 			UIManager.Instance.SetFortification(gameObject);
-			Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
-			fort.state = Fortification.FortState.MAIN_SCREEN;
+			//Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
+			//fort.state = Fortification.FortState.MAIN_SCREEN;
 			ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
 			itemVendor.upgradeItemVendor = gameObject;
 			itemVendor.CancelUpgrades();
