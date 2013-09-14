@@ -11,6 +11,9 @@ TagManager:
   - Weapon
   - Waypoint
   - DynObj
+  - AIPathCell
+  - AIPathNode
+  - Spawnpoint
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -23,8 +26,8 @@ TagManager:
   User Layer 8: Player
   User Layer 9: Fort
   User Layer 10: Projectile
-  User Layer 11: 
-  User Layer 12: 
+  User Layer 11: AIPath
+  User Layer 12: Grid
   User Layer 13: 
   User Layer 14: 
   User Layer 15: 

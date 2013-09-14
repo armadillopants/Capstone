@@ -1,12 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WaveScripts\FortPlane.cs">
-    <Files>
-      <File FileName="Assets\Scripts\WaveScripts\FortPlane.cs" Line="93" Column="36" />
-      <File FileName="Assets\Scripts\Pathfinding\Tile.cs" Line="38" Column="50" />
-      <File FileName="Assets\Scripts\Pathfinding\Pathfinder.cs" Line="162" Column="4" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
