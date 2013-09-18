@@ -1,6 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\Managers\GameController.cs">
+    <Files>
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="22" Column="19" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Wave.cs" Line="6" Column="28" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Dragable.cs" Line="66" Column="77" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

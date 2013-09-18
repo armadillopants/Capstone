@@ -33,16 +33,16 @@
 - keep track of owned/unowned weapons
 - keep track of different types of weapons: rifles, pistols, launchers, specials
 
-- Enemies+
+- Enemies++
 -- look direction
--- speed (may increase...not sure, myabe just a little for some)
+-- speed (may increase...not sure, maybe just a little for some)
 -- damage (increases every so waves, will have to pull data from file)
 -- types
 -- name/id
 -- health (increases every so waves, will have to pull data from file)
 -- abilities: jumping, clawing, biting, charging etc.... think of more..
 -- Leaders....? but why though =(
--- pathfinding....fuck
+-- pathfinding....fuck (solved, using Aron Granberg's Pathfinding Solution)
 
 - Fortifications++
 -- Buy weapons/foritifications
@@ -60,3 +60,13 @@
 -- Clicking noises
 -- Breaking of barriers
 -- Fire
+
+- Spawn System
+-- Enemies spawn in only 15 allowed at once
+-- Big enemies spawn smaller enemies around them
+-- Random spawn points enemies can crawl out of for night enemies, when player gets close
+
+- Day/Night System
+-- Begins during the day, slowly go to night...
+-- How many waves till first dusk?...
+-- How to make transition?...

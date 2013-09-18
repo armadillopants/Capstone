@@ -26,11 +26,11 @@ public class FortPlane : MonoBehaviour {
 	public GameObject cell;
 	public GameObject node;
 	
-	private float X = 10f;
-	private float Y = 10f;
+	//private float X = 10f;
+	//private float Y = 10f;
 	public static int gridX = 20;
 	public static int gridY = 20;
-	private float spacing = 3f;
+	//private float spacing = 3f;
 	
 	public Tile[,] grid;
 	

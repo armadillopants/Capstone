@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class RockRainAbility : MonoBehaviour {
 	
@@ -16,7 +15,10 @@ public class RockRainAbility : MonoBehaviour {
 	void BeginAbility(){
 		for(int i=0; i<spawnAmount; i++){
 			pos = player.position + 
-				new Vector3(Mathf.Cos(Random.Range(0, 360)), player.position.y+3, Mathf.Sin(Random.Range(0, 360)))*(Random.Range(5, 10));
+				new Vector3(Mathf.Cos(Random.Range(0,360)), 
+							player.position.y+Random.Range(3,6), 
+							Mathf.Sin(Random.Range(0,360)))*(Random.Range(5, 10));
+			
 			Rigidbody r =  (Rigidbody)Instantiate(rock, pos, Quaternion.identity);
 			r.velocity = transform.TransformDirection(Vector3.down * 50f);
 		}

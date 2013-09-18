@@ -4,15 +4,25 @@ using Pathfinding;
 
 public class GameController : MonoBehaviour {
 	
+	public enum TimeOfDay { DAYTIME, NIGHTTIME };
+	public TimeOfDay timeOfDay = TimeOfDay.DAYTIME;
+	
 	private Health defendHealth;
 	private Health playerHealth;
 	private GameObject[] enemies;
 	
-	protected int amountOfResources = 10000;
+	protected int amountOfResources = 100000;
 	public bool canDisplay = true;
 	public bool canShoot = false;
 	
-	public GameObject fortToSpawn;
+	// Fortification data
+	private GameObject fortToSpawn;
+	private GameObject current;
+	private bool fortSpawned = false;
+	private bool canPlace = false;
+	public Material validGreen;
+	public Material invalidRed;
+	private Material originalMat;
 	
 	#region Singleton
 	
@@ -66,8 +76,8 @@ public class GameController : MonoBehaviour {
 			SwitchUIState(UIManager.UIState.PAUSE);
 		}
 		
-		if(fortToSpawn){
-			//Instantiate(fortToSpawn, Input.mousePosition, Quaternion.identity);
+		if(fortSpawned){
+			UpdateFortPosWithMouseLoc();
 		}
 	}
 	
@@ -89,11 +99,82 @@ public class GameController : MonoBehaviour {
 	
 	public void SetFortificationToSpawn(GameObject fort){
 		fortToSpawn = fort;
+		originalMat = fortToSpawn.renderer.sharedMaterial;
+		
+		if(fortToSpawn){
+			SpawnFortification();
+		}
+	}
+	
+	void SpawnFortification(){
+		RaycastHit hit = new RaycastHit();
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		
+		if(Physics.Raycast(ray, out hit)){
+			GameObject fort = (GameObject)Instantiate(fortToSpawn, hit.point, Quaternion.identity);
+			current = fort;
+		}
+		fortSpawned = true;
+	}
+	
+	void UpdateFortPosWithMouseLoc(){
+		if(Input.GetKeyDown(KeyCode.E)){
+			current.transform.Rotate(0, 90, 0);
+		}
+		if(Input.GetKeyDown(KeyCode.Q)){
+			current.transform.Rotate(0, -90, 0);
+		}
+		
+		GameObject[] forts = GameObject.FindGameObjectsWithTag("Fortification");
+		
+		RaycastHit hit = new RaycastHit();	
+		Vector3 mouseLoc = new Vector3();
+		if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)){
+			mouseLoc = hit.point;
+			mouseLoc.y = 0.5f;
+		}
+		current.transform.position = mouseLoc;
+		
+		canPlace = true;
+		current.renderer.material = validGreen;
+		
+		for(int i=0; i<forts.Length; i++){
+			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
+				if(current.collider.bounds.Intersects(forts[i].collider.bounds) || 
+					!current.collider.bounds.Intersects(GameObject.FindWithTag("FortPlane").collider.bounds)){
+					
+					canPlace = false;
+					current.renderer.material = invalidRed;
+					Debug.Log("Cannot place object");
+				}
+			} else {
+				if(!current.collider.bounds.Intersects(GameObject.FindWithTag("FortPlane").collider.bounds)){
+					canPlace = false;
+					current.renderer.material = invalidRed;
+					Debug.Log("Cannot place object");
+				}
+			}
+		}
+		
+		if(Input.GetMouseButtonDown(0) && canPlace){
+			current.transform.position = new Vector3(Mathf.Round(hit.point.x),0.5f,Mathf.Round(hit.point.z));
+			current.renderer.material = originalMat;
+			StartCoroutine("AddDragable");
+			fortSpawned = false;
+		}
+	}
+	
+	private IEnumerator AddDragable(){
+		yield return new WaitForSeconds(0.1f);
+		current.AddComponent<Dragable>();
+		fortToSpawn = null;
+		current = null;
 	}
 	
 	public void UpdateGraph(){
 		GameObject[] fortifications = GameObject.FindGameObjectsWithTag("Fortification");
 		foreach(GameObject fort in fortifications){
+			Destroy(fort.GetComponent<Dragable>());
 			Bounds b = fort.collider.bounds;
 			GraphUpdateObject guo = new GraphUpdateObject(b);
 			AstarPath.active.UpdateGraphs(guo);

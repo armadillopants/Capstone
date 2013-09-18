@@ -55,10 +55,6 @@ public class UIManager : MonoBehaviour {
 		uiState = UIState.FORTINFO;
 	}
 	
-	public void SpawnFortification(GameObject fortObject, Vector3 location, Quaternion rot){
-		Instantiate(fortObject, location, rot);
-	}
-	
 	void OnGUI(){
 		switch(uiState){
 		case UIState.PAUSE:
@@ -128,6 +124,12 @@ public class UIManager : MonoBehaviour {
 			if(GUI.Button(new Rect(displayScreen.width/4f, displayScreen.height/6f+(i*60), 100, 50), curFortInfo)){
 				if(curFortInfo == fortInfo[0]){
 					// Destory the object and update graph
+					Health fortHealth = fortification.GetComponent<Health>();
+					if(fortHealth.curHealth == fortHealth.GetMaxHealth() && fortification.GetComponent<Dragable>() != null){
+						GameController.Instance.AddResources(fortification.GetComponent<SellableItem>().cost);
+					} else {
+						GameController.Instance.AddResources(Mathf.RoundToInt(fortHealth.curHealth / 2));
+					}
 					GameController.Instance.UpdateGraphOnDestroyedObject(fortification.GetComponent<Dragable>().collider.bounds,
 						fortification.GetComponent<Dragable>().collider,fortification.GetComponent<Dragable>().gameObject);
 					fortification = null;

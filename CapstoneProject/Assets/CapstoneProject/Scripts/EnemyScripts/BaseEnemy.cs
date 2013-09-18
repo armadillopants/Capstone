@@ -87,7 +87,7 @@ public class BaseEnemy : AIPath {
 	}
 	
 	void OnCollisionExit(){
-		rigidbody.velocity = new Vector3(0,0,0);
+		rigid.velocity = new Vector3(0,0,0);
 		doDamage = false;
 	}
 	
@@ -128,7 +128,7 @@ public class BaseEnemy : AIPath {
 			}
 			
 			if(navController != null){
-				navController.SimpleMove (GetFeetPosition(), dir);
+				navController.SimpleMove(GetFeetPosition(), dir);
 			} else if(controller != null){
 				controller.SimpleMove(dir);
 			} else {

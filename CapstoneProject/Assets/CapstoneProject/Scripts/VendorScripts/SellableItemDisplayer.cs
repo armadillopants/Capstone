@@ -42,7 +42,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 	
 				// If the item has a worldspace location to attach to, convert it to screenspace
 				if(itemsToDisplay[i].hasWorldspace){
-					Vector3 t = Camera.mainCamera.WorldToScreenPoint(itemsToDisplay[i].worldspaceLocation);
+					Vector3 t = Camera.main.WorldToScreenPoint(itemsToDisplay[i].worldspaceLocation);
 					guiLoc.x = t.x;
 					guiLoc.y = Screen.height - t.y;
 				}

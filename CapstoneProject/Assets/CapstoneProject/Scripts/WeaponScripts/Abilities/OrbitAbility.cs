@@ -37,7 +37,9 @@ public class OrbitAbility : MonoBehaviour {
 				System.Array.Sort(items, dComp);
 			}
 		}
-		StartCoroutine("SpawnOrbitHolders");
+		if(items.Length > 0){
+			StartCoroutine("SpawnOrbitHolders");
+		}
 	}
 	
 	private IEnumerator SpawnOrbitHolders(){

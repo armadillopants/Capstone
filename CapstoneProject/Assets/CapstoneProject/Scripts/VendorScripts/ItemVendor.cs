@@ -79,7 +79,6 @@ public class ItemVendor : MonoBehaviour {
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			Cancel();
 			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject);
-			Instantiate(sellItem.gameObject, new Vector3(0, 0.5f, 0), Quaternion.identity);
 			GameController.Instance.DeleteResources(sellItem.cost);
 			
 			Debug.Log("Purchased: " + sellItem.itemName);

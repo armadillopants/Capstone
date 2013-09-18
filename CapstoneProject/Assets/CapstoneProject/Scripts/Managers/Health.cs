@@ -24,6 +24,10 @@ public class Health : MonoBehaviour {
 		return isDead;
 	}
 	
+	public float GetMaxHealth(){
+		return maxHealth;
+	}
+	
 	public void ModifyHealth(float amount){
 		maxHealth = amount;
 		curHealth = maxHealth;

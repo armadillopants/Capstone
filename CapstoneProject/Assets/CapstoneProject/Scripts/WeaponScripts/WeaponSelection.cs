@@ -6,7 +6,6 @@ public class WeaponSelection : MonoBehaviour {
 	
 	public bool changingWeapons = false;
 	private float slowmoTime = 2f;
-	private bool canShoot = false;
 	public List<GameObject> weaponSlots = new List<GameObject>();
 	private WeaponManager manager;
 	
@@ -30,10 +29,8 @@ public class WeaponSelection : MonoBehaviour {
 			
 			if(Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
 				changingWeapons = true;
-				canShoot = false;
 			} else {
 				changingWeapons = false;
-				canShoot = true;
 			}
 		}
 	}
