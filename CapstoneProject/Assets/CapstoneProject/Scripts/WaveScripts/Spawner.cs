@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour {
 	private Transform spawnPoint;
 
 	void Start(){
-		spawnPoints = GameObject.FindGameObjectsWithTag("Spawnpoint");
+		spawnPoints = GameObject.FindGameObjectsWithTag(Globals.SPAWN_POINT);
 	}
 	
 	void Update(){

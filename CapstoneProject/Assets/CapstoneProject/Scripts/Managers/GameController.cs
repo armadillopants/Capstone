@@ -47,8 +47,8 @@ public class GameController : MonoBehaviour {
 	#endregion
 
 	void Start(){
-		defendHealth = GameObject.FindWithTag("Defend").GetComponent<Health>();
-		playerHealth = GameObject.FindWithTag("Player").GetComponent<Health>();
+		defendHealth = GameObject.FindWithTag(Globals.DEFEND).GetComponent<Health>();
+		playerHealth = GameObject.FindWithTag(Globals.PLAYER).GetComponent<Health>();
 	}
 	
 	void Update(){
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour {
 			return;
 		}
 		
-		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		enemies = GameObject.FindGameObjectsWithTag(Globals.ENEMY);
 		if(playerHealth.IsDead()){
 			foreach(GameObject enemy in enemies){
 				Destroy(enemy);
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour {
 			current.transform.Rotate(0, -90, 0);
 		}
 		
-		GameObject[] forts = GameObject.FindGameObjectsWithTag("Fortification");
+		GameObject[] forts = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 		
 		RaycastHit hit = new RaycastHit();	
 		Vector3 mouseLoc = new Vector3();
@@ -141,14 +141,14 @@ public class GameController : MonoBehaviour {
 		for(int i=0; i<forts.Length; i++){
 			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
 				if(current.collider.bounds.Intersects(forts[i].collider.bounds) || 
-					!current.collider.bounds.Intersects(GameObject.FindWithTag("FortPlane").collider.bounds)){
+					!current.collider.bounds.Intersects(GameObject.FindWithTag(Globals.GRID).collider.bounds)){
 					
 					canPlace = false;
 					current.renderer.material = invalidRed;
 					Debug.Log("Cannot place object");
 				}
 			} else {
-				if(!current.collider.bounds.Intersects(GameObject.FindWithTag("FortPlane").collider.bounds)){
+				if(!current.collider.bounds.Intersects(GameObject.FindWithTag(Globals.GRID).collider.bounds)){
 					canPlace = false;
 					current.renderer.material = invalidRed;
 					Debug.Log("Cannot place object");
@@ -172,7 +172,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public void UpdateGraph(){
-		GameObject[] fortifications = GameObject.FindGameObjectsWithTag("Fortification");
+		GameObject[] fortifications = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 		foreach(GameObject fort in fortifications){
 			Destroy(fort.GetComponent<Dragable>());
 			Bounds b = fort.collider.bounds;
@@ -189,7 +189,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public void AddDynamicObstacleToFortifications(){
-		GameObject[] fortifications = GameObject.FindGameObjectsWithTag("Fortification");
+		GameObject[] fortifications = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 		foreach(GameObject fort in fortifications){
 			if(fort.GetComponent<DynamicGridObstacle>() == null){
 				fort.AddComponent<DynamicGridObstacle>();

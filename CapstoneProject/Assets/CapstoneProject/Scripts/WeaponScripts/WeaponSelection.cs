@@ -10,7 +10,7 @@ public class WeaponSelection : MonoBehaviour {
 	private WeaponManager manager;
 	
 	void Awake(){
-		GameObject player = GameObject.FindWithTag("Player");
+		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
 		manager = player.GetComponentInChildren<WeaponManager>();
 		UpdateWeaponsSlots();
 	}

@@ -6,10 +6,32 @@ public class RockRainAbility : MonoBehaviour {
 	private Transform player;
 	private int spawnAmount = 8;
 	private Vector3 pos;
+	private int numRocks;
+	private bool rocksSpawned = false;
+	private float timer;
+	private float maxTimer = 3f;
 
 	void Start(){
 		rock = (Rigidbody)Resources.Load("Rock", typeof(Rigidbody));
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameObject.FindWithTag(Globals.PLAYER).transform;
+		timer = maxTimer;
+	}
+	
+	void Update(){
+		numRocks = GameObject.FindGameObjectsWithTag(Globals.ABILITY).Length;
+		
+		if(numRocks > 0){
+			rocksSpawned = true;
+		}
+		
+		if(rocksSpawned){
+			timer -= Time.deltaTime;
+			if(numRocks <= 0 && timer <= 0){
+				player.GetComponent<AbilitiesManager>().SetCoolDown();
+				rocksSpawned = false;
+				timer = maxTimer;
+			}
+		}
 	}
 	
 	void BeginAbility(){

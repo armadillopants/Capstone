@@ -21,7 +21,7 @@ public class WeaponVendor : MonoBehaviour {
 	void Start(){
 		displayer = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
 		vendor = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
-		manager = GameObject.FindWithTag("Player").GetComponentInChildren<WeaponManager>();
+		manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
 	}
 	
 	public void Vendor(float x, float y){

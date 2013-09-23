@@ -27,7 +27,7 @@ public class BaseWeapon : MonoBehaviour {
 	public bool isReloading = false;
 	protected float nextFireTime = 0.0f;
 	protected float lastFrameShot = -1;
-	protected ParticleEmitter hitParticles;
+	public ParticleEmitter hitParticles;
 	
 	void Awake(){
 		hitParticles = GetComponentInChildren<ParticleEmitter>();

@@ -11,7 +11,7 @@ public class OrbitAbility : MonoBehaviour {
 	private GameObject[] items;
 	
 	void Start(){
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameObject.FindWithTag(Globals.PLAYER).transform;
 		
 		holder = (Transform)Resources.Load("OrbitHolder", typeof(Transform));
 		
@@ -30,14 +30,18 @@ public class OrbitAbility : MonoBehaviour {
 	void BeginAbility(){
 		Collider[] hits = Physics.OverlapSphere(player.position, Mathf.Infinity);
 		foreach(Collider hit in hits){
-			if(hit.tag == "InteractableItem"){
+			if(hit.tag == Globals.INTERACTABLE_ITEM){
+				// Set items to objects hit
 				items = GameObject.FindGameObjectsWithTag(hit.tag);
 				DistanceComparer dComp = new DistanceComparer();
 				dComp.SetTarget(player.gameObject);
+				// Sort objects based on distance from player
 				System.Array.Sort(items, dComp);
 			}
 		}
-		if(items.Length > 0){
+		
+		// TODO: Possibly fix this to make it more dynamic...work with less than 4 objects
+		if(items.Length >= 4){
 			StartCoroutine("SpawnOrbitHolders");
 		}
 	}
@@ -67,7 +71,7 @@ public class OrbitAbility : MonoBehaviour {
 			}
 			
 			if(hold[0] == null && hold[1] == null && hold[2] == null && hold[3] == null){
-				player.GetComponent<AbilitiesManager>().beginAbility = true;
+				player.GetComponent<AbilitiesManager>().SetCoolDown();
 				attachItemsToPlayer = false;
 			}
 		}

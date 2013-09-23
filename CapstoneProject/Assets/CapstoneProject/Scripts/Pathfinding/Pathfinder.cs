@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Pathfinder {
 	
-	public Tile[,] grid = new Tile[FortPlane.gridX, FortPlane.gridY];
+	public Tile[,] grid = new Tile[GridSpawner.gridX, GridSpawner.gridY];
 	Vector2 currentTile;
 	Vector2 startTile;
 	Vector2 endTile;
@@ -21,8 +21,8 @@ public class Pathfinder {
 		this.endTile = endTile;
 		
 	    //Reset all the values
-        for(int i=0; i<FortPlane.gridX; i++){
-            for(int j=0; j<FortPlane.gridY; j++){
+        for(int i=0; i<GridSpawner.gridX; i++){
+            for(int j=0; j<GridSpawner.gridY; j++){
                 grid[i,j].gScore = 0;
                 grid[i,j].hScore = 0;
             }
@@ -150,7 +150,7 @@ public class Pathfinder {
 		
 		// Tile above
 		adjacentTile = new Vector2(currentTile.x, currentTile.y + 1);
-		if(adjacentTile.y < FortPlane.gridY && grid[(int)adjacentTile.x, (int)adjacentTile.y].walkable){
+		if(adjacentTile.y < GridSpawner.gridY && grid[(int)adjacentTile.x, (int)adjacentTile.y].walkable){
 			adjacentTiles.Add(adjacentTile);
 		}
 		
@@ -162,7 +162,7 @@ public class Pathfinder {
 		
 		// Right Tile
 		adjacentTile = new Vector2(currentTile.x + 1, currentTile.y);
-		if(adjacentTile.x < FortPlane.gridX && grid[(int)adjacentTile.x, (int)adjacentTile.y].walkable){
+		if(adjacentTile.x < GridSpawner.gridX && grid[(int)adjacentTile.x, (int)adjacentTile.y].walkable){
 			adjacentTiles.Add(adjacentTile);
 		}
 		

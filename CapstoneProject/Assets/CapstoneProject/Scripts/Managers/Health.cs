@@ -12,7 +12,7 @@ public class Health : MonoBehaviour {
 	private bool isFortification = false;
 
 	void Start(){
-		if(gameObject.tag == "Fortification"){
+		if(gameObject.tag == Globals.FORTIFICATION){
 			isFortification = true;
 		}
 	}

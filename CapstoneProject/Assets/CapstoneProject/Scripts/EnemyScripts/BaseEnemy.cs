@@ -16,11 +16,15 @@ public class BaseEnemy : AIPath {
 	public float distance = 10f;
 	public bool canAttackBoth = false;
 	private float sleepVelocity = 0.4f;
+	private bool isBurning = false;
+	private ParticleEmitter emitter;
+	public float burnDamage;
 	
 	public new void Start(){
 		playerTarget = target;
-		defendTarget = GameObject.FindWithTag("Defend").transform;
+		defendTarget = GameObject.FindWithTag(Globals.DEFEND).transform;
 		currentCoolDown = coolDownLength;
+		emitter = GetComponentInChildren<ParticleEmitter>();
 		base.Start();
 	}
 	
@@ -31,11 +35,11 @@ public class BaseEnemy : AIPath {
 	protected new void Update(){
 		switch(state){
 		case EnemyState.CHASINGPLAYER:
-			SwitchTarget("Player");
+			SwitchTarget(Globals.PLAYER);
 			ChaseObject();
 			break;
 		case EnemyState.CHASINGSHIP:
-			SwitchTarget("Defend");
+			SwitchTarget(Globals.DEFEND);
 			ChaseObject();
 			break;
 		case EnemyState.ATTACKINGPLAYER:
@@ -47,7 +51,7 @@ public class BaseEnemy : AIPath {
 		}
 		
 		if(defendTarget == null){
-			SwitchTarget("Player");
+			SwitchTarget(Globals.PLAYER);
 		}
 		
 		if(currentCoolDown > 0){
@@ -57,14 +61,21 @@ public class BaseEnemy : AIPath {
 		if(canAttackBoth){
 			if(defendTarget){
 				if(Vector3.Distance(playerTarget.position, tr.position) > distance){
-					SwitchTarget("Defend");
+					SwitchTarget(Globals.DEFEND);
 				} else if(Vector3.Distance(playerTarget.position, tr.position) <= distance){
-					SwitchTarget("Player");
+					SwitchTarget(Globals.PLAYER);
 				}
 			}
 		}
 		
 		ClampCoolDownTime();
+		
+		if(!isBurning){
+			emitter.emit = false;
+		} else {
+			emitter.emit = true;
+			SendMessage("TakeDamage", burnDamage, SendMessageOptions.DontRequireReceiver);
+		}
 	}
 	
 	public void ClampCoolDownTime(){
@@ -138,6 +149,17 @@ public class BaseEnemy : AIPath {
 			velocity = controller.velocity;
 		} else {
 			velocity = Vector3.zero;
+		}
+	}
+	
+	void OnParticleCollision(GameObject other){
+		BaseWeapon flame = other.transform.parent.GetComponent<BaseWeapon>();
+		SendMessage("TakeDamage", flame.damage, SendMessageOptions.DontRequireReceiver);
+		
+		if(!isBurning){
+			isBurning = true;
+		} else {
+			isBurning = false;
 		}
 	}
 }

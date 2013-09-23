@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class FortPlane : MonoBehaviour {
+public class GridSpawner : MonoBehaviour {
 	/*public class PlaneData {
 		public GameObject plane;
 		public Vector3[] quadrants = new Vector3[6];
@@ -17,7 +17,7 @@ public class FortPlane : MonoBehaviour {
 	
 	//public List<PlaneData> planeData = new List<PlaneData>(); 
 	
-	public GameObject plane;
+	public GameObject grid;
 	public GameObject wayPoint;
 	public GameObject wayPointMaster;
 	public GameObject cube;
@@ -32,11 +32,11 @@ public class FortPlane : MonoBehaviour {
 	public static int gridY = 20;
 	//private float spacing = 3f;
 	
-	public Tile[,] grid;
+	public Tile[,] grids;
 	
 	void Awake(){
-		GameObject p = (GameObject)Instantiate(plane, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
-		p.name = plane.name;
+		GameObject p = (GameObject)Instantiate(grid, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
+		p.name = grid.name;
 		p.transform.parent = transform;
 		
 		//CalculateGrid();
@@ -128,22 +128,22 @@ public class FortPlane : MonoBehaviour {
 	public void CalculateGrid(){
 		try {
 			// Creating our grid
-			grid = new Tile[FortPlane.gridX, FortPlane.gridY];
+			grids = new Tile[GridSpawner.gridX, GridSpawner.gridY];
 			
-			for(int i=0; i<FortPlane.gridX; i++){
-				for(int j=0; j<FortPlane.gridY; j++){
+			for(int i=0; i<GridSpawner.gridX; i++){
+				for(int j=0; j<GridSpawner.gridY; j++){
 					// Create a new tile
 					if(Random.Range(0, 100) < 10){
-						grid[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,0f,j*3f), (GameObject)Instantiate(cube), 
+						grids[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,0f,j*3f), (GameObject)Instantiate(cube), 
 						(GameObject)Instantiate(sphere), false);
 					} else {
-						grid[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,0f,j*3f), (GameObject)Instantiate(cube), 
+						grids[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,0f,j*3f), (GameObject)Instantiate(cube), 
 						(GameObject)Instantiate(sphere), /*cube.renderer.bounds.Intersects(plane.renderer.bounds) ? false : true*/true);
 					}
 				}
 			}
 			
-			Pathfinder path = new Pathfinder(grid);
+			Pathfinder path = new Pathfinder(grids);
 			path.FindPath(new Vector2(0,0), new Vector2(16,16));
 			
 		} catch(System.Exception e){

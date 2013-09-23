@@ -79,7 +79,7 @@ public class Wave : MonoBehaviour {
 			Destroy(this);
 		}
 		
-		numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+		numEnemies = GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length;
 		
 		// Spawn enemies here
 		if(beginWave && amountToSpawn > 0){

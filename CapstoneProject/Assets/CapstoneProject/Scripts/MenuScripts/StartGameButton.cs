@@ -15,7 +15,7 @@ public class StartGameButton : MonoBehaviour {
 	void Start(){
 		cam = Camera.main.transform;
 		camPos = GameObject.Find("CameraPos").transform;
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameObject.FindWithTag(Globals.PLAYER).transform;
 	}
 	
 	void Update(){

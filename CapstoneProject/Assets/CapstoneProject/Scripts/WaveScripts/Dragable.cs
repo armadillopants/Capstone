@@ -64,7 +64,7 @@ public class Dragable : MonoBehaviour {
 			LayerMask path = 11;
 			path = ~(1<<path);
 			if(Physics.Raycast(transform.position, Vector3.down, out hit, 1f, path)){
-				if(hit.transform.tag == "FortPlane"){
+				if(hit.transform.tag == Globals.GRID){
 					//fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
 					
 					//NullableVector3 newPos = fp.DeterminePlane(transform, hit.transform.gameObject, hit.point);

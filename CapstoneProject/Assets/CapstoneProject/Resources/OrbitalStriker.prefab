@@ -30,8 +30,8 @@ GameObject:
   - 12: {fileID: 1200002}
   - 26: {fileID: 2600002}
   m_Layer: 0
-  m_Name: RedStrike
-  m_TagString: Untagged
+  m_Name: OrbitalStriker
+  m_TagString: Ability
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ EllipsoidParticleEmitter:
   angularVelocity: 0
   rndAngularVelocity: 5
   rndRotation: 1
-  Simulate in Worldspace?: 1
+  Simulate in Worldspace?: 0
   m_OneShot: 0
   m_Ellipsoid: {x: 5, y: 1, z: 5}
   m_MinEmitterRange: 0
@@ -271,20 +271,20 @@ EllipsoidParticleEmitter:
   m_Enabled: 1
   m_Emit: 1
   minSize: 1
-  maxSize: 3
+  maxSize: 5
   minEnergy: 3
-  maxEnergy: 5
+  maxEnergy: 6
   minEmission: 10
   maxEmission: 30
   worldVelocity: {x: 0, y: 0, z: 0}
-  localVelocity: {x: 0, y: .100000001, z: 0}
+  localVelocity: {x: 0, y: 1, z: 0}
   rndVelocity: {x: 1, y: 1, z: 1}
   emitterVelocityScale: 1
   tangentVelocity: {x: 0, y: 0, z: 0}
   angularVelocity: 0
   rndAngularVelocity: 5
   rndRotation: 1
-  Simulate in Worldspace?: 1
+  Simulate in Worldspace?: 0
   m_OneShot: 0
   m_Ellipsoid: {x: 2, y: 1, z: 2}
   m_MinEmitterRange: 0
@@ -336,7 +336,7 @@ ParticleRenderer:
   m_ScaleInLightmap: 1
   serializedVersion: 2
   m_CameraVelocityScale: 0
-  m_StretchParticles: 0
+  m_StretchParticles: 3
   m_LengthScale: 2
   m_VelocityScale: 0
   m_MaxParticleSize: .5

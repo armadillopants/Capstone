@@ -14,7 +14,7 @@ public class RockDamage : MonoBehaviour {
 			Instantiate(explosion, pos, rotation);
 		}
 		
-		if(collision.transform.tag == "Enemy"){
+		if(collision.transform.tag == Globals.ENEMY){
 			collision.collider.gameObject.SendMessageUpwards("TakeDamage", 100f, SendMessageOptions.DontRequireReceiver);
 		}
 		
