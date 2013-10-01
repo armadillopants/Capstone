@@ -18,6 +18,9 @@ public class Health : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(curHealth <= 0){
+			Die ();
+		}
 	}
 	
 	public bool IsDead(){

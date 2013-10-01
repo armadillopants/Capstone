@@ -7,9 +7,10 @@ public class MenuContainer : MonoBehaviour {
 	private Renderer[] rends;
 	private MoveToTarget target;
 	private float waitTime = 5f;
+	private bool renderMenu = false;
 	
 	void Start(){
-		target = GameObject.Find("Defend").GetComponent<MoveToTarget>();
+		target = GameObject.FindWithTag(Globals.SHIP).GetComponent<MoveToTarget>();
 		boxCols = GetComponentsInChildren<BoxCollider>();
 		rends = GetComponentsInChildren<Renderer>();
 		
@@ -17,12 +18,18 @@ public class MenuContainer : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(target.curWaypoint == target.totalWayPoints && MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
-			StartCoroutine("FadeMenu");
+		if(target.curWaypoint == target.totalWayPoints){
+			if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME && !renderMenu){
+				StartCoroutine("FadeMenu");
+			} else if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME && renderMenu){
+				UnRenderMenu();
+			}
 		}
 		
-		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
-			UnRenderMenu();
+		if(target.curWaypoint == target.totalWayPoints/3){
+			GameObject cargo = GameObject.Find("Cargo");
+			cargo.rigidbody.useGravity = true;
+			cargo.rigidbody.AddForce(new Vector3(5, 0, 4) * 3f);
 		}
 		
 		RaycastHit hit;
@@ -33,12 +40,12 @@ public class MenuContainer : MonoBehaviour {
 	}
 	
 	private IEnumerator FadeMenu(){
+		renderMenu = true;
 		yield return new WaitForSeconds(waitTime);
 		RenderMenu();
 	}
 	
 	void RenderMenu(){
-		StopCoroutine("FadeMenu");
 		foreach(BoxCollider col in boxCols){
 			col.enabled = true;
 		}

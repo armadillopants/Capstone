@@ -6,7 +6,6 @@ public class Dragable : MonoBehaviour {
 	private Vector3 offset;
 	private Vector3 setY; // A fix for the Y position of the gameobject
 	private bool checkPlaneHit = false;
-	//private Vector3 worldSpaceLocation;
 	//private FortPlane fp;
 	
 	private Vector3 lastPosition;
@@ -14,12 +13,9 @@ public class Dragable : MonoBehaviour {
 	private float gridz = 1f;
 	
 	void OnMouseOver(){
-		//worldSpaceLocation = transform.position + new Vector3(3, 0, 0);
 		// If we right click on a gameobject, display destroy item screen
 		if(Input.GetMouseButton(1)){
 			UIManager.Instance.SetFortification(gameObject);
-			//Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
-			//fort.state = Fortification.FortState.MAIN_SCREEN;
 			ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
 			itemVendor.upgradeItemVendor = gameObject;
 			itemVendor.CancelUpgrades();
@@ -84,8 +80,7 @@ public class Dragable : MonoBehaviour {
 					}
 					
 					Vector3 snapPos = transform.position;
-					snapPos.x = Mathf.Round(snapPos.x / gridx) * gridx;
-					snapPos.z = Mathf.Round(snapPos.z / gridz) * gridz;
+					snapPos = GameController.Instance.SnapToGrid(snapPos, gridx, gridz);
 					transform.position = snapPos;
 					
 					/*if(newPos != null){

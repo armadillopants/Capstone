@@ -10,7 +10,7 @@ public static class Globals {
 	// Tags for easy access
 	public const string PLAYER = "Player";
 	public const string ENEMY = "Enemy";
-	public const string DEFEND = "Defend";
+	public const string SHIP = "Ship";
 	public const string GRID = "Grid";
 	public const string SPAWN_POINT = "Spawnpoint";
 	public const string INTERACTABLE_ITEM = "InteractableItem";

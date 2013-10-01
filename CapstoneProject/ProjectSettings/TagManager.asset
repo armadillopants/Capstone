@@ -4,7 +4,7 @@
 TagManager:
   tags:
   - Enemy
-  - Defend
+  - Ship
   - InteractableItem
   - Grid
   - Fortification

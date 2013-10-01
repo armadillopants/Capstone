@@ -5,7 +5,6 @@ public class StartGameButton : MonoBehaviour {
 	
 	public bool beginGame = false;
 	private Transform cam;
-	private Transform camPos;
 	private Transform player;
 	
 	void Execute(){
@@ -14,7 +13,6 @@ public class StartGameButton : MonoBehaviour {
 	
 	void Start(){
 		cam = Camera.main.transform;
-		camPos = GameObject.Find("CameraPos").transform;
 		player = GameObject.FindWithTag(Globals.PLAYER).transform;
 	}
 	
@@ -34,6 +32,8 @@ public class StartGameButton : MonoBehaviour {
 			cam.rotation = Quaternion.Euler(85, 0, 0);
 			player.gameObject.AddComponent<LocalInput>();
 			player.gameObject.AddComponent<PlayerMovement>();
+			GameObject.Find("Cargo").AddComponent<DynamicGridObstacle>();
+			GameObject.Find("Hull").AddComponent<DynamicGridObstacle>();
 			beginGame = false;
 		}
 	}

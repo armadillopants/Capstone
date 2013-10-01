@@ -12,8 +12,8 @@ public class GridSpawner : MonoBehaviour {
 		}
 	}*/
 	
-	private MeshCollider[] meshColliders;
-	private Renderer[] rends;
+	private MeshCollider meshCollider;
+	private Renderer rend;
 	
 	//public List<PlaneData> planeData = new List<PlaneData>(); 
 	
@@ -112,17 +112,10 @@ public class GridSpawner : MonoBehaviour {
 	}
 	
 	void Start(){
-		meshColliders = GetComponentsInChildren<MeshCollider>();
-		rends = GetComponentsInChildren<Renderer>();
+		meshCollider = GetComponentInChildren<MeshCollider>();
+		rend = GetComponentInChildren<Renderer>();
 		
 		//CalculateGrid();
-		/*foreach(MeshCollider mesh in meshColliders){
-			mesh.enabled = false;
-		}
-		
-		foreach(Renderer rend in rends){
-			rend.enabled = false;
-		}*/
 	}
 	
 	public void CalculateGrid(){
@@ -190,23 +183,13 @@ public class GridSpawner : MonoBehaviour {
 		return closestPoint;
 	}*/
 	
-	public void EnablePlanes(){
-		foreach(MeshCollider mesh in meshColliders){
-			mesh.enabled = true;
-		}
-		
-		foreach(Renderer rend in rends){
-			rend.enabled = true;
-		}
+	public void EnableGrid(){
+		meshCollider.enabled = true;
+		rend.enabled = true;
 	}
 	
-	public void DisablePlanes(){
-		foreach(MeshCollider mesh in meshColliders){
-			mesh.enabled = false;
-		}
-		
-		foreach(Renderer rend in rends){
-			rend.enabled = false;
-		}
+	public void DisableGrid(){
+		meshCollider.enabled = false;
+		rend.enabled = false;
 	}
 }

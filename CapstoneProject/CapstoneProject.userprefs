@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\Managers\GameController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EnemyScripts\BaseEnemy.cs">
     <Files>
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="49" Column="27" />
+      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\BaseEnemy.cs" Line="6" Column="32" />
+      <File FileName="Assets\AstarPathfindingProject\Core\AI\AIPath.cs" Line="242" Column="56" />
       <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="1" Column="1" />
       <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Wave.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="44" Column="20" />
       <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\BaseWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\BaseEnemy.cs" Line="157" Column="41" />
-      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\Abilities\StrikerDamage.cs" Line="6" Column="45" />
+      <File FileName="Assets\AstarPathfindingProject\ExampleScenes\ExampleScripts\AIFollow.cs" Line="6" Column="165" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -30,6 +30,7 @@ GameObject:
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400014}
+  - 114: {fileID: 11400036}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -161,6 +162,7 @@ GameObject:
   - 15: {fileID: 1500000}
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
+  - 76: {fileID: 7600000}
   m_Layer: 0
   m_Name: HitParticles
   m_TagString: Untagged
@@ -331,6 +333,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400038}
+  - 114: {fileID: 11400038}
   m_Layer: 0
   m_Name: AbilityHolder
   m_TagString: Untagged
@@ -646,7 +649,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -682,7 +685,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -700,7 +703,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -718,7 +721,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -736,7 +739,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -754,7 +757,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -772,7 +775,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -862,6 +865,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100036}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!76 &7600000
+WorldParticleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_BounceFactor: .5
+  m_CollisionEnergyLoss: 0
+  m_CollidesWith:
+    serializedVersion: 2
+    m_Bits: 8192
+  m_SendCollisionMessage: 1
+  m_MinKillVelocity: .5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -872,6 +888,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   itemName: Flame Thrower
   description: Burn baby burn!
   preview: {fileID: 0}
@@ -879,6 +896,7 @@ MonoBehaviour:
   purchased: 0
   currentUpgrade: 1
   id: 3
+  upgradedItem: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -889,6 +907,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   itemName: Burst Rifle
   description: Rapid fire, three-burst rifle
   preview: {fileID: 0}
@@ -896,6 +915,7 @@ MonoBehaviour:
   purchased: 0
   currentUpgrade: 1
   id: 4
+  upgradedItem: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -906,6 +926,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   curHealth: 100
   canTakeDamage: 1
   explosion: {fileID: 0}
@@ -919,7 +940,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 651b1e111f32dd2409be4cd0c5e6bc23, type: 3}
   m_Name: 
-  state: 0
+  m_EditorClassIdentifier: 
+  state: 1
   fireRate: .100000001
   range: 5
   force: 1
@@ -938,6 +960,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+  hitParticles: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -948,8 +971,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6925b88e680ed848872fa0f205a0e26, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   changingWeapons: 0
-  canShoot: 0
   weaponSlots:
   - {fileID: 0}
   - {fileID: 0}
@@ -965,6 +988,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25435279329d7774e983baa8c9daf22c, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   allWeapons:
   - {fileID: 11400016}
   - {fileID: 11400018}
@@ -994,6 +1018,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a577834e0e9e5c140b7cb6a0dadcd066, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   state: 1
   fireRate: .0900000036
   range: 100
@@ -1013,6 +1038,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+  hitParticles: {fileID: 0}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1023,6 +1049,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c530c82aa4cfe14f9ceacf2da455677, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   curLives: 3
 --- !u!114 &11400016
 MonoBehaviour:
@@ -1034,6 +1061,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 737856c3cb8591e4a969fde0f855fe5f, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   state: 0
   fireRate: .0900000036
   range: 100
@@ -1053,6 +1081,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+  hitParticles: {fileID: 0}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,6 +1092,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a577834e0e9e5c140b7cb6a0dadcd066, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   state: 0
   fireRate: .0900000036
   range: 100
@@ -1082,6 +1112,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+  hitParticles: {fileID: 0}
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,6 +1123,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a52e4986ead1b2a46add6ae382fa2444, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   state: 0
   fireRate: .0900000036
   range: 100
@@ -1111,6 +1143,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+  hitParticles: {fileID: 0}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1121,6 +1154,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72f674a40efbef744ac56bfe0bdbc242, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   state: 0
   fireRate: .600000024
   range: 100
@@ -1140,6 +1174,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+  hitParticles: {fileID: 0}
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1150,6 +1185,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a577834e0e9e5c140b7cb6a0dadcd066, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   state: 1
   fireRate: .0900000036
   range: 100
@@ -1169,6 +1205,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
+  hitParticles: {fileID: 0}
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1179,6 +1216,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   itemName: Rocket Launcher
   description: Blasts baddies to bits
   preview: {fileID: 0}
@@ -1186,6 +1224,7 @@ MonoBehaviour:
   purchased: 0
   currentUpgrade: 1
   id: 2
+  upgradedItem: {fileID: 0}
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1196,6 +1235,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   itemName: Missile Launcher
   description: Heat-seeking launcher
   preview: {fileID: 0}
@@ -1203,6 +1243,7 @@ MonoBehaviour:
   purchased: 0
   currentUpgrade: 1
   id: 6
+  upgradedItem: {fileID: 0}
 --- !u!114 &11400030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1213,6 +1254,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   itemName: Shotgun
   description: Sprays bullets
   preview: {fileID: 0}
@@ -1220,6 +1262,7 @@ MonoBehaviour:
   purchased: 0
   currentUpgrade: 1
   id: 5
+  upgradedItem: {fileID: 0}
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1230,6 +1273,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   itemName: Pistol
   description: Standard Pistol
   preview: {fileID: 0}
@@ -1237,6 +1281,7 @@ MonoBehaviour:
   purchased: 1
   currentUpgrade: 1
   id: 1
+  upgradedItem: {fileID: 0}
 --- !u!114 &11400034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1247,6 +1292,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   itemName: Machine Gun
   description: Standard Rifle
   preview: {fileID: 0}
@@ -1254,6 +1300,30 @@ MonoBehaviour:
   purchased: 1
   currentUpgrade: 1
   id: 0
+  upgradedItem: {fileID: 0}
+--- !u!114 &11400036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f897efbc5a3f7044a3aabc411644fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beginAbility: 0
+--- !u!114 &11400038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642d2e2028d728445b81763af3429325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1

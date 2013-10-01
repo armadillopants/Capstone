@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class Projectile : MonoBehaviour {
 	
@@ -12,7 +11,7 @@ public class Projectile : MonoBehaviour {
 	public float damp = 6.0f;
 	
 	void Awake(){
-		GameObject player = GameObject.Find("Player");
+		Transform player = GameController.Instance.GetPlayer();
 		weapon = player.GetComponentInChildren<BaseWeapon>();
 	}
 	
@@ -73,7 +72,7 @@ public class Projectile : MonoBehaviour {
 	
 	GameObject FindNearestTarget(){
 		GameObject[] targets;
-		targets = GameObject.FindGameObjectsWithTag("Enemy");
+		targets = GameObject.FindGameObjectsWithTag(Globals.ENEMY);
 		GameObject closest = null;
 		float distance = Mathf.Infinity;
 		

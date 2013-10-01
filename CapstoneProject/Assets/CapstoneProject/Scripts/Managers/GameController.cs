@@ -7,9 +7,12 @@ public class GameController : MonoBehaviour {
 	public enum TimeOfDay { DAYTIME, NIGHTTIME };
 	public TimeOfDay timeOfDay = TimeOfDay.DAYTIME;
 	
-	private Health defendHealth;
+	private Health shipHealth;
 	private Health playerHealth;
 	private GameObject[] enemies;
+	
+	private Transform player;
+	private Transform ship;
 	
 	protected int amountOfResources = 100000;
 	public bool canDisplay = true;
@@ -38,6 +41,9 @@ public class GameController : MonoBehaviour {
 			return;
 		}
 		_instance = this;
+		
+		player = GameObject.FindWithTag(Globals.PLAYER).transform;
+		ship = GameObject.FindWithTag(Globals.SHIP).transform;
 	}
 
 	void OnApplicationQuit(){
@@ -47,8 +53,16 @@ public class GameController : MonoBehaviour {
 	#endregion
 
 	void Start(){
-		defendHealth = GameObject.FindWithTag(Globals.DEFEND).GetComponent<Health>();
-		playerHealth = GameObject.FindWithTag(Globals.PLAYER).GetComponent<Health>();
+		playerHealth = player.GetComponent<Health>();
+		shipHealth = ship.GetComponent<Health>();
+	}
+	
+	public Transform GetPlayer(){
+		return player;
+	}
+	
+	public Transform GetShip(){
+		return ship;
 	}
 	
 	void Update(){
@@ -64,7 +78,7 @@ public class GameController : MonoBehaviour {
 			SwitchUIState(UIManager.UIState.GAMEOVER);
 		}
 		
-		if(playerHealth.IsDead() && defendHealth.IsDead()){
+		if(playerHealth.IsDead() && shipHealth.IsDead()){
 			foreach(GameObject enemy in enemies){
 				Destroy(enemy);
 			}
@@ -133,22 +147,43 @@ public class GameController : MonoBehaviour {
 			mouseLoc = hit.point;
 			mouseLoc.y = 0.5f;
 		}
-		current.transform.position = mouseLoc;
+		
+		float gridX = 1f;
+		float gridZ = 1f;
+		
+		if(current.transform.eulerAngles.y == Globals.ROTATION_H_LEFT || current.transform.eulerAngles.y == Globals.ROTATION_H_RIGHT){
+			gridZ = 3f;
+		} else {
+			gridZ = 1f;
+		}
+		
+		if(current.transform.eulerAngles.y == Globals.ROTATION_V_UP || current.transform.eulerAngles.y == Globals.ROTATION_V_DOWN){
+			gridX = 3f;
+		} else {
+			gridX = 1f;
+		}
+		
+		Vector3 snapPos = mouseLoc;
+		snapPos = SnapToGrid(snapPos, gridX, gridZ);
+		current.transform.position = snapPos;
 		
 		canPlace = true;
 		current.renderer.material = validGreen;
 		
 		for(int i=0; i<forts.Length; i++){
 			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
+				Vector3 gridPos = GameObject.FindWithTag(Globals.GRID).transform.position;
 				if(current.collider.bounds.Intersects(forts[i].collider.bounds) || 
-					!current.collider.bounds.Intersects(GameObject.FindWithTag(Globals.GRID).collider.bounds)){
-					
-					canPlace = false;
-					current.renderer.material = invalidRed;
-					Debug.Log("Cannot place object");
+					hit.point.x < gridPos.x-12f || hit.point.x > gridPos.x+12f || hit.point.z < gridPos.z-12f || hit.point.z > gridPos.z+12f){
+					if(Vector3.Distance(current.transform.position, forts[i].transform.position) < 1f){
+						canPlace = false;
+						current.renderer.material = invalidRed;
+						Debug.Log("Cannot place object");
+					}
 				}
 			} else {
-				if(!current.collider.bounds.Intersects(GameObject.FindWithTag(Globals.GRID).collider.bounds)){
+				Vector3 gridPos = GameObject.FindWithTag(Globals.GRID).transform.position;
+				if(hit.point.x < gridPos.x-12f || hit.point.x > gridPos.x+12f || hit.point.z < gridPos.z-12f || hit.point.z > gridPos.z+12f){
 					canPlace = false;
 					current.renderer.material = invalidRed;
 					Debug.Log("Cannot place object");
@@ -157,11 +192,15 @@ public class GameController : MonoBehaviour {
 		}
 		
 		if(Input.GetMouseButtonDown(0) && canPlace){
-			current.transform.position = new Vector3(Mathf.Round(hit.point.x),0.5f,Mathf.Round(hit.point.z));
+			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ);
 			current.renderer.material = originalMat;
 			StartCoroutine("AddDragable");
 			fortSpawned = false;
 		}
+	}
+	
+	public Vector3 SnapToGrid(Vector3 pos, float rot1, float rot2){
+		return new Vector3(Mathf.RoundToInt(pos.x/rot1)*rot1, 0.5f, Mathf.RoundToInt(pos.z/rot2)*rot2);
 	}
 	
 	private IEnumerator AddDragable(){

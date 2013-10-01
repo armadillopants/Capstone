@@ -158,7 +158,7 @@ public class AIPath : MonoBehaviour {
 		controller = GetComponent<CharacterController>();
 		navController = GetComponent<NavmeshController>();
 		rigid = rigidbody;
-		target = GameObject.FindWithTag(Globals.PLAYER).transform;
+		target = GameController.Instance.GetPlayer();
 	}
 	
 	/** Starts searching for paths.
