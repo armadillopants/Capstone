@@ -1,32 +1,45 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using Pathfinding;
 
 [RequireComponent(typeof(Seeker))]
-public class BaseEnemy : AIPath {
+public class Enemy : AIPath {
 	
-	public enum EnemyState { CHASINGPLAYER, CHASINGSHIP, CHASINGFORT, ATTACKINGPLAYER, ATTACKINGSHIP, ATTACKINGFORT };
-	public EnemyState state = EnemyState.CHASINGPLAYER;
+	public enum EnemyState { CHASING, ATTACKING, IDLE, DEAD };
+	public EnemyState state = EnemyState.CHASING;
 	
 	private Transform playerTarget;
 	private Transform shipTarget;
-	private Transform lastTarget;
+	public Transform lastTarget;
+	public Transform curTarget;
+	
 	public bool doDamage = false;
-	public float currentCoolDown = 0f;
+	public bool chasePlayer = true;
+	public bool canAttackBoth = false;
+	public bool isPathBlocked = false;
+	
+	private float currentCoolDown = 0f;
 	public float coolDownLength = 1f;
 	public float damageAmount = 10f;
 	public float distance = 10f;
-	public bool canAttackBoth = false;
-	private float sleepVelocity = 0.4f;
+
 	private bool isBurning = false;
 	private ParticleEmitter emitter;
 	public float burnDamage;
-	public bool isPathBlocked = false;
 	
 	public new void Start(){
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
-		lastTarget = playerTarget;
+		
+		if(chasePlayer){
+			SwitchTarget(Globals.PLAYER);
+		} else {
+			SwitchTarget(Globals.SHIP);
+		}
+		
+		lastTarget = target;
+		curTarget = target;
+		
 		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
 		base.Start();
@@ -37,49 +50,39 @@ public class BaseEnemy : AIPath {
 	}
 	
 	protected new void Update(){
-		if(target != null){
+		if(curTarget != null){
+			lastTarget = curTarget;
 			isPathBlocked = CheckIfPathIsPossible(tr.position, lastTarget.position);
 		}
 		Debug.Log("Path Blocked: " + isPathBlocked);
 		
 		if(isPathBlocked){
-			state = EnemyState.CHASINGFORT;
 			target = FindNearestTarget().transform;
 			
 			if(target == null){
 				target = lastTarget;
-				state = EnemyState.CHASINGPLAYER;
+				state = EnemyState.CHASING;
 			}
 		} else {
 			if(target == null){
 				target = lastTarget;
-				state = EnemyState.CHASINGPLAYER;
+				state = EnemyState.CHASING;
 			} else {
-				//target = lastTarget;
-				//state = EnemyState.CHASINGPLAYER;
+				target = lastTarget;
+				state = EnemyState.CHASING;
 			}
-		}
-		
-		switch(state){
-		case EnemyState.CHASINGPLAYER:
-			SwitchTarget(Globals.PLAYER);
-			lastTarget = playerTarget;
-			//ChaseObject();
-			break;
-		case EnemyState.CHASINGSHIP:
-			SwitchTarget(Globals.SHIP);
-			lastTarget = shipTarget;
-			//ChaseObject();
-			break;
-		case EnemyState.CHASINGFORT:
-			ChaseObject();
-			break;
-		case EnemyState.ATTACKINGPLAYER:
-			break;
-		case EnemyState.ATTACKINGFORT:
-			break;
-		case EnemyState.ATTACKINGSHIP:
-			break;
+			
+			if(canAttackBoth){
+				if(shipTarget){
+					if(Vector3.Distance(playerTarget.position, tr.position) > distance){
+						SwitchTarget(Globals.SHIP);
+						lastTarget = playerTarget;
+					} else if(Vector3.Distance(playerTarget.position, tr.position) <= distance){
+						SwitchTarget(Globals.PLAYER);
+						lastTarget = shipTarget;
+					}
+				}
+			}
 		}
 		
 		if(shipTarget == null){
@@ -88,16 +91,6 @@ public class BaseEnemy : AIPath {
 		
 		if(currentCoolDown > 0){
 			currentCoolDown -= Time.deltaTime;
-		}
-		
-		if(canAttackBoth){
-			if(shipTarget){
-				if(Vector3.Distance(playerTarget.position, tr.position) > distance){
-					SwitchTarget(Globals.SHIP);
-				} else if(Vector3.Distance(playerTarget.position, tr.position) <= distance){
-					SwitchTarget(Globals.PLAYER);
-				}
-			}
 		}
 		
 		ClampCoolDownTime();
@@ -116,6 +109,7 @@ public class BaseEnemy : AIPath {
 	
 	void SwitchTarget(string targetName){
 		target = GameObject.FindWithTag(targetName).transform;
+		curTarget = target;
 	}
 	
 	void OnCollisionStay(Collision collision){
@@ -161,17 +155,20 @@ public class BaseEnemy : AIPath {
 	}
 	
 	void FixedUpdate(){
-		ChaseObject();
+		switch(state){
+		case EnemyState.CHASING:
+			ChaseObject();
+			break;
+		case EnemyState.ATTACKING:
+			break;
+		case EnemyState.IDLE:
+			break;
+		case EnemyState.DEAD:
+			break;
+		}
 	}
 	
 	void ChaseObject(){
-		/*Vector3	adjustedTargetHeight = target.position; // Sets target's height to a variable
-		adjustedTargetHeight.y = tr.position.y; // Target's height is always equal to enemy height
-	
-		tr.rotation = Quaternion.Slerp(tr.rotation, 
-			Quaternion.LookRotation(adjustedTargetHeight - tr.position), turningSpeed);
-	
-		tr.position += tr.forward * speed * Time.deltaTime;*/
 		
 		if(canMove){
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
@@ -184,36 +181,6 @@ public class BaseEnemy : AIPath {
 				rigid.velocity = dir * speed;
 			}
 		}
-		
-		/*if(canMove){
-			// Calculate desired velocity
-			Vector3 dir = CalculateVelocity(GetFeetPosition());
-			Vector3 targetVel = dir;// * speed;
-			targetVel = tr.TransformDirection(targetVel);
-			targetVel *= speed;
-			Vector3 deltaVel = targetVel - rigid.velocity;
-
-			if(rigid.useGravity){
-				deltaVel.x = Mathf.Clamp(deltaVel.x, -5f, 5f);
-				deltaVel.z = Mathf.Clamp(deltaVel.z, -5f, 5f);
-				deltaVel.y = 0;
-			}
-			
-			if(dir.sqrMagnitude > sleepVelocity*sleepVelocity){
-				// If the velocity is large enough, move
-				rigid.AddForce(deltaVel, ForceMode.VelocityChange);
-			} else {
-				// Otherwise, just stand still (this ensures gravity is applied)
-				dir = Vector3.zero;
-			}
-			
-			//Rotate towards targetDirection (filled in by CalculateVelocity)
-			if(targetDirection != Vector3.zero){
-				RotateTowards(targetDirection);
-			} else {
-				rigid.angularVelocity = Vector3.zero;
-			}
-		}*/
 	}
 	
 	void OnParticleCollision(GameObject other){

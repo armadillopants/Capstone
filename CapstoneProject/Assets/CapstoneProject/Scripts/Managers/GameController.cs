@@ -65,6 +65,10 @@ public class GameController : MonoBehaviour {
 		return ship;
 	}
 	
+	public Health GetShipHealth(){
+		return shipHealth;
+	}
+	
 	void Update(){
 		if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
 			return;
@@ -171,22 +175,33 @@ public class GameController : MonoBehaviour {
 		current.renderer.material = validGreen;
 		
 		for(int i=0; i<forts.Length; i++){
+			Vector3 gridPos = GameObject.FindWithTag(Globals.GRID).transform.position;
+			if(hit.point.x <= gridPos.x-Globals.GRID_SIZE || hit.point.x >= gridPos.x+Globals.GRID_SIZE || 
+				hit.point.z <= gridPos.z-Globals.GRID_SIZE || hit.point.z >= gridPos.z+Globals.GRID_SIZE){
+				
+				canPlace = false;
+				current.renderer.material = invalidRed;
+				Debug.Log("Cannot place object");
+			}
+			
 			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
-				Vector3 gridPos = GameObject.FindWithTag(Globals.GRID).transform.position;
-				if(current.collider.bounds.Intersects(forts[i].collider.bounds) || 
-					hit.point.x < gridPos.x-12f || hit.point.x > gridPos.x+12f || hit.point.z < gridPos.z-12f || hit.point.z > gridPos.z+12f){
-					if(Vector3.Distance(current.transform.position, forts[i].transform.position) < 1f){
+				if(current.transform.eulerAngles.y == Globals.ROTATION_H_LEFT || current.transform.eulerAngles.y == Globals.ROTATION_H_RIGHT){
+					if(current.collider.bounds.Contains(forts[i].collider.bounds.center)){
 						canPlace = false;
 						current.renderer.material = invalidRed;
 						Debug.Log("Cannot place object");
 					}
 				}
-			} else {
-				Vector3 gridPos = GameObject.FindWithTag(Globals.GRID).transform.position;
-				if(hit.point.x < gridPos.x-12f || hit.point.x > gridPos.x+12f || hit.point.z < gridPos.z-12f || hit.point.z > gridPos.z+12f){
-					canPlace = false;
-					current.renderer.material = invalidRed;
-					Debug.Log("Cannot place object");
+				
+				if(current.transform.eulerAngles.y == Globals.ROTATION_V_UP || current.transform.eulerAngles.y == Globals.ROTATION_V_DOWN){
+					if(current.collider.bounds.Contains(forts[i].collider.bounds.center) || 
+						current.collider.bounds.Contains(forts[i].collider.bounds.center-new Vector3(0,0,1)) || 
+						current.collider.bounds.Contains(forts[i].collider.bounds.center+new Vector3(0,0,1))){
+						
+						canPlace = false;
+						current.renderer.material = invalidRed;
+						Debug.Log("Cannot place object");
+					}
 				}
 			}
 		}

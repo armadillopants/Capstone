@@ -10,7 +10,7 @@ public class MenuContainer : MonoBehaviour {
 	private bool renderMenu = false;
 	
 	void Start(){
-		target = GameObject.FindWithTag(Globals.SHIP).GetComponent<MoveToTarget>();
+		target = GameObject.Find("Ship").GetComponent<MoveToTarget>();
 		boxCols = GetComponentsInChildren<BoxCollider>();
 		rends = GetComponentsInChildren<Renderer>();
 		

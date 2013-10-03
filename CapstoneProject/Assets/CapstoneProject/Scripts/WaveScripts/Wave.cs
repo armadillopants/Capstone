@@ -33,7 +33,7 @@ public class Wave : MonoBehaviour {
   	}
 	
 	private IEnumerator WaveHandling(){
-		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0){
+		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && GameController.Instance.GetShipHealth().curHealth > 0){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			//GameController.Instance.AddDynamicObstacleToFortifications();
 			Fortification fort = gameObject.AddComponent<Fortification>();

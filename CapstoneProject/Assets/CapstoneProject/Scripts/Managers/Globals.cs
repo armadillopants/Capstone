@@ -7,6 +7,8 @@ public static class Globals {
 	public const float ROTATION_V_UP = 90.00001f; // Whenever I rotate an object its like 90.00001f, weird
 	public const float ROTATION_V_DOWN = 270f;
 	
+	public const float GRID_SIZE = 12f;
+	
 	// Tags for easy access
 	public const string PLAYER = "Player";
 	public const string ENEMY = "Enemy";

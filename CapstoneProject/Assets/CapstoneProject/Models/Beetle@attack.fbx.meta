@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6c3f26b8915a5a641a64ee7f3f547c4e
+guid: 3047c98f4366d344e9a05f0ae540fc7f
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -14,18 +14,18 @@ ModelImporter:
     100016: BackLeg2_04
     100018: BackLegControl_1
     100020: BackLegControl_2
-    100022: Claw1_01
-    100024: Claw1_02
-    100026: Claw1_03
-    100028: Claw1_04
-    100030: Claw1_05
-    100032: Claw2_01
-    100034: Claw2_02
-    100036: Claw2_03
-    100038: Claw2_04
-    100040: Claw2_05
-    100042: COG
-    100044: //RootNode
+    100022: //RootNode
+    100024: Claw1_01
+    100026: Claw1_02
+    100028: Claw1_03
+    100030: Claw1_04
+    100032: Claw1_05
+    100034: Claw2_01
+    100036: Claw2_02
+    100038: Claw2_03
+    100040: Claw2_04
+    100042: Claw2_05
+    100044: COG
     100046: Crusher_Beetle
     100048: FrontCenter
     100050: FrontLeg1_01
@@ -76,18 +76,18 @@ ModelImporter:
     400016: BackLeg2_04
     400018: BackLegControl_1
     400020: BackLegControl_2
-    400022: Claw1_01
-    400024: Claw1_02
-    400026: Claw1_03
-    400028: Claw1_04
-    400030: Claw1_05
-    400032: Claw2_01
-    400034: Claw2_02
-    400036: Claw2_03
-    400038: Claw2_04
-    400040: Claw2_05
-    400042: COG
-    400044: //RootNode
+    400022: //RootNode
+    400024: Claw1_01
+    400026: Claw1_02
+    400028: Claw1_03
+    400030: Claw1_04
+    400032: Claw1_05
+    400034: Claw2_01
+    400036: Claw2_02
+    400038: Claw2_03
+    400040: Claw2_04
+    400042: Claw2_05
+    400044: COG
     400046: Crusher_Beetle
     400048: FrontCenter
     400050: FrontLeg1_01
@@ -154,7 +154,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

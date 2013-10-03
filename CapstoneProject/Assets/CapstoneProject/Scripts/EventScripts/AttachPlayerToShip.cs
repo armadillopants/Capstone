@@ -15,6 +15,9 @@ public class AttachPlayerToShip : MonoBehaviour {
 			player.position = transform.position;
 		} else {
 			timer -= 1*Time.deltaTime;
+			Vector3 playerPos = player.position;
+			playerPos.y = 1;
+			player.position = playerPos;
 			player.position += Vector3.left * 3f * Time.deltaTime;
 			player.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
 		}

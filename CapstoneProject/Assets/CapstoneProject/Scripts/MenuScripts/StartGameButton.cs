@@ -33,7 +33,8 @@ public class StartGameButton : MonoBehaviour {
 			player.gameObject.AddComponent<LocalInput>();
 			player.gameObject.AddComponent<PlayerMovement>();
 			GameObject.Find("Cargo").AddComponent<DynamicGridObstacle>();
-			GameObject.Find("Hull").AddComponent<DynamicGridObstacle>();
+			//GameObject.Find("Hull").AddComponent<DynamicGridObstacle>();
+			//GameObject.Find("Hull").AddComponent<Rigidbody>();
 			beginGame = false;
 		}
 	}

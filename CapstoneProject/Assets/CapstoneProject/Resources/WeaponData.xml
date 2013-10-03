@@ -36,11 +36,11 @@
 		bulletsPerClip= "5"
 		clips= "6"
 		reloadSpeed= "1.5"
-		damage= "10"
+		damage= "15"
 		coneAngle= "2">
 	</RocketLauncher>
 	<FlameThrower
-		range = "5"
+		range = "20"
 		fireRate= "0.1"
 		force= "0.01"
 		bulletsPerClip= "300"
@@ -76,7 +76,7 @@
 		bulletsPerClip= "5"
 		clips= "6"
 		reloadSpeed= "1.7"
-		damage= "15"
+		damage= "10"
 		coneAngle= "2">
 	</MissileLauncher>
 </WeaponData>

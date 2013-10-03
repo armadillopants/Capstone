@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6f729fc128f16a40abdd8ee24464c26
+guid: 86a8c1abbe950c14d8564ba1469b625c
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -33,22 +33,23 @@ ModelImporter:
     100054: FrontLeg2_02
     100056: FrontLeg2_03
     100058: FrontLeg2_04
-    100060: Head
-    100062: Jaw_01
-    100064: Jaw_02
-    100066: Jaw_03
-    100068: Jaw_04
-    100070: Joint1
-    100072: MiddleCenter
-    100074: MiddleLeg1_01
-    100076: MiddleLeg1_02
-    100078: MiddleLeg1_03
-    100080: MiddleLeg1_04
-    100082: MiddleLeg2_01
-    100084: MiddleLeg2_02
-    100086: MiddleLeg2_03
-    100088: MiddleLeg2_04
-    100090: Rear
+    100060: GlobalControl
+    100062: Head
+    100064: Jaw_01
+    100066: Jaw_02
+    100068: Jaw_03
+    100070: Jaw_04
+    100072: Joint1
+    100074: MiddleCenter
+    100076: MiddleLeg1_01
+    100078: MiddleLeg1_02
+    100080: MiddleLeg1_03
+    100082: MiddleLeg1_04
+    100084: MiddleLeg2_01
+    100086: MiddleLeg2_02
+    100088: MiddleLeg2_03
+    100090: MiddleLeg2_04
+    100092: Rear
     400000: BackCenter
     400002: BackLeg1_01
     400004: BackLeg1_02
@@ -79,26 +80,24 @@ ModelImporter:
     400054: FrontLeg2_02
     400056: FrontLeg2_03
     400058: FrontLeg2_04
-    400060: Head
-    400062: Jaw_01
-    400064: Jaw_02
-    400066: Jaw_03
-    400068: Jaw_04
-    400070: Joint1
-    400072: MiddleCenter
-    400074: MiddleLeg1_01
-    400076: MiddleLeg1_02
-    400078: MiddleLeg1_03
-    400080: MiddleLeg1_04
-    400082: MiddleLeg2_01
-    400084: MiddleLeg2_02
-    400086: MiddleLeg2_03
-    400088: MiddleLeg2_04
-    400090: Rear
-    2300000: Crusher_Beetle
-    3300000: Crusher_Beetle
+    400060: GlobalControl
+    400062: Head
+    400064: Jaw_01
+    400066: Jaw_02
+    400068: Jaw_03
+    400070: Jaw_04
+    400072: Joint1
+    400074: MiddleCenter
+    400076: MiddleLeg1_01
+    400078: MiddleLeg1_02
+    400080: MiddleLeg1_03
+    400082: MiddleLeg1_04
+    400084: MiddleLeg2_01
+    400086: MiddleLeg2_02
+    400088: MiddleLeg2_03
+    400090: MiddleLeg2_04
+    400092: Rear
     4300000: Crusher_Beetle
-    6400000: Crusher_Beetle
     9500000: //RootNode
     13700000: Crusher_Beetle
   materials:
@@ -117,9 +116,9 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .300000012
+    globalScale: 1
     meshCompression: 3
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -135,7 +134,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
@@ -148,7 +147,7 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: Joint1
+    rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
   animationType: 2
