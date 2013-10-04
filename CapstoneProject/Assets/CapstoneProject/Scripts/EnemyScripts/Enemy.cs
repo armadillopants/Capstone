@@ -38,7 +38,6 @@ public class Enemy : AIPath {
 		}
 		
 		lastTarget = target;
-		curTarget = target;
 		
 		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
@@ -87,6 +86,7 @@ public class Enemy : AIPath {
 		
 		if(shipTarget == null){
 			SwitchTarget(Globals.PLAYER);
+			canAttackBoth = false;
 		}
 		
 		if(currentCoolDown > 0){
