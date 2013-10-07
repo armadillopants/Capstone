@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Fortification : MonoBehaviour {
 	
-	public enum FortState { MAIN_SCREEN, BUILD_SCREEN, UPGRADE_SCREEN, BUY_SCREEN, EQUIP_WEAPON_SCREEN, FORT_UPGRADE_SCREEN };
-	public FortState state = FortState.MAIN_SCREEN;
 	private Wave buildWave;
 	private WeaponSelection selection;
 	private WeaponManager manager;
@@ -16,9 +14,10 @@ public class Fortification : MonoBehaviour {
 	private ItemVendor itemVendor;
 
 	void Awake(){
-		GameObject player = GameObject.FindWithTag("Player");
+		GameObject player = GameController.Instance.GetPlayer().gameObject;
 		selection = player.GetComponentInChildren<WeaponSelection>();
 		GameController.Instance.canShoot = false;
+		GameController.Instance.canChangeWeapons = false;
 		manager = player.GetComponentInChildren<WeaponManager>();
 		
 		GameObject vendor = GameObject.Find("Vendor");
@@ -39,25 +38,6 @@ public class Fortification : MonoBehaviour {
 	
 	void OnGUI(){
 		DrawMainScreen();
-		/*if(GameController.Instance.canDisplay){
-			switch(state){
-			case FortState.BUILD_SCREEN:
-				DrawBuildScreen();
-				break;
-			case FortState.UPGRADE_SCREEN:
-				DrawUpgradeScreen();
-				break;
-			case FortState.BUY_SCREEN:
-				DrawBuyScreen();
-				break;
-			case FortState.EQUIP_WEAPON_SCREEN:
-				DrawEquipWeaponScreen();
-				break;
-			case FortState.FORT_UPGRADE_SCREEN:
-				DrawFortUpgradeScreen();
-				break;
-			}
-		}*/
 		switch(UIManager.Instance.uiState){
 		case UIManager.UIState.BUILD_SCREEN:
 			DrawBuildScreen();
@@ -85,37 +65,30 @@ public class Fortification : MonoBehaviour {
 		for(int i=0; i<fortNames.Length; i++){
 			string curFortName = fortNames[i];
 			if(GUI.Button(new Rect(mainScreen.width/4, mainScreen.height/10+(i*100), 100, 50), curFortName)){
-				//GameController.Instance.canDisplay = true;
 				if(curFortName == fortNames[0] && UIManager.Instance.uiState != UIManager.UIState.BUILD_SCREEN){
-					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					weaponVendor.Cancel();
 					weaponVendor.CancelUpgrades();
 					UIManager.Instance.uiState = UIManager.UIState.BUILD_SCREEN;
-					//state = FortState.BUILD_SCREEN;
 				} else if(curFortName == fortNames[1] && UIManager.Instance.uiState != UIManager.UIState.BUY_SCREEN){
-					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					itemVendor.Cancel();
 					weaponVendor.CancelUpgrades();
-					//state = FortState.BUY_SCREEN;
 					UIManager.Instance.uiState = UIManager.UIState.BUY_SCREEN;
 				} else if(curFortName == fortNames[2] && UIManager.Instance.uiState != UIManager.UIState.UPGRADE_SCREEN){
-					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					itemVendor.Cancel();
 					weaponVendor.Cancel();
-					//state = FortState.UPGRADE_SCREEN;
 					UIManager.Instance.uiState = UIManager.UIState.UPGRADE_SCREEN;
 				} else if(curFortName == fortNames[3] && UIManager.Instance.uiState != UIManager.UIState.EQUIP_WEAPON_SCREEN){
-					//UIManager.Instance.uiState = UIManager.UIState.NONE;
 					itemVendor.Cancel();
 					weaponVendor.Cancel();
 					weaponVendor.CancelUpgrades();
-					//state = FortState.EQUIP_WEAPON_SCREEN;
 					UIManager.Instance.uiState = UIManager.UIState.EQUIP_WEAPON_SCREEN;
 				} else if(curFortName == fortNames[4]){
 					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
 					selection.UpdateWeaponsSlots();
 					selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);
 					GameController.Instance.canShoot = true;
+					GameController.Instance.canChangeWeapons = true;
 					SellableItemDisplayer display = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
 					display.Purge();
 					GameController.Instance.UpdateGraph();

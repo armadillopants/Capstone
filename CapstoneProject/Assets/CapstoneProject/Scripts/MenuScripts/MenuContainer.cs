@@ -7,7 +7,7 @@ public class MenuContainer : MonoBehaviour {
 	private Renderer[] rends;
 	private MoveToTarget target;
 	private float waitTime = 5f;
-	private bool renderMenu = false;
+	public bool renderMenu = false;
 	
 	void Start(){
 		target = GameObject.Find("Ship").GetComponent<MoveToTarget>();

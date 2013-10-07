@@ -21,7 +21,7 @@ public class WeaponSelection : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(GameController.Instance.canShoot){
+		if(GameController.Instance.canChangeWeapons){
 			if(!changingWeapons && Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
 				changingWeapons = true;
 				StartCoroutine("SlowMotion");
@@ -29,8 +29,10 @@ public class WeaponSelection : MonoBehaviour {
 			
 			if(Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
 				changingWeapons = true;
+				GameController.Instance.canShoot = false;
 			} else {
 				changingWeapons = false;
+				GameController.Instance.canShoot = true;
 			}
 		}
 	}

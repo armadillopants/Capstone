@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour {
 	
-	public enum MenuState { INGAME, SETTINGS, MAINMENU };
+	public enum MenuState { INGAME, SETTINGS, MAINMENU, ENDGAME };
 	public MenuState menuState = MenuState.MAINMENU;
 	public bool drawMainMenu = false;
 	

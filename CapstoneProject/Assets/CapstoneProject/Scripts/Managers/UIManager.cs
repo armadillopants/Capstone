@@ -106,7 +106,9 @@ public class UIManager : MonoBehaviour {
 	
 	void DrawGameOverScreen(){
 		if(GUI.Button(new Rect(Screen.width/3, Screen.height/5, 100, 50), "Restart")){
-			Application.LoadLevel(Application.loadedLevel);
+			//Application.LoadLevel(Application.loadedLevel);
+			MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
+			uiState = UIState.NONE;
 		}
 	}
 	
@@ -130,8 +132,8 @@ public class UIManager : MonoBehaviour {
 					} else {
 						GameController.Instance.AddResources(Mathf.RoundToInt(fortHealth.curHealth / 2));
 					}
-					GameController.Instance.UpdateGraphOnDestroyedObject(fortification.GetComponent<Dragable>().collider.bounds,
-						fortification.GetComponent<Dragable>().collider,fortification.GetComponent<Dragable>().gameObject);
+					GameController.Instance.UpdateGraphOnDestroyedObject(fortification.collider.bounds,
+						fortification.collider,fortification.gameObject);
 					fortification = null;
 					uiState = UIState.NONE;
 				} else if(curFortInfo == fortInfo[1]){
@@ -152,9 +154,6 @@ public class UIManager : MonoBehaviour {
 			string curFortInfo = fortInfo[i];
 			if(GUI.Button(new Rect(displayScreen.width/4f, displayScreen.height/6f+(i*60), 100, 50), curFortInfo)){
 				if(curFortInfo == fortInfo[0]){
-					//uiState = UIState.NONE;
-					//Fortification fort = GameObject.Find("WaveController").GetComponent<Fortification>();
-					//fort.state = Fortification.FortState.FORT_UPGRADE_SCREEN;
 					uiState = UIState.FORT_UPGRADE_SCREEN;
 				} else if(curFortInfo == fortInfo[1]){
 					uiState = UIState.YESORNO;

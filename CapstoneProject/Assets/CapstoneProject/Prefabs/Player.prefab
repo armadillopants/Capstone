@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c095c5e51974c944d9ad3e337d406689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 100000, guid: 8cc095b1538a5fd4291548804ca90c67, type: 2}
+  laserLight: {fileID: 100000, guid: 8cc095b1538a5fd4291548804ca90c67, type: 2}
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1

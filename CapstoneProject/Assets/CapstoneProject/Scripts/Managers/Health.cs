@@ -10,10 +10,15 @@ public class Health : MonoBehaviour {
 	private bool isDead = false;
 	public GameObject explosion;
 	private bool isFortification = false;
+	private bool isEnemy = false;
 
 	void Start(){
 		if(gameObject.tag == Globals.FORTIFICATION){
 			isFortification = true;
+		}
+		
+		if(gameObject.tag == Globals.ENEMY){
+			isEnemy = true;
 		}
 	}
 	
@@ -48,15 +53,18 @@ public class Health : MonoBehaviour {
 
 	public void Die(){
 		isDead = true;
+		
 		if(explosion){
 			Instantiate(explosion, transform.position, Quaternion.identity);
-		}
-		if(!isFortification){
-			Destroy(gameObject);
 		}
 		
 		if(isFortification){
 			GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider.bounds, gameObject.collider, gameObject);
+		} else if(isEnemy){
+			Destroy(gameObject);
+			GameController.Instance.AddResources(gameObject.GetComponent<Enemy>().amountToGive);
+		} else {
+			Destroy(gameObject);
 		}
 	}
 }

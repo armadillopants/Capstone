@@ -14,9 +14,10 @@ public class GameController : MonoBehaviour {
 	private Transform player;
 	private Transform ship;
 	
-	protected int amountOfResources = 100000;
+	protected int amountOfResources = 1000;
 	public bool canDisplay = true;
 	public bool canShoot = false;
+	public bool canChangeWeapons = false;
 	
 	// Fortification data
 	private GameObject fortToSpawn;
@@ -232,6 +233,7 @@ public class GameController : MonoBehaviour {
 			Bounds b = fort.collider.bounds;
 			GraphUpdateObject guo = new GraphUpdateObject(b);
 			AstarPath.active.UpdateGraphs(guo);
+			AstarPath.active.FlushGraphUpdates();
 		}
 	}
 	
@@ -240,6 +242,7 @@ public class GameController : MonoBehaviour {
 		Destroy(g);
 		GraphUpdateObject guo = new GraphUpdateObject(b);
 		AstarPath.active.UpdateGraphs(guo, 0.0f);
+		AstarPath.active.FlushGraphUpdates();
 	}
 	
 	public void AddDynamicObstacleToFortifications(){

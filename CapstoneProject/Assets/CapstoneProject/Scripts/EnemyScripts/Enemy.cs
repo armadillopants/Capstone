@@ -22,6 +22,8 @@ public class Enemy : AIPath {
 	public float coolDownLength = 1f;
 	public float damageAmount = 10f;
 	public float distance = 10f;
+	public float targetHeight = 1f;
+	public int amountToGive = 100;
 
 	private bool isBurning = false;
 	private ParticleEmitter emitter;
@@ -53,7 +55,6 @@ public class Enemy : AIPath {
 			lastTarget = curTarget;
 			isPathBlocked = CheckIfPathIsPossible(tr.position, lastTarget.position);
 		}
-		Debug.Log("Path Blocked: " + isPathBlocked);
 		
 		if(isPathBlocked){
 			target = FindNearestTarget().transform;
@@ -109,7 +110,7 @@ public class Enemy : AIPath {
 	
 	void SwitchTarget(string targetName){
 		target = GameObject.FindWithTag(targetName).transform;
-		curTarget = target;
+		curTarget = target; // Store current target
 	}
 	
 	void OnCollisionStay(Collision collision){
@@ -137,12 +138,14 @@ public class Enemy : AIPath {
 		}
 	}
 	
-	// Checks if path is blocked
+	/** Checks if path is blocked
+	*	If path isnt traversible return true, else
+	*	return false
+	**/
 	public bool CheckIfPathIsPossible(Vector3 pathStart, Vector3 pathEnd){
 		Node node1 = AstarPath.active.GetNearest(pathStart, NNConstraint.Default).node;
 		Node node2 = AstarPath.active.GetNearest(pathEnd, NNConstraint.Default).node;
 		
-		// If path isnt traversible return true, else return false
 		if(!PathUtilities.IsPathPossible(node1, node2)){
 			return true;
 		} else {
@@ -172,6 +175,10 @@ public class Enemy : AIPath {
 		
 		if(canMove){
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
+			
+			Vector3 adjustedTargetHeight = tr.position; // Set position to variable
+			adjustedTargetHeight.y = targetHeight; // Adjust height to a set target
+			tr.position = adjustedTargetHeight; // Commit the changes
 			
 			if(targetDirection != Vector3.zero){
 				RotateTowards(targetDirection);

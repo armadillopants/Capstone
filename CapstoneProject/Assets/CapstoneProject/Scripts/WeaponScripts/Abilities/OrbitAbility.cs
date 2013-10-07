@@ -41,7 +41,7 @@ public class OrbitAbility : MonoBehaviour {
 		}
 		
 		// TODO: Possibly fix this to make it more dynamic...work with less than 4 objects
-		if(items.Length >= 4){
+		if(items.Length > 0){
 			StartCoroutine("SpawnOrbitHolders");
 		}
 	}

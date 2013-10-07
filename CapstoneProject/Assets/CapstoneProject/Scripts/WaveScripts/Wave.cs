@@ -35,6 +35,7 @@ public class Wave : MonoBehaviour {
 	private IEnumerator WaveHandling(){
 		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && GameController.Instance.GetShipHealth().curHealth > 0){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
+			GameObject.Find("GridContainer").GetComponent<GridSpawner>().EnableGrid();
 			//GameController.Instance.AddDynamicObstacleToFortifications();
 			Fortification fort = gameObject.AddComponent<Fortification>();
 			fort.StartFortifying(this);
@@ -57,6 +58,7 @@ public class Wave : MonoBehaviour {
 		yield return new WaitForSeconds(waitTime);
 		UIManager.Instance.uiState = UIManager.UIState.CURWAVE;
 		GameController.Instance.canShoot = true;
+		GameController.Instance.canChangeWeapons = true;
 		beginWave = true;
 	}
 	
