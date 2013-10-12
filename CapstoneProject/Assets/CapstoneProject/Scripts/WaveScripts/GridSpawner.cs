@@ -115,6 +115,8 @@ public class GridSpawner : MonoBehaviour {
 		meshCollider = GetComponentInChildren<MeshCollider>();
 		rend = GetComponentInChildren<Renderer>();
 		
+		DisableGrid();
+		
 		//CalculateGrid();
 	}
 	

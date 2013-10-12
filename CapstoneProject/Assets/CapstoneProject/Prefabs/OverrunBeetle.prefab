@@ -1457,6 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curHealth: 100
+  maxHealth: 100
   canTakeDamage: 1
   explosion: {fileID: 0}
 --- !u!114 &11400006

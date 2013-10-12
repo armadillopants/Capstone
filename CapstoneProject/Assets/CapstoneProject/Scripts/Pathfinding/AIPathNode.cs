@@ -25,7 +25,7 @@ public class AIPathNode : MonoBehaviour {
 	
 	void Update(){
 		if(fortification){
-			nodeOpen = fortification.GetComponent<Health>().IsDead();
+			nodeOpen = fortification.GetComponent<Health>().IsDead;
 		}
 		
 		if(testForCells && waitToTestCells <= 0){

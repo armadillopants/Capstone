@@ -21,6 +21,9 @@ public class BaseWeapon : MonoBehaviour {
 	public int id;
 	public Rigidbody projectile;
 	public Transform muzzlePos;
+	
+	private Renderer muzzle;
+	private Light gunFlash;
 	public Renderer muzzleFlash;
 	public Light lightFlash;
 	
@@ -29,11 +32,8 @@ public class BaseWeapon : MonoBehaviour {
 	protected float lastFrameShot = -1;
 	public ParticleEmitter hitParticles;
 	
-	void Awake(){
-		hitParticles = GetComponentInChildren<ParticleEmitter>();
-	}
-	
 	void Start(){
+		hitParticles = GetComponentInChildren<ParticleEmitter>();
 		maxClips = clips;
 		
 		if(hitParticles){
@@ -41,6 +41,15 @@ public class BaseWeapon : MonoBehaviour {
 			bulletsLeft = bulletsPerClip;
 		} else {
 			bulletsLeft = bulletsPerClip;
+		}
+		
+		if(muzzleFlash){
+			muzzle = (Renderer)Instantiate(muzzleFlash, muzzlePos.position, Quaternion.identity);
+			muzzle.transform.parent = muzzlePos.transform;
+		}
+		if(lightFlash){
+			gunFlash = (Light)Instantiate(lightFlash, muzzlePos.position, Quaternion.identity);
+			gunFlash.transform.parent = muzzlePos.transform;
 		}
 	}
 	
@@ -51,12 +60,12 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	void LateUpdate(){
-		if(muzzleFlash || lightFlash){
+		if(muzzleFlash && lightFlash){
 			// We shot this frame, enable the muzzle flash
 			if(lastFrameShot == Time.frameCount){
-				muzzleFlash.transform.localRotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
-				muzzleFlash.enabled = true;
-				lightFlash.enabled = true;
+				muzzle.transform.localRotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
+				muzzle.enabled = true;
+				gunFlash.enabled = true;
 				
 				if(audio){
 					if(!audio.isPlaying){
@@ -66,9 +75,8 @@ public class BaseWeapon : MonoBehaviour {
 				}
 			} else {
 				// We didn't disable the muzzle flash
-				muzzleFlash.enabled = false;
-				lightFlash.enabled = false;
-				enabled = false;
+				muzzle.enabled = false;
+				gunFlash.enabled = false;
 				
 				// Play sound
 				if(audio){

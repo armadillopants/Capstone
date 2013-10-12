@@ -1021,6 +1021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curHealth: 100
+  maxHealth: 100
   canTakeDamage: 1
   explosion: {fileID: 0}
 --- !u!114 &11400006
@@ -1414,7 +1415,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642d2e2028d728445b81763af3429325, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b7675e2c87f7a4b95b83044b5a8b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11400040

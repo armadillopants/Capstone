@@ -4,12 +4,10 @@ using System.Collections;
 public class WaveController : MonoBehaviour {
 	
 	public bool isWaiting = false;
-	private int waveNumber = 5;
+	private int waveNumber = 1;
 	private float waitTime = 5.0f;
 	private static Wave curWave;
-	private bool displayGui;
-	private bool canBeginWave = false;
-	private float timer = 20f;
+	public bool canBeginWave = false;
 
 	void Start(){
 		if(waveNumber == 0){
@@ -17,23 +15,18 @@ public class WaveController : MonoBehaviour {
 		}
 	}
 	
+	public void ResetWave(int wave){
+		waveNumber = wave;
+		isWaiting = false;
+		canBeginWave = false;
+	}
+	
 	void Update(){
-		if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME){
-			displayGui = false;
-			return;
-		} else {
-			timer -= Time.deltaTime;
-			if(timer <= 0){
-				timer = 0;
-				displayGui = true;
-				canBeginWave = true;
-			}
-		}
 		if(canBeginWave){
 			if(!isWaiting){
 				curWave = gameObject.AddComponent<Wave>();
-				isWaiting = true;
 				curWave.StartWave(this, waveNumber);
+				isWaiting = true;
 			}
 		}
 	}
@@ -49,8 +42,13 @@ public class WaveController : MonoBehaviour {
 		waveNumber++;
 	}
 	
+	public IEnumerator BeginFirstWave(){
+		yield return new WaitForSeconds(waitTime);
+		canBeginWave = true;
+	}
+	
 	void OnGUI(){
-		if(displayGui){
+		if(canBeginWave){
 			GUI.Box(new Rect(0, 300, 200, 20), "Wave Number: " + waveNumber);
 		}
 	}

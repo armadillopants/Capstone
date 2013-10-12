@@ -29,7 +29,7 @@ public class MenuContainer : MonoBehaviour {
 		if(target.curWaypoint == target.totalWayPoints/3){
 			GameObject cargo = GameObject.Find("Cargo");
 			cargo.rigidbody.useGravity = true;
-			cargo.rigidbody.AddForce(new Vector3(5, 0, 4) * 3f);
+			cargo.rigidbody.AddForce(new Vector3(6, 0, 4) * 3f);
 		}
 		
 		RaycastHit hit;

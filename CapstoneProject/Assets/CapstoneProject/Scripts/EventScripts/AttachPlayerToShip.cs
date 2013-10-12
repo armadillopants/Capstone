@@ -7,7 +7,7 @@ public class AttachPlayerToShip : MonoBehaviour {
 	private float timer = 3f;
 	
 	void Start(){
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameController.Instance.GetPlayer();
 	}
 	
 	void Update(){

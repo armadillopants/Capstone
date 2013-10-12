@@ -61,7 +61,7 @@
 -- Breaking of barriers
 -- Fire
 
-- Spawn System
+- Spawn System+
 -- Enemies spawn in only 15 allowed at once
 -- Big enemies spawn smaller enemies around them
 -- Random spawn points enemies can crawl out of for night enemies, when player gets close
@@ -70,3 +70,14 @@
 -- Begins during the day, slowly go to night...
 -- How many waves till first dusk?...
 -- How to make transition?...
+
+- Win Condition
+-- Final build wave, start last wave
+-- Enemies just keep coming...most likely during day
+-- Rescue crew come and holster up ship...timer begins
+-- After timer reaches 0, player wins, end game...
+
+-- Lose Condition
+-- Player dies
+-- Both ship and then player dies
+-- If ship dies, player loses fortification abilities

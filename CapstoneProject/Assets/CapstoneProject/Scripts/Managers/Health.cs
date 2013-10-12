@@ -5,28 +5,35 @@ public class Health : MonoBehaviour {
 	
 	public float curHealth;
 	private float minHealth = 0f;
-	private float maxHealth;
+	public float maxHealth = 100f;
 	public bool canTakeDamage = true;
 	private bool isDead = false;
 	public GameObject explosion;
 	private bool isFortification = false;
 	private bool isEnemy = false;
+	private bool isShip = false;
+	private bool isPlayer = false;
 
 	void Start(){
 		if(gameObject.tag == Globals.FORTIFICATION){
 			isFortification = true;
-		}
-		
-		if(gameObject.tag == Globals.ENEMY){
+		} else if(gameObject.tag == Globals.SHIP){
+			isShip = true;
+		} else if(gameObject.tag == Globals.ENEMY){
 			isEnemy = true;
+		} else if(gameObject.tag == Globals.PLAYER){
+			isPlayer = true;
+		} else {
+			Debug.Log("Uhhh, something");
 		}
 	}
 	
 	void Update(){
 	}
 	
-	public bool IsDead(){
-		return isDead;
+	public bool IsDead {
+		get { return isDead; }
+		set { isDead = value; }
 	}
 	
 	public float GetMaxHealth(){
@@ -46,6 +53,13 @@ public class Health : MonoBehaviour {
 		if(canTakeDamage){
 			curHealth = Mathf.Max(minHealth, curHealth-damage);
 		}
+		
+		if(isShip){
+			if((curHealth % 10) == 0){
+				gameObject.GetComponent<ShipDecay>().Release();
+			}
+		}
+		
 		if(curHealth == 0 && !isDead){
 			Die();
 		}
@@ -61,10 +75,20 @@ public class Health : MonoBehaviour {
 		if(isFortification){
 			GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider.bounds, gameObject.collider, gameObject);
 		} else if(isEnemy){
-			Destroy(gameObject);
-			GameController.Instance.AddResources(gameObject.GetComponent<Enemy>().amountToGive);
+			GameController.Instance.AddResources(Mathf.RoundToInt(gameObject.GetComponent<Enemy>().amountToGive));
+			StartCoroutine(BeginDeathSequence());
+		} else if(isShip){
+			Debug.Log("Ship is dead");
+		} else if(isPlayer){
+			Destroy(gameObject.GetComponent<LocalInput>());
+			Destroy(gameObject.GetComponent<PlayerMovement>());
 		} else {
 			Destroy(gameObject);
 		}
+	}
+	
+	IEnumerator BeginDeathSequence(){
+		yield return new WaitForSeconds(3f);
+		Destroy(gameObject);
 	}
 }

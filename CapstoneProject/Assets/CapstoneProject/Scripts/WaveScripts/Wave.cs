@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Wave : MonoBehaviour {
 	
-	private int waveNumber = 5;
+	private int waveNumber;
 	private const int WAVES_BETWEEN_FORTIFICATION = 5;
 	public bool beginWave = false;
 	public bool endWave = false;
@@ -23,7 +23,12 @@ public class Wave : MonoBehaviour {
 	
 	public void StartWave(WaveController wave, int waveNum){
 		// Spawn amount based on wave number
-		amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
+		if(waveNum == 10){
+			amountToSpawn = Mathf.Infinity;
+			GameController.Instance.SpawnRescueShip();
+		} else {
+			amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
+		}
 		
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		controller = wave;
@@ -33,7 +38,7 @@ public class Wave : MonoBehaviour {
   	}
 	
 	private IEnumerator WaveHandling(){
-		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && GameController.Instance.GetShipHealth().curHealth > 0){
+		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && !GameController.Instance.GetShipHealth().IsDead){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			GameObject.Find("GridContainer").GetComponent<GridSpawner>().EnableGrid();
 			//GameController.Instance.AddDynamicObstacleToFortifications();

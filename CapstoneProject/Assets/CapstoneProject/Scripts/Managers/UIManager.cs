@@ -8,13 +8,22 @@ public class UIManager : MonoBehaviour {
 		GAMEOVER, NONE, CURWAVE, 
 		FORTINFO, YESORNO, BUILD_SCREEN, 
 		UPGRADE_SCREEN, BUY_SCREEN, EQUIP_WEAPON_SCREEN, 
-		FORT_UPGRADE_SCREEN };
+		FORT_UPGRADE_SCREEN, GAMEWON };
 	public UIState uiState = UIState.NONE;
 	public bool isPaused = false;
 	private WeaponSelection selection;
+	private bool fadeComplete = false;
 	
 	private GameObject fortification;
 	private Rect displayScreen = new Rect(Screen.width/2f - 50f, Screen.height/2f - 100f, 200, 300);
+	
+	private Texture2D playerHealthBar;
+	private Texture2D shipHealthBar;
+	private Texture2D grayBar;
+	
+	private Rect playerHealthRect;
+	private Rect shipHealthRect;
+	private Rect resourceRect;
 	
 	#region Singleton
 	
@@ -39,6 +48,28 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	#endregion
+	
+	public bool FadeCompleted {
+		set { fadeComplete = value; }
+	}
+	
+	void Start(){
+		playerHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		playerHealthBar.SetPixel(0, 0, Color.red);
+		playerHealthBar.Apply();
+		
+		shipHealthBar = new Texture2D(1,1,TextureFormat.RGB24, false);
+		shipHealthBar.SetPixel(0, 0, Color.green);
+		shipHealthBar.Apply();
+		
+		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		grayBar.SetPixel(0, 0, Color.gray);
+		grayBar.Apply();
+		
+		playerHealthRect = new Rect(20, Screen.height-85, 135, 22);
+		shipHealthRect = new Rect(20, Screen.height-55, 135, 22);
+		resourceRect = new Rect(20, Screen.height-30, 135, 22);
+	}
 	
 	void Update(){
 		if(isPaused){
@@ -82,6 +113,15 @@ public class UIManager : MonoBehaviour {
 		case UIState.YESORNO:
 			DrawYesOrNoScreen();
 			break;
+		case UIState.GAMEWON:
+			DrawGameWonScreen();
+			break;
+		}
+		
+		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME && !GameController.Instance.GetPlayerHealth().IsDead){
+			DrawPlayerHealth();
+			DrawShipHealth();
+			DrawResources();
 		}
 	}
 	
@@ -104,16 +144,56 @@ public class UIManager : MonoBehaviour {
 		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Next Wave");
 	}
 	
-	void DrawGameOverScreen(){
-		if(GUI.Button(new Rect(Screen.width/3, Screen.height/5, 100, 50), "Restart")){
-			//Application.LoadLevel(Application.loadedLevel);
-			MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
-			uiState = UIState.NONE;
+	public void DrawGameOverScreen(){
+		if(fadeComplete){
+			if(GUI.Button(new Rect(Screen.width/3, Screen.height/3, 100, 50), "Restart")){
+				GameController.Instance.Reset();
+				MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
+				uiState = UIState.NONE;
+			}
 		}
+	}
+
+	void DrawGameWonScreen(){
+		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "YOU WON!");
 	}
 	
 	void DrawCurWaveScreen(){
 		
+	}
+	
+	void DrawPlayerHealth(){
+		GUI.BeginGroup(playerHealthRect);
+		{
+			GUI.DrawTexture(new Rect(0, 0, 
+				playerHealthRect.width*GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
+				grayBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(0, 0, 
+				playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
+				playerHealthBar, ScaleMode.StretchToFill);
+		}
+		GUI.EndGroup();
+	}
+	
+	void DrawShipHealth(){
+		GUI.BeginGroup(shipHealthRect);
+		{
+			GUI.DrawTexture(new Rect(0, 0, 
+				shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+				grayBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(0, 0, 
+				shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+				shipHealthBar, ScaleMode.StretchToFill);
+		}
+		GUI.EndGroup();
+	}
+	
+	void DrawResources(){
+		GUI.BeginGroup(resourceRect);
+		{
+			GUI.Label(new Rect(0, 0, resourceRect.width, resourceRect.height), "Resources: " + GameController.Instance.GetResources());
+		}
+		GUI.EndGroup();
 	}
 
 	void DrawYesOrNoScreen(){
@@ -164,5 +244,40 @@ public class UIManager : MonoBehaviour {
 		}
 		
 		GUI.EndGroup();
+	}
+	
+	public IEnumerator FadeComplete(){
+		yield return new WaitForSeconds(8f);
+		fadeComplete = true;
+	}
+	
+	public IEnumerator Fade(){
+		float duration = 1f;
+		GameObject fade = new GameObject();
+		fade.AddComponent(typeof(GUITexture));
+		fade.guiTexture.pixelInset = new Rect(0, 0, Screen.width, Screen.height);
+		Texture2D tex = new Texture2D(1, 1);
+		tex.SetPixel(0, 0, Color.black);
+		tex.Apply();
+		fade.guiTexture.texture = tex;
+		
+  	    float alpha = 0f;
+		Color temp = fade.guiTexture.color;
+  		while(alpha < 1.0f && uiState == UIState.GAMEOVER){
+	    	alpha += Time.deltaTime / (duration*10f);
+	    	temp.a = alpha;
+			fade.guiTexture.color = temp;
+	    	yield return new WaitForSeconds(Time.deltaTime);
+  		}
+		while(uiState == UIState.GAMEOVER){
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
+		while(alpha > 0f && uiState != UIState.GAMEOVER){
+	    	alpha -= Time.deltaTime / (duration*0.05f);
+	    	temp.a = Mathf.Max(alpha, 0f);
+			fade.guiTexture.color = temp;
+	    	yield return new WaitForSeconds(Time.deltaTime);
+  		}
+		Destroy(fade);
 	}
 }

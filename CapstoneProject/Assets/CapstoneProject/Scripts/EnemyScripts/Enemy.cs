@@ -8,6 +8,9 @@ public class Enemy : AIPath {
 	public enum EnemyState { CHASING, ATTACKING, IDLE, DEAD };
 	public EnemyState state = EnemyState.CHASING;
 	
+	private Animation anim;
+	public float animationSpeed = 0.2f;
+	
 	private Transform playerTarget;
 	private Transform shipTarget;
 	public Transform lastTarget;
@@ -17,6 +20,7 @@ public class Enemy : AIPath {
 	public bool chasePlayer = true;
 	public bool canAttackBoth = false;
 	public bool isPathBlocked = false;
+	private bool isDead = false;
 	
 	private float currentCoolDown = 0f;
 	public float coolDownLength = 1f;
@@ -24,14 +28,21 @@ public class Enemy : AIPath {
 	public float distance = 10f;
 	public float targetHeight = 1f;
 	public int amountToGive = 100;
+	private float sleepVelocity = 0.4f;
 
 	private bool isBurning = false;
 	private ParticleEmitter emitter;
 	public float burnDamage;
 	
+	private Health health;
+	
 	public new void Start(){
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
+		
+		anim = GetComponent<Animation>();
+		
+		health = GetComponent<Health>();
 		
 		if(chasePlayer){
 			SwitchTarget(Globals.PLAYER);
@@ -40,6 +51,12 @@ public class Enemy : AIPath {
 		}
 		
 		lastTarget = target;
+		
+		// Set all animations to loop for now
+		anim.wrapMode = WrapMode.Loop;
+		
+		// Play walk animation
+		anim.Play("Walk");
 		
 		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
@@ -61,15 +78,21 @@ public class Enemy : AIPath {
 			
 			if(target == null){
 				target = lastTarget;
-				state = EnemyState.CHASING;
+				if(!doDamage){
+					state = EnemyState.CHASING;
+				}
 			}
 		} else {
 			if(target == null){
 				target = lastTarget;
-				state = EnemyState.CHASING;
+				if(!doDamage){
+					state = EnemyState.CHASING;
+				}
 			} else {
 				target = lastTarget;
-				state = EnemyState.CHASING;
+				if(!doDamage){
+					state = EnemyState.CHASING;
+				}
 			}
 			
 			if(canAttackBoth){
@@ -85,13 +108,18 @@ public class Enemy : AIPath {
 			}
 		}
 		
-		if(shipTarget == null){
+		if(GameController.Instance.GetShipHealth().curHealth <= 0){
 			SwitchTarget(Globals.PLAYER);
 			canAttackBoth = false;
 		}
 		
 		if(currentCoolDown > 0){
 			currentCoolDown -= Time.deltaTime;
+		}
+		
+		if(health.IsDead){
+			state = EnemyState.DEAD;
+			rigid.isKinematic = true;
 		}
 		
 		ClampCoolDownTime();
@@ -125,12 +153,15 @@ public class Enemy : AIPath {
 	}
 	
 	void OnCollisionExit(){
-		rigid.velocity = new Vector3(0,0,0);
+		if(!rigid.isKinematic){
+			rigid.velocity = new Vector3(0,0,0);
+		}
 		doDamage = false;
 	}
 	
 	public virtual void Attack(GameObject target){
 		if(doDamage){
+			state = EnemyState.ATTACKING;
 			if(currentCoolDown <= 0){
 				target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
 				currentCoolDown = coolDownLength;
@@ -154,6 +185,7 @@ public class Enemy : AIPath {
 	}
 	
 	public override void OnTargetReached(){
+		Debug.Log("Reached Target");
 		// TODO: Enemy attacks player
 	}
 	
@@ -163,16 +195,22 @@ public class Enemy : AIPath {
 			ChaseObject();
 			break;
 		case EnemyState.ATTACKING:
+			PlayAttackAnimation();
 			break;
 		case EnemyState.IDLE:
 			break;
 		case EnemyState.DEAD:
+			if(!isDead){
+				PlayDeathAnimation();
+				isDead = true;
+			}
 			break;
 		}
 	}
 	
 	void ChaseObject(){
 		
+		Vector3 velocity;
 		if(canMove){
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
 			
@@ -184,10 +222,43 @@ public class Enemy : AIPath {
 				RotateTowards(targetDirection);
 			}
 			
+			if(dir.sqrMagnitude > sleepVelocity*sleepVelocity){
+				
+			} else {
+				dir = Vector3.zero;
+			}
+			
 			if(rigid != null){
 				rigid.velocity = dir * speed;
 			}
+			
+			velocity = rigid.velocity;
+		} else {
+			velocity = Vector3.zero;
 		}
+		
+		Vector3 relativeVelocity = tr.InverseTransformDirection(velocity);
+		if(velocity.sqrMagnitude <= sleepVelocity*sleepVelocity){
+			// Fade out walk animation
+			anim.Blend("Walk", 0, 0.2f);
+		} else {
+			// Fade in walking animation
+			anim.Blend("Walk", 1, 0.2f);
+			
+			AnimationState state = anim["Walk"];
+			
+			float relSpeed = relativeVelocity.z;
+			state.speed = relSpeed*animationSpeed;
+		}
+	}
+
+	void PlayAttackAnimation(){
+		anim.CrossFade("Attack", 0.2f);
+	}
+
+	void PlayDeathAnimation(){
+		anim["Death"].wrapMode = WrapMode.Once;
+		anim.CrossFade("Death", 0.2f);
 	}
 	
 	void OnParticleCollision(GameObject other){
@@ -206,6 +277,10 @@ public class Enemy : AIPath {
 		targets = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 		GameObject closest = null;
 		float distance = Mathf.Infinity;
+		
+		if(targets.Length == 0){
+			return curTarget.gameObject;
+		}
 		
 		foreach(GameObject targetCheck in targets){
 			Vector3 diff = targetCheck.transform.position - tr.position;

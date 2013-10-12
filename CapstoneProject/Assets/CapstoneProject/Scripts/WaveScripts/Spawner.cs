@@ -19,13 +19,15 @@ public class Spawner : MonoBehaviour {
 	}
 	
 	public void SpawnEnemy(){
-		if(GameController.Instance.timeOfDay == GameController.TimeOfDay.DAYTIME){
+		if(GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.DAY || 
+			GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.DAWN){
 			for(int i=0; i<dayEnemies.Count; i++){
 				enemy = dayEnemies[Random.Range(0, dayEnemies.Count)];
 			}
 		}
 		
-		if(GameController.Instance.timeOfDay == GameController.TimeOfDay.NIGHTTIME){
+		if(GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.NIGHT || 
+			GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.DUSK){
 			for(int i=0; i<nightEnemies.Count; i++){
 				enemy = nightEnemies[Random.Range(0, nightEnemies.Count)];
 			}

@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWaiting: 0
+  canBeginWave: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,8 +80,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayEnemies:
-  - {fileID: 100000, guid: 2fa88b60d0cd18845a790fe5e15365ef, type: 2}
-  nightEnemies: []
+  - {fileID: 100096, guid: b64e1e2bd6b4ce8468bc83c77f016223, type: 2}
+  - {fileID: 100076, guid: e8b3bf15aa06dde45843999c1e6ce918, type: 2}
+  nightEnemies:
+  - {fileID: 100096, guid: b64e1e2bd6b4ce8468bc83c77f016223, type: 2}
+  - {fileID: 100076, guid: e8b3bf15aa06dde45843999c1e6ce918, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
