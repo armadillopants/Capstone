@@ -52,11 +52,13 @@ public class Enemy : AIPath {
 		
 		lastTarget = target;
 		
-		// Set all animations to loop for now
-		anim.wrapMode = WrapMode.Loop;
-		
-		// Play walk animation
-		anim.Play("Walk");
+		if(anim){
+			// Set all animations to loop for now
+			anim.wrapMode = WrapMode.Loop;
+			
+			// Play walk animation
+			anim.Play("Walk");
+		}
 		
 		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
@@ -74,7 +76,7 @@ public class Enemy : AIPath {
 		}
 		
 		if(isPathBlocked){
-			target = FindNearestTarget().transform;
+			target = GameController.Instance.FindNearestTarget(Globals.FORTIFICATION, tr).transform;
 			
 			if(target == null){
 				target = lastTarget;
@@ -108,7 +110,7 @@ public class Enemy : AIPath {
 			}
 		}
 		
-		if(GameController.Instance.GetShipHealth().curHealth <= 0){
+		if(GameController.Instance.GetShipHealth().IsDead){
 			SwitchTarget(Globals.PLAYER);
 			canAttackBoth = false;
 		}
@@ -195,12 +197,14 @@ public class Enemy : AIPath {
 			ChaseObject();
 			break;
 		case EnemyState.ATTACKING:
-			PlayAttackAnimation();
+			if(anim){
+				PlayAttackAnimation();
+			}
 			break;
 		case EnemyState.IDLE:
 			break;
 		case EnemyState.DEAD:
-			if(!isDead){
+			if(!isDead && anim){
 				PlayDeathAnimation();
 				isDead = true;
 			}
@@ -223,13 +227,12 @@ public class Enemy : AIPath {
 			}
 			
 			if(dir.sqrMagnitude > sleepVelocity*sleepVelocity){
-				
+				// Move the enemey
+				if(rigid != null){
+					rigid.velocity = dir * speed;
+				}
 			} else {
 				dir = Vector3.zero;
-			}
-			
-			if(rigid != null){
-				rigid.velocity = dir * speed;
 			}
 			
 			velocity = rigid.velocity;
@@ -237,23 +240,32 @@ public class Enemy : AIPath {
 			velocity = Vector3.zero;
 		}
 		
-		Vector3 relativeVelocity = tr.InverseTransformDirection(velocity);
-		if(velocity.sqrMagnitude <= sleepVelocity*sleepVelocity){
-			// Fade out walk animation
-			anim.Blend("Walk", 0, 0.2f);
-		} else {
-			// Fade in walking animation
-			anim.Blend("Walk", 1, 0.2f);
-			
-			AnimationState state = anim["Walk"];
-			
-			float relSpeed = relativeVelocity.z;
-			state.speed = relSpeed*animationSpeed;
+		if(anim){
+			Vector3 relativeVelocity = tr.InverseTransformDirection(velocity);
+			if(velocity.sqrMagnitude <= sleepVelocity*sleepVelocity){
+				// Fade out walk animation
+				anim.Blend("Walk", 0, 0.2f);
+			} else {
+				// Fade in walking animation
+				anim.Blend("Attack", 0, 0.2f);
+				anim.Blend("Walk", 1, 0.2f);
+				
+				AnimationState state = anim["Walk"];
+				
+				float relSpeed = relativeVelocity.z;
+				state.speed = relSpeed*animationSpeed;
+			}
 		}
 	}
 
 	void PlayAttackAnimation(){
 		anim.CrossFade("Attack", 0.2f);
+		Vector3 dir = CalculateVelocity(GetFeetPosition());
+		rigid.velocity = dir * (speed * 0.5f);
+		
+		if(targetDirection != Vector3.zero){
+			RotateTowards(targetDirection);
+		}
 	}
 
 	void PlayDeathAnimation(){
@@ -270,26 +282,5 @@ public class Enemy : AIPath {
 		} else {
 			isBurning = false;
 		}
-	}
-	
-	GameObject FindNearestTarget(){
-		GameObject[] targets;
-		targets = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
-		GameObject closest = null;
-		float distance = Mathf.Infinity;
-		
-		if(targets.Length == 0){
-			return curTarget.gameObject;
-		}
-		
-		foreach(GameObject targetCheck in targets){
-			Vector3 diff = targetCheck.transform.position - tr.position;
-			float curDist = diff.sqrMagnitude;
-			if(curDist < distance){
-				closest = targetCheck;
-				distance = curDist;
-			}
-		}
-		return closest;
 	}
 }

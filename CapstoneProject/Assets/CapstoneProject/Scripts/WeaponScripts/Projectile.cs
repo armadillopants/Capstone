@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour {
 	
 	void Update(){
 		if(isHoming){
-			target = FindNearestTarget();
+			target = GameController.Instance.FindNearestTarget(Globals.ENEMY, this.trans);
 			if(target){
 				rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
 				Quaternion rotate = Quaternion.LookRotation(target.transform.position - trans.position);
@@ -68,22 +68,5 @@ public class Projectile : MonoBehaviour {
 		
 		// Destroy the projectile
 		Destroy(gameObject);
-	}
-	
-	GameObject FindNearestTarget(){
-		GameObject[] targets;
-		targets = GameObject.FindGameObjectsWithTag(Globals.ENEMY);
-		GameObject closest = null;
-		float distance = Mathf.Infinity;
-		
-		foreach(GameObject targetCheck in targets){
-			Vector3 diff = targetCheck.transform.position - trans.position;
-			float curDist = diff.sqrMagnitude;
-			if(curDist < distance){
-				closest = targetCheck;
-				distance = curDist;
-			}
-		}
-		return closest;
 	}
 }

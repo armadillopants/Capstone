@@ -3,13 +3,13 @@ using System.Collections;
 
 public class BurstShot : BaseWeapon {
 	
-	public override void Update(){
+	/*public override void Update(){
 		if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
 			StartCoroutine("BurstFire");
 		}
-	}
+	}*/
 	
-	public IEnumerator BurstFire(){
+	public IEnumerator Fire(){
 		
 		int shotCounter = 0;
 		

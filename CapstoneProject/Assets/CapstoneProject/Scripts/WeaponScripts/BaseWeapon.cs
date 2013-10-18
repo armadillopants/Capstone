@@ -12,7 +12,6 @@ public class BaseWeapon : MonoBehaviour {
 	public int bulletsLeft = 0;
 	public int bulletsPerClip = 40;
 	public int clips = 6;
-	public int maxClips = 0;
 	public float reloadSpeed = 1.2f;
 	public float damage = 10.0f;
 	public float coneAngle = 1.5f;
@@ -28,13 +27,19 @@ public class BaseWeapon : MonoBehaviour {
 	public Light lightFlash;
 	
 	public bool isReloading = false;
+	public bool isAutomatic = false;
 	protected float nextFireTime = 0.0f;
 	protected float lastFrameShot = -1;
+	public bool isFiring = false;
 	public ParticleEmitter hitParticles;
+	public bool useLayerMask = true;
+	
+	public void Replenish(){
+		bulletsLeft = bulletsPerClip;
+	}
 	
 	void Start(){
 		hitParticles = GetComponentInChildren<ParticleEmitter>();
-		maxClips = clips;
 		
 		if(hitParticles){
 			hitParticles.emit = false;
@@ -54,9 +59,9 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	public virtual void Update(){
-		if(Input.GetButton("Fire1") && GameController.Instance.canShoot){
+		/*if(Input.GetButton("Fire1") && GameController.Instance.canShoot){
 			Fire();
-		}
+		}*/
 	}
 	
 	void LateUpdate(){
@@ -117,15 +122,21 @@ public class BaseWeapon : MonoBehaviour {
 			if(visibleProj){
 				bullet = visibleProj.GetComponent<Bullet>();
 			}
+			Vector3 startPos = muzzlePos.position;
 		    Vector3 direction = transform.TransformDirection(Vector3.forward);
 		  	RaycastHit hit;
 			
 			LayerMask layerMaskPlayer = 8;
 			LayerMask layerMaskFort = 9;
-			LayerMask layerMaskFinal = ~((1<<layerMaskPlayer)|1<<layerMaskFort);
+			LayerMask layerMaskFinal;
+			if(useLayerMask){
+				layerMaskFinal = ~((1<<layerMaskPlayer)|1<<layerMaskFort);
+			} else {
+				layerMaskFinal = ~(1<<layerMaskFort);
+			}
 			
 		  	// Does the ray intersect any objects excluding the player and fort layer
-		  	if(Physics.Raycast(transform.position, direction, out hit, range, layerMaskFinal)){
+		  	if(Physics.Raycast(startPos, direction, out hit, range, layerMaskFinal)){
 				// Apply a force to the rigidbody we hit
 				if(hit.rigidbody){
 					hit.rigidbody.AddForceAtPosition(force * direction, hit.point, ForceMode.Impulse);
@@ -140,14 +151,14 @@ public class BaseWeapon : MonoBehaviour {
 					hitParticles.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 					hitParticles.Emit();
 				}*/
-				Debug.DrawRay(transform.position, direction * hit.distance, Color.blue);
+				Debug.DrawRay(startPos, direction * hit.distance, Color.blue);
 				// Send a damage message to the hit object
 				hit.collider.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
 		  	} else {
 				if(bullet){
 					bullet.distance = range;
 				}
-		    	Debug.DrawRay(transform.position, direction * range, Color.green);
+		    	Debug.DrawRay(startPos, direction * range, Color.green);
 		  	}
 			
 			bulletsLeft--;

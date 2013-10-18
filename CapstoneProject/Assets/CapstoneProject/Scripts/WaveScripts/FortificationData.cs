@@ -11,7 +11,7 @@ public class FortificationData : MonoBehaviour {
 	}
 	
 	void OnCollisionStay(Collision collision){
-		if(collision.gameObject.tag == "Enemy"){
+		if(collision.gameObject.tag == Globals.ENEMY){
 			collision.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
 		}
 	}

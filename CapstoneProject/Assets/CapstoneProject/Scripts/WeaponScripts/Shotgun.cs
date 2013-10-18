@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Shotgun : BaseWeapon {
 	
-	public override void Update(){
+	/*public override void Update(){
 		if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
 			Fire();
 		}
-	}
+	}*/
 	
 	public override void Fire(){
 		int shotCounter = 0;

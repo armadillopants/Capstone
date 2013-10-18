@@ -9,9 +9,12 @@ public class WeaponSelection : MonoBehaviour {
 	public List<GameObject> weaponSlots = new List<GameObject>();
 	private WeaponManager manager;
 	
+	private BaseWeapon weapon;
+	
 	void Awake(){
 		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
 		manager = player.GetComponentInChildren<WeaponManager>();
+		weapon = GetComponentInChildren<BaseWeapon>();
 		UpdateWeaponsSlots();
 	}
 	
@@ -21,6 +24,22 @@ public class WeaponSelection : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(weapon.isAutomatic){
+			if(Input.GetButton("Fire1") && GameController.Instance.canShoot){
+				BroadcastMessage("Fire");
+				weapon.isFiring = true;
+			} else {
+				weapon.isFiring = false;
+			}
+		} else {
+			if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
+				BroadcastMessage("Fire");
+				weapon.isFiring = true;
+			} else {
+				weapon.isFiring = false;
+			}
+		}
+		
 		if(GameController.Instance.canChangeWeapons){
 			if(!changingWeapons && Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
 				changingWeapons = true;
@@ -84,6 +103,7 @@ public class WeaponSelection : MonoBehaviour {
 		// Activate the selected weapon
 		if(i == index){
 				transform.GetChild(i).gameObject.SetActive(true);
+				weapon = GetComponentInChildren<BaseWeapon>();
 			} else {
 				// Deactivate all other weapons
 				if(transform.GetChild(i).GetComponent<BaseWeapon>() != null){

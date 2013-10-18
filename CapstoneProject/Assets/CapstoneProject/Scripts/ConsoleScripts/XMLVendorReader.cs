@@ -37,6 +37,7 @@ public class XMLVendorReader : MonoBehaviour {
 			weapons[i].reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
 			weapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 			weapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
+			weapons[i].Replenish();
 		}
 	}
 	

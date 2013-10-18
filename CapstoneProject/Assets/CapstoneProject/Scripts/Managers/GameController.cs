@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 0;
+	private int amountOfResources = 1000000;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -189,20 +189,32 @@ public class GameController : MonoBehaviour {
 		float gridX = 1f;
 		float gridZ = 1f;
 		
-		if(current.transform.eulerAngles.y == Globals.ROTATION_H_LEFT || current.transform.eulerAngles.y == Globals.ROTATION_H_RIGHT){
-			gridZ = 3f;
-		} else {
-			gridZ = 1f;
-		}
+		switch(current.GetComponent<Dragable>().state){
+		case Dragable.FortState.THREE_ONE:
+			if(current.transform.eulerAngles.y == Globals.ROTATION_H_LEFT || current.transform.eulerAngles.y == Globals.ROTATION_H_RIGHT){
+				gridZ = 3f;
+			} else {
+				gridZ = 1f;
+			}
 		
-		if(current.transform.eulerAngles.y == Globals.ROTATION_V_UP || current.transform.eulerAngles.y == Globals.ROTATION_V_DOWN){
+			if(current.transform.eulerAngles.y == Globals.ROTATION_V_UP || current.transform.eulerAngles.y == Globals.ROTATION_V_DOWN){
+				gridX = 3f;
+			} else {
+				gridX = 1f;
+			}	
+			break;
+		case Dragable.FortState.THREE_THREE:
+			gridZ = 3f;
 			gridX = 3f;
-		} else {
+			break;
+		case Dragable.FortState.ONE_ONE:
+			gridZ = 1f;
 			gridX = 1f;
+			break;
 		}
 		
 		Vector3 snapPos = mouseLoc;
-		snapPos = SnapToGrid(snapPos, gridX, gridZ);
+		snapPos = SnapToGrid(snapPos, gridX, gridZ, current);
 		current.transform.position = snapPos;
 		
 		canPlace = true;
@@ -241,28 +253,37 @@ public class GameController : MonoBehaviour {
 		}
 		
 		if(Input.GetMouseButtonDown(0) && canPlace){
-			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ);
+			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ, current);
 			current.renderer.material = originalMat;
 			StartCoroutine("AddDragable");
 			fortSpawned = false;
 		}
 	}
 	
-	public Vector3 SnapToGrid(Vector3 pos, float rot1, float rot2){
-		return new Vector3(Mathf.RoundToInt(pos.x/rot1)*rot1, 0.5f, Mathf.RoundToInt(pos.z/rot2)*rot2);
+	public Vector3 SnapToGrid(Vector3 pos, float rot1, float rot2, GameObject g){
+		return new Vector3(Mathf.RoundToInt(pos.x/rot1)*rot1, g.GetComponent<Dragable>().height, Mathf.RoundToInt(pos.z/rot2)*rot2);
 	}
 	
 	private IEnumerator AddDragable(){
 		yield return new WaitForSeconds(0.1f);
-		current.AddComponent<Dragable>();
+		current.GetComponent<Dragable>().enabled = true;
 		fortToSpawn = null;
 		current = null;
+	}
+	
+	public void TurnDragableOn(){
+		GameObject[] fortifications = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
+		foreach(GameObject fort in fortifications){
+			fort.GetComponent<Dragable>().enabled = true;
+		}
 	}
 	
 	public void UpdateGraph(){
 		GameObject[] fortifications = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 		foreach(GameObject fort in fortifications){
-			Destroy(fort.GetComponent<Dragable>());
+			fort.GetComponent<Dragable>().enabled = false;
+			fort.GetComponent<Dragable>().canDrag = false;
+			//Destroy(fort.GetComponent<Dragable>());
 			Bounds b = fort.collider.bounds;
 			GraphUpdateObject guo = new GraphUpdateObject(b);
 			AstarPath.active.UpdateGraphs(guo);
@@ -274,7 +295,7 @@ public class GameController : MonoBehaviour {
 		Destroy(col);
 		Destroy(g);
 		GraphUpdateObject guo = new GraphUpdateObject(b);
-		AstarPath.active.UpdateGraphs(guo, 0.0f);
+		AstarPath.active.UpdateGraphs(guo);
 		AstarPath.active.FlushGraphUpdates();
 	}
 	
@@ -290,5 +311,22 @@ public class GameController : MonoBehaviour {
 	
 	public void SpawnRescueShip(){
 		shipToSpawn = (GameObject)Instantiate(rescueShip, new Vector3(-100,60,30), Quaternion.identity);
+	}
+	
+	public GameObject FindNearestTarget(string nearestTarget, Transform other){
+		GameObject[] targets;
+		targets = GameObject.FindGameObjectsWithTag(nearestTarget);
+		GameObject closest = null;
+		float distance = Mathf.Infinity;
+		
+		foreach(GameObject targetCheck in targets){
+			Vector3 diff = targetCheck.transform.position - other.position;
+			float curDist = diff.sqrMagnitude;
+			if(curDist < distance){
+				closest = targetCheck;
+				distance = curDist;
+			}
+		}
+		return closest;
 	}
 }

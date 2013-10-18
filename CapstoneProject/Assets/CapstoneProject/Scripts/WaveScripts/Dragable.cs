@@ -1,6 +1,11 @@
 using UnityEngine;
 
 public class Dragable : MonoBehaviour {
+	
+	public enum FortState { THREE_ONE, THREE_THREE, ONE_ONE };
+	public FortState state;
+	public float height;
+	public bool canDrag = true;
 
 	private Vector3 screenPoint;
 	private Vector3 offset;
@@ -32,13 +37,15 @@ public class Dragable : MonoBehaviour {
 	}
 
 	void OnMouseDrag(){
-    	Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-
-    	Vector3 curPos = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-		setY = new Vector3(curPos.x, transform.position.y, curPos.z); // Object moves with mouse location
-		lastPosition = transform.position;
-		
-		transform.position = setY; // Fixes the objects Y postion
+		if(canDrag){
+	    	Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+	
+	    	Vector3 curPos = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+			setY = new Vector3(curPos.x, transform.position.y, curPos.z); // Object moves with mouse location
+			lastPosition = transform.position;
+			
+			transform.position = setY; // Fixes the objects Y postion
+		}
 	}
 	
 	void OnMouseUp(){
@@ -59,7 +66,7 @@ public class Dragable : MonoBehaviour {
 			
 			LayerMask path = 11;
 			path = ~(1<<path);
-			if(Physics.Raycast(transform.position, Vector3.down, out hit, 1f, path)){
+			if(Physics.Raycast(transform.position, Vector3.down, out hit, 5f, path)){
 				if(hit.transform.tag == Globals.GRID){
 					//fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
 					
@@ -67,20 +74,32 @@ public class Dragable : MonoBehaviour {
 					
 					float yRot = transform.eulerAngles.y;
 					
-					if(yRot == Globals.ROTATION_H_LEFT || yRot == Globals.ROTATION_H_RIGHT){
-						gridz = 3f;
-					} else {
-						gridz = 1f;
-					}
+					switch(state){
+					case FortState.THREE_ONE:
+						if(yRot == Globals.ROTATION_H_LEFT || yRot == Globals.ROTATION_H_RIGHT){
+							gridz = 3f;
+						} else {
+							gridz = 1f;
+						}
 					
-					if(yRot == Globals.ROTATION_V_UP || yRot == Globals.ROTATION_V_DOWN){
+						if(yRot == Globals.ROTATION_V_UP || yRot == Globals.ROTATION_V_DOWN){
+							gridx = 3f;
+						} else {
+							gridx = 1f;
+						}
+						break;
+					case FortState.THREE_THREE:
+						gridz = 3f;
 						gridx = 3f;
-					} else {
+						break;
+					case FortState.ONE_ONE:
 						gridx = 1f;
+						gridz = 1f;
+						break;
 					}
 					
 					Vector3 snapPos = transform.position;
-					snapPos = GameController.Instance.SnapToGrid(snapPos, gridx, gridz);
+					snapPos = GameController.Instance.SnapToGrid(snapPos, gridx, gridz, gameObject);
 					transform.position = snapPos;
 					
 					/*if(newPos != null){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- UPGRADE VALUES -->
+<!-- UPGRADE VALUES FOR WEAPONS -->
+<!-- COST: How much the upgrade costs -->
 <!-- RANGE: How far away you are able to hit an enemy with a projectile. For launcher types applies to lifetime before it destroys itself-->
 <!-- FIRE RATE: How fast the weapon shoots -->
 <!-- FORCE: How much force from the bullet applies to rigidbody characters -->
@@ -347,6 +348,11 @@
 			</Upgrades>
 		</MissileLauncher>
 	</Weapons>
+	
+	<!-- UPGRADES FOR FORTIFICATIONS -->
+	<!-- COST: How much the upgrade costs -->
+	<!-- HEALTH: How much health the fortification has -->
+	<!-- DAMAGE: How much damage the fortification will inflict upon contact with enemies -->
 	<Fortifications>
 		<Barrier>
 			<Upgrades>
@@ -372,5 +378,29 @@
 				</Upgrade4>
 			</Upgrades>
 		</Barrier>
+		<Tower>
+			<Upgrades>
+				<Upgrade1
+					cost= "500"
+					health= "300"
+					damage= "0">
+				</Upgrade1>
+				<Upgrade2
+					cost= "600"
+					health= "400"
+					damage= "0">
+				</Upgrade2>
+				<Upgrade3
+					cost= "800"
+					health= "500"
+					damage= "0">
+				</Upgrade3>
+				<Upgrade4
+					cost= "1000"
+					health= "600"
+					damage= "0">
+				</Upgrade4>
+			</Upgrades>
+		</Tower>
 	</Fortifications>
 </VendorData>

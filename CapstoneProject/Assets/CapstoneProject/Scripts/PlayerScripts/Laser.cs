@@ -35,13 +35,11 @@ public class Laser : MonoBehaviour {
 			Ray ray = new Ray(startPos, dir);
 			RaycastHit hit = new RaycastHit();
 			
-			if(Physics.Raycast(ray, out hit)){
+			if(Physics.Raycast(ray, out hit) && GameController.Instance.canShoot){
 				laser.SetPosition(0, startPos);
 				laser.SetPosition(1, hit.point);
 				lightObj.transform.position = hit.point + hit.normal * 0.2f;
-				if(GameController.Instance.canShoot){
-					lightObj.light.enabled = true;
-				}
+				lightObj.light.enabled = true;
 			} else {
 				laser.SetPosition(0, startPos);
 				laser.SetPosition(1, endPos);
