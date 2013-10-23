@@ -202,6 +202,9 @@ public class Enemy : AIPath {
 			}
 			break;
 		case EnemyState.IDLE:
+			if(anim){
+				PlayIdleAnimation();
+			}
 			break;
 		case EnemyState.DEAD:
 			if(!isDead && anim){
@@ -256,6 +259,9 @@ public class Enemy : AIPath {
 				state.speed = relSpeed*animationSpeed;
 			}
 		}
+	}
+	
+	void PlayIdleAnimation(){
 	}
 
 	void PlayAttackAnimation(){

@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: afeaeb0bc180a4a43902551dbd24ff22
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: blendShapes01
+    100002: bn_back
+    100004: bn_chest
+    100006: bn_jaw
+    100008: bn_l_ankle
+    100010: bn_l_ball
+    100012: bn_l_elbow
+    100014: bn_l_hip
+    100016: bn_l_knee
+    100018: bn_l_leg
+    100020: bn_l_shoulder
+    100022: bn_l_toe
+    100024: bn_l_wrist
+    100026: bn_neck
+    100028: bn_r_ankle
+    100030: bn_r_ball
+    100032: bn_r_elbow
+    100034: bn_r_hip
+    100036: bn_r_knee
+    100038: bn_r_leg
+    100040: bn_r_shoulder
+    100042: bn_r_toe
+    100044: bn_r_wrist
+    100046: bn_root
+    100048: char
+    100050: charNode01
+    100052: CoG
+    100054: controlObjects01
+    100056: //RootNode
+    100058: extraNodes01
+    100060: Global_control
+    100062: globalMove01
+    100064: iks01
+    100066: joints01
+    100068: left_index1
+    100070: left_index1 1
+    100072: left_index2
+    100074: left_index2 1
+    100076: left_index3
+    100078: left_index3 1
+    100080: left_middle1
+    100082: left_middle1 1
+    100084: left_middle2
+    100086: left_middle2 1
+    100088: left_middle3
+    100090: left_middle3 1
+    100092: left_palm
+    100094: left_palm 1
+    100096: left_pinky1
+    100098: left_pinky1 1
+    100100: left_pinky2
+    100102: left_pinky2 1
+    100104: left_pinky3
+    100106: left_pinky3 1
+    100108: left_ring1
+    100110: left_ring1 1
+    100112: left_ring2
+    100114: left_ring2 1
+    100116: left_ring3
+    100118: left_ring3 1
+    100120: Left_thumb1
+    100122: Left_thumb1 1
+    100124: left_thumb2
+    100126: left_thumb2 1
+    100128: model01
+    100130: pelvis
+    100132: pelvis_end
+    100134: to_transform01
+    100136: trns_toHide01
+    100138: trns_toShow01
+    100140: xtra_toHide01
+    100142: xtra_toShow01
+    400000: blendShapes01
+    400002: bn_back
+    400004: bn_chest
+    400006: bn_jaw
+    400008: bn_l_ankle
+    400010: bn_l_ball
+    400012: bn_l_elbow
+    400014: bn_l_hip
+    400016: bn_l_knee
+    400018: bn_l_leg
+    400020: bn_l_shoulder
+    400022: bn_l_toe
+    400024: bn_l_wrist
+    400026: bn_neck
+    400028: bn_r_ankle
+    400030: bn_r_ball
+    400032: bn_r_elbow
+    400034: bn_r_hip
+    400036: bn_r_knee
+    400038: bn_r_leg
+    400040: bn_r_shoulder
+    400042: bn_r_toe
+    400044: bn_r_wrist
+    400046: bn_root
+    400048: char
+    400050: charNode01
+    400052: CoG
+    400054: controlObjects01
+    400056: //RootNode
+    400058: extraNodes01
+    400060: Global_control
+    400062: globalMove01
+    400064: iks01
+    400066: joints01
+    400068: left_index1
+    400070: left_index1 1
+    400072: left_index2
+    400074: left_index2 1
+    400076: left_index3
+    400078: left_index3 1
+    400080: left_middle1
+    400082: left_middle1 1
+    400084: left_middle2
+    400086: left_middle2 1
+    400088: left_middle3
+    400090: left_middle3 1
+    400092: left_palm
+    400094: left_palm 1
+    400096: left_pinky1
+    400098: left_pinky1 1
+    400100: left_pinky2
+    400102: left_pinky2 1
+    400104: left_pinky3
+    400106: left_pinky3 1
+    400108: left_ring1
+    400110: left_ring1 1
+    400112: left_ring2
+    400114: left_ring2 1
+    400116: left_ring3
+    400118: left_ring3 1
+    400120: Left_thumb1
+    400122: Left_thumb1 1
+    400124: left_thumb2
+    400126: left_thumb2 1
+    400128: model01
+    400130: pelvis
+    400132: pelvis_end
+    400134: to_transform01
+    400136: trns_toHide01
+    400138: trns_toShow01
+    400140: xtra_toHide01
+    400142: xtra_toShow01
+    4300000: char
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: char
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

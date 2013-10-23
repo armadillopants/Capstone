@@ -1535,7 +1535,7 @@ MonoBehaviour:
   canAttackBoth: 1
   isPathBlocked: 0
   coolDownLength: 3
-  damageAmount: 20
+  damageAmount: 30
   distance: 10
   targetHeight: 0
   amountToGive: 100
