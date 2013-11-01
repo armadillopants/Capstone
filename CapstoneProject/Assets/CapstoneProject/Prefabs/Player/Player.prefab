@@ -398,7 +398,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.3563919, y: 1, z: 13}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400038}
@@ -1260,6 +1260,7 @@ MonoBehaviour:
   maxHealth: 100
   canTakeDamage: 1
   explosion: {fileID: 0}
+  waitTime: 3
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1278,7 +1279,6 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 300
   clips: 2
-  maxClips: 0
   reloadSpeed: 2.5
   damage: 10
   coneAngle: 1
@@ -1293,6 +1293,8 @@ MonoBehaviour:
   isAutomatic: 1
   isFiring: 0
   hitParticles: {fileID: 0}
+  useLayerMask: 1
+  gripID: 1
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1358,7 +1360,6 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 5
   clips: 6
-  maxClips: 0
   reloadSpeed: 1.20000005
   damage: 10
   coneAngle: 1.5
@@ -1373,6 +1374,8 @@ MonoBehaviour:
   isAutomatic: 0
   isFiring: 0
   hitParticles: {fileID: 0}
+  useLayerMask: 1
+  gripID: 2
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1403,7 +1406,6 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 40
   clips: 6
-  maxClips: 0
   reloadSpeed: 1.20000005
   damage: 10
   coneAngle: 1.5
@@ -1418,6 +1420,8 @@ MonoBehaviour:
   isAutomatic: 1
   isFiring: 0
   hitParticles: {fileID: 0}
+  useLayerMask: 1
+  gripID: 1
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1436,7 +1440,6 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 10
   clips: 6
-  maxClips: 0
   reloadSpeed: 1.20000005
   damage: 10
   coneAngle: 1.5
@@ -1451,6 +1454,8 @@ MonoBehaviour:
   isAutomatic: 0
   isFiring: 0
   hitParticles: {fileID: 0}
+  useLayerMask: 1
+  gripID: 0
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1469,7 +1474,6 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 40
   clips: 6
-  maxClips: 0
   reloadSpeed: 1.20000005
   damage: 10
   coneAngle: 1.5
@@ -1484,6 +1488,8 @@ MonoBehaviour:
   isAutomatic: 0
   isFiring: 0
   hitParticles: {fileID: 0}
+  useLayerMask: 1
+  gripID: 1
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1502,7 +1508,6 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 40
   clips: 6
-  maxClips: 0
   reloadSpeed: 1.20000005
   damage: 10
   coneAngle: 1.5
@@ -1517,6 +1522,8 @@ MonoBehaviour:
   isAutomatic: 0
   isFiring: 0
   hitParticles: {fileID: 0}
+  useLayerMask: 1
+  gripID: 1
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1535,7 +1542,6 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 40
   clips: 6
-  maxClips: 0
   reloadSpeed: 1.20000005
   damage: 10
   coneAngle: 1.5
@@ -1550,6 +1556,8 @@ MonoBehaviour:
   isAutomatic: 0
   isFiring: 0
   hitParticles: {fileID: 0}
+  useLayerMask: 1
+  gripID: 2
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1

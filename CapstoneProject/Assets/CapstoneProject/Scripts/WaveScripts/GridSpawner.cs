@@ -18,21 +18,21 @@ public class GridSpawner : MonoBehaviour {
 	//public List<PlaneData> planeData = new List<PlaneData>(); 
 	
 	public GameObject grid;
-	public GameObject wayPoint;
-	public GameObject wayPointMaster;
-	public GameObject cube;
-	public GameObject sphere;
+	//public GameObject wayPoint;
+	//public GameObject wayPointMaster;
+	//public GameObject cube;
+	//public GameObject sphere;
 	
-	public GameObject cell;
-	public GameObject node;
+	//public GameObject cell;
+	//public GameObject node;
 	
 	//private float X = 10f;
 	//private float Y = 10f;
-	public static int gridX = 20;
-	public static int gridY = 20;
+	//public static int gridX = 20;
+	//public static int gridY = 20;
 	//private float spacing = 3f;
 	
-	public Tile[,] grids;
+	//public Tile[,] grids;
 	
 	void Awake(){
 		GameObject p = (GameObject)Instantiate(grid, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
@@ -120,7 +120,7 @@ public class GridSpawner : MonoBehaviour {
 		//CalculateGrid();
 	}
 	
-	public void CalculateGrid(){
+	/*public void CalculateGrid(){
 		try {
 			// Creating our grid
 			grids = new Tile[GridSpawner.gridX, GridSpawner.gridY];
@@ -133,7 +133,7 @@ public class GridSpawner : MonoBehaviour {
 						(GameObject)Instantiate(sphere), false);
 					} else {
 						grids[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,0f,j*3f), (GameObject)Instantiate(cube), 
-						(GameObject)Instantiate(sphere), /*cube.renderer.bounds.Intersects(plane.renderer.bounds) ? false : true*/true);
+						(GameObject)Instantiate(sphere), cube.renderer.bounds.Intersects(plane.renderer.bounds) ? false : truetrue);
 					}
 				}
 			}
@@ -145,7 +145,7 @@ public class GridSpawner : MonoBehaviour {
 			Debug.LogError(e.Message + ": " + e.InnerException);
 			Application.Quit();
 		}
-	}
+	}*/
 	
 	/*public NullableVector3 DeterminePlane(Transform hit, GameObject plane, Vector3 point){
 		if(planeData != null){

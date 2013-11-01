@@ -9,6 +9,7 @@ public class Health : MonoBehaviour {
 	public bool canTakeDamage = true;
 	private bool isDead = false;
 	public GameObject explosion;
+	public float waitTime = 3f;
 	private bool isFortification = false;
 	private bool isEnemy = false;
 	private bool isShip = false;
@@ -68,10 +69,6 @@ public class Health : MonoBehaviour {
 	public void Die(){
 		isDead = true;
 		
-		if(explosion){
-			Instantiate(explosion, transform.position, Quaternion.identity);
-		}
-		
 		if(isFortification){
 			GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider.bounds, gameObject.collider, gameObject);
 		} else if(isEnemy){
@@ -82,13 +79,17 @@ public class Health : MonoBehaviour {
 		} else if(isPlayer){
 			Destroy(gameObject.GetComponent<LocalInput>());
 			Destroy(gameObject.GetComponent<PlayerMovement>());
+			Destroy(gameObject.GetComponent<AnimationController>());
 		} else {
-			Destroy(gameObject);
+			StartCoroutine(BeginDeathSequence());
 		}
 	}
 	
 	IEnumerator BeginDeathSequence(){
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(waitTime);
+		if(explosion){
+			Instantiate(explosion, transform.position, Quaternion.identity);
+		}
 		Destroy(gameObject);
 	}
 }

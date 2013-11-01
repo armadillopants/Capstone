@@ -1209,7 +1209,7 @@ MonoBehaviour:
   curHealth: 100
   maxHealth: 100
   canTakeDamage: 1
-  explosion: {fileID: 0}
+  explosion: {fileID: 100006, guid: 927a7591b135d3945b4f087b9b0a029d, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

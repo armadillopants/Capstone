@@ -30,8 +30,9 @@ public class StartGameButton : MonoBehaviour {
 			if(cam.position.z >= player.position.z-0.1f && beginGame){
 				cam.position = new Vector3(player.position.x, player.position.y+15, player.position.z);
 				cam.rotation = Quaternion.Euler(85, 0, 0);
-				player.gameObject.AddComponent<LocalInput>();
 				player.gameObject.AddComponent<PlayerMovement>();
+				player.gameObject.AddComponent<LocalInput>();
+				player.gameObject.AddComponent<AnimationController>();
 				GameObject.Find("Cargo").AddComponent<DynamicGridObstacle>();
 				StartCoroutine(GameObject.Find("WaveController").GetComponent<WaveController>().BeginFirstWave());
 				//GameObject.Find("Hull").AddComponent<DynamicGridObstacle>();

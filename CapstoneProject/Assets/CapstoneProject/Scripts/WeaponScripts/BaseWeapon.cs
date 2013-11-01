@@ -34,6 +34,8 @@ public class BaseWeapon : MonoBehaviour {
 	public ParticleEmitter hitParticles;
 	public bool useLayerMask = true;
 	
+	public int gripID;
+	
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;
 	}
@@ -128,11 +130,12 @@ public class BaseWeapon : MonoBehaviour {
 			
 			LayerMask layerMaskPlayer = 8;
 			LayerMask layerMaskFort = 9;
+			LayerMask layerMaskEnemy = 13;
 			LayerMask layerMaskFinal;
 			if(useLayerMask){
 				layerMaskFinal = ~((1<<layerMaskPlayer)|1<<layerMaskFort);
 			} else {
-				layerMaskFinal = ~(1<<layerMaskFort);
+				layerMaskFinal = ~((1<<layerMaskEnemy)|1<<layerMaskFort);
 			}
 			
 		  	// Does the ray intersect any objects excluding the player and fort layer

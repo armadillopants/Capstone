@@ -230,6 +230,26 @@ public class GameController : MonoBehaviour {
 				Debug.Log("Cannot place object");
 			}
 			
+			/*GeomRect rectA = new GeomRect();
+			rectA.x1 = current.collider.transform.position.x;
+			rectA.x2 = current.collider.transform.position.x + current.collider.bounds.size.x;
+			rectA.y1 = current.collider.transform.position.z;
+			rectA.y2 = current.collider.transform.position.z + current.collider.bounds.size.z;
+			
+			GeomRect rectB = new GeomRect();
+			rectB.x1 = forts[i].collider.transform.position.x;
+			rectB.x2 = forts[i].collider.transform.position.x + current.collider.bounds.size.x;
+			rectB.y1 = forts[i].collider.transform.position.z;
+			rectB.y2 = forts[i].collider.transform.position.z + current.collider.bounds.size.z;
+			
+			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
+				if(rectA.RectInside(rectB)){
+					canPlace = false;
+					current.renderer.material = invalidRed;
+					Debug.Log("Cannot place object");
+				}
+			}*/
+			
 			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
 				if(current.transform.eulerAngles.y == Globals.ROTATION_H_LEFT || current.transform.eulerAngles.y == Globals.ROTATION_H_RIGHT){
 					if(current.collider.bounds.Contains(forts[i].collider.bounds.center)){

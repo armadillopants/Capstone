@@ -3,7 +3,9 @@ using System.Collections;
 
 public class EnemyWeapon : MonoBehaviour {
 	
-	private BaseWeapon gun;
+	private BaseWeapon[] guns;
+	private Animation anim;
+	private Enemy cyborg;
 	private Health health;
 	public GameObject gunObject;
 	private GameObject target;
@@ -13,8 +15,10 @@ public class EnemyWeapon : MonoBehaviour {
 	private float coolDownLength = 5f;
 
 	void Start(){
-		gun = transform.GetComponentInChildren<BaseWeapon>();
+		guns = transform.GetComponentsInChildren<BaseWeapon>();
 		health = GetComponent<Health>();
+		cyborg = GetComponent<Enemy>();
+		anim = cyborg.GetAnim();
 	}
 	
 	void Update(){
@@ -25,7 +29,10 @@ public class EnemyWeapon : MonoBehaviour {
 				if(Vector3.Distance(target.transform.position, transform.position) < distance){
 					if(coolDownTimer <= 0){
 						coolDownTimer = 0;
-						gun.Fire();
+						cyborg.canMove = false;
+						anim.CrossFade("Shoot", 0.2f);
+						guns[0].Fire();
+						guns[1].Fire();
 						StartCoroutine(Firing());
 					}
 				}
@@ -43,6 +50,7 @@ public class EnemyWeapon : MonoBehaviour {
 	
 	IEnumerator Firing(){
 		yield return new WaitForSeconds(3f);
-		coolDownTimer = coolDownLength;
+		coolDownTimer = Random.Range(coolDownLength, coolDownLength*2);
+		cyborg.canMove = true;
 	}
 }

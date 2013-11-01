@@ -65,6 +65,10 @@ public class Enemy : AIPath {
 		base.Start();
 	}
 	
+	public Animation GetAnim(){
+		return anim;
+	}
+	
 	public override Vector3 GetFeetPosition(){
 		return rigid.position;
 	}
@@ -243,7 +247,7 @@ public class Enemy : AIPath {
 			velocity = Vector3.zero;
 		}
 		
-		if(anim){
+		if(anim && canMove){
 			Vector3 relativeVelocity = tr.InverseTransformDirection(velocity);
 			if(velocity.sqrMagnitude <= sleepVelocity*sleepVelocity){
 				// Fade out walk animation

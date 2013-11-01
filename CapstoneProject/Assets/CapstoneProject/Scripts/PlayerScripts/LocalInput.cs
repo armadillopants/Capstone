@@ -3,13 +3,17 @@ using System.Collections;
 
 public class LocalInput : MonoBehaviour {
 	
-	private PlayerMovement controller;
+	[HideInInspector]
+	public PlayerMovement controller;
+	private Transform trans;
 	
 	private Quaternion screenMovementSpace;
 	private Vector3 screenMovementForward;
 	private Vector3 screenMovementRight;
+	
 	private float camSmooth = 0.1f;
 	private float camDistFromPlayer = 1.5f;
+	
 	private Vector3 playerOffset;
 	private Vector3 cameraVelocity = Vector3.zero;
 	
@@ -17,6 +21,8 @@ public class LocalInput : MonoBehaviour {
 
 	void Awake(){
 		cam = Camera.main.transform;
+		
+		trans = transform;
 		
 		playerOffset = cam.position - transform.position;
 	}
@@ -29,6 +35,8 @@ public class LocalInput : MonoBehaviour {
 	}
 	
 	void Update(){
+		PlayerLookDirection();
+		
 		// Get the input vector from keyboard or analog stick
 		Vector3 moveDir = Input.GetAxis("Horizontal") * screenMovementRight + Input.GetAxis("Vertical") * screenMovementForward;
 	
@@ -71,5 +79,24 @@ public class LocalInput : MonoBehaviour {
 	
 		// Apply the direction to PlayerMovement
 		controller.moveDirection = moveDir;
+	}
+	
+		
+	void PlayerLookDirection(){
+		// Generate a plane that intersects the transform's position with an upwards normal.
+		Plane playerPlane = new Plane(Vector3.up, trans.position);
+		// Generate a ray from the cursor position
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		// Determine the point where the cursor ray intersects the plane.
+		float hitDist = 0;
+		// If the ray is parallel to the plane, Raycast will return false.
+		if(playerPlane.Raycast(ray, out hitDist)){
+		    // Get the point along the ray that hits the calculated distance.
+		    Vector3 targetPoint = ray.GetPoint(hitDist);
+		    // Determine the target rotation.
+		    Quaternion targetRotation = Quaternion.LookRotation(targetPoint - trans.position);
+			// Rotate towards the target point.
+			trans.rotation = Quaternion.Slerp(trans.rotation, targetRotation, 1);
+		}
 	}
 }
