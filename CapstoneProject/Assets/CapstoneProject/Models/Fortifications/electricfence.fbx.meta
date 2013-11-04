@@ -1,23 +1,36 @@
 fileFormatVersion: 2
-guid: 7300686ef88a3e34c8cbd40c4beb01f0
+guid: 1be5b73ddbc596448a69b18699836279
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: pCube1
-    100002: polySurface1
-    100004: //RootNode
-    400000: pCube1
-    400002: polySurface1
-    400004: //RootNode
-    2300000: pCube1
-    2300002: polySurface1
-    3300000: pCube1
-    3300002: polySurface1
-    4300000: pCube1
-    4300002: polySurface1
-    7400000: Swirl
+    100000: Electric_fence
+    100002: //RootNode
+    100004: pCube1
+    100006: pCube2
+    100008: pCylinder1
+    100010: pCylinder2
+    100012: pCylinder3
+    100014: transform1
+    100016: transform2
+    100018: transform3
+    100020: transform4
+    100022: transform5
+    400000: Electric_fence
+    400002: //RootNode
+    400004: pCube1
+    400006: pCube2
+    400008: pCylinder1
+    400010: pCylinder2
+    400012: pCylinder3
+    400014: transform1
+    400016: transform2
+    400018: transform3
+    400020: transform4
+    400022: transform5
+    2300000: Electric_fence
+    3300000: Electric_fence
+    4300000: Electric_fence
     9500000: //RootNode
-    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -29,29 +42,8 @@ ModelImporter:
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
-    animationWrapMode: 2
-    clipAnimations:
-    - name: Swirl
-      takeName: Take 001
-      firstFrame: 1
-      lastFrame: 24
-      wrapMode: 2
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      transformMask: []
+    animationWrapMode: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -73,7 +65,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
@@ -89,5 +81,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 1
+  animationType: 0
   userData: 

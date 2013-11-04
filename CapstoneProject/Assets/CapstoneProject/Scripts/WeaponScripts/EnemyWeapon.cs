@@ -29,7 +29,7 @@ public class EnemyWeapon : MonoBehaviour {
 				if(Vector3.Distance(target.transform.position, transform.position) < distance){
 					if(coolDownTimer <= 0){
 						coolDownTimer = 0;
-						cyborg.canMove = false;
+						//cyborg.canMove = false;
 						anim.CrossFade("Shoot", 0.2f);
 						guns[0].Fire();
 						guns[1].Fire();
@@ -51,6 +51,7 @@ public class EnemyWeapon : MonoBehaviour {
 	IEnumerator Firing(){
 		yield return new WaitForSeconds(3f);
 		coolDownTimer = Random.Range(coolDownLength, coolDownLength*2);
-		cyborg.canMove = true;
+		//cyborg.canMove = true;
+		anim.CrossFade("Walk", 0.2f);
 	}
 }

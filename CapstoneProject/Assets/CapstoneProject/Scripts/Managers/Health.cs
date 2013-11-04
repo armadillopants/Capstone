@@ -73,6 +73,7 @@ public class Health : MonoBehaviour {
 			GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider.bounds, gameObject.collider, gameObject);
 		} else if(isEnemy){
 			GameController.Instance.AddResources(Mathf.RoundToInt(gameObject.GetComponent<Enemy>().amountToGive));
+			Destroy(gameObject.GetComponent<Collider>());
 			StartCoroutine(BeginDeathSequence());
 		} else if(isShip){
 			Debug.Log("Ship is dead");

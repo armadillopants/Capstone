@@ -1773,7 +1773,7 @@ Transform:
   m_GameObject: {fileID: 100104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 400030}
   - {fileID: 400068}
@@ -2439,9 +2439,9 @@ Animation:
   m_GameObject: {fileID: 100104}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d52d274ec1990994f9db8dea6dbf06d3, type: 3}
+  m_Animation: {fileID: 7400000, guid: b2a1bc4f5524a0f4aaad960f97610659, type: 3}
   m_Animations:
-  - {fileID: 7400000, guid: d52d274ec1990994f9db8dea6dbf06d3, type: 3}
+  - {fileID: 7400000, guid: b2a1bc4f5524a0f4aaad960f97610659, type: 3}
   - {fileID: 7400002, guid: d52d274ec1990994f9db8dea6dbf06d3, type: 3}
   - {fileID: 7400004, guid: d52d274ec1990994f9db8dea6dbf06d3, type: 3}
   - {fileID: 7400000, guid: a3c7ae655992c2c4ea6814c3c0a80667, type: 3}
