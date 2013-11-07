@@ -66,7 +66,7 @@ public class WeaponVendor : MonoBehaviour {
 					upgrade.item = upgradeVendor[upgradeIndex].gameObject;
 					upgrade.sellItem = upgradeVendor[upgradeIndex].GetComponent<SellableItem>();
 					if(upgrade.sellItem.currentUpgrade <= 4){
-						upgrade.sellItem.cost = vendor.GetCurrentCost(upgrade.sellItem.cost, upgrade.sellItem.id, upgrade.sellItem.itemName, upgrade.sellItem.currentUpgrade);
+						upgrade.sellItem.cost = vendor.GetCurrentWeaponCost(upgrade.sellItem.cost, upgrade.sellItem.id, upgrade.sellItem.itemName, upgrade.sellItem.currentUpgrade);
 					}
 					upgrade.upgrade = true;
 					upgrade.hasWorldspace = false;
@@ -106,11 +106,11 @@ public class WeaponVendor : MonoBehaviour {
 		
 		if(GameController.Instance.GetResources() >= sellItem.cost && sellItem.currentUpgrade <= 4){
 			GameController.Instance.DeleteResources(sellItem.cost);
-			vendor.UpgradeData(sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
+			vendor.UpgradeWeaponData(sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
 			
 			sellItem.currentUpgrade += 1;
 			if(sellItem.currentUpgrade <=4){
-				sellItem.cost = vendor.GetCurrentCost(sellItem.cost, sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
+				sellItem.cost = vendor.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
 			}
 			Debug.Log("Purchased upgrade for: " + sellItem.itemName);
 		} else if(sellItem.currentUpgrade >= 5){

@@ -40,7 +40,7 @@ public class BaseWeapon : MonoBehaviour {
 		bulletsLeft = bulletsPerClip;
 	}
 	
-	void Start(){
+	void Awake(){
 		hitParticles = GetComponentInChildren<ParticleEmitter>();
 		
 		if(hitParticles){

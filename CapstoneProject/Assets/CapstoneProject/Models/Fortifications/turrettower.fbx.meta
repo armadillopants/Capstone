@@ -1,13 +1,20 @@
 fileFormatVersion: 2
-guid: 1ff02f4a233d3454bbc5fa4a0ffb0edf
+guid: 1dd763efc241d9a4288af29e7df2a3d1
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: polySurface2
+    100000: gun
+    100002: tower_base
+    100004: //RootNode
+    400000: gun
+    400002: tower_base
+    400004: //RootNode
+    2300000: gun
+    2300002: tower_base
+    3300000: gun
+    3300002: tower_base
+    4300000: tower_base
+    4300002: gun
     9500000: //RootNode
   materials:
     importMaterials: 1

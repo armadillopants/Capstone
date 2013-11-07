@@ -142,7 +142,7 @@ ParticleAnimator:
   worldRotationAxis: {x: 0, y: 0, z: 0}
   localRotationAxis: {x: 0, y: 0, z: 0}
   sizeGrow: .25
-  rndForce: {x: 1, y: 0, z: 1}
+  rndForce: {x: .5, y: 0, z: .5}
   force: {x: 0, y: 0, z: 0}
   damping: 1
   stopSimulation: 0
@@ -204,7 +204,7 @@ ParticleAnimator:
   sizeGrow: .25
   rndForce: {x: 1, y: 1, z: 1}
   force: {x: 0, y: .300000012, z: 0}
-  damping: .899999976
+  damping: .200000003
   stopSimulation: 0
   autodestruct: 0
 --- !u!15 &1500000
@@ -218,10 +218,10 @@ EllipsoidParticleEmitter:
   m_Emit: 1
   minSize: 1
   maxSize: 3
-  minEnergy: 3
-  maxEnergy: 5
-  minEmission: 30
-  maxEmission: 50
+  minEnergy: 2
+  maxEnergy: 4
+  minEmission: 20
+  maxEmission: 40
   worldVelocity: {x: 0, y: 0, z: 0}
   localVelocity: {x: 0, y: 0, z: 0}
   rndVelocity: {x: 2, y: .300000012, z: 2}
@@ -232,7 +232,7 @@ EllipsoidParticleEmitter:
   rndRotation: 1
   Simulate in Worldspace?: 0
   m_OneShot: 0
-  m_Ellipsoid: {x: 5, y: 1, z: 5}
+  m_Ellipsoid: {x: 1, y: 1, z: 1}
   m_MinEmitterRange: 0
 --- !u!15 &1500002
 EllipsoidParticleEmitter:
@@ -272,12 +272,12 @@ EllipsoidParticleEmitter:
   m_Emit: 1
   minSize: 1
   maxSize: 5
-  minEnergy: 3
-  maxEnergy: 6
-  minEmission: 10
-  maxEmission: 30
+  minEnergy: 1
+  maxEnergy: 5
+  minEmission: 5
+  maxEmission: 20
   worldVelocity: {x: 0, y: 0, z: 0}
-  localVelocity: {x: 0, y: 1, z: 0}
+  localVelocity: {x: 0, y: .5, z: 0}
   rndVelocity: {x: 1, y: 1, z: 1}
   emitterVelocityScale: 1
   tangentVelocity: {x: 0, y: 0, z: 0}
@@ -286,7 +286,7 @@ EllipsoidParticleEmitter:
   rndRotation: 1
   Simulate in Worldspace?: 0
   m_OneShot: 0
-  m_Ellipsoid: {x: 2, y: 1, z: 2}
+  m_Ellipsoid: {x: 1, y: 1, z: 1}
   m_MinEmitterRange: 0
 --- !u!26 &2600000
 ParticleRenderer:
@@ -382,8 +382,8 @@ Light:
   serializedVersion: 3
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Intensity: 6
-  m_Range: 10
+  m_Intensity: 5
+  m_Range: 8
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:

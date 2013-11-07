@@ -79,4 +79,14 @@
 		damage= "10"
 		coneAngle= "2">
 	</MissileLauncher>
+	<LightningBlaster
+		range = "5"
+		fireRate= "0.1"
+		force= "1"
+		bulletsPerClip= "100"
+		clips= "6"
+		reloadSpeed= "2.5"
+		damage= "5"
+		coneAngle= "1.8">
+	</LightningBlaster>
 </WeaponData>

@@ -13,11 +13,14 @@ public class EnemyWeapon : MonoBehaviour {
 	
 	private float coolDownTimer;
 	private float coolDownLength = 5f;
+	
+	private float tempSpeed = 0f;
 
 	void Start(){
 		guns = transform.GetComponentsInChildren<BaseWeapon>();
 		health = GetComponent<Health>();
 		cyborg = GetComponent<Enemy>();
+		tempSpeed = cyborg.speed;
 		anim = cyborg.GetAnim();
 	}
 	
@@ -29,7 +32,7 @@ public class EnemyWeapon : MonoBehaviour {
 				if(Vector3.Distance(target.transform.position, transform.position) < distance){
 					if(coolDownTimer <= 0){
 						coolDownTimer = 0;
-						//cyborg.canMove = false;
+						cyborg.speed = 0;
 						anim.CrossFade("Shoot", 0.2f);
 						guns[0].Fire();
 						guns[1].Fire();
@@ -51,7 +54,7 @@ public class EnemyWeapon : MonoBehaviour {
 	IEnumerator Firing(){
 		yield return new WaitForSeconds(3f);
 		coolDownTimer = Random.Range(coolDownLength, coolDownLength*2);
-		//cyborg.canMove = true;
+		cyborg.speed = tempSpeed;
 		anim.CrossFade("Walk", 0.2f);
 	}
 }

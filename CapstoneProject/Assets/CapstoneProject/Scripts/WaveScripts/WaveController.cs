@@ -21,6 +21,10 @@ public class WaveController : MonoBehaviour {
 		canBeginWave = false;
 	}
 	
+	public int GetWaveNumber(){
+		return waveNumber;
+	}
+	
 	void Update(){
 		if(canBeginWave){
 			if(!isWaiting){

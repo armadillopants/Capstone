@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour {
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
+	private int curWave;
+	private int endWave;
 	
 	// Fortification data
 	private GameObject fortToSpawn;
@@ -74,6 +76,22 @@ public class GameController : MonoBehaviour {
 	
 	public Health GetShipHealth(){
 		return shipHealth;
+	}
+	
+	public int EndWave(){
+		return endWave;
+	}
+	
+	public int CurWave(){
+		return curWave;
+	}
+	
+	public void SetEndWave(int amount){
+		endWave = amount;
+	}
+	
+	public void SetCurWave(int amount){
+		curWave = amount;
 	}
 	
 	void Update(){

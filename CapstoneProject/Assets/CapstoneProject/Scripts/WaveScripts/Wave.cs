@@ -24,12 +24,22 @@ public class Wave : MonoBehaviour {
 	
 	public void StartWave(WaveController wave, int waveNum){
 		// Spawn amount based on wave number
-		if(waveNum == END_WAVE){
+		if(GameController.Instance.EndWave() != 0){
+			if(waveNum == GameController.Instance.CurWave()+GameController.Instance.EndWave()){
+				amountToSpawn = Mathf.Infinity;
+				GameController.Instance.SpawnRescueShip();
+			} else {
+				amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
+			}
+		} else {
+			amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
+		}
+		/*if(waveNum == END_WAVE){
 			amountToSpawn = Mathf.Infinity;
 			GameController.Instance.SpawnRescueShip();
 		} else {
 			amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
-		}
+		}*/
 		
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		controller = wave;

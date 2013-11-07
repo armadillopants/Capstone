@@ -347,6 +347,54 @@
 				</Upgrade4>
 			</Upgrades>
 		</MissileLauncher>
+		<LightningBlaster>
+			<Upgrades>
+				<Upgrade1
+					cost= "500"
+					range = "5"
+					fireRate= "0.1"
+					force= "1"
+					bulletsPerClip= "150"
+					clips= "7"
+					reloadSpeed= "2.3"
+					damage= "7"
+					coneAngle= "1.8">
+				</Upgrade1>
+				<Upgrade2
+					cost= "550"
+					range = "5"
+					fireRate= "0.1"
+					force= "1"
+					bulletsPerClip= "200"
+					clips= "8"
+					reloadSpeed= "2.1"
+					damage= "9"
+					coneAngle= "1.8">
+				</Upgrade2>
+				<Upgrade3
+					cost= "600"
+					range = "5"
+					fireRate= "0.1"
+					force= "1"
+					bulletsPerClip= "250"
+					clips= "9"
+					reloadSpeed= "1.9"
+					damage= "11"
+					coneAngle= "1.8">
+				</Upgrade3>
+				<Upgrade4
+					cost= "650"
+					range = "5"
+					fireRate= "0.1"
+					force= "1"
+					bulletsPerClip= "300"
+					clips= "10"
+					reloadSpeed= "1.7"
+					damage= "13"
+					coneAngle= "1.8">
+				</Upgrade4>
+			</Upgrades>
+		</LightningBlaster>
 	</Weapons>
 	
 	<!-- UPGRADES FOR FORTIFICATIONS -->

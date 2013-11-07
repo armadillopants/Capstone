@@ -217,8 +217,8 @@ public class BaseEnemy : AIPath {
 	}
 	
 	void OnParticleCollision(GameObject other){
-		BaseWeapon flame = other.transform.parent.GetComponent<BaseWeapon>();
-		SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(flame.damage/Time.time), SendMessageOptions.DontRequireReceiver);
+		BaseWeapon incomingParticle = other.transform.parent.GetComponent<BaseWeapon>();
+		SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(incomingParticle.damage/Time.time), SendMessageOptions.DontRequireReceiver);
 		
 		if(!isBurning){
 			isBurning = true;

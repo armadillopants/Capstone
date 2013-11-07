@@ -17,7 +17,7 @@ public class WeaponManager : MonoBehaviour {
 	private string[] rifleTypes = new string[3]{ "Machine Gun", "Burst Rifle", "Shotgun" };
 	private string[] pistolTypes = new string[1]{ "Pistol" };
 	private string[] launcherTypes = new string[2]{ "Rocket Launcher", "Missile Launcher" };
-	private string[] specialTypes = new string[1]{ "Flame Thrower" };
+	private string[] specialTypes = new string[2]{ "Flame Thrower", "Lightning Blaster" };
 	
 	public void DetermineWeaponType(SellableItem item){
 		for(int i=0; i<rifleTypes.Length; i++){

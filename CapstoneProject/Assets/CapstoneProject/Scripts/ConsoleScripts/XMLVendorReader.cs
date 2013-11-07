@@ -18,14 +18,14 @@ public class XMLVendorReader : MonoBehaviour {
 		doc.LoadXml(asset.text);
 	}
 	
-	public int GetCurrentCost(int cost, int i, string itemName, int currentUpgrade){
+	public int GetCurrentWeaponCost(int cost, int i, string itemName, int currentUpgrade){
 		string result = itemName.Replace(" " , "");
 		firstNode = doc.SelectSingleNode("/VendorData/Weapons/" + result + "/Upgrades/" + "Upgrade" + currentUpgrade);
 		cost = int.Parse(firstNode.Attributes.GetNamedItem("cost").Value);
 		return cost;
 	}
 	
-	public void UpgradeData(int i, string itemName, int currentUpgrade){
+	public void UpgradeWeaponData(int i, string itemName, int currentUpgrade){
 		string result = itemName.Replace(" " , "");
 		if(weapons[i]){
 			firstNode = doc.SelectSingleNode("/VendorData/Weapons/" + result + "/Upgrades/" + "Upgrade" + currentUpgrade);

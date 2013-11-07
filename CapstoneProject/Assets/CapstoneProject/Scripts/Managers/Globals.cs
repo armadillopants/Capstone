@@ -2,10 +2,10 @@
 public static class Globals {
 	
 	// Rotation values for fortifications
-	public const float ROTATION_H_LEFT = 0f;
-	public const float ROTATION_H_RIGHT = 180f;
-	public const float ROTATION_V_UP = 90.00001f; // Whenever I rotate an object its like 90.00001f, weird
-	public const float ROTATION_V_DOWN = 270f;
+	public const float ROTATION_H_LEFT = 90.00001f; // Whenever I rotate an object its like 90.00001f, weird
+	public const float ROTATION_H_RIGHT = 270f;
+	public const float ROTATION_V_UP = 0f;
+	public const float ROTATION_V_DOWN = 180f;
 	
 	public const float GRID_SIZE = 12f;
 	
