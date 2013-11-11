@@ -14,9 +14,9 @@ public class XMLReader : MonoBehaviour {
 		weapons = player.GetComponentsInChildren<BaseWeapon>();
 		manager = player.GetComponentInChildren<WeaponManager>();
 		
-		TextAsset asset = new TextAsset();
-		asset = (TextAsset)Resources.Load("WeaponData", typeof(TextAsset));
-		doc.LoadXml(asset.text);
+		//TextAsset asset = new TextAsset();
+		//asset = (TextAsset)Resources.Load("WeaponData", typeof(TextAsset));
+		doc.Load(Application.dataPath + "/WeaponData.xml");//asset.text);
 		
 		SetWeapon(manager.allWeapons[0].id, "/WeaponData/MachineGun");
 		SetWeapon(manager.allWeapons[1].id, "/WeaponData/Pistol");

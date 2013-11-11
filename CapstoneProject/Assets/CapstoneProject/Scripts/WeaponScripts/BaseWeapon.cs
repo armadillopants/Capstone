@@ -35,6 +35,7 @@ public class BaseWeapon : MonoBehaviour {
 	public bool useLayerMask = true;
 	
 	public int gripID;
+	public float costPerBullet = 0;
 	
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;

@@ -17,7 +17,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   m_Layer: 9
-  m_Name: BarrierTwo
+  m_Name: Wall
   m_TagString: Fortification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 100
-  maxHealth: 100
+  curHealth: 150
+  maxHealth: 150
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
@@ -140,10 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Barrier
-  description: Standard barrier
+  itemName: Wall
+  description: Standard Wall
   preview: {fileID: 0}
-  cost: 200
+  cost: 250
   purchased: 0
   currentUpgrade: 1
   id: 0

@@ -231,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 100
-  maxHealth: 100
+  curHealth: 300
+  maxHealth: 300
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
@@ -263,7 +263,7 @@ MonoBehaviour:
   itemName: Satellite Tower
   description: Sends a Call Sign Mayday
   preview: {fileID: 0}
-  cost: 1000
+  cost: 500
   purchased: 0
   currentUpgrade: 1
   id: 0

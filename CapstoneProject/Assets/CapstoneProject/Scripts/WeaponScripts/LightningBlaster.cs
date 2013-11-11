@@ -35,7 +35,7 @@ public class LightningBlaster : BaseWeapon {
 	
 	public override void Fire(){
 		
-		if(clips > 0){
+		if(clips >= 0){
 			
 			if(targets[0] != null){
 				

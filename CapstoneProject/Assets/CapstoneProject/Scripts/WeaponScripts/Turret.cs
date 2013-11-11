@@ -17,7 +17,7 @@ public class Turret : MonoBehaviour {
 	void Update(){
 		target = GameController.Instance.FindNearestTarget(Globals.ENEMY, pivot);
 		
-		if(target && weapon.clips > 0){
+		if(target && weapon.clips >= 0){
 			if(isTower){
 				Vector3 relative = pivot.InverseTransformPoint(target.transform.position);
         		float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;

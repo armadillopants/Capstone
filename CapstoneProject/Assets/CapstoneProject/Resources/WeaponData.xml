@@ -13,7 +13,7 @@
 		range= "100"
 		fireRate= "0.09"
 		force= "0.5"
-		bulletsPerClip= "40"
+		bulletsPerClip= "60"
 		clips= "6"
 		reloadSpeed= "1.2"
 		damage= "10"

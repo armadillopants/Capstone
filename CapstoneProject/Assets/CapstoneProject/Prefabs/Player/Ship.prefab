@@ -1350,10 +1350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 300
-  maxHealth: 300
+  curHealth: 500
+  maxHealth: 500
   canTakeDamage: 1
   explosion: {fileID: 100006, guid: 45eb2ff886bff3d4c91840e878e2097a, type: 2}
+  waitTime: 3
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
