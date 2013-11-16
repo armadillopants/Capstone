@@ -27,7 +27,7 @@ public class Enemy : AIPath {
 	public float damageAmount = 10f;
 	public float distance = 10f;
 	public float targetHeight = 1f;
-	public int amountToGive = 100;
+	private int amountToGive = 0;
 	private float sleepVelocity = 0.4f;
 
 	private bool isBurning = false;
@@ -36,6 +36,10 @@ public class Enemy : AIPath {
 	
 	private Health health;
 	
+	public int AmountToGive(){
+		return amountToGive;
+	}
+	
 	public new void Start(){
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
@@ -43,6 +47,12 @@ public class Enemy : AIPath {
 		anim = GetComponent<Animation>();
 		
 		health = GetComponent<Health>();
+		
+		for(int i=0; i<health.curHealth; i++){
+			if(health.curHealth % i == 0){
+				amountToGive += 10;
+			}
+		}
 		
 		if(chasePlayer){
 			SwitchTarget(Globals.PLAYER);

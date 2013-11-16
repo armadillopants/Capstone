@@ -10,24 +10,25 @@ public class Spawner : MonoBehaviour {
 	
 	private GameObject[] spawnPoints;
 	private Transform spawnPoint;
+	
+	private DayNightCycle cycle;
 
 	void Start(){
 		spawnPoints = GameObject.FindGameObjectsWithTag(Globals.SPAWN_POINT);
+		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 	}
 	
 	void Update(){
 	}
 	
 	public void SpawnEnemy(){
-		if(GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.DAY || 
-			GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.DAWN){
+		if(cycle.currentPhase == DayNightCycle.DayPhase.DAY || cycle.currentPhase == DayNightCycle.DayPhase.DAWN){
 			for(int i=0; i<dayEnemies.Count; i++){
 				enemy = dayEnemies[Random.Range(0, dayEnemies.Count)];
 			}
 		}
 		
-		if(GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.NIGHT || 
-			GameObject.Find("Sun").GetComponent<DayNightCycle>().currentPhase == DayNightCycle.DayPhase.DUSK){
+		if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
 			for(int i=0; i<nightEnemies.Count; i++){
 				enemy = nightEnemies[Random.Range(0, nightEnemies.Count)];
 			}

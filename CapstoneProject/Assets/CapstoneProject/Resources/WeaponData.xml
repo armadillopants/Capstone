@@ -49,7 +49,7 @@
 		damage= "10"
 		coneAngle= "2">
 	</FlameThrower>
-	<ThreeBurst
+	<BurstRifle
 		range= "100"
 		fireRate= "0.3"
 		force= "0.7"
@@ -58,7 +58,7 @@
 		reloadSpeed= "1.5"
 		damage= "15"
 		coneAngle= "1.2">
-	</ThreeBurst>
+	</BurstRifle>
 	<Shotgun
 		range= "100"
 		fireRate= "0.09"

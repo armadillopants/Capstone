@@ -220,6 +220,7 @@ MonoBehaviour:
   state: 2
   height: .200000003
   canDrag: 1
+  canUpdate: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,7 +262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Satellite Tower
-  description: Sends a Call Sign Mayday
+  description: Sends a Call Sign MaydayNEWLINEwhich ignitiates the final tenNEWLINEwaves
+    to survive beforeNEWLINErescue.
   preview: {fileID: 0}
   cost: 500
   purchased: 0

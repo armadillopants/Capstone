@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour {
 		UPGRADE_SCREEN, BUY_SCREEN, EQUIP_WEAPON_SCREEN, 
 		FORT_UPGRADE_SCREEN, GAMEWON };
 	public UIState uiState = UIState.NONE;
+	
 	public bool isPaused = false;
 	private WeaponSelection selection;
 	private bool fadeComplete = false;
@@ -89,7 +90,6 @@ public class UIManager : MonoBehaviour {
 	void OnGUI(){
 		switch(uiState){
 		case UIState.PAUSE:
-			isPaused = !isPaused;
 			DrawPauseScreen();
 			break;
 		case UIState.WAVEWON:
@@ -130,6 +130,12 @@ public class UIManager : MonoBehaviour {
 			isPaused = !isPaused;
 			UIManager.Instance.uiState = UIState.NONE;
 		}
+		if(GUI.Button(new Rect(Screen.width/2, Screen.height/4, 100, 50), "Restart")){
+			Application.LoadLevel(Application.loadedLevel);
+		}
+		if(GUI.Button(new Rect(Screen.width/2, Screen.height/3, 100, 50), "Quit")){
+			Application.Quit();
+		}
 	}
 	
 	void DrawWaveWonScreen(){
@@ -144,7 +150,7 @@ public class UIManager : MonoBehaviour {
 		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Next Wave");
 	}
 	
-	public void DrawGameOverScreen(){
+	void DrawGameOverScreen(){
 		if(fadeComplete){
 			if(GUI.Button(new Rect(Screen.width/3, Screen.height/3, 100, 50), "Restart")){
 				GameController.Instance.Reset();

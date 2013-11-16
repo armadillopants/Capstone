@@ -49,7 +49,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 			guiLoc.x += itemsToDisplay[i].pixelOffset.x;
 			guiLoc.y += itemsToDisplay[i].pixelOffset.y;
 			
-			content = new GUIContent(itemsToDisplay[i].sellItem.itemName+"\n"+itemsToDisplay[i].sellItem.description+
+			content = new GUIContent("\n\n\n"+itemsToDisplay[i].sellItem.itemName+"\n"+itemsToDisplay[i].sellItem.description.Replace("NEWLINE", "\n")+
 				"\nPrice: $"+itemsToDisplay[i].sellItem.cost.ToString(),itemsToDisplay[i].icon);
 
 			if(GUI.Button(new Rect(guiLoc.x,guiLoc.y,itemsToDisplay[i].windowSize.x,itemsToDisplay[i].windowSize.y),content,style)){

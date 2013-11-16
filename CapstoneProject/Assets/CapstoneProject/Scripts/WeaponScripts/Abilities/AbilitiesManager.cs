@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class AbilitiesManager : MonoBehaviour {
 	
@@ -7,6 +8,8 @@ public class AbilitiesManager : MonoBehaviour {
 	private int amount = 3;
 	private float coolDown;
 	private float maxCoolDown = 30f;
+	
+	private string ability = "";
 	
 	#region Singleton
 	
@@ -35,6 +38,10 @@ public class AbilitiesManager : MonoBehaviour {
 		beginAbility = true;
 	}
 	
+	public void SetAbility(string newAbility){
+		ability = newAbility;
+	}
+	
 	void Update(){
 		if(coolDown > 0){
 			coolDown -= 1f*Time.deltaTime;
@@ -45,11 +52,15 @@ public class AbilitiesManager : MonoBehaviour {
 			}
 		}
 		
-		if(GameController.Instance.canShoot){
-			if(Input.GetKeyDown(KeyCode.E) && beginAbility && amount > 0){
-				holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
-				beginAbility = false;
-				amount--;
+		if(holder.transform.GetComponent(ability)){
+			if(holder.transform.GetComponent(ability).ToString().Contains(ability)){
+				if(GameController.Instance.canShoot){
+					if(Input.GetKeyDown(KeyCode.E) && beginAbility && amount > 0){
+						holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
+						beginAbility = false;
+						amount--;
+					}
+				}
 			}
 		}
 	}

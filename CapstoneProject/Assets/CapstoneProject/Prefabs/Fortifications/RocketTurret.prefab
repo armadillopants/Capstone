@@ -445,6 +445,7 @@ MonoBehaviour:
   state: 2
   height: .5
   canDrag: 1
+  canUpdate: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,6 +461,7 @@ MonoBehaviour:
   maxHealth: 50
   canTakeDamage: 1
   explosion: {fileID: 0}
+  waitTime: 3
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -485,7 +487,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Rocket Turret
-  description: Turret that shoots rockets
+  description: Turret that fires rocketsNEWLINEat nearest target.NEWLINEHigh damage
+    on CYBORGS
   preview: {fileID: 0}
   cost: 150
   purchased: 0
@@ -510,6 +513,7 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 10
   clips: 5
+  maxClips: 0
   reloadSpeed: 2
   damage: 10
   coneAngle: 1.70000005
@@ -525,6 +529,8 @@ MonoBehaviour:
   isFiring: 0
   hitParticles: {fileID: 0}
   useLayerMask: 1
+  gripID: 0
+  costPerBullet: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,7 +543,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 400014}
+  constraint: {fileID: 0}
   turnSpeed: 3
+  isTower: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

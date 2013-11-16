@@ -19,7 +19,7 @@ public class WeaponVendor : MonoBehaviour {
 	private float columns = 3;
 
 	void Start(){
-		displayer = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
+		displayer = GameObject.Find(Globals.ITEM_DISPLAYER).GetComponent<SellableItemDisplayer>();
 		vendor = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 		manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
 	}
@@ -40,7 +40,7 @@ public class WeaponVendor : MonoBehaviour {
 					weapon.hasWorldspace = false;
 					weapon.worldspaceLocation = new Vector3(0,1,0);
 					weapon.windowSize = new Vector2(200,100);
-					Vector2 display = new Vector2(c*160, r*100);
+					Vector2 display = new Vector2(c*200, r*200);
 					weapon.pixelOffset = new Vector2(x, y) + display;
 					weapon.icon = icon;
 					weapon.iconSize = 50;
@@ -66,13 +66,13 @@ public class WeaponVendor : MonoBehaviour {
 					upgrade.item = upgradeVendor[upgradeIndex].gameObject;
 					upgrade.sellItem = upgradeVendor[upgradeIndex].GetComponent<SellableItem>();
 					if(upgrade.sellItem.currentUpgrade <= 4){
-						upgrade.sellItem.cost = vendor.GetCurrentWeaponCost(upgrade.sellItem.cost, upgrade.sellItem.id, upgrade.sellItem.itemName, upgrade.sellItem.currentUpgrade);
+						upgrade.sellItem.cost = vendor.GetCurrentWeaponCost(upgrade.sellItem.cost, upgrade.sellItem.id, upgrade.sellItem.name, upgrade.sellItem.currentUpgrade);
 					}
 					upgrade.upgrade = true;
 					upgrade.hasWorldspace = false;
 					upgrade.worldspaceLocation = new Vector3(0,1,0);
 					upgrade.windowSize = new Vector2(200,100);
-					Vector2 display = new Vector2(c*160, r*100);
+					Vector2 display = new Vector2(c*200, r*200);
 					upgrade.pixelOffset = new Vector2(x, y) + display;
 					upgrade.icon = icon;
 					upgrade.iconSize = 50;
@@ -106,11 +106,11 @@ public class WeaponVendor : MonoBehaviour {
 		
 		if(GameController.Instance.GetResources() >= sellItem.cost && sellItem.currentUpgrade <= 4){
 			GameController.Instance.DeleteResources(sellItem.cost);
-			vendor.UpgradeWeaponData(sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
+			vendor.UpgradeWeaponData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			
 			sellItem.currentUpgrade += 1;
 			if(sellItem.currentUpgrade <=4){
-				sellItem.cost = vendor.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
+				sellItem.cost = vendor.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			}
 			Debug.Log("Purchased upgrade for: " + sellItem.itemName);
 		} else if(sellItem.currentUpgrade >= 5){

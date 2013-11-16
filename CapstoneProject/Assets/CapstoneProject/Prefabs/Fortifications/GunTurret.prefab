@@ -504,6 +504,7 @@ MonoBehaviour:
   state: 2
   height: .5
   canDrag: 1
+  canUpdate: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -519,6 +520,7 @@ MonoBehaviour:
   maxHealth: 50
   canTakeDamage: 1
   explosion: {fileID: 0}
+  waitTime: 3
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,8 +545,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Gun Turret
-  description: Standard Turret
+  itemName: Sentry Turret
+  description: Turret that fires ballisticNEWLINEammunition. Low damage.
   preview: {fileID: 0}
   cost: 100
   purchased: 0
@@ -569,6 +571,7 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 100
   clips: 5
+  maxClips: 0
   reloadSpeed: 1.5
   damage: 5
   coneAngle: 1.70000005
@@ -584,6 +587,8 @@ MonoBehaviour:
   isFiring: 0
   hitParticles: {fileID: 0}
   useLayerMask: 1
+  gripID: 0
+  costPerBullet: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -596,7 +601,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 400014}
+  constraint: {fileID: 0}
   turnSpeed: 3
+  isTower: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

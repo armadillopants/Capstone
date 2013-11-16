@@ -17,7 +17,7 @@ public class ItemVendor : MonoBehaviour {
 	private float columns = 3;
 
 	void Start(){
-		displayer = GameObject.Find("ItemDisplayer").GetComponent<SellableItemDisplayer>();
+		displayer = GameObject.Find(Globals.ITEM_DISPLAYER).GetComponent<SellableItemDisplayer>();
 		vendor = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 	}
 	
@@ -37,7 +37,7 @@ public class ItemVendor : MonoBehaviour {
 					item.hasWorldspace = false;
 					item.worldspaceLocation = new Vector3(0,1,0);
 					item.windowSize = new Vector2(200,100);
-					Vector2 display = new Vector2(c*160, r*100);
+					Vector2 display = new Vector2(c*200, r*200);
 					item.pixelOffset = new Vector2(x, y) + display;
 					item.icon = icon;
 					item.iconSize = 50;
@@ -90,7 +90,7 @@ public class ItemVendor : MonoBehaviour {
 		if(GameController.Instance.GetResources() >= sellItem.cost && sellItem.currentUpgrade <= 4){
 			GameController.Instance.DeleteResources(sellItem.cost);
 			vendor.SetFortData(sellItem.gameObject);
-			vendor.UpgradeFortificationData(sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
+			vendor.UpgradeFortificationData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			if(sellItem.upgradedItem){
 				Instantiate(sellItem.upgradedItem, sellItem.gameObject.transform.position, sellItem.gameObject.transform.rotation);
 				Destroy(sellItem.gameObject);
@@ -98,7 +98,7 @@ public class ItemVendor : MonoBehaviour {
 			
 			sellItem.currentUpgrade += 1;
 			if(sellItem.currentUpgrade <=4){
-				sellItem.cost = vendor.GetCurrentFortificationCost(sellItem.cost, sellItem.id, sellItem.itemName, sellItem.currentUpgrade);
+				sellItem.cost = vendor.GetCurrentFortificationCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			}
 			Debug.Log("Purchased upgrade for: " + sellItem.itemName);
 		} else if(sellItem.currentUpgrade >= 5){

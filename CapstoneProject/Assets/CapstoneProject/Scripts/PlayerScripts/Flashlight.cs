@@ -31,17 +31,17 @@ public class Flashlight : MonoBehaviour {
 			flashLight.intensity -= (batteryCurveEval/maxBatteryLife*0.5f) * Time.deltaTime;
 		}
 		
-		if(Input.GetKeyDown(KeyCode.F) && batteryLife > 0){
+		/*if(Input.GetKeyDown(KeyCode.F) && batteryLife > 0){
 			TurnOnOff();
-		}
+		}*/
 	}
 	
-	void TurnOnOff(){
-		switchOn = !switchOn;
-		flashLight.enabled = !flashLight.enabled;
+	public void TurnOn(){
+		switchOn = true;//!switchOn;
+		flashLight.enabled = true;//!flashLight.enabled;
 	}
 	
-	void TurnOff(){
+	public void TurnOff(){
 		switchOn = false;
 		flashLight.enabled = false;
 	}

@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 0;
+	private int amountOfResources = 100000000;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -29,6 +29,9 @@ public class GameController : MonoBehaviour {
 	public Material validGreen;
 	public Material invalidRed;
 	private Material originalMat;
+	
+	private XMLReader weaponReader;
+	private DayNightCycle cycle;
 	
 	#region Singleton
 	
@@ -50,6 +53,11 @@ public class GameController : MonoBehaviour {
 		
 		playerHealth = player.GetComponent<Health>();
 		shipHealth = ship.GetComponent<Health>();
+		
+		weaponReader = GameObject.Find("XMLReader").GetComponent<XMLReader>();
+		weaponReader.Reset();
+		
+		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 	}
 
 	void OnApplicationQuit(){
@@ -95,7 +103,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	void Update(){
-		if((playerHealth.IsDead && shipHealth.IsDead) || playerHealth.IsDead){
+		if(playerHealth.IsDead){
 			SwitchUIState(UIManager.UIState.GAMEOVER);
 			if(!beginFade){
 				StartCoroutine(UIManager.Instance.Fade());
@@ -114,19 +122,27 @@ public class GameController : MonoBehaviour {
 		if(fortSpawned){
 			UpdateFortPosWithMouseLoc();
 		}
+		
+		if(cycle.currentPhase == DayNightCycle.DayPhase.DAY || cycle.currentPhase == DayNightCycle.DayPhase.DAWN){
+			player.GetComponentInChildren<Flashlight>().TurnOff();
+		}
+		
+		if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
+			player.GetComponentInChildren<Flashlight>().TurnOn();
+		}
 	}
 	
 	public void Reset(){
 		DestroyEnemies();
-		GameObject.Find("Ship").AddComponent<AttachPlayerToShip>();
 		DestroyFortifications();
+		GameObject.Find("Ship").AddComponent<AttachPlayerToShip>();
 		if(shipToSpawn){
 			Destroy(shipToSpawn);
 		}
 		canShoot = false;
 		canChangeWeapons = false;
-		GetPlayerHealth().ModifyHealth(100f);
-		GetShipHealth().ModifyHealth(300f);
+		GetPlayerHealth().ModifyHealth(GetPlayerHealth().GetMaxHealth());
+		GetShipHealth().ModifyHealth(GetShipHealth().GetMaxHealth());
 		GetPlayerHealth().IsDead = false;
 		GetShipHealth().IsDead = false;
 		beginFade = false;
@@ -136,6 +152,7 @@ public class GameController : MonoBehaviour {
 		foreach(ParticleEmitter light in GameObject.FindWithTag(Globals.SHIP).GetComponentsInChildren<ParticleEmitter>()){
 			light.emit = false;
 		}
+		weaponReader.Reset();
 	}
 	
 	void DestroyEnemies(){
@@ -312,16 +329,15 @@ public class GameController : MonoBehaviour {
 	public void TurnDragableOn(){
 		GameObject[] fortifications = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 		foreach(GameObject fort in fortifications){
-			fort.GetComponent<Dragable>().enabled = true;
+			fort.GetComponent<Dragable>().canUpdate = true;
 		}
 	}
 	
 	public void UpdateGraph(){
 		GameObject[] fortifications = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 		foreach(GameObject fort in fortifications){
-			fort.GetComponent<Dragable>().enabled = false;
 			fort.GetComponent<Dragable>().canDrag = false;
-			//Destroy(fort.GetComponent<Dragable>());
+			fort.GetComponent<Dragable>().canUpdate = false;
 			Bounds b = fort.collider.bounds;
 			GraphUpdateObject guo = new GraphUpdateObject(b);
 			AstarPath.active.UpdateGraphs(guo);

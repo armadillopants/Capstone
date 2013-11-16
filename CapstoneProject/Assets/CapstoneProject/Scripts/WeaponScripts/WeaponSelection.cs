@@ -96,6 +96,7 @@ public class WeaponSelection : MonoBehaviour {
 				}
 			}
 		}
+		GUI.Box(new Rect(Screen.width-200, Screen.height-100, 200, 30), "Ammo: " + weapon.bulletsLeft + " Clips: " + weapon.clips);
 	}
 	
 	public void SelectWeapon(int index){

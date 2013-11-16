@@ -6,6 +6,7 @@ public class Dragable : MonoBehaviour {
 	public FortState state;
 	public float height;
 	public bool canDrag = true;
+	public bool canUpdate = true;
 
 	private Vector3 screenPoint;
 	private Vector3 offset;
@@ -18,22 +19,26 @@ public class Dragable : MonoBehaviour {
 	private float gridz = 1f;
 	
 	void OnMouseOver(){
-		// If we right click on a gameobject, display destroy item screen
-		if(Input.GetMouseButton(1)){
-			UIManager.Instance.SetFortification(gameObject);
-			ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
-			itemVendor.upgradeItemVendor = gameObject;
-			itemVendor.CancelUpgrades();
+		if(canUpdate){
+			// If we right click on a gameobject, display upgrade item screen
+			if(Input.GetMouseButton(1)){
+				UIManager.Instance.SetFortification(gameObject);
+				ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
+				itemVendor.upgradeItemVendor = gameObject;
+				itemVendor.CancelUpgrades();
+			}
 		}
 	}
 
 	void OnMouseDown(){
-    	screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-
-    	offset = transform.position - Camera.main.ScreenToWorldPoint(
-			new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-		
-		checkPlaneHit = true;
+		if(canDrag){
+	    	screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+	
+	    	offset = transform.position - Camera.main.ScreenToWorldPoint(
+				new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+			
+			checkPlaneHit = true;
+		}
 	}
 
 	void OnMouseDrag(){

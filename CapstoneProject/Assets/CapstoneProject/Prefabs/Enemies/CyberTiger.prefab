@@ -1257,7 +1257,6 @@ MonoBehaviour:
   damageAmount: 20
   distance: 10
   targetHeight: 0
-  amountToGive: 100
   burnDamage: 1
 --- !u!114 &11400006
 MonoBehaviour:

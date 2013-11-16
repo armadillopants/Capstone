@@ -10,12 +10,13 @@ public class XMLVendorReader : MonoBehaviour {
 	public XmlNode firstNode;
 	
 	void Awake(){
-		GameObject player = GameObject.FindWithTag("Player");
+		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
 		weapons = player.GetComponentsInChildren<BaseWeapon>();
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("VendorData", typeof(TextAsset));
 		doc.LoadXml(asset.text);
+		//doc.Load(Application.dataPath + "/VendorData.xml");
 	}
 	
 	public int GetCurrentWeaponCost(int cost, int i, string itemName, int currentUpgrade){
@@ -33,7 +34,7 @@ public class XMLVendorReader : MonoBehaviour {
 			weapons[i].fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
 			weapons[i].force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
 			weapons[i].bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
-			weapons[i].clips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+			weapons[i].maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
 			weapons[i].reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
 			weapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 			weapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);

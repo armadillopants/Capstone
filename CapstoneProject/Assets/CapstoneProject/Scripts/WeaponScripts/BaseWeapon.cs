@@ -12,6 +12,7 @@ public class BaseWeapon : MonoBehaviour {
 	public int bulletsLeft = 0;
 	public int bulletsPerClip = 40;
 	public int clips = 6;
+	public int maxClips;
 	public float reloadSpeed = 1.2f;
 	public float damage = 10.0f;
 	public float coneAngle = 1.5f;
@@ -39,6 +40,7 @@ public class BaseWeapon : MonoBehaviour {
 	
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;
+		clips = maxClips;
 	}
 	
 	void Awake(){
@@ -50,6 +52,8 @@ public class BaseWeapon : MonoBehaviour {
 		} else {
 			bulletsLeft = bulletsPerClip;
 		}
+		
+		maxClips = clips;
 		
 		if(muzzleFlash){
 			muzzle = (Renderer)Instantiate(muzzleFlash, muzzlePos.position, Quaternion.identity);
@@ -125,7 +129,7 @@ public class BaseWeapon : MonoBehaviour {
 			if(visibleProj){
 				bullet = visibleProj.GetComponent<Bullet>();
 			}
-			Vector3 startPos = muzzlePos.position;
+			Vector3 startPos = transform.position; // May come back to change this too muzzle pos
 		    Vector3 direction = transform.TransformDirection(Vector3.forward);
 		  	RaycastHit hit;
 			

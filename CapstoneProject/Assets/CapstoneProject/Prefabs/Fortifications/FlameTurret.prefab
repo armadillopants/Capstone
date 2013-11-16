@@ -76,12 +76,12 @@ GameObject:
   - 4: {fileID: 400008}
   - 54: {fileID: 5400000}
   - 65: {fileID: 6500000}
-  - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 23: {fileID: 2300012}
   - 114: {fileID: 11400010}
+  - 114: {fileID: 11400006}
   m_Layer: 9
   m_Name: FlameTurret
   m_TagString: Fortification
@@ -574,6 +574,7 @@ MonoBehaviour:
   state: 2
   height: .5
   canDrag: 1
+  canUpdate: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,6 +590,7 @@ MonoBehaviour:
   maxHealth: 50
   canTakeDamage: 1
   explosion: {fileID: 0}
+  waitTime: 3
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -614,7 +616,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Flame Turret
-  description: Flamethrower turret
+  description: Turret that blasts enemiesNEWLINEwith hot fire whenNEWLINEin range.NEWLINEHigh
+    damage towards BEETLES
   preview: {fileID: 0}
   cost: 200
   purchased: 0
@@ -639,6 +642,7 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 300
   clips: 5
+  maxClips: 0
   reloadSpeed: 2.5
   damage: 10
   coneAngle: 1.5
@@ -654,6 +658,8 @@ MonoBehaviour:
   isFiring: 0
   hitParticles: {fileID: 0}
   useLayerMask: 1
+  gripID: 0
+  costPerBullet: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -666,7 +672,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 400014}
+  constraint: {fileID: 0}
   turnSpeed: 3
+  isTower: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -12,7 +12,7 @@ public class DayNightCycle : MonoBehaviour {
     public Color fullLight;
     public Color fullDark;
  
-    private float dawnTime; 
+    private float dawnTime;
     private float dayTime;
     private float duskTime;
     private float nightTime;

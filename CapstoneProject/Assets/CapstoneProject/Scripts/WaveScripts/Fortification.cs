@@ -8,10 +8,11 @@ public class Fortification : MonoBehaviour {
 	private WeaponManager manager;
 	private float infinity = Mathf.Infinity;
 	private Rect mainScreen = new Rect(Screen.width-250, Screen.height-(Screen.height-16), 200, 500);
-	private Rect displayScreen = new Rect(Screen.width/3, Screen.height/5, 500, 500);
+	private Rect displayScreen = new Rect(Screen.width/3, Screen.height/5, 600, 600);
 	
 	private WeaponVendor weaponVendor;
 	private ItemVendor itemVendor;
+	private AmmoVendorContainer ammoContainer;
 
 	void Awake(){
 		GameObject player = GameController.Instance.GetPlayer().gameObject;
@@ -23,6 +24,7 @@ public class Fortification : MonoBehaviour {
 		GameObject vendor = GameObject.Find("Vendor");
 		weaponVendor = vendor.GetComponent<WeaponVendor>();
 		itemVendor = vendor.GetComponent<ItemVendor>();
+		ammoContainer = vendor.GetComponent<AmmoVendorContainer>();
 	}
 	
 	public void StartFortifying(Wave wave){
@@ -40,13 +42,13 @@ public class Fortification : MonoBehaviour {
 		DrawMainScreen();
 		switch(UIManager.Instance.uiState){
 		case UIManager.UIState.BUILD_SCREEN:
-			DrawBuildScreen();
+			DrawFortBuyScreen();
 			break;
 		case UIManager.UIState.BUY_SCREEN:
-			DrawBuyScreen();
+			DrawWeaponBuyScreen();
 			break;
 		case UIManager.UIState.UPGRADE_SCREEN:
-			DrawUpgradeScreen();
+			DrawWeaponUpgradeScreen();
 			break;
 		case UIManager.UIState.EQUIP_WEAPON_SCREEN:
 			DrawEquipWeaponScreen();
@@ -101,7 +103,7 @@ public class Fortification : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	
-	void DrawBuildScreen(){
+	void DrawFortBuyScreen(){
 		GUI.BeginGroup(displayScreen);
 		
 		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Build Screen");
@@ -110,7 +112,7 @@ public class Fortification : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	
-	void DrawBuyScreen(){
+	void DrawWeaponBuyScreen(){
 		GUI.BeginGroup(displayScreen);
 		
 		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Weapons Screen");
@@ -119,7 +121,7 @@ public class Fortification : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	
-	void DrawUpgradeScreen(){
+	void DrawWeaponUpgradeScreen(){
 		GUI.BeginGroup(displayScreen);
 		
 		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Upgrade Screen");
@@ -141,48 +143,60 @@ public class Fortification : MonoBehaviour {
 		// Left
 		if(manager.equippedWeapons[0]){
 			GUI.Box(new Rect(Screen.width/3.0f,Screen.height/2.1f,120,40), manager.equippedWeapons[0].name);
+			ammoContainer.ammoVendors[0].SetWeapon(manager.equippedWeapons[0]);
+			ammoContainer.ammoVendors[0].Vendor(Screen.width/4.6f,Screen.height/2.1f);
 		} else {
 			GUI.Box(new Rect(Screen.width/3.0f,Screen.height/2.1f,120,40), "Rifle Slot");
 		}
 		for(int i=0; i<manager.rifleWeapons.Count; i++){
 			if(GUI.Button(new Rect(Screen.width/3.0f, Screen.height/1.9f+(i*50), 120, 40), manager.rifleWeapons[i].name)){
 				manager.equippedWeapons[0] = manager.rifleWeapons[i];
+				ammoContainer.ammoVendors[0].Cancel();
 			}
 		}
 		
 		// Right
 		if(manager.equippedWeapons[1]){
 			GUI.Box(new Rect(Screen.width/1.7f,Screen.height/2.1f,120,40), manager.equippedWeapons[1].name);
+			ammoContainer.ammoVendors[1].SetWeapon(manager.equippedWeapons[1]);
+			ammoContainer.ammoVendors[1].Vendor(Screen.width/1.5f,Screen.height/2.1f);
 		} else {
 			GUI.Box(new Rect(Screen.width/1.7f,Screen.height/2.1f,120,40), "Pistol Slot");
 		}
 		for(int i=0; i<manager.pistolWeapons.Count; i++){
 			if(GUI.Button(new Rect(Screen.width/1.7f, Screen.height/2.3f-(i*50), 120, 40), manager.pistolWeapons[i].name)){
 				manager.equippedWeapons[1] = manager.pistolWeapons[i];
+				ammoContainer.ammoVendors[1].Cancel();
 			}
 		}
 		
 		// Top
 		if(manager.equippedWeapons[2]){
 			GUI.Box(new Rect(Screen.width/2.17f,Screen.height/3.2f,120,40), manager.equippedWeapons[2].name);
+			ammoContainer.ammoVendors[2].SetWeapon(manager.equippedWeapons[2]);
+			ammoContainer.ammoVendors[2].Vendor(Screen.width/3.0f,Screen.height/3.2f);
 		} else {
 			GUI.Box(new Rect(Screen.width/2.17f,Screen.height/3.2f,120,40), "Launcher Slot");
 		}
 		for(int i=0; i<manager.launcherWeapons.Count; i++){
 			if(GUI.Button(new Rect(Screen.width/2.17f, Screen.height/3.8f-(i*50), 120, 40), manager.launcherWeapons[i].name)){
 				manager.equippedWeapons[2] = manager.launcherWeapons[i];
+				ammoContainer.ammoVendors[2].Cancel();
 			}
 		}
 		
 		// Bottom
 		if(manager.equippedWeapons[3]){
 			GUI.Box(new Rect(Screen.width/2.17f,Screen.height/1.6f,120,40), manager.equippedWeapons[3].name);
+			ammoContainer.ammoVendors[3].SetWeapon(manager.equippedWeapons[3]);
+			ammoContainer.ammoVendors[3].Vendor(Screen.width/1.9f,Screen.height/1.6f);
 		} else {
 			GUI.Box(new Rect(Screen.width/2.17f,Screen.height/1.6f,120,40), "Special Slot");
 		}
 		for(int i=0; i<manager.specialWeapons.Count; i++){
 			if(GUI.Button(new Rect(Screen.width/2.17f, Screen.height/1.5f+(i*50), 120, 40), manager.specialWeapons[i].name)){
 				manager.equippedWeapons[3] = manager.specialWeapons[i];
+				ammoContainer.ammoVendors[3].Cancel();
 			}
 		}
 	}

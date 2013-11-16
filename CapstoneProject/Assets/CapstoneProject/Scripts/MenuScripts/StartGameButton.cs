@@ -16,7 +16,7 @@ public class StartGameButton : MonoBehaviour {
 	
 	void Start(){
 		cam = Camera.main.transform;
-		player = GameObject.FindWithTag(Globals.PLAYER).transform;
+		player = GameController.Instance.GetPlayer();
 	}
 	
 	void Update(){
@@ -27,9 +27,9 @@ public class StartGameButton : MonoBehaviour {
 				cam.rotation = Quaternion.Lerp(cam.rotation, Quaternion.Euler(new Vector3(endCam.eulerAngles.x, 0, 0)), 0.5f*Time.deltaTime);
 			}
 			
-			if(cam.position.z >= player.position.z-0.1f && beginGame){
+			if(cam.position.z >= player.position.z-0.5f && beginGame){
 				cam.position = new Vector3(player.position.x, player.position.y+15, player.position.z);
-				cam.rotation = Quaternion.Euler(85, 0, 0);
+				cam.rotation = Quaternion.Euler(endCam.eulerAngles.x, 0, 0);
 				player.gameObject.AddComponent<PlayerMovement>();
 				player.gameObject.AddComponent<LocalInput>();
 				player.gameObject.AddComponent<AnimationController>();

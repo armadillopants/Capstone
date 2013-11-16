@@ -49,13 +49,18 @@ public class Wave : MonoBehaviour {
   	}
 	
 	private IEnumerator WaveHandling(){
-		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && !GameController.Instance.GetShipHealth().IsDead){
+		if((waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && !GameController.Instance.GetShipHealth().IsDead) || (waveNumber == 2)){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			GameObject.Find("GridContainer").GetComponent<GridSpawner>().EnableGrid();
 			GameController.Instance.TurnDragableOn();
 			//GameController.Instance.AddDynamicObstacleToFortifications();
 			Fortification fort = gameObject.AddComponent<Fortification>();
 			fort.StartFortifying(this);
+			
+			if(waveNumber == 2){
+				Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+				tut.key = "Arrow";
+			}
 		} else {
 			BeginWave();
 			UIManager.Instance.uiState = UIManager.UIState.NEXTWAVE;
@@ -88,9 +93,9 @@ public class Wave : MonoBehaviour {
 		// and if so, and the current wave is neither the first nor a wave that
 		// has a fortification phase to it (which would set the beginWave flag itself)
 		// then start the wave.
-		if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION != 0){
+		/*if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION != 0){
 			BeginWave();
-		}
+		}*/
 		// If the wave is over, then start the next wave and destroy this instance
 		// before any other unnecessary calculations are done
 		if(endWave){

@@ -3,7 +3,7 @@
 public class Laser : MonoBehaviour {
 	
 	private LineRenderer laser;
-	private float width = 0.05f;
+	private float width = 0.01f;
 	private float length = 30f;
 	
 	public GameObject laserLight;

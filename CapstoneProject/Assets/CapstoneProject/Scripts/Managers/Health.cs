@@ -72,7 +72,7 @@ public class Health : MonoBehaviour {
 		if(isFortification){
 			GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider.bounds, gameObject.collider, gameObject);
 		} else if(isEnemy){
-			GameController.Instance.AddResources(Mathf.RoundToInt(gameObject.GetComponent<Enemy>().amountToGive));
+			GameController.Instance.AddResources(Mathf.RoundToInt(gameObject.GetComponent<Enemy>().AmountToGive()));
 			Destroy(gameObject.GetComponent<Collider>());
 			StartCoroutine(BeginDeathSequence());
 		} else if(isShip){

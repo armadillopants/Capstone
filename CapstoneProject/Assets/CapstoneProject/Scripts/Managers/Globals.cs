@@ -18,4 +18,5 @@ public static class Globals {
 	public const string INTERACTABLE_ITEM = "InteractableItem";
 	public const string FORTIFICATION = "Fortification";
 	public const string ABILITY = "Ability";
+	public const string ITEM_DISPLAYER = "ItemDisplayer";
 }
