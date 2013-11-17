@@ -1,92 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- WEAPON VALUES -->
+<!-- BASE WEAPON VALUES -->
 <!-- RANGE: How far away you are able to hit an enemy with a projectile. For launcher types applies to lifetime before it destroys itself-->
 <!-- FIRE RATE: How fast the weapon shoots -->
 <!-- FORCE: How much force from the bullet applies to rigidbody characters -->
 <!-- BULLETS PER CLIP: How many bullets per clip the weapon stores -->
 <!-- CLIPS: How many clips the weapon holds -->
 <!-- RELOAD SPEED: How fast the weapon reloads -->
-<!-- DAMAGE: How much damage the weapon does -->
+<!-- DAMAGE: How much damage the weapon deals -->
 <!-- CONE ANGLE: How much rotation the projectile is given at first creation (adds more realism) -->
-<WeaponData>
-	<MachineGun
-		range= "100"
-		fireRate= "0.09"
-		force= "0.5"
-		bulletsPerClip= "60"
-		clips= "6"
-		reloadSpeed= "1.2"
-		damage= "10"
-		coneAngle= "1.5">
-	</MachineGun>
-	<Pistol
-		range= "100"
-		fireRate= "0.09"
-		force= "0.1"
-		bulletsPerClip= "10"
-		clips= "6"
-		reloadSpeed= "0.5"
-		damage= "10"
-		coneAngle= "1">
-	</Pistol>
-	<RocketLauncher
-		range = "2"
-		fireRate= "0.09"
-		force= "1"
-		bulletsPerClip= "5"
-		clips= "6"
-		reloadSpeed= "1.5"
-		damage= "15"
-		coneAngle= "2">
-	</RocketLauncher>
-	<FlameThrower
-		range = "20"
-		fireRate= "0.1"
-		force= "0.01"
-		bulletsPerClip= "300"
-		clips= "2"
-		reloadSpeed= "2.5"
-		damage= "10"
-		coneAngle= "2">
-	</FlameThrower>
-	<BurstRifle
-		range= "100"
-		fireRate= "0.3"
-		force= "0.7"
-		bulletsPerClip= "30"
-		clips= "6"
-		reloadSpeed= "1.5"
-		damage= "15"
-		coneAngle= "1.2">
-	</BurstRifle>
-	<Shotgun
-		range= "100"
-		fireRate= "0.09"
-		force= "0.5"
-		bulletsPerClip= "56"
-		clips= "3"
-		reloadSpeed= "2"
-		damage= "10"
-		coneAngle= "8">
-	</Shotgun>
-	<MissileLauncher
-		range = "3"
-		fireRate= "0.09"
-		force= "1"
-		bulletsPerClip= "5"
-		clips= "6"
-		reloadSpeed= "1.7"
-		damage= "10"
-		coneAngle= "2">
-	</MissileLauncher>
-	<LightningBlaster
-		range = "5"
-		fireRate= "0.1"
-		force= "1"
-		bulletsPerClip= "100"
-		clips= "6"
-		reloadSpeed= "2.5"
-		damage= "5"
-		coneAngle= "1.8">
-	</LightningBlaster>
-</WeaponData>
+<BaseValueData>
+	<WeaponData>
+		<MachineGun
+			range= "100"
+			fireRate= "0.09"
+			force= "0.5"
+			bulletsPerClip= "60"
+			clips= "6"
+			reloadSpeed= "1.2"
+			damage= "10"
+			coneAngle= "1.5"
+			costPerBullet= "2">
+		</MachineGun>
+		<Pistol
+			range= "100"
+			fireRate= "0.09"
+			force= "0.1"
+			bulletsPerClip= "10"
+			clips= "6"
+			reloadSpeed= "0.5"
+			damage= "10"
+			coneAngle= "1"
+			costPerBullet= "1">
+		</Pistol>
+		<RocketLauncher
+			range = "2"
+			fireRate= "0.09"
+			force= "1"
+			bulletsPerClip= "5"
+			clips= "6"
+			reloadSpeed= "1.5"
+			damage= "15"
+			coneAngle= "2"
+			costPerBullet= "4">
+		</RocketLauncher>
+		<FlameThrower
+			range = "20"
+			fireRate= "0.1"
+			force= "0.01"
+			bulletsPerClip= "300"
+			clips= "2"
+			reloadSpeed= "2.5"
+			damage= "10"
+			coneAngle= "2"
+			costPerBullet= "1">
+		</FlameThrower>
+		<BurstRifle
+			range= "100"
+			fireRate= "0.3"
+			force= "0.7"
+			bulletsPerClip= "30"
+			clips= "6"
+			reloadSpeed= "1.5"
+			damage= "15"
+			coneAngle= "1.2"
+			costPerBullet= "2">
+		</BurstRifle>
+		<Shotgun
+			range= "100"
+			fireRate= "0.09"
+			force= "0.5"
+			bulletsPerClip= "56"
+			clips= "3"
+			reloadSpeed= "2"
+			damage= "10"
+			coneAngle= "8"
+			costPerBullet= "1">
+		</Shotgun>
+		<MissileLauncher
+			range = "3"
+			fireRate= "0.09"
+			force= "1"
+			bulletsPerClip= "5"
+			clips= "6"
+			reloadSpeed= "1.7"
+			damage= "10"
+			coneAngle= "2"
+			costPerBullet= "3">
+		</MissileLauncher>
+		<LightningBlaster
+			range = "5"
+			fireRate= "0.1"
+			force= "1"
+			bulletsPerClip= "100"
+			clips= "6"
+			reloadSpeed= "2.5"
+			damage= "5"
+			coneAngle= "1.8"
+			costPerBullet= "1">
+		</LightningBlaster>
+	</WeaponData>
+	
+	<!-- BASE FORTIFICATION VALUES -->
+	<!-- HEALTH: How much health the fortification has -->
+	<!-- FORT DAMAGE: How much damage the fortification will inflict upon contact with enemies -->
+	<!-- RANGE: How far away you are able to hit an enemy with a projectile. For launcher types applies to lifetime before it destroys itself-->
+	<!-- FIRE RATE: How fast the weapon shoots -->
+	<!-- FORCE: How much force from the bullet applies to rigidbody characters -->
+	<!-- BULLETS PER CLIP: How many bullets per clip the weapon stores -->
+	<!-- CLIPS: How many clips the weapon holds -->
+	<!-- RELOAD SPEED: How fast the weapon reloads -->
+	<!-- CONE ANGLE: How much rotation the projectile is given at first creation (adds more realism) -->
+	<FortificationData>
+		<Barrier
+			health= "100"
+			fortDamage= "0">
+		</Barrier>
+		<BarbedWireBarrier
+			health= "150"
+			fortDamage= "1">
+		</BarbedWireBarrier>
+		<ElectricFence
+			health= "200"
+			fortDamage= "1">
+		</ElectricFence>
+		<Wall
+			health= "150"
+			fortDamage= "0">
+		</Wall>
+		<GunTower
+			health= "500"
+			damage= "1"
+			range= "15"
+			fireRate= "0.1"
+			force= "1.5"
+			bulletsPerClip= "100"
+			clips= "5"
+			reloadSpeed= "1.5"
+			coneAngle= "2">
+		</GunTower>
+		<RocketTower
+			health= "500"
+			fortDamage= "0"
+			range= "15"
+			fireRate= "0.5"
+			force= "2"
+			bulletsPerClip= "10"
+			clips= "5"
+			reloadSpeed= "2"
+			damage= "2"
+			coneAngle= "2.5">
+		</RocketTower>
+		<GunTurret
+			health= "20"
+			fortDamage= "0"
+			range= "10"
+			fireRate= "0.1"
+			force= "1"
+			bulletsPerClip= "100"
+			clips= "2"
+			reloadSpeed= "1.5"
+			damage= "1"
+			coneAngle= "2">
+		</GunTurret>
+		<RocketTurret
+			health= "20"
+			fortDamage= "0"
+			range= "10"
+			fireRate= "0.1"
+			force= "1"
+			bulletsPerClip= "10"
+			clips= "2"
+			reloadSpeed= "2"
+			damage= "2"
+			coneAngle= "2.5">
+		</RocketTurret>
+		<FlameTurret
+			health= "20"
+			fortDamage= "0"
+			range= "10"
+			fireRate= "0.1"
+			force= "1"
+			bulletsPerClip= "100"
+			clips= "2"
+			reloadSpeed= "2.5"
+			damage= "2"
+			coneAngle= "2.5">
+		</FlameTurret>
+	</FortificationData>
+</BaseValueData>	

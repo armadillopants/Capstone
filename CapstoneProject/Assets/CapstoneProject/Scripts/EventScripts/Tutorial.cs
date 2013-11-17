@@ -48,8 +48,8 @@ public class Tutorial : MonoBehaviour {
 	
 	GameObject Spawn(GameObject g, Vector3 pos, bool spawned){
 		if(!spawned){
-			return (GameObject)Instantiate(g, pos, Quaternion.Euler(90,0,0));
 			spawned = true;
+			return (GameObject)Instantiate(g, pos, Quaternion.Euler(90,0,0));
 		}
 		
 		return null;

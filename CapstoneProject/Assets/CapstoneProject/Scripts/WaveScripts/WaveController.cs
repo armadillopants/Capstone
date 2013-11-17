@@ -4,7 +4,7 @@ using System.Collections;
 public class WaveController : MonoBehaviour {
 	
 	public bool isWaiting = false;
-	private int waveNumber = 2;
+	private int waveNumber = 1;
 	private float waitTime = 5.0f;
 	private static Wave curWave;
 	public bool canBeginWave = false;

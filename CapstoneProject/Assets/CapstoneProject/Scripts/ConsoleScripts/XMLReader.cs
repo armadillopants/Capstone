@@ -8,6 +8,7 @@ public class XMLReader : MonoBehaviour {
 	private WeaponManager manager;
 	public XmlDocument doc = new XmlDocument();
 	public XmlNode firstNode;
+	private FortificationData fortData;
 	
 	public void Reset(){
 		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
@@ -20,7 +21,7 @@ public class XMLReader : MonoBehaviour {
 		//doc.Load(Application.dataPath + "/WeaponData.xml");
 		
 		for(int i=0; i<manager.allWeapons.Count; i++){
-			SetWeapon(manager.allWeapons[i].id, "/WeaponData/"+manager.allWeapons[i].name.Replace(" " , ""));
+			SetWeapon(manager.allWeapons[i].id, "/BaseValueData/WeaponData/"+manager.allWeapons[i].name.Replace(" " , ""));
 		}
 		
 		/*SetWeapon(manager.allWeapons[0].id, "/WeaponData/MachineGun");
@@ -40,10 +41,37 @@ public class XMLReader : MonoBehaviour {
 			weapons[i].fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
 			weapons[i].force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
 			weapons[i].bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
-			weapons[i].clips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+			weapons[i].maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
 			weapons[i].reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
 			weapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 			weapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
+			weapons[i].costPerBullet = int.Parse(firstNode.Attributes.GetNamedItem("costPerBullet").Value);
+			weapons[i].Replenish();
 		}
+	}
+	
+	public void SetFortification(string fort){
+		string path = "/BaseValueData/FortificationData/" + fort.Replace(" " , "");
+		if(fortData){
+			firstNode = doc.SelectSingleNode(path);
+			fortData.health.ModifyHealth(float.Parse(firstNode.Attributes.GetNamedItem("health").Value));
+			fortData.fortDamage = float.Parse(firstNode.Attributes.GetNamedItem("fortDamage").Value);
+			if(fortData.GetComponentInChildren<BaseWeapon>() != null){
+				BaseWeapon weapon = fortData.GetComponentInChildren<BaseWeapon>();
+				weapon.range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
+				weapon.fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
+				weapon.force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
+				weapon.bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
+				weapon.maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+				weapon.reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
+				weapon.damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
+				weapon.coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
+				weapon.Replenish();
+			}
+		}
+	}
+	
+	public void SetFortData(){
+		fortData = GameController.Instance.current.GetComponent<FortificationData>();
 	}
 }

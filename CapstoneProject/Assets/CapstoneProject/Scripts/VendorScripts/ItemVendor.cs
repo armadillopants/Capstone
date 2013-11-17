@@ -11,6 +11,7 @@ public class ItemVendor : MonoBehaviour {
 	private SellableItemDisplayer displayer;
 	private DisplayItem item;
 	private DisplayItem upgrade;
+	private XMLReader baseVendor;
 	private XMLVendorReader vendor;
 	
 	private float rows = 5;
@@ -18,6 +19,7 @@ public class ItemVendor : MonoBehaviour {
 
 	void Start(){
 		displayer = GameObject.Find(Globals.ITEM_DISPLAYER).GetComponent<SellableItemDisplayer>();
+		baseVendor = GameObject.Find("XMLReader").GetComponent<XMLReader>();
 		vendor = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 	}
 	
@@ -76,6 +78,8 @@ public class ItemVendor : MonoBehaviour {
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			Cancel();
 			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject);
+			baseVendor.SetFortData();
+			baseVendor.SetFortification(sellItem.name);
 			GameController.Instance.DeleteResources(sellItem.cost);
 			
 			Debug.Log("Purchased: " + sellItem.itemName);
@@ -92,7 +96,11 @@ public class ItemVendor : MonoBehaviour {
 			vendor.SetFortData(sellItem.gameObject);
 			vendor.UpgradeFortificationData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			if(sellItem.upgradedItem){
-				Instantiate(sellItem.upgradedItem, sellItem.gameObject.transform.position, sellItem.gameObject.transform.rotation);
+				GameObject upgradedItem = (GameObject)Instantiate(sellItem.upgradedItem, sellItem.gameObject.transform.position, sellItem.gameObject.transform.rotation);
+				upgradedItem.name = sellItem.upgradedItem.name;
+				upgradedItem.GetComponent<Dragable>().enabled = true;
+				CancelUpgrades();
+				UIManager.Instance.uiState = UIManager.UIState.NONE;
 				Destroy(sellItem.gameObject);
 			}
 			

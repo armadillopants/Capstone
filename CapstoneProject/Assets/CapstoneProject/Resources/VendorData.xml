@@ -400,55 +400,167 @@
 	<!-- UPGRADES FOR FORTIFICATIONS -->
 	<!-- COST: How much the upgrade costs -->
 	<!-- HEALTH: How much health the fortification has -->
-	<!-- DAMAGE: How much damage the fortification will inflict upon contact with enemies -->
+	<!-- FORT DAMAGE: How much damage the fortification will inflict upon contact with enemies -->
+	<!-- RANGE: How far away you are able to hit an enemy with a projectile. For launcher types applies to lifetime before it destroys itself-->
+	<!-- FIRE RATE: How fast the weapon shoots -->
+	<!-- FORCE: How much force from the bullet applies to rigidbody characters -->
+	<!-- BULLETS PER CLIP: How many bullets per clip the weapon stores -->
+	<!-- CLIPS: How many clips the weapon holds -->
+	<!-- RELOAD SPEED: How fast the weapon reloads -->
+	<!-- DAMAGE: How much damage the weapon does -->
+	<!-- CONE ANGLE: How much rotation the projectile is given at first creation (adds more realism) -->
 	<Fortifications>
 		<Barrier>
 			<Upgrades>
 				<Upgrade1
 					cost= "400"
 					health= "200"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade1>
 				<Upgrade2
 					cost= "600"
 					health= "300"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade2>
 				<Upgrade3
 					cost= "800"
 					health= "400"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade3>
 				<Upgrade4
 					cost= "1000"
 					health= "500"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade4>
 			</Upgrades>
 		</Barrier>
-		<Tower>
+		<Wall>
 			<Upgrades>
 				<Upgrade1
 					cost= "500"
 					health= "300"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade1>
 				<Upgrade2
 					cost= "600"
 					health= "400"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade2>
 				<Upgrade3
 					cost= "800"
 					health= "500"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade3>
 				<Upgrade4
 					cost= "1000"
 					health= "600"
-					damage= "0">
+					fortDamage= "0">
 				</Upgrade4>
 			</Upgrades>
-		</Tower>
+		</Wall>
+		<GunTower>
+			<Upgrades>
+				<Upgrade1
+					cost= "500"
+					health= "300"
+					fortDamage= "0">
+				</Upgrade1>
+				<Upgrade2
+					cost= "600"
+					health= "400"
+					fortDamage= "0">
+				</Upgrade2>
+				<Upgrade3
+					cost= "800"
+					health= "500"
+					fortDamage= "0">
+				</Upgrade3>
+				<Upgrade4
+					cost= "1000"
+					health= "600"
+					fortDamage= "0">
+				</Upgrade4>
+			</Upgrades>
+		</GunTower>
+		<RocketTower>
+			<Upgrades>
+				<Upgrade1
+					cost= "500"
+					health= "300"
+					fortDamage= "0">
+				</Upgrade1>
+				<Upgrade2
+					cost= "600"
+					health= "400"
+					fortDamage= "0">
+				</Upgrade2>
+				<Upgrade3
+					cost= "800"
+					health= "500"
+					fortDamage= "0">
+				</Upgrade3>
+				<Upgrade4
+					cost= "1000"
+					health= "600"
+					fortDamage= "0">
+				</Upgrade4>
+			</Upgrades>
+		</RocketTower>
+		<GunTurret>
+			<Upgrades>
+				<Upgrade1
+					cost= "200"
+					health= "70"
+					fortDamage= "0"
+					damage= "2"
+					range= "35"
+					fireRate= "0.09"
+					force= "2.2"
+					bulletsPerClip= "150"
+					clips= "6"
+					reloadSpeed= "1.3"
+					coneAngle= "1.5">
+				</Upgrade1>
+				<Upgrade2
+					cost= "250"
+					health= "70"
+					fortDamage= "0"
+					damage= "3"
+					range= "40"
+					fireRate= "0.08"
+					force= "2.4"
+					bulletsPerClip= "200"
+					clips= "7"
+					reloadSpeed= "1.1"
+					coneAngle= "1.3">
+				</Upgrade2>
+				<Upgrade3
+					cost= "300"
+					health= "80"
+					fortDamage= "0"	
+					damage= "4"
+					range= "45"
+					fireRate= "0.07"
+					force= "2.6"
+					bulletsPerClip= "250"
+					clips= "8"
+					reloadSpeed= "1"
+					coneAngle= "1.1">
+				</Upgrade3>
+				<Upgrade4
+					cost= "350"
+					health= "90"
+					fortDamage= "0"
+					damage= "5"
+					range= "50"
+					fireRate= "0.06"
+					force= "2.8"
+					bulletsPerClip= "300"
+					clips= "9"
+					reloadSpeed= "0.8"
+					coneAngle= "1">
+				</Upgrade4>
+			</Upgrades>
+		</GunTurret>
 	</Fortifications>
 </VendorData>

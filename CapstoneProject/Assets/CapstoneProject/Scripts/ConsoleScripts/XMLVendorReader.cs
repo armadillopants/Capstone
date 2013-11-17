@@ -53,8 +53,20 @@ public class XMLVendorReader : MonoBehaviour {
 		string result = itemName.Replace(" " , "");
 		if(fortData){
 			firstNode = doc.SelectSingleNode("/VendorData/Fortifications/" + result + "/Upgrades/" + "Upgrade" + currentUpgrade);
-			fortData.health.curHealth = float.Parse(firstNode.Attributes.GetNamedItem("health").Value);
-			fortData.damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
+			fortData.health.ModifyHealth(float.Parse(firstNode.Attributes.GetNamedItem("health").Value));
+			fortData.fortDamage = float.Parse(firstNode.Attributes.GetNamedItem("fortDamage").Value);
+			if(fortData.GetComponentInChildren<BaseWeapon>() != null){
+				BaseWeapon weapon = fortData.GetComponentInChildren<BaseWeapon>();
+				weapon.range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
+				weapon.fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
+				weapon.force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
+				weapon.bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
+				weapon.maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+				weapon.reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
+				weapon.damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
+				weapon.coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
+				weapon.Replenish();
+			}
 		}
 	}
 	

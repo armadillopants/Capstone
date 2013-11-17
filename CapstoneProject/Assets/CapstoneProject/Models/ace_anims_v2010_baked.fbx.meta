@@ -1,46 +1,46 @@
 fileFormatVersion: 2
-guid: 07bfe55251057784b9af93d03b399801
+guid: bba3d12a9833ce44e9b28766c3f79a9f
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: AceSkin
-    100002: Chest
-    100004: Face
-    100006: Head
-    100008: HeadTop
-    100010: Hips
-    100012: Jaw
-    100014: LeftFoot
-    100016: LeftForearmTwist
-    100018: LeftHand
-    100020: LeftIndexA
-    100022: LeftIndexB
-    100024: LeftIndexC
-    100026: LeftIndexD
-    100028: LeftLowerArm
-    100030: LeftLowerLeg
-    100032: LeftMiddleA
-    100034: LeftMiddleB
-    100036: LeftMiddleC
-    100038: LeftMiddleD
-    100040: LeftPalm
-    100042: LeftPinkyA
-    100044: LeftPinkyB
-    100046: LeftPinkyC
-    100048: LeftRingA
-    100050: LeftRingB
-    100052: LeftRingC
-    100054: LeftRingD
-    100056: LeftShoulder
-    100058: LeftThumbA
-    100060: LeftThumbB
-    100062: LeftThumbC
-    100064: LeftToes
-    100066: LeftToeTips
-    100068: LeftUpperLeg
-    100070: moveCntrl
-    100072: Neck
-    100074: //RootNode
+    100000: //RootNode
+    100002: AceSkin
+    100004: Chest
+    100006: Face
+    100008: Head
+    100010: HeadTop
+    100012: Hips
+    100014: Jaw
+    100016: LeftFoot
+    100018: LeftForearmTwist
+    100020: LeftHand
+    100022: LeftIndexA
+    100024: LeftIndexB
+    100026: LeftIndexC
+    100028: LeftIndexD
+    100030: LeftLowerArm
+    100032: LeftLowerLeg
+    100034: LeftMiddleA
+    100036: LeftMiddleB
+    100038: LeftMiddleC
+    100040: LeftMiddleD
+    100042: LeftPalm
+    100044: LeftPinkyA
+    100046: LeftPinkyB
+    100048: LeftPinkyC
+    100050: LeftRingA
+    100052: LeftRingB
+    100054: LeftRingC
+    100056: LeftRingD
+    100058: LeftShoulder
+    100060: LeftThumbA
+    100062: LeftThumbB
+    100064: LeftThumbC
+    100066: LeftToes
+    100068: LeftToeTips
+    100070: LeftUpperLeg
+    100072: moveCntrl
+    100074: Neck
     100076: RightFoot
     100078: RightForearmTwist
     100080: RightHand
@@ -73,44 +73,44 @@ ModelImporter:
     100134: Spine1
     100136: Spine2
     100138: torsoCntrl
-    400000: AceSkin
-    400002: Chest
-    400004: Face
-    400006: Head
-    400008: HeadTop
-    400010: Hips
-    400012: Jaw
-    400014: LeftFoot
-    400016: LeftForearmTwist
-    400018: LeftHand
-    400020: LeftIndexA
-    400022: LeftIndexB
-    400024: LeftIndexC
-    400026: LeftIndexD
-    400028: LeftLowerArm
-    400030: LeftLowerLeg
-    400032: LeftMiddleA
-    400034: LeftMiddleB
-    400036: LeftMiddleC
-    400038: LeftMiddleD
-    400040: LeftPalm
-    400042: LeftPinkyA
-    400044: LeftPinkyB
-    400046: LeftPinkyC
-    400048: LeftRingA
-    400050: LeftRingB
-    400052: LeftRingC
-    400054: LeftRingD
-    400056: LeftShoulder
-    400058: LeftThumbA
-    400060: LeftThumbB
-    400062: LeftThumbC
-    400064: LeftToes
-    400066: LeftToeTips
-    400068: LeftUpperLeg
-    400070: moveCntrl
-    400072: Neck
-    400074: //RootNode
+    400000: //RootNode
+    400002: AceSkin
+    400004: Chest
+    400006: Face
+    400008: Head
+    400010: HeadTop
+    400012: Hips
+    400014: Jaw
+    400016: LeftFoot
+    400018: LeftForearmTwist
+    400020: LeftHand
+    400022: LeftIndexA
+    400024: LeftIndexB
+    400026: LeftIndexC
+    400028: LeftIndexD
+    400030: LeftLowerArm
+    400032: LeftLowerLeg
+    400034: LeftMiddleA
+    400036: LeftMiddleB
+    400038: LeftMiddleC
+    400040: LeftMiddleD
+    400042: LeftPalm
+    400044: LeftPinkyA
+    400046: LeftPinkyB
+    400048: LeftPinkyC
+    400050: LeftRingA
+    400052: LeftRingB
+    400054: LeftRingC
+    400056: LeftRingD
+    400058: LeftShoulder
+    400060: LeftThumbA
+    400062: LeftThumbB
+    400064: LeftThumbC
+    400066: LeftToes
+    400068: LeftToeTips
+    400070: LeftUpperLeg
+    400072: moveCntrl
+    400074: Neck
     400076: RightFoot
     400078: RightForearmTwist
     400080: RightHand
@@ -169,8 +169,8 @@ ModelImporter:
     clipAnimations:
     - name: PistolGrip
       takeName: Take 001
-      firstFrame: 4
-      lastFrame: 5
+      firstFrame: 1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -190,8 +190,8 @@ ModelImporter:
       transformMask: []
     - name: RifleGrip
       takeName: Take 001
-      firstFrame: 14
-      lastFrame: 15
+      firstFrame: 11
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -211,8 +211,8 @@ ModelImporter:
       transformMask: []
     - name: RocketGrip
       takeName: Take 001
-      firstFrame: 25
-      lastFrame: 26
+      firstFrame: 21
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -386,8 +386,8 @@ ModelImporter:
         min: {x: -60.0000038, y: -60.0000038, z: -90}
         max: {x: 60.0000038, y: 60.0000038, z: 50}
         value: {x: .326177299, y: 0, z: .16308865}
-        preQ: {x: .987211168, y: .159417212, z: 5.75729402e-08, w: -4.31797069e-08}
-        postQ: {x: .707106769, y: 9.87202071e-08, z: 5.02914261e-08, w: .707106709}
+        preQ: {x: .987211168, y: .159417257, z: 1.72718828e-07, w: -1.1514588e-07}
+        postQ: {x: .707106829, y: 1.84401927e-07, z: 8.38190459e-08, w: .707106709}
         length: .407721758
         modified: 1
     - boneName: LeftLowerLeg
@@ -406,9 +406,9 @@ ModelImporter:
         min: {x: -90, y: 0, z: -80}
         max: {x: 90, y: 0, z: 80}
         value: {x: .311046094, y: 0, z: .155523047}
-        preQ: {x: -.515925527, y: .483550251, z: -.483550191, w: -.515925467}
-        postQ: {x: -.707106769, y: -2.51457067e-07, z: 2.29105339e-07, w: -.707106769}
-        length: .388807774
+        preQ: {x: -.515925407, y: .483550161, z: -.483550251, w: -.515925586}
+        postQ: {x: -.707106709, y: -3.33413482e-07, z: 1.08033426e-07, w: -.707106829}
+        length: .388807744
         modified: 1
     - boneName: LeftFoot
       humanName: LeftFoot
@@ -425,10 +425,10 @@ ModelImporter:
       limit:
         min: {x: 0, y: -30.0000019, z: -50}
         max: {x: 0, y: 30.0000019, z: 50}
-        value: {x: .0980829448, y: 0, z: .0490414724}
-        preQ: {x: -.706039667, y: -.038831979, z: .0388319306, w: -.706039667}
-        postQ: {x: -5.96046448e-08, y: 5.96046448e-08, z: -.471442163, w: -.881896913}
-        length: .122603714
+        value: {x: .0980829671, y: 0, z: .0490414836}
+        preQ: {x: -.706039727, y: -.0388319492, z: .0388319604, w: -.706039667}
+        postQ: {x: -5.96046448e-08, y: 5.96046448e-08, z: -.471442133, w: -.881896913}
+        length: .122603744
         modified: 1
     - boneName: Spine1
       humanName: Spine
@@ -545,10 +545,10 @@ ModelImporter:
       limit:
         min: {x: 0, y: 0, z: -50}
         max: {x: 0, y: 0, z: 50}
-        value: {x: .0690572783, y: 0, z: .0345286392}
+        value: {x: .0690572709, y: 0, z: .0345286354}
         preQ: {x: 7.4505806e-08, y: -2.98023224e-08, z: -.290235341, w: .956955135}
-        postQ: {x: 6.9168955e-08, y: -2.98023224e-08, z: -4.80955364e-08, w: .99999994}
-        length: .0863216296
+        postQ: {x: 6.91689621e-08, y: -2.98023224e-08, z: -6.91689621e-08, w: .99999994}
+        length: .0863216221
         modified: 1
     - boneName: Jaw
       humanName: Jaw
@@ -861,7 +861,7 @@ ModelImporter:
         length: .0234045982
         modified: 1
     skeleton:
-    - name: Player
+    - name: ace_anims_v2010_baked
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: .99999994}
       scale: {x: 1, y: 1, z: 1}
@@ -913,7 +913,7 @@ ModelImporter:
       transformModified: 1
     - name: RightUpperLeg
       position: {x: 2.27568769, y: .470854402, z: -4.53380251}
-      rotation: {x: .703449726, y: -.071821548, z: -.0718215927, w: .703449786}
+      rotation: {x: .703449786, y: -.0718215555, z: -.0718216002, w: .703449845}
       scale: {x: 1, y: 1.00000012, z: 1}
       transformModified: 1
     - name: RightLowerLeg
@@ -923,7 +923,7 @@ ModelImporter:
       transformModified: 1
     - name: RightFoot
       position: {x: 8.17759514, y: -4.24586602e-07, z: -4.87901025e-06}
-      rotation: {x: .604347169, y: .367102712, z: -.367102593, w: .604347229}
+      rotation: {x: .604347229, y: .367102742, z: -.367102623, w: .604347289}
       scale: {x: .999999821, y: .999999642, z: .999999464}
       transformModified: 1
     - name: RightToes
@@ -933,7 +933,7 @@ ModelImporter:
       transformModified: 1
     - name: RightToeTips
       position: {x: 2.17925096, y: 6.29693147e-07, z: -7.93905315e-07}
-      rotation: {x: .0388319679, y: -.706039667, z: .0388319679, w: .706039667}
+      rotation: {x: .0388319716, y: -.706039727, z: .0388319716, w: .706039727}
       scale: {x: .999999762, y: 1, z: .999999821}
       transformModified: 1
     - name: Spine1

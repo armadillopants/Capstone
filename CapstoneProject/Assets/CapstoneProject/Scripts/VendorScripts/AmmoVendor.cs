@@ -11,6 +11,9 @@ public class AmmoVendor : MonoBehaviour {
 	private SellableItemDisplayer displayer;
 	private DisplayItem ammo;
 	private BaseWeapon curWeapon;
+	
+	private int clipsToBuy;
+	private int bulletsToBuy;
 
 	void Start(){
 		displayer = GameObject.Find(Globals.ITEM_DISPLAYER).GetComponent<SellableItemDisplayer>();
@@ -27,9 +30,27 @@ public class AmmoVendor : MonoBehaviour {
 			isDisplaying = true;
 			ammo.item = ammoVendor;
 			ammo.sellItem = ammoVendor.GetComponent<SellableItem>();
-			int finalCost = (int)(((curWeapon.bulletsPerClip-curWeapon.bulletsLeft)*curWeapon.costPerBullet)+((curWeapon.maxClips-curWeapon.clips)*(curWeapon.bulletsPerClip*curWeapon.costPerBullet)));
+			int curResources = GameController.Instance.GetResources();
+			int purchasableClips = curWeapon.maxClips - curWeapon.clips;
+			int purchasableBullets = curWeapon.bulletsPerClip - curWeapon.bulletsLeft;
+			int bulletsToPurchase = 0;
+			int clipsToPurchase = 0;
+			
+			while(bulletsToPurchase < purchasableBullets && curResources - (bulletsToPurchase+1)*curWeapon.costPerBullet >= 0)
+			{
+				bulletsToPurchase++;
+			}
+			while(clipsToPurchase < purchasableClips && curResources - (clipsToPurchase+curWeapon.bulletsPerClip)*curWeapon.costPerBullet >= 0)//*(curWeapon.bulletsPerClip*curWeapon.costPerBullet) >= 0)
+			{
+				clipsToPurchase++;
+			}
+			
+			AddPurchasableAmmo(bulletsToPurchase, clipsToPurchase);
+			
+			//int finalCost = (int)(((curWeapon.bulletsPerClip-curWeapon.bulletsLeft)*curWeapon.costPerBullet)+((curWeapon.maxClips-curWeapon.clips)*(curWeapon.bulletsPerClip*curWeapon.costPerBullet)));
 			ammo.sellItem.purchased = false;
-			ammo.sellItem.cost = finalCost;
+			ammo.sellItem.cost = clipsToPurchase + bulletsToPurchase*curWeapon.costPerBullet;
+			//ammo.sellItem.cost = finalCost;
 			ammo.upgrade = false;
 			ammo.hasWorldspace = false;
 			ammo.worldspaceLocation = new Vector3(0,1,0);
@@ -43,15 +64,22 @@ public class AmmoVendor : MonoBehaviour {
 		}
 	}
 	
+	void AddPurchasableAmmo(int bullets, int clips){
+		bulletsToBuy = bullets;
+		clipsToBuy = clips;
+	}
+	
 	public void Purchase(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
 		if(GameController.Instance.GetResources() >= sellItem.cost && !sellItem.purchased){
 			GameController.Instance.DeleteResources(sellItem.cost);
 			sellItem.cost = 0;
-			curWeapon.Replenish();
+			curWeapon.PurchasedAmmo(bulletsToBuy, clipsToBuy);
 			sellItem.purchased = true;
 			Debug.Log("Purchased: " + sellItem.itemName);
+		} else if(GameController.Instance.GetResources() < sellItem.cost && !sellItem.purchased){
+			
 		} else if(sellItem.purchased){
 			Debug.Log("Item: " + sellItem.itemName + " was already purchased");
 		} else {

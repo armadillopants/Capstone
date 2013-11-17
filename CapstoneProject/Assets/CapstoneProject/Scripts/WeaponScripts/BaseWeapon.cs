@@ -36,11 +36,16 @@ public class BaseWeapon : MonoBehaviour {
 	public bool useLayerMask = true;
 	
 	public int gripID;
-	public float costPerBullet = 0;
+	public int costPerBullet = 0;
 	
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;
-		clips = maxClips;
+		clips = maxClips*bulletsPerClip;
+	}
+	
+	public void PurchasedAmmo(int bulletsBought, int clipsBought){
+		bulletsLeft += bulletsBought;
+		clips += clipsBought;
 	}
 	
 	void Awake(){
@@ -193,9 +198,12 @@ public class BaseWeapon : MonoBehaviour {
 		yield return new WaitForSeconds(reloadSpeed);
 		
 		// We have a clip left to reload
-		if(clips > 0){
-			clips--;
+		if(clips > bulletsPerClip){
+			clips -= bulletsPerClip; //--;
 			bulletsLeft = bulletsPerClip;
+		} else {
+			bulletsLeft = clips;
+			clips = 0;
 		}
 		isReloading = false;
 	}

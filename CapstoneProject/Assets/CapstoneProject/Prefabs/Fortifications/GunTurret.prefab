@@ -133,8 +133,8 @@ GameObject:
   - 4: {fileID: 400014}
   - 33: {fileID: 3300010}
   - 23: {fileID: 2300010}
-  - 114: {fileID: 11400008}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -573,7 +573,7 @@ MonoBehaviour:
   clips: 5
   maxClips: 0
   reloadSpeed: 1.5
-  damage: 5
+  damage: 1
   coneAngle: 1.70000005
   roundsPerBurst: 0
   lagBetweenShots: 0

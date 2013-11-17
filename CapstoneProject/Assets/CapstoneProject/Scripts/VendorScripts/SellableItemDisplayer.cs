@@ -65,7 +65,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 					method.Invoke(itemsToDisplay[i].invokingObject, param);
 					}
 				catch(System.Exception e){
-					Debug.LogError (e.Message + ": " + e.InnerException);
+					Debug.LogError(e.Message + ": " + e.InnerException);
 					Application.Quit();
 				}
 			}

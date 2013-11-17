@@ -1161,7 +1161,7 @@ GameObject:
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400022}
   m_Layer: 0
-  m_Name: LightningBlaster
+  m_Name: Lightning Blaster
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1392,7 +1392,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400178}
-  - 114: {fileID: 11400044}
   m_Layer: 0
   m_Name: AbilityHolder
   m_TagString: Untagged
@@ -3007,7 +3006,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!76 &7600000
 WorldParticleCollider:
@@ -3471,8 +3470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Machine Gun
-  description: Standard Rifle
+  itemName: HVRF-Assualt Rifle
+  description: Full Automatic.NEWLINEHigh rate of fireNEWLINEwith large clip.NEWLINEMedium
+    damage.
   preview: {fileID: 0}
   cost: 100
   purchased: 1
@@ -3562,8 +3562,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Pistol
-  description: Standard Pistol
+  itemName: MS-Pistol
+  description: Semi-Automatic.NEWLINEPull trigger rapidly forNEWLINEfast bullet output.NEWLINELow
+    damage.
   preview: {fileID: 0}
   cost: 50
   purchased: 1
@@ -3581,8 +3582,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Shotgun
-  description: Sprays bullets
+  itemName: RRSS-Shotgun
+  description: Semi-Automatic.NEWLINEFires 8 pellets per bulletNEWLINEin spread that
+    dealsNEWLINEhigh damage.
   preview: {fileID: 0}
   cost: 250
   purchased: 0
@@ -3667,8 +3669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Lightning Blaster
-  description: Shoots lightning
+  itemName: SAP-Lightning Blaster
+  description: Full-Automatic.NEWLINETargets nearest enemyNEWLINEand deals continuous
+    damageNEWLINEthe longer the triggerNEWLINEis held down.NEWLINEHigh damage on CYBORGS.
   preview: {fileID: 0}
   cost: 500
   purchased: 0
@@ -3763,8 +3766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Rocket Launcher
-  description: Blasts baddies to bits
+  itemName: LREW-Rocket Launcher
+  description: Semi-Automatic.NEWLINEHigh damage output plusNEWLINEblast damage.
   preview: {fileID: 0}
   cost: 300
   purchased: 0
@@ -3782,8 +3785,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Burst Rifle
-  description: Rapid fire, three-burst rifle
+  itemName: HVBF-Burst Rifle
+  description: Semi-Automatic.NEWLINEThree round burst allowsNEWLINEfor rapid andNEWLINEhigh
+    damage output.
   preview: {fileID: 0}
   cost: 200
   purchased: 0
@@ -3890,8 +3894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Flame Thrower
-  description: Burn baby burn!
+  itemName: SPLC-Flame Thrower
+  description: Full-Automatic.NEWLINEDeals continous damage onNEWLINEtarget plus burn
+    damage.NEWLINEHigh damage on BEETLES.
   preview: {fileID: 0}
   cost: 400
   purchased: 0
@@ -3937,17 +3942,6 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11400044
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642d2e2028d728445b81763af3429325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3959,8 +3953,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Missile Launcher
-  description: Heat-seeking launcher
+  itemName: LRHM-Missile Launcher
+  description: Semi-Automatic.NEWLINEFires heat seeking missilesNEWLINEthat zero in
+    onNEWLINEnearest enemy target.NEWLINEMedium damage plusNEWLINEblast damage.
   preview: {fileID: 0}
   cost: 500
   purchased: 0

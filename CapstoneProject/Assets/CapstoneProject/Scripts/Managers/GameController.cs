@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 100000000;
+	private int amountOfResources = 0;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour {
 	
 	// Fortification data
 	private GameObject fortToSpawn;
-	private GameObject current;
+	public GameObject current;
 	private bool fortSpawned = false;
 	private bool canPlace = false;
 	public Material validGreen;
@@ -199,6 +199,7 @@ public class GameController : MonoBehaviour {
 		
 		if(Physics.Raycast(ray, out hit)){
 			GameObject fort = (GameObject)Instantiate(fortToSpawn, hit.point, Quaternion.identity);
+			fort.name = fortToSpawn.name;
 			current = fort;
 		}
 		fortSpawned = true;

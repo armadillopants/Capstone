@@ -4,7 +4,7 @@ using System.Collections;
 public class FortificationData : MonoBehaviour {
 	
 	public Health health;
-	public float damage = 0f;
+	public float fortDamage = 0f;
 
 	void Awake(){
 		health = GetComponent<Health>();
@@ -12,7 +12,7 @@ public class FortificationData : MonoBehaviour {
 	
 	void OnCollisionStay(Collision collision){
 		if(collision.gameObject.tag == Globals.ENEMY){
-			collision.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+			collision.gameObject.SendMessageUpwards("TakeDamage", fortDamage, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }

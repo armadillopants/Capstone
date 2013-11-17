@@ -10,7 +10,7 @@ PlayerSettings:
   targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: BerZerkerGames
   productName: Capstone
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -108,7 +108,10 @@ PlayerSettings:
     m_Icons:
     - m_Icon: {fileID: 0}
       m_Size: 128
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Standalone
+    m_StaticBatching: 1
+    m_DynamicBatching: 1
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
   wiiRegion: 1
@@ -145,7 +148,31 @@ PlayerSettings:
   ps3SaveGameSlots: 1
   ps3TrialMode: 0
   flashStrippingLevel: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    data:
+      first: 1
+      second: Machine;Gun
+    data:
+      first: 2
+      second: Machine;Gun
+    data:
+      first: 4
+      second: Machine;Gun
+    data:
+      first: 7
+      second: Machine;Gun
+    data:
+      first: 11
+      second: Machine;Gun
+    data:
+      first: 14
+      second: Machine;Gun
+    data:
+      first: 15
+      second: Machine;Gun
+    data:
+      first: 16
+      second: Machine;Gun
   metroPackageName: Capstone
   metroPackageLogo: 
   metroPackageVersion: 
