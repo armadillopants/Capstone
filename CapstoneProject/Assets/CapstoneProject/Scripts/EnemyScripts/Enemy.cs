@@ -36,6 +36,8 @@ public class Enemy : AIPath {
 	
 	private Health health;
 	
+	public GameObject money;
+	
 	public int AmountToGive(){
 		return amountToGive;
 	}
@@ -223,6 +225,12 @@ public class Enemy : AIPath {
 		case EnemyState.DEAD:
 			if(!isDead && anim){
 				PlayDeathAnimation();
+				for(int i=0; i<5; i++){
+					Vector3 pos = tr.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
+												1, 
+												Mathf.Sin(Random.Range(0,360)))*(Random.Range(3,3));
+					Instantiate(money, pos, Quaternion.identity);
+				}
 				isDead = true;
 			}
 			break;

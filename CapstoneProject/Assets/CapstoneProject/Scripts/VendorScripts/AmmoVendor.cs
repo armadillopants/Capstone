@@ -36,11 +36,11 @@ public class AmmoVendor : MonoBehaviour {
 			int bulletsToPurchase = 0;
 			int clipsToPurchase = 0;
 			
-			while(bulletsToPurchase < purchasableBullets && curResources - (bulletsToPurchase+1)*curWeapon.costPerBullet >= 0)
+			while(bulletsToPurchase < purchasableBullets && curResources-(bulletsToPurchase+1)*curWeapon.costPerBullet >= 0)
 			{
 				bulletsToPurchase++;
 			}
-			while(clipsToPurchase < purchasableClips && curResources - (clipsToPurchase+curWeapon.bulletsPerClip)*curWeapon.costPerBullet >= 0)//*(curWeapon.bulletsPerClip*curWeapon.costPerBullet) >= 0)
+			while(clipsToPurchase < purchasableClips && curResources-(clipsToPurchase+curWeapon.bulletsPerClip)*curWeapon.costPerBullet >= 0)//*(curWeapon.bulletsPerClip*curWeapon.costPerBullet) >= 0)
 			{
 				clipsToPurchase++;
 			}
@@ -78,8 +78,6 @@ public class AmmoVendor : MonoBehaviour {
 			curWeapon.PurchasedAmmo(bulletsToBuy, clipsToBuy);
 			sellItem.purchased = true;
 			Debug.Log("Purchased: " + sellItem.itemName);
-		} else if(GameController.Instance.GetResources() < sellItem.cost && !sellItem.purchased){
-			
 		} else if(sellItem.purchased){
 			Debug.Log("Item: " + sellItem.itemName + " was already purchased");
 		} else {

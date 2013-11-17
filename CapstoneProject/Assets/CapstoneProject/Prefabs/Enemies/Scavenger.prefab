@@ -1237,6 +1237,7 @@ MonoBehaviour:
   maxHealth: 100
   canTakeDamage: 1
   explosion: {fileID: 0}
+  waitTime: 3
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1283,8 +1284,8 @@ MonoBehaviour:
   damageAmount: 10
   distance: 10
   targetHeight: 0
-  amountToGive: 50
   burnDamage: 4
+  money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

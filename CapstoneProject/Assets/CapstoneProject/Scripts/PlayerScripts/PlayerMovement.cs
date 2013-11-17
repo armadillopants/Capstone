@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerMovement : PlayerMotor {
 	
-	public float moveSpeed = 10f;
-	private float moveSnap = 50f;
+	public float moveSpeed = 6f;
+	private float moveSnap = 1f;
 	private float turnSmooth = 0.3f;
 	
 	//private CharacterController controller;
@@ -46,7 +46,7 @@ public class PlayerMovement : PlayerMotor {
 		if(rigidbody.useGravity){
 			deltaVel.y = 0;
 		}
-		rigidbody.AddForce(deltaVel * moveSnap, ForceMode.Acceleration);
+		rigidbody.position += deltaVel * moveSnap * Time.deltaTime;
 		
 		// Handle facing direction
 		Vector3 faceDir = faceDirection;

@@ -162,7 +162,7 @@
 					range = "22"
 					fireRate= "0.09"
 					force= "0.03"
-					bulletsPerClip= "350"
+					bulletsPerClip= "150"
 					clips= "3"
 					reloadSpeed= "2.3"
 					damage= "12"
@@ -173,7 +173,7 @@
 					range = "24"
 					fireRate= "0.08"
 					force= "0.05"
-					bulletsPerClip= "400"
+					bulletsPerClip= "200"
 					clips= "4"
 					reloadSpeed= "2.1"
 					damage= "14"
@@ -184,7 +184,7 @@
 					range = "26"
 					fireRate= "0.07"
 					force= "0.07"
-					bulletsPerClip= "450"
+					bulletsPerClip= "250"
 					clips= "5"
 					reloadSpeed= "1.9"
 					damage= "16"
@@ -195,7 +195,7 @@
 					range = "28"
 					fireRate= "0.06"
 					force= "0.09"
-					bulletsPerClip= "500"
+					bulletsPerClip= "300"
 					clips= "6"
 					reloadSpeed= "1.7"
 					damage= "18"
@@ -562,5 +562,117 @@
 				</Upgrade4>
 			</Upgrades>
 		</GunTurret>
+		<RocketTurret>
+			<Upgrades>
+				<Upgrade1
+					cost= "200"
+					health= "70"
+					fortDamage= "0"
+					damage= "2"
+					range= "35"
+					fireRate= "0.09"
+					force= "2.2"
+					bulletsPerClip= "150"
+					clips= "6"
+					reloadSpeed= "1.3"
+					coneAngle= "1.5">
+				</Upgrade1>
+				<Upgrade2
+					cost= "250"
+					health= "70"
+					fortDamage= "0"
+					damage= "3"
+					range= "40"
+					fireRate= "0.08"
+					force= "2.4"
+					bulletsPerClip= "200"
+					clips= "7"
+					reloadSpeed= "1.1"
+					coneAngle= "1.3">
+				</Upgrade2>
+				<Upgrade3
+					cost= "300"
+					health= "80"
+					fortDamage= "0"	
+					damage= "4"
+					range= "45"
+					fireRate= "0.07"
+					force= "2.6"
+					bulletsPerClip= "250"
+					clips= "8"
+					reloadSpeed= "1"
+					coneAngle= "1.1">
+				</Upgrade3>
+				<Upgrade4
+					cost= "350"
+					health= "90"
+					fortDamage= "0"
+					damage= "5"
+					range= "50"
+					fireRate= "0.06"
+					force= "2.8"
+					bulletsPerClip= "300"
+					clips= "9"
+					reloadSpeed= "0.8"
+					coneAngle= "1">
+				</Upgrade4>
+			</Upgrades>
+		</RocketTurret>
+		<FlameTurret>
+			<Upgrades>
+				<Upgrade1
+					cost= "200"
+					health= "70"
+					fortDamage= "0"
+					damage= "2"
+					range= "35"
+					fireRate= "0.09"
+					force= "2.2"
+					bulletsPerClip= "150"
+					clips= "6"
+					reloadSpeed= "1.3"
+					coneAngle= "1.5">
+				</Upgrade1>
+				<Upgrade2
+					cost= "250"
+					health= "70"
+					fortDamage= "0"
+					damage= "3"
+					range= "40"
+					fireRate= "0.08"
+					force= "2.4"
+					bulletsPerClip= "200"
+					clips= "7"
+					reloadSpeed= "1.1"
+					coneAngle= "1.3">
+				</Upgrade2>
+				<Upgrade3
+					cost= "300"
+					health= "80"
+					fortDamage= "0"	
+					damage= "4"
+					range= "45"
+					fireRate= "0.07"
+					force= "2.6"
+					bulletsPerClip= "250"
+					clips= "8"
+					reloadSpeed= "1"
+					coneAngle= "1.1">
+				</Upgrade3>
+				<Upgrade4
+					cost= "350"
+					health= "90"
+					fortDamage= "0"
+					damage= "5"
+					range= "50"
+					fireRate= "0.06"
+					force= "2.8"
+					bulletsPerClip= "300"
+					clips= "9"
+					reloadSpeed= "0.8"
+					coneAngle= "1">
+				</Upgrade4>
+			</Upgrades>
+		</FlameTurret>
 	</Fortifications>
 </VendorData>

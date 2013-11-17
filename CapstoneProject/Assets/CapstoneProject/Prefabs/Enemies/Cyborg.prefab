@@ -2470,6 +2470,7 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 300
   clips: 1
+  maxClips: 0
   reloadSpeed: 1.5
   damage: 1
   coneAngle: 1.5
@@ -2486,6 +2487,7 @@ MonoBehaviour:
   hitParticles: {fileID: 0}
   useLayerMask: 0
   gripID: 0
+  costPerBullet: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2536,8 +2538,8 @@ MonoBehaviour:
   damageAmount: 15
   distance: 10
   targetHeight: 0
-  amountToGive: 100
   burnDamage: 2
+  money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2608,6 +2610,7 @@ MonoBehaviour:
   bulletsLeft: 0
   bulletsPerClip: 300
   clips: 1
+  maxClips: 0
   reloadSpeed: 1.5
   damage: 1
   coneAngle: 1.5
@@ -2624,6 +2627,7 @@ MonoBehaviour:
   hitParticles: {fileID: 0}
   useLayerMask: 0
   gripID: 0
+  costPerBullet: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

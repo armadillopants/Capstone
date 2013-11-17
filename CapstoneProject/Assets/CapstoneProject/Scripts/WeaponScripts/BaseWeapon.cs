@@ -134,7 +134,7 @@ public class BaseWeapon : MonoBehaviour {
 			if(visibleProj){
 				bullet = visibleProj.GetComponent<Bullet>();
 			}
-			Vector3 startPos = transform.position; // May come back to change this too muzzle pos
+			Vector3 startPos = muzzlePos.position;
 		    Vector3 direction = transform.TransformDirection(Vector3.forward);
 		  	RaycastHit hit;
 			
@@ -199,7 +199,7 @@ public class BaseWeapon : MonoBehaviour {
 		
 		// We have a clip left to reload
 		if(clips > bulletsPerClip){
-			clips -= bulletsPerClip; //--;
+			clips -= bulletsPerClip;
 			bulletsLeft = bulletsPerClip;
 		} else {
 			bulletsLeft = clips;
