@@ -218,8 +218,7 @@ public class UIManager : MonoBehaviour {
 					} else {
 						GameController.Instance.AddResources(Mathf.RoundToInt(fortHealth.curHealth / 2));
 					}
-					GameController.Instance.UpdateGraphOnDestroyedObject(fortification.collider.bounds,
-						fortification.collider,fortification.gameObject);
+					GameController.Instance.UpdateGraphOnDestroyedObject(fortification.collider,fortification.gameObject);
 					fortification = null;
 					uiState = UIState.NONE;
 				} else if(curFortInfo == fortInfo[1]){

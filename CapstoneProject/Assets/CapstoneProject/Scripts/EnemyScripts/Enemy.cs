@@ -113,6 +113,18 @@ public class Enemy : AIPath {
 				}
 			}
 			
+			if(GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION) != null){
+				GameObject[] nearestFort = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
+				for(int i=0; i<nearestFort.Length; i++){
+					if(Vector3.Distance(nearestFort[i].transform.position, tr.position) < 10f && 
+						Vector3.Distance(lastTarget.position, tr.position) > 10f){
+						target = GameController.Instance.FindNearestTarget(Globals.FORTIFICATION, tr).transform;
+					} else {
+						SwitchTarget(lastTarget.tag);
+					}
+				}
+			}
+			
 			if(canAttackBoth){
 				if(shipTarget){
 					if(Vector3.Distance(playerTarget.position, tr.position) > distance){
@@ -302,8 +314,8 @@ public class Enemy : AIPath {
 	}
 	
 	void OnParticleCollision(GameObject other){
-		BaseWeapon flame = other.transform.parent.GetComponent<BaseWeapon>();
-		SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(flame.damage/Time.time), SendMessageOptions.DontRequireReceiver);
+		BaseWeapon incomingParticle = other.transform.parent.GetComponent<BaseWeapon>();
+		SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(incomingParticle.damage/Time.time), SendMessageOptions.DontRequireReceiver);
 		
 		if(!isBurning){
 			isBurning = true;

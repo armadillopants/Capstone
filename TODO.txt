@@ -1,17 +1,17 @@
 3 +++ means fully complete
 
-- Player movement+
+- Player movement+++
 -- strafing: left, right, up, down
 -- look direction
 -- cursor movement
 -- smooth camera follow
 -- switch to rigidbody, character controller is doo-doo. Still translate though for move dir
 
-- Player Animations
+- Player Animations+
 -- move: forwards, backwards, left, right
 -- idle
 
-- Player stats+
+- Player stats++
 -- health
 -- speed/animation speed
 
@@ -52,8 +52,15 @@
 -- To equip new weapon have players current inventory displayed, click on weapon to equip and say "Yes" to equip? hmm...
 -- Grid snapping for fortifications, tile based? most likely....  can only place objects on tiles, but tiles surround a good portion of the map
 -- Fortification stats: health(how much damage it can take), damage(how much damage it can do when an enemy is hitting it), cost(how much it costs),
+-- Simplify menu
+-- Hover over barriers, display health and ammo left if any
+-- Create a different turret that shoots lightning, emp blast or something...
+-- Fix clipping of models when colliding with other barriers at corners
+-- Redo display of main menu: Build, Weapons, Abilities, Begin Wave.  Weapons includes four fields: Rifle, Pistol, Launcher, Special, each listing weapons specific to that
+   category.  Also add refill button to weapon currently equipped
+-- Possibly simplify to only 3 upgrades for each fortification/weapon
 
-- Audio Manager
+- Audio Manager+
 -- Sounds for footsteps
 -- Gun sounds
 -- Enemy sounds
@@ -66,18 +73,17 @@
 -- Big enemies spawn smaller enemies around them
 -- Random spawn points enemies can crawl out of for night enemies, when player gets close
 
-- Day/Night System
+- Day/Night System++
 -- Begins during the day, slowly go to night...
 -- How many waves till first dusk?...
 -- How to make transition?...
 
-- Win Condition
+- Win Condition++
 -- Final build wave, start last wave
 -- Enemies just keep coming...most likely during day
 -- Rescue crew come and holster up ship...timer begins
 -- After timer reaches 0, player wins, end game...
 
--- Lose Condition
+-- Lose Condition++
 -- Player dies
--- Both ship and then player dies
 -- If ship dies, player loses fortification abilities

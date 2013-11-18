@@ -164,7 +164,7 @@ public class GameController : MonoBehaviour {
 	
 	void DestroyFortifications(){
 		foreach(GameObject fort in GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION)){
-			UpdateGraphOnDestroyedObject(fort.collider.bounds, fort.collider, fort.gameObject);
+			UpdateGraphOnDestroyedObject(fort.collider, fort.gameObject);
 		}
 	}
 	
@@ -339,19 +339,23 @@ public class GameController : MonoBehaviour {
 		foreach(GameObject fort in fortifications){
 			fort.GetComponent<Dragable>().canDrag = false;
 			fort.GetComponent<Dragable>().canUpdate = false;
+			//fort.AddComponent<DynamicGridObstacle>();
+			//fort.GetComponent<DynamicGridObstacle>().updateError = 0.01f;
+			//fort.GetComponent<DynamicGridObstacle>().checkTime = 0.01f;
 			Bounds b = fort.collider.bounds;
 			GraphUpdateObject guo = new GraphUpdateObject(b);
 			AstarPath.active.UpdateGraphs(guo);
-			AstarPath.active.FlushGraphUpdates();
+			//AstarPath.active.FlushGraphUpdates();
 		}
 	}
 	
-	public void UpdateGraphOnDestroyedObject(Bounds b, Collider col, GameObject g){
+	public void UpdateGraphOnDestroyedObject(Collider col, GameObject g){
+		Bounds b = col.bounds;
 		Destroy(col);
 		Destroy(g);
 		GraphUpdateObject guo = new GraphUpdateObject(b);
-		AstarPath.active.UpdateGraphs(guo);
-		AstarPath.active.FlushGraphUpdates();
+		AstarPath.active.UpdateGraphs(guo, 0.0f);
+		//AstarPath.active.FlushGraphUpdates();
 	}
 	
 	public void AddDynamicObstacleToFortifications(){
