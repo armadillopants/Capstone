@@ -296,6 +296,7 @@ public class Enemy : AIPath {
 	}
 	
 	void PlayIdleAnimation(){
+		anim.CrossFade("Idle", 0.2f);
 	}
 
 	void PlayAttackAnimation(){

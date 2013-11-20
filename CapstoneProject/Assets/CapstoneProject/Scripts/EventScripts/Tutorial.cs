@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Tutorial : MonoBehaviour {
@@ -82,7 +82,7 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	IEnumerator CountDown(){
-		if(UIManager.Instance.uiState == UIManager.UIState.BUILD_SCREEN){
+		if(UIManager.Instance.uiState == UIManager.UIState.FORT_BUILD_SCREEN){
 			yield return new WaitForSeconds(1f);
 			key = "Arrow2";
 		} else {

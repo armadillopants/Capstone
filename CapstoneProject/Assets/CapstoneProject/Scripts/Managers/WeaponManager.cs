@@ -44,4 +44,8 @@ public class WeaponManager : MonoBehaviour {
 			}
 		}
 	}
+	
+	public WeaponType GetWeaponType(BaseWeapon weapon){
+		return weapon.weaponType;
+	}
 }

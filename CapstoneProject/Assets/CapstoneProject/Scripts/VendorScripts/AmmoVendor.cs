@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,28 +8,23 @@ public class AmmoVendor : MonoBehaviour {
 	public GameObject weaponLink;
 	public Texture2D icon;
 	private bool isDisplaying = false;
-	private SellableItemDisplayer displayer;
 	private DisplayItem ammo;
 	private BaseWeapon curWeapon;
 	
 	private int clipsToBuy;
 	private int bulletsToBuy;
-
-	void Start(){
-		displayer = GameObject.Find(Globals.ITEM_DISPLAYER).GetComponent<SellableItemDisplayer>();
-	}
 	
 	public void SetWeapon(GameObject weapon){
 		weaponLink = weapon;
 		curWeapon = weaponLink.GetComponent<BaseWeapon>();
 	}
 	
-	public void Vendor(float x, float y){
+	public void Vendor(){
 		if(!isDisplaying){
 			ammo = ScriptableObject.CreateInstance<DisplayItem>();
-			isDisplaying = true;
 			ammo.item = ammoVendor;
 			ammo.sellItem = ammoVendor.GetComponent<SellableItem>();
+			
 			int curResources = GameController.Instance.GetResources();
 			int purchasableClips = curWeapon.maxClips - curWeapon.clips;
 			int purchasableBullets = curWeapon.bulletsPerClip - curWeapon.bulletsLeft;
@@ -40,27 +35,18 @@ public class AmmoVendor : MonoBehaviour {
 			{
 				bulletsToPurchase++;
 			}
-			while(clipsToPurchase < purchasableClips && curResources-(clipsToPurchase+curWeapon.bulletsPerClip)*curWeapon.costPerBullet >= 0)//*(curWeapon.bulletsPerClip*curWeapon.costPerBullet) >= 0)
+			while(clipsToPurchase < purchasableClips && curResources-(clipsToPurchase+curWeapon.bulletsPerClip)*curWeapon.costPerBullet >= 0)
 			{
 				clipsToPurchase++;
 			}
 			
 			AddPurchasableAmmo(bulletsToPurchase, clipsToPurchase);
 			
-			//int finalCost = (int)(((curWeapon.bulletsPerClip-curWeapon.bulletsLeft)*curWeapon.costPerBullet)+((curWeapon.maxClips-curWeapon.clips)*(curWeapon.bulletsPerClip*curWeapon.costPerBullet)));
 			ammo.sellItem.purchased = false;
 			ammo.sellItem.cost = clipsToPurchase + bulletsToPurchase*curWeapon.costPerBullet;
-			//ammo.sellItem.cost = finalCost;
-			ammo.upgrade = false;
-			ammo.hasWorldspace = false;
-			ammo.worldspaceLocation = new Vector3(0,1,0);
-			ammo.windowSize = new Vector2(200,100);
-			ammo.pixelOffset = new Vector2(x, y);
-			ammo.icon = icon;
-			ammo.iconSize = 50;
-			ammo.invokingObject = this;
-			ammo.invokingType = this.GetType();
-			displayer.AddToDisplay(ammo);
+			
+			Debug.Log(ammo.sellItem.cost);
+			isDisplaying = true;
 		}
 	}
 	
@@ -87,6 +73,5 @@ public class AmmoVendor : MonoBehaviour {
 	
 	public void Cancel(){
 		isDisplaying = false;
-		displayer.Purge();
 	}
 }

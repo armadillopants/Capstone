@@ -83,8 +83,8 @@ MonoBehaviour:
   - {fileID: 100104, guid: 275e901225d851249a627fc31badbccd, type: 2}
   - {fileID: 100074, guid: 913043ffd14a18946b8fe9b1e0b62194, type: 2}
   nightEnemies:
-  - {fileID: 100096, guid: b64e1e2bd6b4ce8468bc83c77f016223, type: 2}
-  - {fileID: 100076, guid: e8b3bf15aa06dde45843999c1e6ce918, type: 2}
+  - {fileID: 100094, guid: 12e17776242371244885845aa26e8fde, type: 2}
+  - {fileID: 100076, guid: aa3ee0965b91f144881c14a07c53621f, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

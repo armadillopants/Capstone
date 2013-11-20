@@ -25,8 +25,6 @@ public class Dragable : MonoBehaviour {
 				UIManager.Instance.SetFortification(gameObject);
 				ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
 				itemVendor.upgradeItemVendor = gameObject;
-				itemVendor.Cancel();
-				itemVendor.CancelUpgrades();
 			}
 		}
 	}

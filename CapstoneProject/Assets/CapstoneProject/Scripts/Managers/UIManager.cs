@@ -6,9 +6,9 @@ public class UIManager : MonoBehaviour {
 	public enum UIState { PAUSE, 
 		WAVEWON, WAVELOST, NEXTWAVE, 
 		GAMEOVER, NONE, CURWAVE, 
-		FORTINFO, YESORNO, BUILD_SCREEN, 
-		UPGRADE_SCREEN, BUY_SCREEN, EQUIP_WEAPON_SCREEN, 
-		FORT_UPGRADE_SCREEN, GAMEWON };
+		FORTINFO, YESORNO, FORT_BUILD_SCREEN,
+		FORT_WEAPON_SCREEN, FORT_UPGRADE_SCREEN, 
+		FORT_ABILITY_SCREEN, GAMEWON };
 	public UIState uiState = UIState.NONE;
 	
 	public bool isPaused = false;
@@ -25,6 +25,26 @@ public class UIManager : MonoBehaviour {
 	private Rect playerHealthRect;
 	private Rect shipHealthRect;
 	private Rect resourceRect;
+	
+	// Textures for main fortification screen
+	public Texture2D mainBase;
+	public Texture2D buttonNormal;
+	public Texture2D buttonHover;
+	public Texture2D buttonActive;
+	public Font fortFont;
+	
+	// Texture for weapon screen
+	public Texture2D buildBase;
+	public Texture2D weaponBase;
+	public Texture2D abilityBase;
+	
+	public Texture2D header;
+	public Font headerFont;
+	public Font labelFont;
+	
+	public Texture2D refillNormal;
+	public Texture2D refillHover;
+	public Texture2D refillActive;
 	
 	#region Singleton
 	

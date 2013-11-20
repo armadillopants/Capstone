@@ -6,6 +6,8 @@ public class BaseWeapon : MonoBehaviour {
 	public enum WeaponState { RAYCAST, PROJECTILE };
 	public WeaponState state;
 	
+	public WeaponType weaponType;
+	
 	public float fireRate = 0.09f;
 	public float range = 100f;
 	public float force = 1.0f;
@@ -49,6 +51,7 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	void Awake(){
+		
 		hitParticles = GetComponentInChildren<ParticleEmitter>();
 		
 		if(hitParticles){
