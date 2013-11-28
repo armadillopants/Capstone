@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour {
 		GAMEOVER, NONE, CURWAVE, 
 		FORTINFO, YESORNO, FORT_BUILD_SCREEN,
 		FORT_WEAPON_SCREEN, FORT_UPGRADE_SCREEN, 
-		FORT_ABILITY_SCREEN, GAMEWON };
+		FORT_ABILITY_SCREEN, GAMEWON, CURRENT_FORT_INFO };
 	public UIState uiState = UIState.NONE;
 	
 	public bool isPaused = false;
@@ -16,35 +16,19 @@ public class UIManager : MonoBehaviour {
 	private bool fadeComplete = false;
 	
 	private GameObject fortification;
-	private Rect displayScreen = new Rect(Screen.width/2f - 50f, Screen.height/2f - 100f, 200, 300);
+	private Rect displayScreen;
 	
 	private Texture2D playerHealthBar;
 	private Texture2D shipHealthBar;
 	private Texture2D grayBar;
 	
+	private Rect waveRect;
 	private Rect playerHealthRect;
 	private Rect shipHealthRect;
 	private Rect resourceRect;
 	
-	// Textures for main fortification screen
-	public Texture2D mainBase;
-	public Texture2D buttonNormal;
-	public Texture2D buttonHover;
-	public Texture2D buttonActive;
-	public Font fortFont;
-	
-	// Texture for weapon screen
-	public Texture2D buildBase;
-	public Texture2D weaponBase;
-	public Texture2D abilityBase;
-	
-	public Texture2D header;
-	public Font headerFont;
-	public Font labelFont;
-	
-	public Texture2D refillNormal;
-	public Texture2D refillHover;
-	public Texture2D refillActive;
+	public Texture2D resourceBackground;
+	public Font resourceFont;
 	
 	#region Singleton
 	
@@ -87,9 +71,13 @@ public class UIManager : MonoBehaviour {
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
 		
-		playerHealthRect = new Rect(20, Screen.height-85, 135, 22);
+		waveRect = new Rect((Screen.width/2) - 100, (Screen.height/2) - (100/2) - 100, 100, 100);
+		
+		playerHealthRect = new Rect(Screen.width-150, Screen.height-25, 135, 22);
 		shipHealthRect = new Rect(20, Screen.height-55, 135, 22);
-		resourceRect = new Rect(20, Screen.height-30, 135, 22);
+		resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
+		
+		displayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
 	}
 	
 	void Update(){
@@ -136,9 +124,12 @@ public class UIManager : MonoBehaviour {
 		case UIState.GAMEWON:
 			DrawGameWonScreen();
 			break;
+		case UIState.CURRENT_FORT_INFO:
+			DrawCurrentFortInfoScreen();
+			break;
 		}
 		
-		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME && !GameController.Instance.GetPlayerHealth().IsDead){
+		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
 			DrawPlayerHealth();
 			DrawShipHealth();
 			DrawResources();
@@ -146,14 +137,14 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawPauseScreen(){
-		if(GUI.Button(new Rect(Screen.width/2, Screen.height/2, 100, 50), "Resume")){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)-50, 100, 50), "Resume")){
 			isPaused = !isPaused;
 			UIManager.Instance.uiState = UIState.NONE;
 		}
-		if(GUI.Button(new Rect(Screen.width/2, Screen.height/4, 100, 50), "Restart")){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50), "Restart")){
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		if(GUI.Button(new Rect(Screen.width/2, Screen.height/3, 100, 50), "Quit")){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50), "Quit")){
 			Application.Quit();
 		}
 	}
@@ -217,7 +208,11 @@ public class UIManager : MonoBehaviour {
 	void DrawResources(){
 		GUI.BeginGroup(resourceRect);
 		{
-			GUI.Label(new Rect(0, 0, resourceRect.width, resourceRect.height), "Resources: " + GameController.Instance.GetResources());
+			GUIStyle style = new GUIStyle();
+			style.normal.background = resourceBackground;
+			style.font = resourceFont;
+			style.alignment = TextAnchor.MiddleCenter;
+			GUI.Label(new Rect(0, 0, resourceRect.width, resourceRect.height), "RESOURCES: " + GameController.Instance.GetResources(), style);
 		}
 		GUI.EndGroup();
 	}
@@ -248,6 +243,11 @@ public class UIManager : MonoBehaviour {
 		}
 		
 		GUI.EndGroup();
+	}
+
+	void DrawCurrentFortInfoScreen(){
+		GUILayout.Label("LEFT CLICK to place current fortification");
+		GUILayout.Label("RIGHT CLICK to cancel current fortification");
 	}
 	
 	void DrawFortInfo(){

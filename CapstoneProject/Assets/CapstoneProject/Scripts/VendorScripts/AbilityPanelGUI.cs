@@ -2,14 +2,10 @@
 using System.Collections;
 
 public class AbilityPanelGUI : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void Draw(Rect drawRect){
+		Rect drawArea = drawRect;
+		
+		
 	}
 }

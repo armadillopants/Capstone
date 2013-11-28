@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayEnemies:
-  - {fileID: 100104, guid: 275e901225d851249a627fc31badbccd, type: 2}
-  - {fileID: 100074, guid: 913043ffd14a18946b8fe9b1e0b62194, type: 2}
+  - {fileID: 100136, guid: 284c0d8ff56b7f64dba4c61e34a1ed4a, type: 2}
+  - {fileID: 100074, guid: 9342dd4f4da79134795cbdc388d8fc91, type: 2}
   nightEnemies:
   - {fileID: 100094, guid: 12e17776242371244885845aa26e8fde, type: 2}
   - {fileID: 100076, guid: aa3ee0965b91f144881c14a07c53621f, type: 2}

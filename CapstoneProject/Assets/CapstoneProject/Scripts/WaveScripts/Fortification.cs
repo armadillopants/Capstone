@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Fortification : MonoBehaviour {
 	
-	private Rect mainScreen = new Rect(Screen.width-150, Screen.height-(Screen.height-16), 150, 250);
-	private Rect buildDisplayScreen = new Rect(Screen.width-500, Screen.height-(Screen.height-50), 350, 500);
-	private Rect weaponDisplayScreen = new Rect(Screen.width-500, Screen.height-(Screen.height-100), 350, 500);
-	private Rect abilityDisplayScreen = new Rect(Screen.width-500, Screen.height-(Screen.height-150), 350, 500);
+	private Rect mainScreen = new Rect(Screen.width-512, Screen.height-(Screen.height-16), 512, 512);
+	private Rect buildDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
+	private Rect weaponDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
+	private Rect abilityDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
 	
 	private Wave buildWave;
 	private float infinity = Mathf.Infinity;
@@ -14,6 +14,7 @@ public class Fortification : MonoBehaviour {
 	private MainPanelGUI mainPanel;
 	private BuildPanelGUI buildPanel;
 	private WeaponPanelGUI weaponPanel;
+	private AbilityPanelGUI abilityPanel;
 
 	void Awake(){
 		GameController.Instance.canShoot = false;
@@ -24,6 +25,16 @@ public class Fortification : MonoBehaviour {
 		weaponPanel = vendor.GetComponent<WeaponPanelGUI>();
 		mainPanel = vendor.GetComponent<MainPanelGUI>();
 		buildPanel = vendor.GetComponent<BuildPanelGUI>();
+		abilityPanel = vendor.GetComponent<AbilityPanelGUI>();
+		
+		/*GameObject[] combinedMeshes = GameObject.FindGameObjectsWithTag("CombinedMesh");
+		foreach(GameObject combine in combinedMeshes){
+			Destroy(combine);
+		}
+		
+		foreach(Dragable fort in GameObject.Find("CombinedMeshes").GetComponentsInChildren<Dragable>()){
+			fort.renderer.enabled = true;
+		}*/
 	}
 	
 	public void StartFortifying(Wave wave){
@@ -38,7 +49,9 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void OnGUI(){
-		mainPanel.Draw(mainScreen, buildWave);
+		if(GameController.Instance.current == null){
+			mainPanel.Draw(mainScreen, buildWave);
+		}
 		
 		switch(UIManager.Instance.uiState){
 		case UIManager.UIState.FORT_BUILD_SCREEN:
@@ -65,7 +78,7 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void DrawAbilityBuyScreen(){
-		
+		abilityPanel.Draw(abilityDisplayScreen);
 	}
 
 	void DrawFortUpgradeScreen(){

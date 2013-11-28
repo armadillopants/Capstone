@@ -23,12 +23,15 @@ public class BaseEnemy : AIPath {
 	public float burnDamage;
 	public bool isPathBlocked = false;
 	
+	private Camera cam;
+	
 	public new void Start(){
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
 		lastTarget = playerTarget;
 		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
+		cam = Camera.main;
 		base.Start();
 	}
 	
@@ -37,6 +40,7 @@ public class BaseEnemy : AIPath {
 	}
 	
 	protected new void Update(){
+		
 		if(target != null){
 			isPathBlocked = CheckIfPathIsPossible(tr.position, lastTarget.position);
 		}

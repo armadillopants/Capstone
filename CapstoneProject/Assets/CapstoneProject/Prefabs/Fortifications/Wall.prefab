@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  height: .200000003
+  height: .0199999996
   canDrag: 1
-  canUpdate: 1
+  canUpdate: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  damage: 0
+  fortDamage: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Wall
   description: Strong stone wall.NEWLINEProtects against bullets
+  cost: 75
   preview: {fileID: 0}
-  cost: 250
   purchased: 0
   currentUpgrade: 1
   id: 0

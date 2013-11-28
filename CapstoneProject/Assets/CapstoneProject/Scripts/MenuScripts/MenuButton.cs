@@ -8,11 +8,11 @@ public class MenuButton : MonoBehaviour {
 
 	void Start(){
 		oldPos = transform.position;
-		renderer.material.color = Color.black;
+		renderer.material.color = Color.white;
 	}
 	
 	void Update(){
-		transform.position = Vector3.Lerp(transform.position, oldPos, 2*Time.deltaTime);
+		transform.position = Vector3.Lerp(transform.position, oldPos, 1*Time.deltaTime);
 	}
 	
 	void OnMouseDown(){
@@ -28,7 +28,7 @@ public class MenuButton : MonoBehaviour {
 	
 	void OnMouseOver(){
 		if(activeObject){
-			transform.position = Vector3.Lerp(transform.position, transform.position+new Vector3(0,0,-0.1f), 5*Time.deltaTime);
+			transform.position = Vector3.Lerp(transform.position, transform.position+new Vector3(0,0,-0.1f), 1*Time.deltaTime);
 		}
 	}
 	
@@ -38,6 +38,6 @@ public class MenuButton : MonoBehaviour {
 	
 	void OnMouseExit(){
 		activeObject = true;
-		renderer.material.color = Color.black;
+		renderer.material.color = Color.white;
 	}
 }

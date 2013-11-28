@@ -4,23 +4,16 @@ using System;
 
 public class BuildPanelGUI : MonoBehaviour {
 	
-	private Vector2 drawSize = new Vector2(350, 500);
-	
   	private int labelOffset = 10;
 	
-	// Header Placement
-  	private int headerHeight = 48;
-	private int headerWidth = 330;
-	
-	// Weapon Placement
-	private int weaponWidth = 330;
- 	private int weaponHeight = 24;
+	// Label Placement
+  	private int labelHeight = 48;
+	private int labelWidth = 330;
   	
 	// Button Placement
 	private int buttonWidth = 80;
-  	private int buttonHeight = 18;
-  	private int buttonColOneX = 120;
-  	private int buttonColTwoX = 220;
+  	private int buttonHeight = 24;
+  	private int buttonPosX = 200;
 	
 	private List<GameObject> allForts = new List<GameObject>();
 	private ItemVendor itemVendor;
@@ -28,14 +21,9 @@ public class BuildPanelGUI : MonoBehaviour {
 	// Background image
 	public Texture2D backGround;
 	
-	// Header
-	public Texture2D header;
-	public Font headerFont;
-	
 	// Label
-	public Texture2D labelEquipped;
-	public Texture2D labelOwned;
-	public Texture2D labelLocked;
+	public Texture2D labelCanBuy;
+	public Texture2D labelCantBuy;
 	public Font labelFont;
 	
 	// Buy
@@ -51,49 +39,40 @@ public class BuildPanelGUI : MonoBehaviour {
 	public void Draw(Rect drawRect){
 		Rect drawArea = drawRect;
 		
-	    int weaponRegionHeight = headerHeight + (3 * weaponHeight);
-		
-		GUILayout.BeginArea(drawArea);
+		GUI.BeginGroup(drawArea);
 	    GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
-	    /*for(int i=0; i<types.Length; i++){
+	    for(int i=0; i<allForts.Count; i++){
 			
-	      	GUILayout.BeginArea(new Rect(0, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
+	      	GUIStyle itemLabelStyle = new GUIStyle();
+	      	itemLabelStyle.alignment = TextAnchor.MiddleLeft;
+			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost){
+				itemLabelStyle.normal.background = labelCanBuy;
+			} else {
+				itemLabelStyle.normal.background = labelCantBuy;
+			}
+			itemLabelStyle.normal.textColor = Color.white;
+			itemLabelStyle.font = labelFont;
+			itemLabelStyle.contentOffset = new Vector2(labelOffset, 0);
 	
-	      	GUIStyle headerStyle = new GUIStyle();
-	      	headerStyle.alignment = TextAnchor.MiddleLeft;
-			headerStyle.normal.background = header;
-			headerStyle.normal.textColor = Color.white;
-			headerStyle.font = headerFont;
-			headerStyle.contentOffset = new Vector2(labelOffset, 0);
-	
-	      	GUI.Label(new Rect(labelOffset, labelOffset, headerWidth, headerHeight), "Structure", headerStyle);
-	      
-	      	GUIStyle weaponLabelStyle = new GUIStyle();
-			weaponLabelStyle.font = labelFont;
-			weaponLabelStyle.normal.textColor = Color.white;
-			weaponLabelStyle.contentOffset = new Vector2(labelOffset, 0);
+	      	GUI.Label(new Rect(labelOffset, labelOffset+i*labelHeight + labelHeight, labelWidth, labelHeight), allForts[i].name, itemLabelStyle);
 			
 			GUIStyle buttonStyle = new GUIStyle();
 			buttonStyle.font = labelFont;
 			buttonStyle.fontSize = 10;
 			buttonStyle.alignment = TextAnchor.MiddleCenter;
+			buttonStyle.normal.background = buyNormal;
+			buttonStyle.hover.background = buyHover;
+			buttonStyle.active.background = buyActive;
 			buttonStyle.normal.textColor = Color.white;
 			buttonStyle.hover.textColor = Color.white;
 			buttonStyle.active.textColor = Color.white;
 			
-	      	for(int j=0; j<3; j++){
-				
-	        	GUI.Label(new Rect(labelOffset, (labelOffset+headerHeight)+j*weaponHeight, weaponWidth, weaponHeight), "Structure", weaponLabelStyle);
-				buttonStyle.normal.background = buyNormal;
-				buttonStyle.hover.background = buyHover;
-				buttonStyle.active.background = buyActive;
-					
-	          	if(GUI.Button(new Rect(buttonColOneX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "BUY", buttonStyle)){
-					//itemVendor.Purchase(type[j].gameObject);
+			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost){
+				if(GUI.Button(new Rect(buttonPosX, labelOffset+i*labelHeight + labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "BUY", buttonStyle)){
+					itemVendor.Purchase(allForts[i]);
 				}
-	      	}
-			GUILayout.EndArea();
-	    }*/
-	    GUILayout.EndArea();
+			}
+	    }
+	    GUI.EndGroup();
 	}
 }

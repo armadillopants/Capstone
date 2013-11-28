@@ -129,13 +129,14 @@
 		</Wall>
 		<GunTower
 			health= "500"
-			damage= "1"
+			fortDamage= "0"
 			range= "15"
 			fireRate= "0.1"
 			force= "1.5"
 			bulletsPerClip= "100"
 			clips= "5"
 			reloadSpeed= "1.5"
+			damage= "1"
 			coneAngle= "2">
 		</GunTower>
 		<RocketTower
@@ -186,5 +187,9 @@
 			damage= "2"
 			coneAngle= "2.5">
 		</FlameTurret>
+		<SatelliteTower
+			health= "500"
+			fortDamage= "0">
+		</SatelliteTower>
 	</FortificationData>
 </BaseValueData>	

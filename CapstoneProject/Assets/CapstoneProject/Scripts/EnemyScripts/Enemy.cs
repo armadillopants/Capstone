@@ -37,6 +37,7 @@ public class Enemy : AIPath {
 	private Health health;
 	
 	public GameObject money;
+	private Camera cam;
 	
 	public int AmountToGive(){
 		return amountToGive;
@@ -72,6 +73,7 @@ public class Enemy : AIPath {
 			anim.Play("Walk");
 		}
 		
+		cam = Camera.main;
 		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
 		base.Start();
@@ -86,6 +88,9 @@ public class Enemy : AIPath {
 	}
 	
 	protected new void Update(){
+		
+		RenderEnemy();
+		
 		if(curTarget != null){
 			lastTarget = curTarget;
 			isPathBlocked = CheckIfPathIsPossible(tr.position, lastTarget.position);
@@ -322,6 +327,16 @@ public class Enemy : AIPath {
 			isBurning = true;
 		} else {
 			isBurning = false;
+		}
+	}
+	
+	void RenderEnemy(){
+		Renderer data = transform.GetComponentInChildren<Renderer>().renderer;
+		if(!data.IsVisibleFrom(cam)){
+			data.enabled = false;
+		}
+		if(data.IsVisibleFrom(cam)){
+			data.enabled = true;
 		}
 	}
 }

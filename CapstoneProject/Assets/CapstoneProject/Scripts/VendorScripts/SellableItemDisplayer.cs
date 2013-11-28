@@ -57,7 +57,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 	void OnGUI(){
 		for(int i=0; i<itemsToDisplay.Count; i++){
 			labelStyle.fontSize = FONT_SIZE;
-			labelStyle.font = UIManager.Instance.labelFont;
+			//labelStyle.font = UIManager.Instance.labelFont;
 			labelStyle.normal.background = itemsToDisplay[i].weaponState;
 			labelStyle.normal.textColor = Color.white;
 			/*style.normal.background = itemsToDisplay[i].sellItem.preview;
@@ -98,7 +98,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 			
 			if(itemsToDisplay[i].sellItem.purchased){
 				buttonStyle.fontSize = 10;
-				buttonStyle.font = UIManager.Instance.labelFont;
+				//buttonStyle.font = UIManager.Instance.labelFont;
 				buttonStyle.normal.background = upgradeNormal;
 				buttonStyle.hover.background = upgradeHover;
 				buttonStyle.active.background = upgradeActive;
@@ -110,7 +110,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 				buttonContent = new GUIContent("UPGRADE");
 							
 				equippedStyle.fontSize = 10;
-				equippedStyle.font = UIManager.Instance.labelFont;
+				//equippedStyle.font = UIManager.Instance.labelFont;
 				equippedStyle.normal.background = equippedNormal;
 				equippedStyle.hover.background = equippedHover;
 				equippedStyle.active.background = equippedActive;
@@ -135,7 +135,7 @@ public class SellableItemDisplayer : MonoBehaviour {
 				
 			} else {
 				buttonStyle.fontSize = 10;
-				buttonStyle.font = UIManager.Instance.labelFont;
+				//buttonStyle.font = UIManager.Instance.labelFont;
 				buttonStyle.normal.background = buyNormal;
 				buttonStyle.hover.background = buyHover;
 				buttonStyle.active.background = buyActive;

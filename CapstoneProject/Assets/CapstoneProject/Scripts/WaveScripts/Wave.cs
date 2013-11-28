@@ -63,7 +63,6 @@ public class Wave : MonoBehaviour {
 			}
 		} else {
 			BeginWave();
-			UIManager.Instance.uiState = UIManager.UIState.NEXTWAVE;
 		}
 		
 		while(!beginWave){
@@ -72,13 +71,19 @@ public class Wave : MonoBehaviour {
 	}
 	
 	public void BeginWave(){
+		//UIManager.Instance.uiState = UIManager.UIState.NEXTWAVE;
+		controller.nextWaveText.text = "WAVE";
+		controller.nextWaveNumberText.text = waveNumber.ToString();
 		StartCoroutine("BeginNewWave");
 	}
 	
 	// Never call this function directly as it is to be called through BeginWave
 	IEnumerator BeginNewWave(){
 		yield return new WaitForSeconds(waitTime);
-		UIManager.Instance.uiState = UIManager.UIState.CURWAVE;
+		controller.nextWaveText.text = "";
+		controller.nextWaveNumberText.text = "";
+		controller.curWaveNumberText.text = waveNumber.ToString();
+		//UIManager.Instance.uiState = UIManager.UIState.CURWAVE;
 		GameController.Instance.canShoot = true;
 		GameController.Instance.canChangeWeapons = true;
 		beginWave = true;

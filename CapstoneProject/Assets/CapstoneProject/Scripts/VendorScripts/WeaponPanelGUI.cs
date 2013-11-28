@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WeaponPanelGUI : MonoBehaviour {
 	
-	private Vector2 drawSize = new Vector2(350, 500);
-	
   	private int labelOffset = 10;
 	
 	// Header Placement
@@ -19,8 +17,9 @@ public class WeaponPanelGUI : MonoBehaviour {
 	// Button Placement
 	private int buttonWidth = 80;
   	private int buttonHeight = 18;
-  	private int buttonColOneX = 120;
-  	private int buttonColTwoX = 220;
+	private int refillButtonX = 120;
+  	private int buttonColOneX = 170;
+  	private int buttonColTwoX = 250;
 
   	private List<BaseWeapon> weapons;
 	private WeaponManager weaponManager;
@@ -72,13 +71,13 @@ public class WeaponPanelGUI : MonoBehaviour {
 	    string[] types = Enum.GetNames(typeof(WeaponType));
 	    int weaponRegionHeight = headerHeight + (3 * weaponHeight);
 		
-		GUILayout.BeginArea(drawArea);
+		GUI.BeginGroup(drawArea);
 	    GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
 	    for(int i=0; i<types.Length; i++){
 	      	List<BaseWeapon> type = new List<BaseWeapon>();
 	      	type = weapons.FindAll(x => (int)x.weaponType == i);
 			
-	      	GUILayout.BeginArea(new Rect(0, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
+			GUI.BeginGroup(new Rect(0, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
 	
 	      	/*************Header*************/
 	      	GUIStyle headerStyle = new GUIStyle();
@@ -103,7 +102,7 @@ public class WeaponPanelGUI : MonoBehaviour {
 			if(weaponManager.equippedWeapons[i]){
 				// Handle Refill of weapon
 				string refillType = types[i];
-				Rect refillRect = new Rect(buttonColOneX+labelOffset+labelOffset, labelOffset+labelOffset, buttonWidth*2f, buttonHeight*1.5f);
+				Rect refillRect = new Rect(refillButtonX+labelOffset+labelOffset, labelOffset+labelOffset, buttonWidth*2f, buttonHeight*1.5f);
 				
 				// If hovering over weapon, check if we have that weapon equipped first
 				if(refillRect.Contains(Event.current.mousePosition)){
@@ -215,17 +214,19 @@ public class WeaponPanelGUI : MonoBehaviour {
 						}
 					}
 	        	} else {
-					buttonStyle.normal.background = buyNormal;
-					buttonStyle.hover.background = buyHover;
-					buttonStyle.active.background = buyActive;
-					
-	          		if(GUI.Button(new Rect(buttonColOneX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "BUY", buttonStyle)){
-						weaponVendor.Purchase(type[j].gameObject);
+					if(GameController.Instance.GetResources() > type[j].GetComponent<SellableItem>().cost){
+						buttonStyle.normal.background = buyNormal;
+						buttonStyle.hover.background = buyHover;
+						buttonStyle.active.background = buyActive;
+						
+		          		if(GUI.Button(new Rect(buttonColOneX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "BUY", buttonStyle)){
+							weaponVendor.Purchase(type[j].gameObject);
+						}
 					}
 	        	}
 	      	}
-			GUILayout.EndArea();
+			GUI.EndGroup();
 	    }
-	    GUILayout.EndArea();
+		GUI.EndGroup();
 	}
 }

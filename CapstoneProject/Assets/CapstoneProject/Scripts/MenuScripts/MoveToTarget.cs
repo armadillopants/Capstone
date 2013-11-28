@@ -18,13 +18,17 @@ public class MoveToTarget : MonoBehaviour {
 	
 	void Update(){
 		if(curWaypoint == totalWayPoints){
+			trans.rotation = Quaternion.Euler(0, 90, 0);
+			if(trans.GetComponent<Collider>() != null){
+				trans.GetComponent<Collider>().enabled = true;
+			}
 			Destroy(this);
 			return;
 		} else {
 			curTarget = wayPoints[curWaypoint].position;
 			moveDirection = curTarget - trans.position;
 			trans.rotation = Quaternion.Slerp(trans.rotation, Quaternion.LookRotation(moveDirection), 4*Time.deltaTime);
-			if(moveDirection.sqrMagnitude < 1){
+			if(moveDirection.sqrMagnitude < 0.1f){
 				curWaypoint++;
 			}
 		}

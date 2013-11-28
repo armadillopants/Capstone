@@ -23,6 +23,8 @@ public class FlameThrower : BaseWeapon {
 		if(bulletsLeft <= 0){
 			hitParticles.emit = false;
 		}
+		
+		base.Update();
 	}
 	
 	public override void Fire(){

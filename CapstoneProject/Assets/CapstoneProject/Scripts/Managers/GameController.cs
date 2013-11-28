@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 10000000;
+	private int amountOfResources = 10000;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -55,7 +55,6 @@ public class GameController : MonoBehaviour {
 		shipHealth = ship.GetComponent<Health>();
 		
 		weaponReader = GameObject.Find("XMLReader").GetComponent<XMLReader>();
-		weaponReader.Reset();
 		
 		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 	}
@@ -200,12 +199,14 @@ public class GameController : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit)){
 			GameObject fort = (GameObject)Instantiate(fortToSpawn, hit.point, Quaternion.identity);
 			fort.name = fortToSpawn.name;
+			//fort.transform.parent = GameObject.Find("CombinedMeshes").transform;
 			current = fort;
 		}
 		fortSpawned = true;
 	}
 	
 	void UpdateFortPosWithMouseLoc(){
+		UIManager.Instance.uiState = UIManager.UIState.CURRENT_FORT_INFO;
 		if(Input.GetKeyDown(KeyCode.E)){
 			current.transform.Rotate(0, 90, 0);
 		}
@@ -311,8 +312,16 @@ public class GameController : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0) && canPlace){
 			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ, current);
 			current.renderer.material = originalMat;
+			DeleteResources(current.GetComponent<SellableItem>().cost);
 			StartCoroutine("AddDragable");
 			fortSpawned = false;
+		}
+		
+		if(Input.GetMouseButtonDown(1)){
+			fortSpawned = false;
+			UIManager.Instance.uiState = UIManager.UIState.NONE;
+			Destroy(current);
+			current = null;
 		}
 	}
 	
@@ -323,8 +332,14 @@ public class GameController : MonoBehaviour {
 	private IEnumerator AddDragable(){
 		yield return new WaitForSeconds(0.1f);
 		current.GetComponent<Dragable>().enabled = true;
-		fortToSpawn = null;
-		current = null;
+		current.GetComponent<Dragable>().canUpdate = true;
+		if(amountOfResources < current.GetComponent<SellableItem>().cost){
+			fortSpawned = false;
+			current = null;
+			UIManager.Instance.uiState = UIManager.UIState.NONE;
+		} else {
+			SpawnFortification();
+		}
 	}
 	
 	public void TurnDragableOn(){
@@ -339,9 +354,6 @@ public class GameController : MonoBehaviour {
 		foreach(GameObject fort in fortifications){
 			fort.GetComponent<Dragable>().canDrag = false;
 			fort.GetComponent<Dragable>().canUpdate = false;
-			//fort.AddComponent<DynamicGridObstacle>();
-			//fort.GetComponent<DynamicGridObstacle>().updateError = 0.01f;
-			//fort.GetComponent<DynamicGridObstacle>().checkTime = 0.01f;
 			Bounds b = fort.collider.bounds;
 			GraphUpdateObject guo = new GraphUpdateObject(b);
 			AstarPath.active.UpdateGraphs(guo);

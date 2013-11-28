@@ -45,7 +45,7 @@ public class Dragable : MonoBehaviour {
 	    	Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 	
 	    	Vector3 curPos = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-			setY = new Vector3(curPos.x, transform.position.y, curPos.z); // Object moves with mouse location
+			setY = new Vector3(curPos.x, height, curPos.z); // Object moves with mouse location
 			lastPosition = transform.position;
 			
 			transform.position = setY; // Fixes the objects Y postion
@@ -68,9 +68,7 @@ public class Dragable : MonoBehaviour {
 			
 			RaycastHit hit;
 			
-			LayerMask path = 11;
-			path = ~(1<<path);
-			if(Physics.Raycast(transform.position, Vector3.down, out hit, 5f, path)){
+			if(Physics.Raycast(transform.position, Vector3.down, out hit)){
 				if(hit.transform.tag == Globals.GRID){
 					//fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
 					

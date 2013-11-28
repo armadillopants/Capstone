@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyWeapon : MonoBehaviour {
 	
-	private BaseWeapon[] guns;
+	private BaseWeapon gun;
 	private Animation anim;
 	private Enemy cyborg;
 	private Health health;
@@ -17,7 +17,7 @@ public class EnemyWeapon : MonoBehaviour {
 	private float tempSpeed = 0f;
 
 	void Start(){
-		guns = transform.GetComponentsInChildren<BaseWeapon>();
+		gun = transform.GetComponentInChildren<BaseWeapon>();
 		health = GetComponent<Health>();
 		cyborg = GetComponent<Enemy>();
 		tempSpeed = cyborg.speed;
@@ -34,8 +34,7 @@ public class EnemyWeapon : MonoBehaviour {
 						coolDownTimer = 0;
 						cyborg.speed = 0;
 						anim.CrossFade("Shoot", 0.2f);
-						guns[0].Fire();
-						guns[1].Fire();
+						gun.Fire();
 						StartCoroutine(Firing());
 					}
 				}

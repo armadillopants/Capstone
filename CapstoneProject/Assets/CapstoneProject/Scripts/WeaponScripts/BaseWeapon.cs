@@ -74,9 +74,10 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	public virtual void Update(){
-		/*if(Input.GetButton("Fire1") && GameController.Instance.canShoot){
-			Fire();
-		}*/
+		if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < bulletsPerClip){
+			StartCoroutine("Reload");
+			return;
+		}
 	}
 	
 	void LateUpdate(){
@@ -148,7 +149,7 @@ public class BaseWeapon : MonoBehaviour {
 			if(useLayerMask){
 				layerMaskFinal = ~((1<<layerMaskPlayer)|1<<layerMaskFort);
 			} else {
-				layerMaskFinal = ~((1<<layerMaskEnemy)|1<<layerMaskFort);
+				layerMaskFinal = ~(1<<layerMaskEnemy);//~((1<<layerMaskEnemy)|1<<layerMaskFort);
 			}
 			
 		  	// Does the ray intersect any objects excluding the player and fort layer
@@ -200,10 +201,13 @@ public class BaseWeapon : MonoBehaviour {
 		isReloading = true;
 		yield return new WaitForSeconds(reloadSpeed);
 		
+		// Actual bullets to reload in clip
+		int bulletsToReload = bulletsPerClip - bulletsLeft;
+		
 		// We have a clip left to reload
-		if(clips > bulletsPerClip){
-			clips -= bulletsPerClip;
-			bulletsLeft = bulletsPerClip;
+		if(clips > bulletsToReload){
+			clips -= bulletsToReload;
+			bulletsLeft += bulletsToReload;
 		} else {
 			bulletsLeft = clips;
 			clips = 0;

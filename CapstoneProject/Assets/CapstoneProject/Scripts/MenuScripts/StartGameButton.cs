@@ -33,10 +33,8 @@ public class StartGameButton : MonoBehaviour {
 				player.gameObject.AddComponent<PlayerMovement>();
 				player.gameObject.AddComponent<LocalInput>();
 				player.gameObject.AddComponent<AnimationController>();
-				GameObject.Find("Cargo").AddComponent<DynamicGridObstacle>();
 				StartCoroutine(GameObject.Find("WaveController").GetComponent<WaveController>().BeginFirstWave());
-				//GameObject.Find("Hull").AddComponent<DynamicGridObstacle>();
-				//GameObject.Find("Hull").AddComponent<Rigidbody>();
+				GameObject.Find("Hull").AddComponent<DynamicGridObstacle>();
 				beginGame = false;
 			}
 			

@@ -24,7 +24,7 @@ public class ItemVendor : MonoBehaviour {
 			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject);
 			reader.SetFortData();
 			reader.SetFortification(sellItem.name);
-			GameController.Instance.DeleteResources(sellItem.cost);
+			//GameController.Instance.DeleteResources(sellItem.cost);
 			
 			Debug.Log("Purchased: " + sellItem.itemName);
 		} else {

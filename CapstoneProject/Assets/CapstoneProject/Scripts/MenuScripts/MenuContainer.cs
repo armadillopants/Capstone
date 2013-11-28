@@ -9,6 +9,20 @@ public class MenuContainer : MonoBehaviour {
 	private float waitTime = 5f;
 	public bool renderMenu = false;
 	
+	private GameObject barL;
+	private GameObject barR;
+	
+	public GameObject barLeft;
+	public GameObject barRight;
+	public GameObject call;
+	public GameObject sign;
+	public GameObject mayday;
+	public GameObject CSM;
+	public Renderer[] other;
+	public GameObject play;
+	public GameObject settings;
+	public GameObject quit;
+	
 	void Start(){
 		target = GameObject.Find("Ship").GetComponent<MoveToTarget>();
 		boxCols = GetComponentsInChildren<BoxCollider>();
@@ -27,9 +41,12 @@ public class MenuContainer : MonoBehaviour {
 		}
 		
 		if(target.curWaypoint == target.totalWayPoints/3){
-			GameObject cargo = GameObject.Find("Cargo");
-			cargo.rigidbody.useGravity = true;
-			cargo.rigidbody.AddForce(new Vector3(6, 0, 4) * 3f);
+			Transform cargo = GameObject.Find("Cargo").transform;
+			foreach(Transform child in cargo){
+				child.parent = null;
+				child.GetComponent<MoveToTarget>().enabled = true;
+				child.gameObject.AddComponent<DynamicGridObstacle>();
+			}
 		}
 		
 		RaycastHit hit;
@@ -37,22 +54,50 @@ public class MenuContainer : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit)){
 			hit.collider.gameObject.SendMessage("OnMouseOver", SendMessageOptions.DontRequireReceiver);
 		}
+		
+		if(barL && barR){
+			barL.transform.position = Vector3.Lerp(barL.transform.position, new Vector3(-2.6f, 8, -51), 5f*Time.deltaTime);
+			barR.transform.position = Vector3.Lerp(barR.transform.position, new Vector3(2.6f, 8, -51), 5f*Time.deltaTime);
+		}
 	}
 	
 	private IEnumerator FadeMenu(){
 		renderMenu = true;
 		yield return new WaitForSeconds(waitTime);
-		RenderMenu();
+		StartCoroutine(RenderMenu());
 	}
 	
-	void RenderMenu(){
+	IEnumerator RenderMenu(){
+		barL = (GameObject)Instantiate(barLeft, new Vector3(0, 8, -51), Quaternion.identity);
+		barR = (GameObject)Instantiate(barRight, new Vector3(0, 8, -51), Quaternion.identity);
+		barL.transform.parent = transform;
+		barR.transform.parent = transform;
+		yield return new WaitForSeconds(1f);
+		foreach(Renderer rend in other){
+			rend.enabled = true;
+		}
+		yield return new WaitForSeconds(1f);
+		call.renderer.enabled = true;
+		yield return new WaitForSeconds(1f);
+		sign.renderer.enabled = true;
+		yield return new WaitForSeconds(1f);
+		mayday.renderer.enabled = true;
+		yield return new WaitForSeconds(1f);
+		CSM.renderer.enabled = true;
+		yield return new WaitForSeconds(0.5f);
+		play.renderer.enabled = true;
+		yield return new WaitForSeconds(0.5f);
+		settings.renderer.enabled = true;
+		yield return new WaitForSeconds(0.5f);
+		quit.renderer.enabled = true;
+		
 		foreach(BoxCollider col in boxCols){
 			col.enabled = true;
 		}
 		
-		foreach(Renderer rend in rends){
+		/*foreach(Renderer rend in rends){
 			rend.enabled = true;
-		}
+		}*/
 	}
 	
 	void UnRenderMenu(){
@@ -62,6 +107,10 @@ public class MenuContainer : MonoBehaviour {
 		
 		foreach(Renderer rend in rends){
 			rend.enabled = false;
+		}
+		if(barL && barR){
+			barL.renderer.enabled = false;
+			barR.renderer.enabled = false;
 		}
 	}
 }

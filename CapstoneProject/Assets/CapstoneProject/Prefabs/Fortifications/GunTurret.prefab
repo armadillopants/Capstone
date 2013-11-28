@@ -504,7 +504,7 @@ MonoBehaviour:
   state: 2
   height: .5
   canDrag: 1
-  canUpdate: 1
+  canUpdate: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  damage: 0
+  fortDamage: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -547,8 +547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sentry Turret
   description: Turret that fires ballisticNEWLINEammunition. Low damage.
+  cost: 150
   preview: {fileID: 0}
-  cost: 100
   purchased: 0
   currentUpgrade: 1
   id: 0
@@ -565,6 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  weaponType: 0
   fireRate: .100000001
   range: 30
   force: 2

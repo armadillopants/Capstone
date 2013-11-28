@@ -445,7 +445,7 @@ MonoBehaviour:
   state: 2
   height: .5
   canDrag: 1
-  canUpdate: 1
+  canUpdate: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  damage: 0
+  fortDamage: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -489,8 +489,8 @@ MonoBehaviour:
   itemName: Rocket Turret
   description: Turret that fires rocketsNEWLINEat nearest target.NEWLINEHigh damage
     on CYBORGS
+  cost: 200
   preview: {fileID: 0}
-  cost: 150
   purchased: 0
   currentUpgrade: 1
   id: 0
@@ -507,6 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
+  weaponType: 0
   fireRate: 1
   range: 30
   force: 5

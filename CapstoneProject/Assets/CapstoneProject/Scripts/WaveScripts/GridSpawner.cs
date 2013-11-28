@@ -35,7 +35,7 @@ public class GridSpawner : MonoBehaviour {
 	//public Tile[,] grids;
 	
 	void Awake(){
-		GameObject p = (GameObject)Instantiate(grid, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
+		GameObject p = (GameObject)Instantiate(grid, new Vector3(transform.position.x, 0.01f, transform.position.z), Quaternion.identity);
 		p.name = grid.name;
 		p.transform.parent = transform;
 		
@@ -116,36 +116,7 @@ public class GridSpawner : MonoBehaviour {
 		rend = GetComponentInChildren<Renderer>();
 		
 		DisableGrid();
-		
-		//CalculateGrid();
 	}
-	
-	/*public void CalculateGrid(){
-		try {
-			// Creating our grid
-			grids = new Tile[GridSpawner.gridX, GridSpawner.gridY];
-			
-			for(int i=0; i<GridSpawner.gridX; i++){
-				for(int j=0; j<GridSpawner.gridY; j++){
-					// Create a new tile
-					if(Random.Range(0, 100) < 10){
-						grids[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,0f,j*3f), (GameObject)Instantiate(cube), 
-						(GameObject)Instantiate(sphere), false);
-					} else {
-						grids[i,j] = new Tile(new Vector2(i,j), new Vector3(1,1,1), new Vector3(i*3f,0f,j*3f), (GameObject)Instantiate(cube), 
-						(GameObject)Instantiate(sphere), cube.renderer.bounds.Intersects(plane.renderer.bounds) ? false : truetrue);
-					}
-				}
-			}
-			
-			Pathfinder path = new Pathfinder(grids);
-			path.FindPath(new Vector2(0,0), new Vector2(16,16));
-			
-		} catch(System.Exception e){
-			Debug.LogError(e.Message + ": " + e.InnerException);
-			Application.Quit();
-		}
-	}*/
 	
 	/*public NullableVector3 DeterminePlane(Transform hit, GameObject plane, Vector3 point){
 		if(planeData != null){

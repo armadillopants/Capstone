@@ -296,7 +296,7 @@ MonoBehaviour:
   state: 1
   height: 3
   canDrag: 1
-  canUpdate: 1
+  canUpdate: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  damage: 0
+  fortDamage: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,8 +340,8 @@ MonoBehaviour:
   itemName: Sentry Tower
   description: Strong stone tower, with highNEWLINEresistance to attack.NEWLINEEquipped
     with a turretNEWLINEthat aims at nearest target.
+  cost: 300
   preview: {fileID: 0}
-  cost: 400
   purchased: 0
   currentUpgrade: 1
   id: 0
@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  weaponType: 0
   fireRate: .100000001
   range: 30
   force: 2

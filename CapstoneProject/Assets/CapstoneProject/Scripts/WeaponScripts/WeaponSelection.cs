@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class WeaponSelection : MonoBehaviour {
 	
+	private Vector2 buttonSize = new Vector2(120, 40);
+	
 	public bool changingWeapons = false;
 	private float slowmoTime = 2f;
 	public List<GameObject> weaponSlots = new List<GameObject>();
@@ -74,29 +76,32 @@ public class WeaponSelection : MonoBehaviour {
 	
 	void OnGUI(){
 		if(changingWeapons){
-			// Display 4 GUI buttons: top, bottom, left, right
+			// Display 4 GUI buttons: left, right, top, bottom
 			if(weaponSlots[0] != null){
-				if(GUI.Button(new Rect(Screen.width/3.0f,Screen.height/2.1f,120,40), weaponSlots[0].name)){
+				if(GUI.Button(new Rect((Screen.width/2 - (buttonSize.x/2))-200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y), weaponSlots[0].name)){
 					SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
 				}
 			}
 			if(weaponSlots[1] != null){
-				if(GUI.Button(new Rect(Screen.width/1.7f,Screen.height/2.1f,120,40), weaponSlots[1].name)){
+				if(GUI.Button(new Rect((Screen.width/2 - (buttonSize.x/2))+200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y), weaponSlots[1].name)){
 					SelectWeapon(weaponSlots[1].GetComponent<BaseWeapon>().id);
 				}
 			}
 			if(weaponSlots[2] != null){
-				if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/3.2f,120,40), weaponSlots[2].name)){
+				if(GUI.Button(new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))-200, buttonSize.x, buttonSize.y), weaponSlots[2].name)){
 					SelectWeapon(weaponSlots[2].GetComponent<BaseWeapon>().id);
 				}
 			}
 			if(weaponSlots[3] != null){
-				if(GUI.Button(new Rect(Screen.width/2.17f,Screen.height/1.6f,120,40), weaponSlots[3].name)){
+				if(GUI.Button(new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))+200, buttonSize.x, buttonSize.y), weaponSlots[3].name)){
 					SelectWeapon(weaponSlots[3].GetComponent<BaseWeapon>().id);
 				}
 			}
 		}
-		GUI.Box(new Rect(Screen.width-200, Screen.height-100, 200, 30), "Ammo: " + weapon.bulletsLeft + " Clips: " + weapon.clips);
+		
+		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
+			GUI.Box(new Rect(Screen.width-200, Screen.height-100, 200, 30), "Ammo: " + weapon.bulletsLeft + " / " + weapon.clips);
+		}
 	}
 	
 	public void SelectWeapon(int index){

@@ -25,12 +25,13 @@ public class LightningBlaster : BaseWeapon {
 		noise = new Perlin();
 	}
 	
-	void Update(){
+	public override void Update(){
 		if(!isFiring){
 			startLight.light.enabled = false;
 			endLight.light.enabled = false;
 			targets[0] = null;
 		}
+		base.Update();
 	}
 	
 	public override void Fire(){

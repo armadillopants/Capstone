@@ -529,7 +529,7 @@ MonoBehaviour:
   state: 0
   height: .200000003
   canDrag: 1
-  canUpdate: 1
+  canUpdate: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  damage: 2
+  fortDamage: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -573,8 +573,8 @@ MonoBehaviour:
   itemName: Electric Fence
   description: Electricutes enemies that attack it.NEWLINEDeals continuous damage.NEWLINEHigh
     damage towards CYBORGS.
-  preview: {fileID: 0}
   cost: 500
+  preview: {fileID: 0}
   purchased: 0
   currentUpgrade: 1
   id: 0

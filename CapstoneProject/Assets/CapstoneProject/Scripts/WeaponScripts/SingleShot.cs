@@ -7,5 +7,6 @@ public class SingleShot : BaseWeapon {
 		/*if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
 			Fire();
 		}*/
+		base.Update();
 	}
 }

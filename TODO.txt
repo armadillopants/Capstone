@@ -87,3 +87,18 @@
 -- Lose Condition++
 -- Player dies
 -- If ship dies, player loses fortification abilities
+
+- Game Considerations/Feedback
+-- Building barriers needs to be fun for the player
+-- Possibly have barriers placed at start of game to let the player know they are important
+-- Make them cheaper to buy
+-- Build during day, fight enemies at night?....cool idea, but not the direction we want
+-- Need to define a solid aesthetic!!!
+-- Make building barriers a priority....or that its a more probable strategy.
+-- Enemies drop resources, player collects them, it equals a certain barrier...during build wave, player clicks what they want to build,
+   and then the can click in rapid succession what they wanna build. Same goes for player weapons..I like this idea, but then again, not
+   sure if itll work for this game.
+-- Have ship at center of camera, but even though the ship is important, the game doesnt end because the ship gets destroyed. It ends when the player dies.
+   Only the ship ignitiates the end game....
+-- Must indicate to player early on in first part of game right as they start that the ship is what they are protecting.
+-- Easier and simpler to place barriers, buy them and then keep placing them until player wants to switch fortifications.

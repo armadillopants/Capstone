@@ -56,9 +56,7 @@ public class Health : MonoBehaviour {
 		}
 		
 		if(isShip){
-			if((curHealth % 10) == 0){
-				gameObject.GetComponent<ShipDecay>().Release();
-			}
+			gameObject.GetComponent<ShipDecay>().Release();
 		}
 		
 		if(curHealth == 0 && !isDead){

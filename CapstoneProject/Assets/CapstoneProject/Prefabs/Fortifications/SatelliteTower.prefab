@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  damage: 0
+  fortDamage: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,8 +264,8 @@ MonoBehaviour:
   itemName: Satellite Tower
   description: Sends a Call Sign MaydayNEWLINEwhich ignitiates the final tenNEWLINEwaves
     to survive beforeNEWLINErescue.
+  cost: 1000
   preview: {fileID: 0}
-  cost: 500
   purchased: 0
   currentUpgrade: 1
   id: 0

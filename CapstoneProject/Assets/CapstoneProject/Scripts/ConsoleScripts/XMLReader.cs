@@ -10,7 +10,7 @@ public class XMLReader : MonoBehaviour {
 	public XmlNode firstNode;
 	private FortificationData fortData;
 	
-	public void Reset(){
+	void Awake(){
 		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
 		weapons = player.GetComponentsInChildren<BaseWeapon>();
 		manager = player.GetComponentInChildren<WeaponManager>();
@@ -32,6 +32,12 @@ public class XMLReader : MonoBehaviour {
 		SetWeapon(manager.allWeapons[5].id, "/WeaponData/Shotgun");
 		SetWeapon(manager.allWeapons[6].id, "/WeaponData/MissileLauncher");
 		SetWeapon(manager.allWeapons[7].id, "/WeaponData/LightningBlaster");*/
+	}
+	
+	public void Reset(){
+		for(int i=0; i<manager.allWeapons.Count; i++){
+			SetWeapon(manager.allWeapons[i].id, "/BaseValueData/WeaponData/"+manager.allWeapons[i].name.Replace(" " , ""));
+		}
 	}
 	
 	void SetWeapon(int i, string path){
