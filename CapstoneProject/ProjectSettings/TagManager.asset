@@ -10,12 +10,8 @@ TagManager:
   - Fortification
   - Weapon
   - Waypoint
-  - DynObj
-  - AIPathCell
-  - AIPathNode
   - Spawnpoint
   - Ability
-  - CombinedMesh
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -32,7 +28,7 @@ TagManager:
   User Layer 12: Grid
   User Layer 13: Enemy
   User Layer 14: WaveText
-  User Layer 15: 
+  User Layer 15: Indicator
   User Layer 16: 
   User Layer 17: 
   User Layer 18: 

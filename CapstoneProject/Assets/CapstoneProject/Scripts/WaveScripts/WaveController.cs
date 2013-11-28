@@ -9,7 +9,6 @@ public class WaveController : MonoBehaviour {
 	private static Wave curWave;
 	public bool canBeginWave = false;
 	
-	public TextMesh curWaveText;
 	public TextMesh nextWaveText;
 	public TextMesh nextWaveNumberText;
 	public TextMesh waveWonOrLostText;
@@ -33,7 +32,6 @@ public class WaveController : MonoBehaviour {
 	
 	void Update(){
 		if(canBeginWave){
-			curWaveText.text = "WAVE";
 			
 			if(!isWaiting){
 				curWave = gameObject.AddComponent<Wave>();

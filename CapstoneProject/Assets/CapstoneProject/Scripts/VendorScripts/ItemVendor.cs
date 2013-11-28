@@ -20,10 +20,14 @@ public class ItemVendor : MonoBehaviour {
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
 		if(GameController.Instance.GetResources() >= sellItem.cost){
-			UIManager.Instance.uiState = UIManager.UIState.NONE;
-			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject);
-			reader.SetFortData();
-			reader.SetFortification(sellItem.name);
+			if(sellItem.GetComponent<Dragable>()){
+				UIManager.Instance.uiState = UIManager.UIState.NONE;
+				GameController.Instance.SetFortificationToSpawn(sellItem.gameObject);
+				reader.SetFortData();
+				reader.SetFortification(sellItem.name);
+			} else {
+				GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
+			}
 			//GameController.Instance.DeleteResources(sellItem.cost);
 			
 			Debug.Log("Purchased: " + sellItem.itemName);

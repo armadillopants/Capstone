@@ -24,7 +24,6 @@ public class UIManager : MonoBehaviour {
 	
 	private Rect waveRect;
 	private Rect playerHealthRect;
-	private Rect shipHealthRect;
 	private Rect resourceRect;
 	
 	public Texture2D resourceBackground;
@@ -63,18 +62,13 @@ public class UIManager : MonoBehaviour {
 		playerHealthBar.SetPixel(0, 0, Color.red);
 		playerHealthBar.Apply();
 		
-		shipHealthBar = new Texture2D(1,1,TextureFormat.RGB24, false);
-		shipHealthBar.SetPixel(0, 0, Color.green);
-		shipHealthBar.Apply();
-		
 		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
 		
 		waveRect = new Rect((Screen.width/2) - 100, (Screen.height/2) - (100/2) - 100, 100, 100);
 		
-		playerHealthRect = new Rect(Screen.width-150, Screen.height-25, 135, 22);
-		shipHealthRect = new Rect(20, Screen.height-55, 135, 22);
+		playerHealthRect = new Rect(Screen.width-150, Screen.height-30, 135, 25);
 		resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
 		
 		displayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
@@ -131,7 +125,6 @@ public class UIManager : MonoBehaviour {
 		
 		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
 			DrawPlayerHealth();
-			DrawShipHealth();
 			DrawResources();
 		}
 	}
@@ -188,19 +181,6 @@ public class UIManager : MonoBehaviour {
 			GUI.DrawTexture(new Rect(0, 0, 
 				playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
 				playerHealthBar, ScaleMode.StretchToFill);
-		}
-		GUI.EndGroup();
-	}
-	
-	void DrawShipHealth(){
-		GUI.BeginGroup(shipHealthRect);
-		{
-			GUI.DrawTexture(new Rect(0, 0, 
-				shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
-				grayBar, ScaleMode.StretchToFill);
-			GUI.DrawTexture(new Rect(0, 0, 
-				shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
-				shipHealthBar, ScaleMode.StretchToFill);
 		}
 		GUI.EndGroup();
 	}

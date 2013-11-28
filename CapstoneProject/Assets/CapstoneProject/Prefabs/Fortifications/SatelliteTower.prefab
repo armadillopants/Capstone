@@ -48,7 +48,6 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 54: {fileID: 5400000}
-  - 114: {fileID: 11400000}
   - 23: {fileID: 2300004}
   - 114: {fileID: 11400008}
   m_Layer: 9
@@ -206,21 +205,6 @@ Animation:
   m_UserAABB:
     m_Center: {x: .00324630737, y: 2.31638646, z: -.000579953194}
     m_Extent: {x: .686294794, y: .40167737, z: .68726027}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b57ff4b64a0a64458fd76692fc49079, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 2
-  height: .200000003
-  canDrag: 1
-  canUpdate: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,6 +221,8 @@ MonoBehaviour:
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
+  shipHealth: {fileID: 0}
+  shipHealthGrey: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

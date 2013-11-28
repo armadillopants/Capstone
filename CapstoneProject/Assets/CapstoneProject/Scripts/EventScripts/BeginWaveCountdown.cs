@@ -9,15 +9,15 @@ public class BeginWaveCountdown : MonoBehaviour {
 	private GameObject waveController;
 
 	void Start(){
-		anim = GetComponent<Animation>();
+		//anim = GetComponent<Animation>();
 		
 		waveController = GameObject.Find("WaveController");
 		
-		if(anim){
+		/*if(anim){
 			anim.wrapMode = WrapMode.Loop;
 			
 			anim.Play("Swirl");
-		}
+		}*/
 		
 		GameController.Instance.SetCurWave(waveController.GetComponent<WaveController>().GetWaveNumber());
 		GameController.Instance.SetEndWave(amountOfWavesLeft);
@@ -26,7 +26,7 @@ public class BeginWaveCountdown : MonoBehaviour {
 	void Update(){
 		if(waveController.GetComponent<Wave>() != null){
 			if(waveController.GetComponent<Wave>().endWave){
-				amountOfWavesLeft--;
+				amountOfWavesLeft -= 1;
 			}
 		}
 	}

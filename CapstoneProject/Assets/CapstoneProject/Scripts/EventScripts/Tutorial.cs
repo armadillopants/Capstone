@@ -84,15 +84,17 @@ public class Tutorial : MonoBehaviour {
 	IEnumerator CountDown(){
 		if(UIManager.Instance.uiState == UIManager.UIState.FORT_BUILD_SCREEN){
 			yield return new WaitForSeconds(1f);
-			key = "Arrow2";
+			if(GameObject.FindWithTag(Globals.FORTIFICATION)){
+				key = "Arrow2";
+			}
 		} else {
 			yield return new WaitForSeconds(Time.deltaTime);
 		}
 	}
 	
 	IEnumerator CountDownTwo(){
-		if(UIManager.Instance.uiState == UIManager.UIState.NONE){
-			yield return new WaitForSeconds(waitTime);
+		if(GameObject.FindWithTag(Globals.FORTIFICATION).GetComponent<Dragable>().canUpdate){
+			yield return new WaitForSeconds(1f);
 			if(!spawnRightMouse){
 				StartCoroutine(BeginMouseRightLink());
 				spawnRightMouse = true;
@@ -116,7 +118,7 @@ public class Tutorial : MonoBehaviour {
 	
 	void OnGUI(){
 		if(key == "Arrow"){
-			GUI.DrawTexture(new Rect(Screen.width-300, Screen.height/10, 50, 50), arrow);
+			GUI.DrawTexture(new Rect(Screen.width-300, (Screen.height-Screen.height)+80*2, 50, 50), arrow);
 			StartCoroutine(CountDown());
 		}
 		

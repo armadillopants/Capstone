@@ -1,20 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AmmoVendor : MonoBehaviour {
+public class AbilityAmmoVendor : MonoBehaviour {
 
 	public GameObject ammoVendor;
-	public GameObject weaponLink;
+	public GameObject abilityLink;
 	public Texture2D icon;
 	private bool isDisplaying = false;
 	private DisplayItem ammo;
-	private BaseWeapon curWeapon;
+	private AbilitiesManager curAbility;
 	
-	private int clipsToBuy;
-	private int bulletsToBuy;
+	private int ammoToBuy;
 	
-	public void SetWeapon(GameObject weapon){
-		weaponLink = weapon;
-		curWeapon = weaponLink.GetComponent<BaseWeapon>();
+	public void SetWeapon(GameObject ability){
+		abilityLink = ability;
+		curAbility = abilityLink.transform.parent.GetComponent<AbilitiesManager>();
 	}
 	
 	public void Vendor(){
@@ -24,33 +23,26 @@ public class AmmoVendor : MonoBehaviour {
 			ammo.sellItem = ammoVendor.GetComponent<SellableItem>();
 			
 			int curResources = GameController.Instance.GetResources();
-			int purchasableClips = curWeapon.maxClips - curWeapon.clips;
-			int purchasableBullets = curWeapon.bulletsPerClip - curWeapon.bulletsLeft;
-			int bulletsToPurchase = 0;
-			int clipsToPurchase = 0;
+			int purchasableAmmo = curAbility.maxAmount - curAbility.amount;
+			int ammoToPurchase = 0;
 			
-			while(bulletsToPurchase < purchasableBullets && curResources-(bulletsToPurchase+1)*curWeapon.costPerBullet >= 0)
+			while(ammoToPurchase < purchasableAmmo && curResources-(ammoToPurchase+curAbility.amount)*curAbility.costPerAmount >= 0)
 			{
-				bulletsToPurchase++;
-			}
-			while(clipsToPurchase < purchasableClips && curResources-(clipsToPurchase+curWeapon.bulletsPerClip)*curWeapon.costPerBullet >= 0)
-			{
-				clipsToPurchase++;
+				ammoToPurchase++;
 			}
 			
-			AddPurchasableAmmo(bulletsToPurchase, clipsToPurchase);
+			AddPurchasableAmmo(ammoToPurchase);
 			
 			ammo.sellItem.purchased = false;
-			ammo.sellItem.cost = clipsToPurchase + bulletsToPurchase*curWeapon.costPerBullet;
+			ammo.sellItem.cost = ammoToPurchase * curAbility.costPerAmount;
 			
 			Debug.Log(ammo.sellItem.cost);
 			isDisplaying = true;
 		}
 	}
 	
-	void AddPurchasableAmmo(int bullets, int clips){
-		bulletsToBuy = bullets;
-		clipsToBuy = clips;
+	void AddPurchasableAmmo(int amount){
+		ammoToBuy = amount;
 	}
 	
 	public void Purchase(GameObject item){
@@ -59,7 +51,7 @@ public class AmmoVendor : MonoBehaviour {
 		if(GameController.Instance.GetResources() >= sellItem.cost && !sellItem.purchased){
 			GameController.Instance.DeleteResources(sellItem.cost);
 			sellItem.cost = 0;
-			curWeapon.PurchasedAmmo(bulletsToBuy, clipsToBuy);
+			curAbility.AddAmount(ammoToBuy);
 			sellItem.purchased = true;
 			Debug.Log("Purchased: " + sellItem.itemName);
 		} else if(sellItem.purchased){

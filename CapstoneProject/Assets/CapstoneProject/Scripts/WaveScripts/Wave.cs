@@ -61,6 +61,8 @@ public class Wave : MonoBehaviour {
 				Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
 				tut.key = "Arrow";
 			}
+			
+			controller.curWaveNumberText.text = waveNumber.ToString();
 		} else {
 			BeginWave();
 		}

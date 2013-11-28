@@ -14,11 +14,23 @@ public class Health : MonoBehaviour {
 	private bool isEnemy = false;
 	private bool isShip = false;
 	private bool isPlayer = false;
+	
+	public GameObject shipHealth;
+	private GameObject shipHealthBar;
+	public GameObject shipHealthGrey;
+	private GameObject shipHealthBarGrey;
+	
+	private GameObject ship;
 
 	void Start(){
 		if(gameObject.tag == Globals.FORTIFICATION){
 			isFortification = true;
 		} else if(gameObject.tag == Globals.SHIP){
+			ship = GameObject.FindWithTag(Globals.SHIP);
+			shipHealthBar = (GameObject)Instantiate(shipHealth, ship.transform.position+new Vector3(3,3,0), Quaternion.Euler(90,0,0));
+			shipHealthBarGrey = (GameObject)Instantiate(shipHealthGrey, ship.transform.position+new Vector3(3,2.9f,0), Quaternion.Euler(90,0,0));
+			shipHealthBar.renderer.enabled = false;
+			shipHealthBarGrey.renderer.enabled = false;
 			isShip = true;
 		} else if(gameObject.tag == Globals.ENEMY){
 			isEnemy = true;
@@ -30,6 +42,23 @@ public class Health : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(shipHealthBar){
+			shipHealthBar.transform.position = ship.transform.position+new Vector3(3,3,0);
+			shipHealthBarGrey.transform.position = ship.transform.position+new Vector3(3,2.9f,0);
+			
+			Vector3 localScaleX = shipHealthBar.transform.localScale;
+			localScaleX.x = curHealth*0.02f;
+			shipHealthBar.transform.localScale = localScaleX;
+			
+			if(Vector3.Distance(ship.transform.position, GameObject.FindWithTag(Globals.PLAYER).transform.position) <= 10f && 
+				GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
+				shipHealthBar.renderer.enabled = true;
+				shipHealthBarGrey.renderer.enabled = true;
+			} else {
+				shipHealthBar.renderer.enabled = false;
+				shipHealthBarGrey.renderer.enabled = false;
+			}
+		}
 	}
 	
 	public bool IsDead {

@@ -5,7 +5,9 @@ public class AbilitiesManager : MonoBehaviour {
 	
 	private GameObject holder;
 	public bool beginAbility = false;
-	private int amount = 3;
+	public int amount = 3;
+	public int maxAmount = 3;
+	public int costPerAmount = 50;
 	private float coolDown;
 	private float maxCoolDown = 30f;
 	
@@ -53,13 +55,11 @@ public class AbilitiesManager : MonoBehaviour {
 		}
 		
 		if(holder.transform.GetComponent(ability)){
-			if(holder.transform.GetComponent(ability).ToString().Contains(ability)){
-				if(GameController.Instance.canShoot){
-					if(Input.GetKeyDown(KeyCode.E) && beginAbility && amount > 0){
-						holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
-						beginAbility = false;
-						amount--;
-					}
+			if(GameController.Instance.canShoot){
+				if(Input.GetKeyDown(KeyCode.E) && beginAbility && amount > 0){
+					holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
+					beginAbility = false;
+					amount--;
 				}
 			}
 		}
