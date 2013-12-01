@@ -46,7 +46,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 8e3223aab41734147bad157dcc60d545, type: 2}
+  - {fileID: 2100000, guid: d1194323237f7924ea74e8a66ffa2156, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -58,7 +58,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 02528c2f77230ff48bceeea80625024f, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 5c520a7cf293a5b43a91e08bd115f337, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
   purchased: 0
   currentUpgrade: 1
   id: 0
-  upgradedItem: {fileID: 0}
+  upgradedItem: {fileID: 100000, guid: 2798b5fbc093d734897e593905ab913c, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,7 +136,8 @@ MonoBehaviour:
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
-  shipHealth: {fileID: 0}
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

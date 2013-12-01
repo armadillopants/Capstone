@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class WaveController : MonoBehaviour {
 	
@@ -8,11 +8,6 @@ public class WaveController : MonoBehaviour {
 	private float waitTime = 5.0f;
 	private static Wave curWave;
 	public bool canBeginWave = false;
-	
-	public TextMesh nextWaveText;
-	public TextMesh nextWaveNumberText;
-	public TextMesh waveWonOrLostText;
-	public TextMesh curWaveNumberText;
 
 	void Start(){
 		if(waveNumber == 0){
@@ -32,7 +27,6 @@ public class WaveController : MonoBehaviour {
 	
 	void Update(){
 		if(canBeginWave){
-			
 			if(!isWaiting){
 				curWave = gameObject.AddComponent<Wave>();
 				curWave.StartWave(this, waveNumber);
@@ -42,14 +36,12 @@ public class WaveController : MonoBehaviour {
 	}
 	
 	public void StartNextWave(){
-		//UIManager.Instance.uiState = UIManager.UIState.WAVEWON;
-		waveWonOrLostText.text = "WAVE WON";
+		UIManager.Instance.uiState = UIManager.UIState.WAVEWON;
 		StartCoroutine("WaveCompleted");
 	}
 	
 	private IEnumerator WaveCompleted(){
 		yield return new WaitForSeconds(waitTime);
-		waveWonOrLostText.text = "";
 		isWaiting = false;
 		waveNumber++;
 	}
@@ -57,11 +49,5 @@ public class WaveController : MonoBehaviour {
 	public IEnumerator BeginFirstWave(){
 		yield return new WaitForSeconds(waitTime);
 		canBeginWave = true;
-	}
-	
-	void OnGUI(){
-		if(canBeginWave){
-			//GUI.Label(new Rect(10, Screen.height-20, 200, 20), "Wave Number: " + waveNumber);
-		}
 	}
 }

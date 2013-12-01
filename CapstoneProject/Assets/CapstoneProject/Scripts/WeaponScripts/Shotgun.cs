@@ -3,16 +3,10 @@ using System.Collections;
 
 public class Shotgun : BaseWeapon {
 	
-	/*public override void Update(){
-		if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
-			Fire();
-		}
-	}*/
-	
 	public override void Fire(){
 		int shotCounter = 0;
 		
-		if(bulletsLeft <= 0 && !isReloading){
+		if(bulletsLeft <= 0 && !isReloading && clips > 0){
 			StartCoroutine("Reload");
 			return;
 		}

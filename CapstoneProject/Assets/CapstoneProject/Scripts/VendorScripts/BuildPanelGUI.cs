@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BuildPanelGUI : MonoBehaviour {
 	
@@ -68,7 +67,7 @@ public class BuildPanelGUI : MonoBehaviour {
 			buttonStyle.active.textColor = Color.white;
 			
 			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost){
-				if(GUI.Button(new Rect(buttonPosX, labelOffset+i*labelHeight + labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "BUY", buttonStyle)){
+				if(GUI.Button(new Rect(buttonPosX, labelOffset+i*labelHeight + labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
 					itemVendor.Purchase(allForts[i]);
 				}
 			}

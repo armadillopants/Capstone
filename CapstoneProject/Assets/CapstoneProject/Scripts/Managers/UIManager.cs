@@ -1,12 +1,11 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class UIManager : MonoBehaviour {
 	
 	public enum UIState { PAUSE, 
 		WAVEWON, WAVELOST, NEXTWAVE, 
-		GAMEOVER, NONE, CURWAVE, 
-		FORTINFO, YESORNO, FORT_BUILD_SCREEN,
+		GAMEOVER, NONE, CURWAVE, FORT_BUILD_SCREEN,
 		FORT_WEAPON_SCREEN, FORT_UPGRADE_SCREEN, 
 		FORT_ABILITY_SCREEN, GAMEWON, CURRENT_FORT_INFO };
 	public UIState uiState = UIState.NONE;
@@ -15,7 +14,7 @@ public class UIManager : MonoBehaviour {
 	private WeaponSelection selection;
 	private bool fadeComplete = false;
 	
-	private GameObject fortification;
+	public GameObject fortification;
 	private Rect displayScreen;
 	
 	private Texture2D playerHealthBar;
@@ -24,10 +23,14 @@ public class UIManager : MonoBehaviour {
 	
 	private Rect waveRect;
 	private Rect playerHealthRect;
+	private Rect shipHealthRect;
 	private Rect resourceRect;
+	private Rect waveNumberRect;
 	
 	public Texture2D resourceBackground;
 	public Font resourceFont;
+	
+	private WaveController waveController;
 	
 	#region Singleton
 	
@@ -62,16 +65,23 @@ public class UIManager : MonoBehaviour {
 		playerHealthBar.SetPixel(0, 0, Color.red);
 		playerHealthBar.Apply();
 		
+		shipHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		shipHealthBar.SetPixel(0, 0, Color.green);
+		shipHealthBar.Apply();
+		
 		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
 		
-		waveRect = new Rect((Screen.width/2) - 100, (Screen.height/2) - (100/2) - 100, 100, 100);
+		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
+		waveNumberRect = new Rect(50, Screen.height-50, 150, 50);
 		
 		playerHealthRect = new Rect(Screen.width-150, Screen.height-30, 135, 25);
 		resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
 		
 		displayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
+		
+		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
 	}
 	
 	void Update(){
@@ -82,11 +92,16 @@ public class UIManager : MonoBehaviour {
 				Time.timeScale = 1;
 			}
 		}
+		
+		Vector3 shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
+		shipHealthRect = new Rect(shipPos.x, Screen.height - shipPos.y, 400, 20);
 	}
 	
 	public void SetFortification(GameObject fort){
 		fortification = fort;
-		uiState = UIState.FORTINFO;
+		uiState = UIState.FORT_UPGRADE_SCREEN;
+		BuildUpgradeGUI build = GameObject.Find("Vendor").GetComponent<BuildUpgradeGUI>();
+		build.Reset();
 	}
 	
 	void OnGUI(){
@@ -109,12 +124,6 @@ public class UIManager : MonoBehaviour {
 		case UIState.GAMEOVER:
 			DrawGameOverScreen();
 			break;
-		case UIState.FORTINFO:
-			DrawFortInfo();
-			break;
-		case UIState.YESORNO:
-			DrawYesOrNoScreen();
-			break;
 		case UIState.GAMEWON:
 			DrawGameWonScreen();
 			break;
@@ -125,7 +134,9 @@ public class UIManager : MonoBehaviour {
 		
 		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
 			DrawPlayerHealth();
+			DrawShipHealth();
 			DrawResources();
+			DrawCurWaveScreen();
 		}
 	}
 	
@@ -143,15 +154,48 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawWaveWonScreen(){
-		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Wave Won");
+				
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 100;
+		
+		GUI.BeginGroup(waveRect);
+		
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE WON", style);
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawWaveLostScreen(){
-		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Wave Lost");
+				
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 100;
+		
+		GUI.BeginGroup(waveRect);
+		
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE LOST", style);
+		
+		GUI.EndGroup();
 	}
 
 	void DrawNextWaveScreen(){
-		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "Next Wave");
+		
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 100;
+		
+		GUI.BeginGroup(waveRect);
+		
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE "+waveController.GetWaveNumber(), style);
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawGameOverScreen(){
@@ -165,11 +209,33 @@ public class UIManager : MonoBehaviour {
 	}
 
 	void DrawGameWonScreen(){
-		GUI.Box(new Rect(Screen.width/3, Screen.height/5, 400, 300), "YOU WON!");
+				
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 100;
+		
+		GUI.BeginGroup(waveRect);
+		
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "GAME WON!", style);
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawCurWaveScreen(){
+				
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 50;
 		
+		GUI.BeginGroup(waveNumberRect);
+		
+		GUI.Label(new Rect(0, 0, waveNumberRect.width, waveNumberRect.height), waveController.GetWaveNumber().ToString(), style);
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawPlayerHealth(){
@@ -181,6 +247,19 @@ public class UIManager : MonoBehaviour {
 			GUI.DrawTexture(new Rect(0, 0, 
 				playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
 				playerHealthBar, ScaleMode.StretchToFill);
+		}
+		GUI.EndGroup();
+	}
+	
+	void DrawShipHealth(){
+		GUI.BeginGroup(shipHealthRect);
+		{
+			GUI.DrawTexture(new Rect(0, 0, 
+				shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+				grayBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(0, 0, 
+				shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+				shipHealthBar, ScaleMode.StretchToFill);
 		}
 		GUI.EndGroup();
 	}
@@ -197,58 +276,10 @@ public class UIManager : MonoBehaviour {
 		GUI.EndGroup();
 	}
 
-	void DrawYesOrNoScreen(){
-		GUI.BeginGroup(displayScreen);
-		
-		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "ARE YOU SURE");
-		string[] fortInfo = new string[2]{"Yes", "No"};
-		for(int i=0; i<fortInfo.Length; i++){
-			string curFortInfo = fortInfo[i];
-			if(GUI.Button(new Rect(displayScreen.width/4f, displayScreen.height/6f+(i*60), 100, 50), curFortInfo)){
-				if(curFortInfo == fortInfo[0]){
-					// Destory the object and update graph
-					Health fortHealth = fortification.GetComponent<Health>();
-					if(fortHealth.curHealth == fortHealth.GetMaxHealth() && fortification.GetComponent<Dragable>() != null){
-						GameController.Instance.AddResources(fortification.GetComponent<SellableItem>().cost);
-					} else {
-						GameController.Instance.AddResources(Mathf.RoundToInt(fortHealth.curHealth / 2));
-					}
-					GameController.Instance.UpdateGraphOnDestroyedObject(fortification.collider,fortification.gameObject);
-					fortification = null;
-					uiState = UIState.NONE;
-				} else if(curFortInfo == fortInfo[1]){
-					uiState = UIState.FORTINFO;
-				}
-			}
-		}
-		
-		GUI.EndGroup();
-	}
-
 	void DrawCurrentFortInfoScreen(){
 		GUILayout.Label("LEFT CLICK to place current fortification");
 		GUILayout.Label("RIGHT CLICK to cancel current fortification");
-	}
-	
-	void DrawFortInfo(){
-		GUI.BeginGroup(displayScreen);
-		
-		GUI.Box(new Rect(0, 0, displayScreen.width, displayScreen.height), "Fort Info");
-		string[] fortInfo = new string[3]{"Upgrade", "Destroy", "Cancel"};
-		for(int i=0; i<fortInfo.Length; i++){
-			string curFortInfo = fortInfo[i];
-			if(GUI.Button(new Rect(displayScreen.width/4f, displayScreen.height/6f+(i*60), 100, 50), curFortInfo)){
-				if(curFortInfo == fortInfo[0]){
-					uiState = UIState.FORT_UPGRADE_SCREEN;
-				} else if(curFortInfo == fortInfo[1]){
-					uiState = UIState.YESORNO;
-				} else if(curFortInfo == fortInfo[2]){
-					uiState = UIState.NONE;
-				}
-			}
-		}
-		
-		GUI.EndGroup();
+		GUILayout.Label("Q and E to rotate current fortification");
 	}
 	
 	public IEnumerator FadeComplete(){

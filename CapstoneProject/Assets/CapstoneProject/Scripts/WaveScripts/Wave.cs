@@ -34,12 +34,6 @@ public class Wave : MonoBehaviour {
 		} else {
 			amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
 		}
-		/*if(waveNum == END_WAVE){
-			amountToSpawn = Mathf.Infinity;
-			GameController.Instance.SpawnRescueShip();
-		} else {
-			amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
-		}*/
 		
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		controller = wave;
@@ -61,8 +55,6 @@ public class Wave : MonoBehaviour {
 				Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
 				tut.key = "Arrow";
 			}
-			
-			controller.curWaveNumberText.text = waveNumber.ToString();
 		} else {
 			BeginWave();
 		}
@@ -73,19 +65,14 @@ public class Wave : MonoBehaviour {
 	}
 	
 	public void BeginWave(){
-		//UIManager.Instance.uiState = UIManager.UIState.NEXTWAVE;
-		controller.nextWaveText.text = "WAVE";
-		controller.nextWaveNumberText.text = waveNumber.ToString();
+		UIManager.Instance.uiState = UIManager.UIState.NEXTWAVE;
 		StartCoroutine("BeginNewWave");
 	}
 	
 	// Never call this function directly as it is to be called through BeginWave
 	IEnumerator BeginNewWave(){
 		yield return new WaitForSeconds(waitTime);
-		controller.nextWaveText.text = "";
-		controller.nextWaveNumberText.text = "";
-		controller.curWaveNumberText.text = waveNumber.ToString();
-		//UIManager.Instance.uiState = UIManager.UIState.CURWAVE;
+		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		GameController.Instance.canShoot = true;
 		GameController.Instance.canChangeWeapons = true;
 		beginWave = true;
@@ -96,13 +83,6 @@ public class Wave : MonoBehaviour {
 	}
 	
 	void Update(){
-		// Check to see if the waveNumber has been set (StartWave has been called)
-		// and if so, and the current wave is neither the first nor a wave that
-		// has a fortification phase to it (which would set the beginWave flag itself)
-		// then start the wave.
-		/*if(waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION != 0){
-			BeginWave();
-		}*/
 		// If the wave is over, then start the next wave and destroy this instance
 		// before any other unnecessary calculations are done
 		if(endWave){

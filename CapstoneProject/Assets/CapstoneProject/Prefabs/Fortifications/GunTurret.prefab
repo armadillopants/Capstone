@@ -440,7 +440,7 @@ AudioSource:
   m_GameObject: {fileID: 100014}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c26b4bcf3cdd8db409a44157bdfe3c64, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4cd19aec58e32d340b710257d1da834b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .800000012
   m_Pitch: 1
@@ -590,6 +590,9 @@ MonoBehaviour:
   useLayerMask: 1
   gripID: 0
   costPerBullet: 0
+  fireClip: {fileID: 8300000, guid: 4cd19aec58e32d340b710257d1da834b, type: 3}
+  reloadClip: {fileID: 0}
+  emptyClip: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -23,18 +23,18 @@
 		</MachineGun>
 		<Pistol
 			range= "100"
-			fireRate= "0.09"
+			fireRate= "0.1"
 			force= "0.1"
 			bulletsPerClip= "10"
 			clips= "6"
-			reloadSpeed= "0.5"
+			reloadSpeed= "1"
 			damage= "10"
 			coneAngle= "1"
 			costPerBullet= "1">
 		</Pistol>
 		<RocketLauncher
-			range = "2"
-			fireRate= "0.09"
+			range= "2"
+			fireRate= "0.5"
 			force= "1"
 			bulletsPerClip= "5"
 			clips= "6"
@@ -44,7 +44,7 @@
 			costPerBullet= "4">
 		</RocketLauncher>
 		<FlameThrower
-			range = "20"
+			range= "20"
 			fireRate= "0.1"
 			force= "0.01"
 			bulletsPerClip= "100"
@@ -67,7 +67,7 @@
 		</BurstRifle>
 		<Shotgun
 			range= "100"
-			fireRate= "0.09"
+			fireRate= "0.1"
 			force= "0.5"
 			bulletsPerClip= "56"
 			clips= "3"
@@ -77,8 +77,8 @@
 			costPerBullet= "1">
 		</Shotgun>
 		<MissileLauncher
-			range = "3"
-			fireRate= "0.09"
+			range= "3"
+			fireRate= "0.1"
 			force= "1"
 			bulletsPerClip= "5"
 			clips= "6"
@@ -88,16 +88,38 @@
 			costPerBullet= "3">
 		</MissileLauncher>
 		<LightningBlaster
-			range = "5"
+			range= "5"
 			fireRate= "0.1"
 			force= "1"
 			bulletsPerClip= "100"
-			clips= "6"
+			clips= "2"
 			reloadSpeed= "2.5"
 			damage= "5"
 			coneAngle= "1.8"
 			costPerBullet= "1">
 		</LightningBlaster>
+		<Revolver
+			range= "100"
+			fireRate= "0.3"
+			force= "1.5"
+			bulletsPerClip= "6"
+			clips= "6"
+			reloadSpeed= "1.5"
+			damage= "15"
+			coneAngle= "1.5"
+			costPerBullet= "2">
+		</Revolver>
+		<SMG
+			range= "100"
+			fireRate= "0.05"
+			force= "1.0"
+			bulletsPerClip= "25"
+			clips= "6"
+			reloadSpeed= "1.3"
+			damage= "15"
+			coneAngle= "1.7"
+			costPerBullet= "2">
+		</SMG>
 	</WeaponData>
 	
 	<!-- BASE FORTIFICATION VALUES -->
@@ -143,7 +165,7 @@
 			health= "500"
 			fortDamage= "0"
 			range= "15"
-			fireRate= "0.5"
+			fireRate= "1"
 			force= "2"
 			bulletsPerClip= "10"
 			clips= "5"
@@ -167,7 +189,7 @@
 			health= "20"
 			fortDamage= "0"
 			range= "10"
-			fireRate= "0.1"
+			fireRate= "1"
 			force= "1"
 			bulletsPerClip= "10"
 			clips= "2"

@@ -3,17 +3,11 @@ using System.Collections;
 
 public class BurstShot : BaseWeapon {
 	
-	/*public override void Update(){
-		if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
-			StartCoroutine("BurstFire");
-		}
-	}*/
-	
 	public IEnumerator Fire(){
 		
 		int shotCounter = 0;
 		
-		if(bulletsLeft <= 0 && !isReloading){
+		if(bulletsLeft <= 0 && !isReloading && clips > 0){
 			StartCoroutine("Reload");
 			yield return null;
 		}

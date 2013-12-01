@@ -232,7 +232,7 @@ AudioSource:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c26b4bcf3cdd8db409a44157bdfe3c64, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 645a5ef33fcdd4b4ebff7b4b79fc9e2c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .800000012
   m_Pitch: 1
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 1
   weaponType: 0
-  fireRate: .5
+  fireRate: 1
   range: 30
   force: 5
   bulletsLeft: 0
@@ -389,8 +389,8 @@ MonoBehaviour:
   id: 0
   projectile: {fileID: 5400000, guid: f264e17109caebf4280186e8762281d3, type: 2}
   muzzlePos: {fileID: 400000}
-  muzzleFlash: {fileID: 0}
-  lightFlash: {fileID: 0}
+  muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
+  lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0
@@ -398,6 +398,9 @@ MonoBehaviour:
   useLayerMask: 1
   gripID: 0
   costPerBullet: 0
+  fireClip: {fileID: 8300000, guid: 645a5ef33fcdd4b4ebff7b4b79fc9e2c, type: 3}
+  reloadClip: {fileID: 0}
+  emptyClip: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

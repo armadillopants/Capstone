@@ -5,6 +5,7 @@ using System.Xml;
 public class XMLVendorReader : MonoBehaviour {
 	
 	private BaseWeapon[] weapons;
+	private WeaponManager manager;
 	private FortificationData fortData;
 	public XmlDocument doc = new XmlDocument();
 	public XmlNode firstNode;
@@ -12,6 +13,7 @@ public class XMLVendorReader : MonoBehaviour {
 	void Awake(){
 		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
 		weapons = player.GetComponentsInChildren<BaseWeapon>();
+		manager = player.GetComponentInChildren<WeaponManager>();
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("VendorData", typeof(TextAsset));
@@ -28,17 +30,17 @@ public class XMLVendorReader : MonoBehaviour {
 	
 	public void UpgradeWeaponData(int i, string itemName, int currentUpgrade){
 		string result = itemName.Replace(" " , "");
-		if(weapons[i]){
+		if(manager.allWeapons[i]){
 			firstNode = doc.SelectSingleNode("/VendorData/Weapons/" + result + "/Upgrades/" + "Upgrade" + currentUpgrade);
-			weapons[i].range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
-			weapons[i].fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
-			weapons[i].force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
-			weapons[i].bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
-			weapons[i].maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
-			weapons[i].reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
-			weapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
-			weapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
-			weapons[i].Replenish();
+			manager.allWeapons[i].range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
+			manager.allWeapons[i].fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
+			manager.allWeapons[i].force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
+			manager.allWeapons[i].bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
+			manager.allWeapons[i].maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+			manager.allWeapons[i].reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
+			manager.allWeapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
+			manager.allWeapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
+			manager.allWeapons[i].Replenish();
 		}
 	}
 	

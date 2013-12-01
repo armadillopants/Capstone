@@ -105,17 +105,17 @@ public class WeaponSelection : MonoBehaviour {
 	}
 	
 	public void SelectWeapon(int index){
-		for(int i=0; i<transform.childCount; i++){
+		for(int i=0; i<manager.allWeapons.Count; i++){
 		// Activate the selected weapon
 		if(i == index){
-				transform.GetChild(i).gameObject.SetActive(true);
+				manager.allWeapons[i].gameObject.SetActive(true);
 				weapon = GetComponentInChildren<BaseWeapon>();
 			} else {
 				// Deactivate all other weapons
-				if(transform.GetChild(i).GetComponent<BaseWeapon>() != null){
-					transform.GetChild(i).GetComponent<BaseWeapon>().isReloading = false;
+				if(manager.allWeapons[i] != null){
+					manager.allWeapons[i].isReloading = false;
 				}
-				transform.GetChild(i).gameObject.SetActive(false);
+				manager.allWeapons[i].gameObject.SetActive(false);
 			}
 		}
 	}

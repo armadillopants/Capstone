@@ -2213,6 +2213,9 @@ MonoBehaviour:
   useLayerMask: 0
   gripID: 0
   costPerBullet: 0
+  fireClip: {fileID: 8300000, guid: c26b4bcf3cdd8db409a44157bdfe3c64, type: 3}
+  reloadClip: {fileID: 0}
+  emptyClip: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

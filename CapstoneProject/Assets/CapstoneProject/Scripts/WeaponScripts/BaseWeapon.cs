@@ -40,6 +40,10 @@ public class BaseWeapon : MonoBehaviour {
 	public int gripID;
 	public int costPerBullet = 0;
 	
+	public AudioClip fireClip;
+	public AudioClip reloadClip;
+	public AudioClip emptyClip;
+	
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;
 		clips = maxClips*bulletsPerClip;
@@ -78,6 +82,12 @@ public class BaseWeapon : MonoBehaviour {
 			StartCoroutine("Reload");
 			return;
 		}
+		
+		if(Input.GetMouseButtonDown(0) && bulletsLeft <= 0 && clips <= 0){
+			if(audio){
+				audio.PlayOneShot(emptyClip);
+			}
+		}
 	}
 	
 	void LateUpdate(){
@@ -90,6 +100,7 @@ public class BaseWeapon : MonoBehaviour {
 				
 				if(audio){
 					if(!audio.isPlaying){
+						audio.clip = fireClip;
 						audio.Play();
 						audio.loop = true;
 					}
@@ -108,7 +119,7 @@ public class BaseWeapon : MonoBehaviour {
 	}
 
 	public virtual void Fire(){
-		if(bulletsLeft <= 0 && !isReloading){
+		if(bulletsLeft <= 0 && !isReloading && clips > 0){
 			StartCoroutine("Reload");
 			return;
 		}
@@ -199,6 +210,11 @@ public class BaseWeapon : MonoBehaviour {
 	private IEnumerator Reload(){
 		// Wait for reload time first and then add more bullets!
 		isReloading = true;
+		
+		if(audio){
+			audio.PlayOneShot(reloadClip);
+		}
+		
 		yield return new WaitForSeconds(reloadSpeed);
 		
 		// Actual bullets to reload in clip

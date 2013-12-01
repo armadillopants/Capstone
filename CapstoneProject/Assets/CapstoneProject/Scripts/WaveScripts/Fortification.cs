@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class Fortification : MonoBehaviour {
 	
@@ -7,6 +7,7 @@ public class Fortification : MonoBehaviour {
 	private Rect buildDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
 	private Rect weaponDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
 	private Rect abilityDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
+	private Rect buildUpgradeDisplayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
 	
 	private Wave buildWave;
 	private float infinity = Mathf.Infinity;
@@ -15,6 +16,7 @@ public class Fortification : MonoBehaviour {
 	private BuildPanelGUI buildPanel;
 	private WeaponPanelGUI weaponPanel;
 	private AbilityPanelGUI abilityPanel;
+	private BuildUpgradeGUI buildUpgradePanel;
 
 	void Awake(){
 		GameController.Instance.canShoot = false;
@@ -26,6 +28,7 @@ public class Fortification : MonoBehaviour {
 		mainPanel = vendor.GetComponent<MainPanelGUI>();
 		buildPanel = vendor.GetComponent<BuildPanelGUI>();
 		abilityPanel = vendor.GetComponent<AbilityPanelGUI>();
+		buildUpgradePanel = vendor.GetComponent<BuildUpgradeGUI>();
 		
 		/*GameObject[] combinedMeshes = GameObject.FindGameObjectsWithTag("CombinedMesh");
 		foreach(GameObject combine in combinedMeshes){
@@ -82,6 +85,6 @@ public class Fortification : MonoBehaviour {
 	}
 
 	void DrawFortUpgradeScreen(){
-		
+		buildUpgradePanel.Draw(buildUpgradeDisplayScreen);
 	}
 }
