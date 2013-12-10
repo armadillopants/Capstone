@@ -345,7 +345,7 @@ AudioSource:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 879620cea32b0dd4d961dc7d78e6132b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -514,7 +514,6 @@ MonoBehaviour:
   explosivePower: 10
   blastDamage: 10
   timeOut: 2
-  clip: {fileID: 8300000, guid: 879620cea32b0dd4d961dc7d78e6132b, type: 3}
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6

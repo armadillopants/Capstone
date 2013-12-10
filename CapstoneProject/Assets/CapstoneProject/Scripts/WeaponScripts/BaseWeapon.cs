@@ -43,6 +43,7 @@ public class BaseWeapon : MonoBehaviour {
 	public AudioClip fireClip;
 	public AudioClip reloadClip;
 	public AudioClip emptyClip;
+	public bool oneShot = false;
 	
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;
@@ -99,10 +100,12 @@ public class BaseWeapon : MonoBehaviour {
 				gunFlash.enabled = true;
 				
 				if(audio){
-					if(!audio.isPlaying){
+					if(!audio.isPlaying && !oneShot){
 						audio.clip = fireClip;
 						audio.Play();
 						audio.loop = true;
+					} else if(oneShot){
+						audio.PlayOneShot(fireClip);
 					}
 				}
 			} else {
@@ -149,7 +152,7 @@ public class BaseWeapon : MonoBehaviour {
 			if(visibleProj){
 				bullet = visibleProj.GetComponent<Bullet>();
 			}
-			Vector3 startPos = muzzlePos.position;
+			Vector3 startPos =  muzzlePos.position;
 		    Vector3 direction = transform.TransformDirection(Vector3.forward);
 		  	RaycastHit hit;
 			

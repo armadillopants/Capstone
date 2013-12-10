@@ -6,6 +6,7 @@ public class SellableItem : MonoBehaviour {
 	public int cost;
 	public Texture2D preview;
 	public bool purchased;
+	public bool soldOut;
 	public int currentUpgrade;
 	public int id;
 	public GameObject upgradedItem;

@@ -66,8 +66,11 @@ public class BuildPanelGUI : MonoBehaviour {
 			buttonStyle.hover.textColor = Color.white;
 			buttonStyle.active.textColor = Color.white;
 			
-			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost){
+			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut){
 				if(GUI.Button(new Rect(buttonPosX, labelOffset+i*labelHeight + labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
+					if(allForts[i].name == "SatelliteTower"){
+						allForts[i].GetComponent<SellableItem>().soldOut = true;
+					}
 					itemVendor.Purchase(allForts[i]);
 				}
 			}

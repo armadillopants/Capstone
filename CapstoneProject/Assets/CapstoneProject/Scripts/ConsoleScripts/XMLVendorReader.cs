@@ -4,7 +4,6 @@ using System.Xml;
 
 public class XMLVendorReader : MonoBehaviour {
 	
-	private BaseWeapon[] weapons;
 	private WeaponManager manager;
 	private FortificationData fortData;
 	public XmlDocument doc = new XmlDocument();
@@ -12,7 +11,6 @@ public class XMLVendorReader : MonoBehaviour {
 	
 	void Awake(){
 		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
-		weapons = player.GetComponentsInChildren<BaseWeapon>();
 		manager = player.GetComponentInChildren<WeaponManager>();
 		
 		TextAsset asset = new TextAsset();

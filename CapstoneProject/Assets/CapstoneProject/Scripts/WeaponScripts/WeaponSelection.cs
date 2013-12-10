@@ -7,6 +7,7 @@ public class WeaponSelection : MonoBehaviour {
 	private Vector2 buttonSize = new Vector2(120, 40);
 	
 	public bool changingWeapons = false;
+	public bool drawWeapon = false;
 	private float slowmoTime = 2f;
 	public List<GameObject> weaponSlots = new List<GameObject>();
 	private WeaponManager manager;
@@ -21,6 +22,7 @@ public class WeaponSelection : MonoBehaviour {
 	}
 	
 	void Start(){
+		drawWeapon = true;
 		// Choose first weapon
 		SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
 	}
@@ -55,7 +57,16 @@ public class WeaponSelection : MonoBehaviour {
 				changingWeapons = false;
 				GameController.Instance.canShoot = true;
 			}
+			
+			if(drawWeapon){
+				StartCoroutine("DrawWeapon");
+			}
 		}
+	}
+	
+	private IEnumerator DrawWeapon(){
+		yield return new WaitForSeconds(2f);
+		drawWeapon = false;
 	}
 	
 	private IEnumerator SlowMotion(){
@@ -80,27 +91,33 @@ public class WeaponSelection : MonoBehaviour {
 			if(weaponSlots[0] != null){
 				if(GUI.Button(new Rect((Screen.width/2 - (buttonSize.x/2))-200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y), weaponSlots[0].name)){
 					SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
+					drawWeapon = true;
 				}
 			}
 			if(weaponSlots[1] != null){
 				if(GUI.Button(new Rect((Screen.width/2 - (buttonSize.x/2))+200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y), weaponSlots[1].name)){
 					SelectWeapon(weaponSlots[1].GetComponent<BaseWeapon>().id);
+					drawWeapon = true;
 				}
 			}
 			if(weaponSlots[2] != null){
 				if(GUI.Button(new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))-200, buttonSize.x, buttonSize.y), weaponSlots[2].name)){
 					SelectWeapon(weaponSlots[2].GetComponent<BaseWeapon>().id);
+					drawWeapon = true;
 				}
 			}
 			if(weaponSlots[3] != null){
 				if(GUI.Button(new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))+200, buttonSize.x, buttonSize.y), weaponSlots[3].name)){
 					SelectWeapon(weaponSlots[3].GetComponent<BaseWeapon>().id);
+					drawWeapon = true;
 				}
 			}
 		}
 		
 		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
+			if(UIManager.Instance.displayUI){
 			GUI.Box(new Rect(Screen.width-200, Screen.height-100, 200, 30), "Ammo: " + weapon.bulletsLeft + " / " + weapon.clips);
+			}
 		}
 	}
 	

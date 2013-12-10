@@ -37,7 +37,7 @@ public class Tutorial : MonoBehaviour {
 			if(key == "Player"){
 				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z);
 			} else if(key == "LeftClick"){
-				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);// + playerTrans.TransformDirection(new Vector3(0,0,8));
+				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);
 			} else if(key == "LeftShift"){
 				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);
 			} else if(key == "RightClick"){
@@ -117,7 +117,7 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	void OnGUI(){
-		if(key == "Arrow"){
+		/*if(key == "Arrow"){
 			GUI.DrawTexture(new Rect(Screen.width-300, (Screen.height-Screen.height)+80*2, 50, 50), arrow);
 			StartCoroutine(CountDown());
 		}
@@ -125,6 +125,6 @@ public class Tutorial : MonoBehaviour {
 		if(key == "Arrow2"){
 			GUI.DrawTexture(new Rect(Screen.width/3.0f, Screen.height/5, 50, 50), arrow);
 			StartCoroutine(CountDownTwo());
-		}
+		}*/
 	}
 }

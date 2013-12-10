@@ -35,28 +35,6 @@
 					damage= "14"
 					coneAngle= "1.1">		
 				</Upgrade2>
-				<Upgrade3
-					cost= "200"
-					range= "100"
-					fireRate= "0.03"
-					force= "1.1"
-					bulletsPerClip= "75"
-					clips= "12"
-					reloadSpeed= "0.6"
-					damage= "16"
-					coneAngle= "0.9">		
-				</Upgrade3>
-				<Upgrade4
-					cost= "250"
-					range= "100"
-					fireRate= "0.01"
-					force= "1.3"
-					bulletsPerClip= "80"
-					clips= "14"
-					reloadSpeed= "0.4"
-					damage= "18"
-					coneAngle= "0.7">		
-				</Upgrade4>
 			</Upgrades>
 		</MachineGun>
 		<Pistol>
@@ -83,28 +61,6 @@
 					damage= "14"
 					coneAngle= "0.8">
 				</Upgrade2>
-				<Upgrade3
-					cost= "150"
-					range= "100"
-					fireRate= "0.06"
-					force= "0.4"
-					bulletsPerClip= "16"
-					clips= "9"
-					reloadSpeed= "0.2"
-					damage= "16"
-					coneAngle= "0.7">
-				</Upgrade3>
-				<Upgrade4
-					cost= "200"
-					range= "100"
-					fireRate= "0.05"
-					force= "0.5"
-					bulletsPerClip= "18"
-					clips= "10"
-					reloadSpeed= "0.1"
-					damage= "16"
-					coneAngle= "0.6">
-				</Upgrade4>
 			</Upgrades>
 		</Pistol>
 		<RocketLauncher>
@@ -131,28 +87,6 @@
 					damage= "14"
 					coneAngle= "1.6">
 				</Upgrade2>
-				<Upgrade3
-					cost= "400"
-					range = "5"
-					fireRate= "0.06"
-					force= "1.5"
-					bulletsPerClip= "8"
-					clips= "9"
-					reloadSpeed= "1"
-					damage= "16"
-					coneAngle= "1.4">
-				</Upgrade3>
-				<Upgrade4
-					cost= "450"
-					range = "6"
-					fireRate= "0.05"
-					force= "1.6"
-					bulletsPerClip= "9"
-					clips= "10"
-					reloadSpeed= "0.8"
-					damage= "18"
-					coneAngle= "1.2">
-				</Upgrade4>
 			</Upgrades>
 		</RocketLauncher>
 		<FlameThrower>
@@ -179,28 +113,6 @@
 					damage= "14"
 					coneAngle= "1.6">
 				</Upgrade2>
-				<Upgrade3
-					cost= "500"
-					range = "26"
-					fireRate= "0.07"
-					force= "0.07"
-					bulletsPerClip= "250"
-					clips= "5"
-					reloadSpeed= "1.9"
-					damage= "16"
-					coneAngle= "1.4">
-				</Upgrade3>
-				<Upgrade4
-					cost= "550"
-					range = "28"
-					fireRate= "0.06"
-					force= "0.09"
-					bulletsPerClip= "300"
-					clips= "6"
-					reloadSpeed= "1.7"
-					damage= "18"
-					coneAngle= "1.2">
-				</Upgrade4>
 			</Upgrades>
 		</FlameThrower>
 		<BurstRifle>
@@ -227,28 +139,6 @@
 					damage= "19"
 					coneAngle= "0.9">
 				</Upgrade2>
-				<Upgrade3
-					cost= "300"
-					range= "100"
-					fireRate= "0.09"
-					force= "1"
-					bulletsPerClip= "39"
-					clips= "9"
-					reloadSpeed= "0.9"
-					damage= "21"
-					coneAngle= "0.7">
-				</Upgrade3>
-				<Upgrade4
-					cost= "350"
-					range= "100"
-					fireRate= "0.08"
-					force= "1.1"
-					bulletsPerClip= "42"
-					clips= "10"
-					reloadSpeed= "0.7"
-					damage= "23"
-					coneAngle= "0.5">
-				</Upgrade4>
 			</Upgrades>
 		</BurstRifle>
 		<Shotgun>
@@ -275,28 +165,6 @@
 					damage= "14"
 					coneAngle= "8">
 				</Upgrade2>
-				<Upgrade3
-					cost= "350"
-					range= "100"
-					fireRate= "0.06"
-					force= "0.8"
-					bulletsPerClip= "80"
-					clips= "6"
-					reloadSpeed= "1.4"
-					damage= "16"
-					coneAngle= "8">
-				</Upgrade3>
-				<Upgrade4
-					cost= "400"
-					range= "100"
-					fireRate= "0.05"
-					force= "0.9"
-					bulletsPerClip= "88"
-					clips= "7"
-					reloadSpeed= "1.2"
-					damage= "18"
-					coneAngle= "8">
-				</Upgrade4>
 			</Upgrades>
 		</Shotgun>
 		<MissileLauncher>
@@ -323,28 +191,6 @@
 					damage= "19"
 					coneAngle= "1.6">
 				</Upgrade2>
-				<Upgrade3
-					cost= "600"
-					range = "6"
-					fireRate= "0.06"
-					force= "1.6"
-					bulletsPerClip= "8"
-					clips= "9"
-					reloadSpeed= "1.1"
-					damage= "21"
-					coneAngle= "1.4">
-				</Upgrade3>
-				<Upgrade4
-					cost= "650"
-					range = "7"
-					fireRate= "0.05"
-					force= "1.8"
-					bulletsPerClip= "9"
-					clips= "10"
-					reloadSpeed= "0.9"
-					damage= "23"
-					coneAngle= "1.2">
-				</Upgrade4>
 			</Upgrades>
 		</MissileLauncher>
 		<LightningBlaster>
@@ -371,28 +217,6 @@
 					damage= "9"
 					coneAngle= "1.8">
 				</Upgrade2>
-				<Upgrade3
-					cost= "600"
-					range = "5"
-					fireRate= "0.1"
-					force= "1"
-					bulletsPerClip= "250"
-					clips= "9"
-					reloadSpeed= "1.9"
-					damage= "11"
-					coneAngle= "1.8">
-				</Upgrade3>
-				<Upgrade4
-					cost= "650"
-					range = "5"
-					fireRate= "0.1"
-					force= "1"
-					bulletsPerClip= "300"
-					clips= "10"
-					reloadSpeed= "1.7"
-					damage= "13"
-					coneAngle= "1.8">
-				</Upgrade4>
 			</Upgrades>
 		</LightningBlaster>
 		<Revolver>
@@ -419,28 +243,6 @@
 					damage= "14"
 					coneAngle= "0.8">
 				</Upgrade2>
-				<Upgrade3
-					cost= "150"
-					range= "100"
-					fireRate= "0.06"
-					force= "0.4"
-					bulletsPerClip= "16"
-					clips= "9"
-					reloadSpeed= "0.2"
-					damage= "16"
-					coneAngle= "0.7">
-				</Upgrade3>
-				<Upgrade4
-					cost= "200"
-					range= "100"
-					fireRate= "0.05"
-					force= "0.5"
-					bulletsPerClip= "18"
-					clips= "10"
-					reloadSpeed= "0.1"
-					damage= "16"
-					coneAngle= "0.6">
-				</Upgrade4>
 			</Upgrades>
 		</Revolver>
 		<SMG>
@@ -467,28 +269,6 @@
 					damage= "14"
 					coneAngle= "0.8">
 				</Upgrade2>
-				<Upgrade3
-					cost= "150"
-					range= "100"
-					fireRate= "0.06"
-					force= "0.4"
-					bulletsPerClip= "16"
-					clips= "9"
-					reloadSpeed= "0.2"
-					damage= "16"
-					coneAngle= "0.7">
-				</Upgrade3>
-				<Upgrade4
-					cost= "200"
-					range= "100"
-					fireRate= "0.05"
-					force= "0.5"
-					bulletsPerClip= "18"
-					clips= "10"
-					reloadSpeed= "0.1"
-					damage= "16"
-					coneAngle= "0.6">
-				</Upgrade4>
 			</Upgrades>
 		</SMG>
 	</Weapons>
@@ -513,23 +293,26 @@
 					health= "200"
 					fortDamage= "0">
 				</Upgrade1>
-				<Upgrade2
-					cost= "600"
-					health= "300"
-					fortDamage= "0">
-				</Upgrade2>
-				<Upgrade3
-					cost= "800"
-					health= "400"
-					fortDamage= "0">
-				</Upgrade3>
-				<Upgrade4
-					cost= "1000"
-					health= "500"
-					fortDamage= "0">
-				</Upgrade4>
 			</Upgrades>
 		</Barrier>
+		<SpikedBarrier>
+			<Upgrades>
+				<Upgrade1
+					cost= "600"
+					health= "250"
+					fortDamage= "10">
+				</Upgrade1>
+			</Upgrades>
+		</SpikedBarrier>
+		<BarbedWireBarrier>
+			<Upgrades>
+				<Upgrade1
+					cost= "800"
+					health= "300"
+					fortDamage= "10">
+				</Upgrade1>
+			</Upgrades>
+		</BarbedWireBarrier>
 		<Wall>
 			<Upgrades>
 				<Upgrade1
@@ -582,32 +365,6 @@
 					reloadSpeed= "1.1"
 					coneAngle= "1.3">
 				</Upgrade2>
-				<Upgrade3
-					cost= "800"
-					health= "500"
-					fortDamage= "0"
-					damage= "4"
-					range= "30"
-					fireRate= "0.08"
-					force= "2.1"
-					bulletsPerClip= "250"
-					clips= "5"
-					reloadSpeed= "1.0"
-					coneAngle= "1.1">
-				</Upgrade3>
-				<Upgrade4
-					cost= "1000"
-					health= "600"
-					fortDamage= "0"
-					damage= "5"
-					range= "35"
-					fireRate= "0.08"
-					force= "2.3"
-					bulletsPerClip= "300"
-					clips= "5"
-					reloadSpeed= "0.8"
-					coneAngle= "1.0">
-				</Upgrade4>
 			</Upgrades>
 		</GunTower>
 		<RocketTower>
@@ -638,32 +395,6 @@
 					damage= "4"
 					coneAngle= "2.5">
 				</Upgrade2>
-				<Upgrade3
-					cost= "800"
-					health= "500"
-					fortDamage= "0"
-					range= "30"
-					fireRate= "0.7"
-					force= "2.6"
-					bulletsPerClip= "16"
-					clips= "5"
-					reloadSpeed= "1.4"
-					damage= "5"
-					coneAngle= "2.3">
-				</Upgrade3>
-				<Upgrade4
-					cost= "1000"
-					health= "600"
-					fortDamage= "0"
-					range= "35"
-					fireRate= "0.6"
-					force= "2.8"
-					bulletsPerClip= "18"
-					clips= "5"
-					reloadSpeed= "1.2"
-					damage= "6"
-					coneAngle= "2.1">
-				</Upgrade4>
 			</Upgrades>
 		</RocketTower>
 		<GunTurret>
@@ -694,32 +425,6 @@
 					reloadSpeed= "1.1"
 					coneAngle= "1.3">
 				</Upgrade2>
-				<Upgrade3
-					cost= "300"
-					health= "80"
-					fortDamage= "0"	
-					damage= "4"
-					range= "45"
-					fireRate= "0.07"
-					force= "2.6"
-					bulletsPerClip= "250"
-					clips= "8"
-					reloadSpeed= "1"
-					coneAngle= "1.1">
-				</Upgrade3>
-				<Upgrade4
-					cost= "350"
-					health= "90"
-					fortDamage= "0"
-					damage= "5"
-					range= "50"
-					fireRate= "0.06"
-					force= "2.8"
-					bulletsPerClip= "300"
-					clips= "9"
-					reloadSpeed= "0.8"
-					coneAngle= "1">
-				</Upgrade4>
 			</Upgrades>
 		</GunTurret>
 		<RocketTurret>
@@ -750,32 +455,6 @@
 					reloadSpeed= "1.1"
 					coneAngle= "1.3">
 				</Upgrade2>
-				<Upgrade3
-					cost= "300"
-					health= "80"
-					fortDamage= "0"	
-					damage= "4"
-					range= "45"
-					fireRate= "0.07"
-					force= "2.6"
-					bulletsPerClip= "250"
-					clips= "8"
-					reloadSpeed= "1"
-					coneAngle= "1.1">
-				</Upgrade3>
-				<Upgrade4
-					cost= "350"
-					health= "90"
-					fortDamage= "0"
-					damage= "5"
-					range= "50"
-					fireRate= "0.06"
-					force= "2.8"
-					bulletsPerClip= "300"
-					clips= "9"
-					reloadSpeed= "0.8"
-					coneAngle= "1">
-				</Upgrade4>
 			</Upgrades>
 		</RocketTurret>
 		<FlameTurret>
@@ -806,32 +485,6 @@
 					reloadSpeed= "1.1"
 					coneAngle= "1.3">
 				</Upgrade2>
-				<Upgrade3
-					cost= "300"
-					health= "80"
-					fortDamage= "0"	
-					damage= "4"
-					range= "45"
-					fireRate= "0.07"
-					force= "2.6"
-					bulletsPerClip= "250"
-					clips= "8"
-					reloadSpeed= "1"
-					coneAngle= "1.1">
-				</Upgrade3>
-				<Upgrade4
-					cost= "350"
-					health= "90"
-					fortDamage= "0"
-					damage= "5"
-					range= "50"
-					fireRate= "0.06"
-					force= "2.8"
-					bulletsPerClip= "300"
-					clips= "9"
-					reloadSpeed= "0.8"
-					coneAngle= "1">
-				</Upgrade4>
 			</Upgrades>
 		</FlameTurret>
 	</Fortifications>

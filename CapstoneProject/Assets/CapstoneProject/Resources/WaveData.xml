@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- WAVE SPAWN VALUES -->
+<!-- Each wave, both DAY and NIGHT must spawn the same amount of enemies total-->
+<!-- Scavenger is the little beetle -->
+<!-- Crusher is the big beetle -->
+<!-- Cyborg shoots and walks on two feet -->
+<!-- Tiger shoots and walks on four feet -->
+<!-- Cat is melee -->
+
+<WaveData>
+	<Wave>
+		<Wave1>
+			<Day
+				cyborgAmount="4"
+				tigerAmount="0"
+				catAmount="4">
+			</Day>
+			<Night
+				scavengerAmount="4"
+				crusherAmount="4">
+			</Night>
+		</Wave1>
+	</Wave>	
+</WaveData>

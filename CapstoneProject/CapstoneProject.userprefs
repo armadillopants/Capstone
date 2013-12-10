@@ -1,14 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\ConsoleScripts\XMLReader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EventScripts\FilmCameraScript.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Resources\WeaponData.xml" Line="35" Column="18" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\WeaponManager.cs" Line="18" Column="78" />
-      <File FileName="Assets\CapstoneProject\Scripts\ConsoleScripts\XMLReader.cs" Line="19" Column="56" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="17" Column="39" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
-      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\WeaponVendor.cs" Line="21" Column="4" />
-      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\BaseWeapon.cs" Line="103" Column="29" />
+      <File FileName="Assets\CapstoneProject\Scripts\EventScripts\FilmCameraScript.cs" Line="23" Column="16" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="5" Column="2" />
+      <File FileName="Assets\CapstoneProject\Scripts\PlayerScripts\AnimationController.cs" Line="54" Column="12" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="96" Column="4" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="139" Column="24" />
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\WeaponSelection.cs" Line="118" Column="37" />
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\BaseWeapon.cs" Line="152" Column="20" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="17" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

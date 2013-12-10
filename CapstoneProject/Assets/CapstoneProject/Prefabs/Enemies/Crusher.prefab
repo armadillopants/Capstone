@@ -1450,11 +1450,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 100
-  maxHealth: 100
+  curHealth: 150
+  maxHealth: 150
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1483,7 +1485,7 @@ MonoBehaviour:
   canSearch: 1
   canMove: 1
   speed: 1
-  turningSpeed: 1
+  turningSpeed: 1.5
   slowdownDistance: .600000024
   pickNextWaypointDist: 2
   forwardLook: 2
@@ -1502,7 +1504,10 @@ MonoBehaviour:
   distance: 10
   targetHeight: 0
   burnDamage: 2
+  lightningDamage: .5
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
+  fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
+  lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

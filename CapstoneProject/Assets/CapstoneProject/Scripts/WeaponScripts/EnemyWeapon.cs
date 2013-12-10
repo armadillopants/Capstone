@@ -9,7 +9,7 @@ public class EnemyWeapon : MonoBehaviour {
 	private Health health;
 	public GameObject gunObject;
 	private GameObject target;
-	private float distance = 15f;
+	public float distance = 15f;
 	
 	private float coolDownTimer;
 	private float coolDownLength = 5f;
@@ -43,8 +43,9 @@ public class EnemyWeapon : MonoBehaviour {
 			coolDownTimer -= Time.deltaTime;
 			
 			if(health.curHealth < health.GetMaxHealth()/Random.Range(2,4)){
-				gunObject.AddComponent<Rigidbody>().AddForce(new Vector3(2,0,2));
+				gunObject.AddComponent<Rigidbody>().AddForce(new Vector3(transform.position.x+2,0,transform.position.z+2));
 				gunObject.AddComponent<DestroyTimer>();
+				gunObject.transform.parent = null;
 				gunObject = null;
 			}
 		}

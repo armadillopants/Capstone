@@ -9,14 +9,18 @@ public class Fortification : MonoBehaviour {
 	private Rect abilityDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
 	private Rect buildUpgradeDisplayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
 	
+	private Rect timerRect = new Rect(100,50,100,50);
+	
 	private Wave buildWave;
-	private float infinity = Mathf.Infinity;
+	private float timer = 30f;
 	
 	private MainPanelGUI mainPanel;
 	private BuildPanelGUI buildPanel;
 	private WeaponPanelGUI weaponPanel;
 	private AbilityPanelGUI abilityPanel;
 	private BuildUpgradeGUI buildUpgradePanel;
+	
+	private WeaponSelection selection;
 
 	void Awake(){
 		GameController.Instance.canShoot = false;
@@ -30,6 +34,8 @@ public class Fortification : MonoBehaviour {
 		abilityPanel = vendor.GetComponent<AbilityPanelGUI>();
 		buildUpgradePanel = vendor.GetComponent<BuildUpgradeGUI>();
 		
+		selection = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponSelection>();
+		
 		/*GameObject[] combinedMeshes = GameObject.FindGameObjectsWithTag("CombinedMesh");
 		foreach(GameObject combine in combinedMeshes){
 			Destroy(combine);
@@ -42,18 +48,51 @@ public class Fortification : MonoBehaviour {
 	
 	public void StartFortifying(Wave wave){
 		buildWave = wave;
-		StartCoroutine("FortifyHandling");
 	}
 	
-	IEnumerator FortifyHandling(){
+	void Update(){
+		FortifyHandling();
+	}
+	
+	void FortifyHandling(){
 		buildWave.StopWave(); // Stops the wave
-		// And displays the fortification screen
-		yield return new WaitForSeconds(infinity); // Allows unlimited amount of time to select fortifications
+		
+		//timer -= Time.deltaTime;
+		
+		if(timer <= 0){
+			UIManager.Instance.uiState = UIManager.UIState.NONE;
+			GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
+			selection.UpdateWeaponsSlots();
+			selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);
+			GameController.Instance.canShoot = true;
+			GameController.Instance.canChangeWeapons = true;
+			GameController.Instance.UpdateGraph();
+			foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
+				vendor.Cancel();
+			}
+			buildWave.BeginWave();
+			Destroy(this);
+		}
 	}
 	
 	void OnGUI(){
 		if(GameController.Instance.current == null){
-			mainPanel.Draw(mainScreen, buildWave);
+			if(UIManager.Instance.displayUI){
+				mainPanel.Draw(mainScreen, buildWave);
+			}
+		}
+		
+		if(UIManager.Instance.displayUI){
+		GUI.BeginGroup(timerRect);
+		{
+			GUIStyle style = new GUIStyle();
+			style.alignment = TextAnchor.MiddleCenter;
+			style.normal.textColor = Color.white;
+			style.font = UIManager.Instance.resourceFont;
+			style.fontSize = 50;
+			GUI.Label(new Rect(0, 0, timerRect.width, timerRect.height), GuiTime(timer), style);
+		}
+		GUI.EndGroup();
 		}
 		
 		switch(UIManager.Instance.uiState){
@@ -86,5 +125,13 @@ public class Fortification : MonoBehaviour {
 
 	void DrawFortUpgradeScreen(){
 		buildUpgradePanel.Draw(buildUpgradeDisplayScreen);
+	}
+	
+	string GuiTime(float time){
+		float guiTime = time;
+		int seconds = (int)(guiTime % 60); // Creates 00 for seconds
+		string text = ""; // For displaying the the timer in min
+	    text = string.Format("{0:00}", seconds);
+	    return text;
 	}
 }

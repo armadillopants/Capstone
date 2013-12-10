@@ -15,7 +15,7 @@ public class Health : MonoBehaviour {
 	private bool isShip = false;
 	private bool isPlayer = false;
 	
-	private float regenSpeed = 0.1f;
+	private float regenSpeed = 0.5f;
 	
 	public AudioClip damageClip;
 	public AudioClip deathClip;
@@ -99,7 +99,8 @@ public class Health : MonoBehaviour {
 		} else if(isPlayer){
 			Destroy(gameObject.GetComponent<LocalInput>());
 			Destroy(gameObject.GetComponent<PlayerMovement>());
-			Destroy(gameObject.GetComponent<AnimationController>());
+			rigidbody.freezeRotation = true;
+			//Destroy(gameObject.GetComponent<AnimationController>());
 		} else {
 			StartCoroutine(BeginDeathSequence());
 		}

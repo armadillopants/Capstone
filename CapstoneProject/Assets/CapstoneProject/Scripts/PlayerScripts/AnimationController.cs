@@ -6,15 +6,19 @@ public class AnimationController : MonoBehaviour {
 	private Animator animator;
 	private BaseWeapon weapon;
 	private LocalInput input;
+	private WeaponSelection selection;
 	
 	private Transform trans;
 	
 	public static int VelZ = Animator.StringToHash("VelZ");
 	public static int VelX = Animator.StringToHash("VelX");
 	public static int Grip = Animator.StringToHash("Grip");
+	public static int Dead = Animator.StringToHash("Dead");
+	public static int HolsterWeapon = Animator.StringToHash("HolsterWeapon");
+	public static int DrawWeapon = Animator.StringToHash("DrawWeapon");
 	
+	public Transform lowerBody;
 	public Transform upperBody;
-	public Transform rootBone;
 	
 	private Vector3 lowerBodyForward = Vector3.forward;
 	private Vector3 lowerBodyForwardTarget = Vector3.forward;
@@ -23,12 +27,13 @@ public class AnimationController : MonoBehaviour {
 	void Start(){
 		trans = rigidbody.transform;
 		
-		rootBone = GameObject.Find("Hips").transform;
 		upperBody = GameObject.Find("Spine1").transform;
+		lowerBody = GameObject.Find("Hips").transform;
 		
 		animator = GetComponent<Animator>();
 		weapon = GetComponentInChildren<BaseWeapon>();
 		input = GetComponent<LocalInput>();
+		selection = GetComponentInChildren<WeaponSelection>();
 		
 		if(animator.layerCount >= 2){
 			animator.SetLayerWeight(1, 1);
@@ -40,10 +45,16 @@ public class AnimationController : MonoBehaviour {
 			if(animator.layerCount >= 2){
 				weapon = GetComponentInChildren<BaseWeapon>();
 				animator.SetInteger(Grip, weapon.gripID);
+				animator.SetBool(HolsterWeapon, selection.changingWeapons);
+				animator.SetBool(DrawWeapon, selection.drawWeapon);
 			}
 			
-			animator.SetFloat(VelZ, input.controller.moveDirection.z);
-			animator.SetFloat(VelX, input.controller.moveDirection.x);
+			if(GameController.Instance.GetPlayerHealth().IsDead){
+				animator.SetBool(Dead, GameController.Instance.GetPlayerHealth().IsDead);
+			} else {
+				animator.SetFloat(VelZ, input.controller.moveDirection.z);
+				animator.SetFloat(VelX, input.controller.moveDirection.x);
+			}
 		}
 	}
 	
@@ -63,7 +74,7 @@ public class AnimationController : MonoBehaviour {
 		Quaternion lowerBodyDeltaRotation = Quaternion.Euler(0, lowerBodyDeltaAngle, 0);
 		
 		// Rotate the whole body by the angle
-		rootBone.rotation = lowerBodyDeltaRotation * rootBone.rotation;
+		upperBody.rotation = lowerBodyDeltaRotation * upperBody.rotation;
 		
 		// Counter-rotate the upper body so it wont be affected
 		//upperBody.rotation = Quaternion.Inverse(lowerBodyDeltaRotation) * upperBody.rotation;

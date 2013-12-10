@@ -145,7 +145,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 					buttonStyle.hover.background = buyHover;
 					buttonStyle.active.background = buyActive;
 					
-					if(GUI.Button(new Rect(buttonColOneX, labelOffset+i*labelHeight + labelHeight+labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "BUY", buttonStyle)){
+					if(GUI.Button(new Rect(buttonColOneX, labelOffset+i*labelHeight+labelHeight+labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Purchase(allAbilities[i]);
 					}
 				}

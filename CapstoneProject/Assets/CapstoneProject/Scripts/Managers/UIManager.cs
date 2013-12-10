@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour {
 	private bool fadeComplete = false;
 	
 	public GameObject fortification;
-	private Rect displayScreen;
 	
 	private Texture2D playerHealthBar;
 	private Texture2D shipHealthBar;
@@ -29,6 +28,8 @@ public class UIManager : MonoBehaviour {
 	
 	public Texture2D resourceBackground;
 	public Font resourceFont;
+	
+	public bool displayUI = true;
 	
 	private WaveController waveController;
 	
@@ -78,8 +79,6 @@ public class UIManager : MonoBehaviour {
 		
 		playerHealthRect = new Rect(Screen.width-150, Screen.height-30, 135, 25);
 		resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
-		
-		displayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
 		
 		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
 	}
@@ -133,10 +132,12 @@ public class UIManager : MonoBehaviour {
 		}
 		
 		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
+			if(displayUI){
 			DrawPlayerHealth();
 			DrawShipHealth();
 			DrawResources();
 			DrawCurWaveScreen();
+			}
 		}
 	}
 	
@@ -200,10 +201,13 @@ public class UIManager : MonoBehaviour {
 	
 	void DrawGameOverScreen(){
 		if(fadeComplete){
-			if(GUI.Button(new Rect(Screen.width/3, Screen.height/3, 100, 50), "Restart")){
+			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50), "Restart")){
 				GameController.Instance.Reset();
 				MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
 				uiState = UIState.NONE;
+			}
+			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2)+50, 100, 50), "Quit")){
+				Application.Quit();
 			}
 		}
 	}

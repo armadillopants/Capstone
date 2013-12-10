@@ -65,6 +65,9 @@ public class MainPanelGUI : MonoBehaviour {
 					GameController.Instance.canShoot = true;
 					GameController.Instance.canChangeWeapons = true;
 					GameController.Instance.UpdateGraph();
+					foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
+						vendor.Cancel();
+					}
 					//GameObject.Find("CombinedMeshes").GetComponent<CombineChildren>().Combine();
 					buildWave.BeginWave();
 					Destroy(GameObject.Find("WaveController").GetComponent<Fortification>());

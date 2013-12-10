@@ -1051,6 +1051,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
+  - 82: {fileID: 8200002}
   m_Layer: 13
   m_Name: Cyborg
   m_TagString: Enemy
@@ -2155,6 +2156,64 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8200002
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100136}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
@@ -2216,6 +2275,7 @@ MonoBehaviour:
   fireClip: {fileID: 8300000, guid: c26b4bcf3cdd8db409a44157bdfe3c64, type: 3}
   reloadClip: {fileID: 0}
   emptyClip: {fileID: 0}
+  oneShot: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2228,6 +2288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunObject: {fileID: 100014}
+  distance: 10
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2274,8 +2335,11 @@ MonoBehaviour:
   damageAmount: 15
   distance: 10
   targetHeight: 0
-  burnDamage: 2
+  burnDamage: 1
+  lightningDamage: 3
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
+  fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
+  lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2315,11 +2379,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 75
-  maxHealth: 75
+  curHealth: 50
+  maxHealth: 50
   canTakeDamage: 1
   explosion: {fileID: 100006, guid: 927a7591b135d3945b4f087b9b0a029d, type: 2}
   waitTime: 3
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

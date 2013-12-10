@@ -4,7 +4,7 @@ using System.Collections;
 public class Wave : MonoBehaviour {
 	
 	private int waveNumber;
-	private const int WAVES_BETWEEN_FORTIFICATION = 5;
+	private const int WAVES_BETWEEN_FORTIFICATION = 1;
 	private const int END_WAVE = 50;
 	public bool beginWave = false;
 	public bool endWave = false;
@@ -43,7 +43,7 @@ public class Wave : MonoBehaviour {
   	}
 	
 	private IEnumerator WaveHandling(){
-		if((waveNumber != 0 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && !GameController.Instance.GetShipHealth().IsDead) || (waveNumber == 2)){
+		if(waveNumber != 1 && waveNumber % WAVES_BETWEEN_FORTIFICATION == 0 && !GameController.Instance.GetShipHealth().IsDead){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			GameObject.Find("GridContainer").GetComponent<GridSpawner>().EnableGrid();
 			GameController.Instance.TurnDragableOn();

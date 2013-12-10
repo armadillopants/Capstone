@@ -30,14 +30,19 @@ public class Enemy : AIPath {
 	private int amountToGive = 0;
 	private float sleepVelocity = 0.4f;
 
-	private bool isBurning = false;
+	private bool isTakingExtraDamage = false;
 	private ParticleEmitter emitter;
 	public float burnDamage;
+	public float lightningDamage;
 	
 	private Health health;
 	
 	public GameObject money;
 	private Camera cam;
+	
+	private Material curDamageMat;
+	public Material fireMat;
+	public Material lightningMat;
 	
 	public int AmountToGive(){
 		return amountToGive;
@@ -159,11 +164,15 @@ public class Enemy : AIPath {
 		
 		ClampCoolDownTime();
 		
-		if(!isBurning){
+		if(!isTakingExtraDamage){
 			emitter.emit = false;
 		} else {
 			emitter.emit = true;
-			SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(burnDamage/Time.time), SendMessageOptions.DontRequireReceiver);
+			if(curDamageMat == fireMat){
+				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(burnDamage/Time.time), SendMessageOptions.DontRequireReceiver);
+			} else {
+				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(lightningDamage/Time.time), SendMessageOptions.DontRequireReceiver);
+			}
 		}
 	}
 	
@@ -323,10 +332,19 @@ public class Enemy : AIPath {
 		BaseWeapon incomingParticle = other.transform.parent.GetComponent<BaseWeapon>();
 		SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(incomingParticle.damage/Time.time), SendMessageOptions.DontRequireReceiver);
 		
-		if(!isBurning){
-			isBurning = true;
+		ParticleRenderer curMat = incomingParticle.GetComponentInChildren<ParticleRenderer>();
+		if(curMat.material == fireMat){
+			curDamageMat = fireMat;
+		} else if(curMat.material == lightningMat){
+			curDamageMat = lightningMat;
 		} else {
-			isBurning = false;
+			Debug.Log("WRONG MATERIAL");
+		}
+		
+		if(!isTakingExtraDamage){
+			isTakingExtraDamage = true;
+		} else {
+			isTakingExtraDamage = false;
 		}
 	}
 	
