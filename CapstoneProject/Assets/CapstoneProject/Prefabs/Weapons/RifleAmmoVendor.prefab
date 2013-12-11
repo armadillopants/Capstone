@@ -42,7 +42,7 @@ MonoBehaviour:
   description: Refill Pistol Ammo to Max Clips
   cost: 0
   preview: {fileID: 0}
-  purchased: 0
+  purchased: 1
   soldOut: 0
   currentUpgrade: 0
   id: 0

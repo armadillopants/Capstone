@@ -28,7 +28,7 @@ public class WeaponVendor : MonoBehaviour {
 		reader.UpgradeWeaponData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			
 		sellItem.currentUpgrade += 1;
-		if(sellItem.currentUpgrade <=4){
+		if(sellItem.currentUpgrade <=2){
 			sellItem.cost = reader.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 		}
 		Debug.Log("Purchased upgrade for: " + sellItem.itemName);

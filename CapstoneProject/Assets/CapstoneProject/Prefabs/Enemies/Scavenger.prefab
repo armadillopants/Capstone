@@ -1288,7 +1288,7 @@ MonoBehaviour:
   distance: 10
   targetHeight: 0
   burnDamage: 4
-  lightningDamage: 1
+  lightningDamage: .300000012
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
   fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
   lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}

@@ -54,7 +54,14 @@ public class Enemy : AIPath {
 		
 		anim = GetComponent<Animation>();
 		
+		Spawner spawner = GameObject.Find("WaveController").GetComponentInChildren<Spawner>();
+		
 		health = GetComponent<Health>();
+		
+		health.ModifyHealth(spawner.SetEnemyHealth(gameObject.name));
+		speed = spawner.SetEnemyMoveSpeed(gameObject.name);
+		coolDownLength = spawner.SetEnemyAttackSpeed(gameObject.name);
+		damageAmount = spawner.SetEnemyDamageAmount(gameObject.name);
 		
 		for(int i=0; i<health.curHealth; i++){
 			if(health.curHealth % i == 0){

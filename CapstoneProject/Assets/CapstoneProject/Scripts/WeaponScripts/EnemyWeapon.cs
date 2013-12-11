@@ -45,7 +45,7 @@ public class EnemyWeapon : MonoBehaviour {
 			if(health.curHealth < health.GetMaxHealth()/Random.Range(2,4)){
 				gunObject.AddComponent<Rigidbody>().AddForce(new Vector3(transform.position.x+2,0,transform.position.z+2));
 				gunObject.AddComponent<DestroyTimer>();
-				gunObject.transform.parent = null;
+				//gunObject.transform.parent = null;
 				gunObject = null;
 			}
 		}

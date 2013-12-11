@@ -52,11 +52,11 @@ public class ItemVendor : MonoBehaviour {
 			}
 			
 			sellItem.currentUpgrade += 1;
-			if(sellItem.currentUpgrade <=4){
+			if(sellItem.currentUpgrade <=2){
 				sellItem.cost = vendorReader.GetCurrentFortificationCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			}
 			Debug.Log("Purchased upgrade for: " + sellItem.itemName);
-		} else if(sellItem.currentUpgrade >= 5){
+		} else if(sellItem.currentUpgrade >= 3){
 			Debug.Log("No more upgrades for: " + sellItem.itemName);
 		} else {
 			Debug.Log("Not enough funds to purchase upgrade for: " + sellItem.itemName);

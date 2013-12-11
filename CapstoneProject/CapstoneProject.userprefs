@@ -1,15 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EventScripts\FilmCameraScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\WaveScripts\Wave.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Scripts\EventScripts\FilmCameraScript.cs" Line="23" Column="16" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="5" Column="2" />
-      <File FileName="Assets\CapstoneProject\Scripts\PlayerScripts\AnimationController.cs" Line="54" Column="12" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="96" Column="4" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="139" Column="24" />
-      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\WeaponSelection.cs" Line="118" Column="37" />
-      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\BaseWeapon.cs" Line="152" Column="20" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="17" Column="35" />
+      <File FileName="Assets\CapstoneProject\Resources\WaveData.xml" Line="415" Column="11" />
+      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Enemy.cs" Line="61" Column="64" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Spawner.cs" Line="7" Column="26" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Wave.cs" Line="7" Column="51" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="31" Column="47" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="17" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

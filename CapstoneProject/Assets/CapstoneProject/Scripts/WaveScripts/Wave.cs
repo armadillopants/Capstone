@@ -11,14 +11,14 @@ public class Wave : MonoBehaviour {
 	private WaveController controller;
 	private float waitTime = 5.0f;
 	public int numEnemies; // Number of enemies on screen
-	private float amountToSpawn; // Current number of enemies to spawn all together
+	public float amountToSpawn; // Current number of enemies to spawn all together
 	private int amountOfEnemiesToSpawnAtOnce = 15; // Max number of enemies to spawn at once
 	private int enemiesSpawned = 0; // Enemies spawned this wave
 	private Spawner spawner;
 	
 	public int waveIncrementor = 6;
 
-	void Start(){
+	void Awake(){
 		spawner = GetComponentInChildren<Spawner>();
 	}
 	
@@ -26,18 +26,20 @@ public class Wave : MonoBehaviour {
 		// Spawn amount based on wave number
 		if(GameController.Instance.EndWave() != 0){
 			if(waveNum == GameController.Instance.CurWave()+GameController.Instance.EndWave()){
-				amountToSpawn = Mathf.Infinity;
+				//amountToSpawn = Mathf.Infinity;
 				GameController.Instance.SpawnRescueShip();
 			} else {
-				amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
+				//amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
 			}
 		} else {
-			amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
+			//spawner.SetWaveData(this, waveNum);
+			//amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
 		}
 		
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		controller = wave;
 		waveNumber = waveNum;
+		spawner.SetWaveData(this, waveNum);
 		beginWave = false;
     	StartCoroutine("WaveHandling");
   	}
