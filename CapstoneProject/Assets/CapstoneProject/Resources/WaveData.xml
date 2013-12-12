@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- WAVE SPAWN VALUES -->
 <!-- Each wave, both DAY and NIGHT must spawn the same amount of enemies total-->
-<!-- Scavenger is the little beetle -->
-<!-- Crusher is the big beetle -->
-<!-- Cyborg shoots and walks on two feet -->
-<!-- Tiger shoots and walks on four feet -->
-<!-- Cat is melee -->
+<!-- amountToSpawn: sets the amount to spawn of that type of enemy -->
+<!-- health: sets the health of the enemy for that wave -->
+<!-- moveSpeed: sets how fast the enemy will move. Higher values yield faster move speeds -->
+<!-- turnSpeed: sets how fast the enemy will turn. Higher values yiled faster turn speeds -->
+<!-- attackSpeed: sets the timer for when the enemy can attack next. Lower attack speed means quicker attacks -->
+<!-- damageAmount: sets the amount of damage the enemy deals after each attack -->
 
 <WaveData>
 	<Wave>
@@ -16,6 +17,7 @@
 					amountToSpawn="4"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -23,6 +25,7 @@
 					amountToSpawn="4"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -30,6 +33,7 @@
 					amountToSpawn="0"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -39,6 +43,7 @@
 					amountToSpawn="4"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -46,6 +51,7 @@
 					amountToSpawn="4"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -58,6 +64,7 @@
 					amountToSpawn="5"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -65,6 +72,7 @@
 					amountToSpawn="5"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -72,6 +80,7 @@
 					amountToSpawn="0"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -81,6 +90,7 @@
 					amountToSpawn="5"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -88,6 +98,7 @@
 					amountToSpawn="5"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -100,6 +111,7 @@
 					amountToSpawn="5"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -107,6 +119,7 @@
 					amountToSpawn="5"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -114,6 +127,7 @@
 					amountToSpawn="2"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -123,6 +137,7 @@
 					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -130,6 +145,7 @@
 					amountToSpawn="2"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -142,6 +158,7 @@
 					amountToSpawn="4"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -149,6 +166,7 @@
 					amountToSpawn="6"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -156,6 +174,7 @@
 					amountToSpawn="4"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -165,6 +184,7 @@
 					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -172,6 +192,7 @@
 					amountToSpawn="4"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -184,6 +205,7 @@
 					amountToSpawn="6"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -191,6 +213,7 @@
 					amountToSpawn="5"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -198,6 +221,7 @@
 					amountToSpawn="5"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -207,6 +231,7 @@
 					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -214,6 +239,7 @@
 					amountToSpawn="6"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -226,6 +252,7 @@
 					amountToSpawn="6"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -233,6 +260,7 @@
 					amountToSpawn="6"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -240,6 +268,7 @@
 					amountToSpawn="6"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -249,6 +278,7 @@
 					amountToSpawn="12"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -256,6 +286,7 @@
 					amountToSpawn="6"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -268,6 +299,7 @@
 					amountToSpawn="6"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -275,6 +307,7 @@
 					amountToSpawn="8"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -282,6 +315,7 @@
 					amountToSpawn="6"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -291,6 +325,7 @@
 					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -298,6 +333,7 @@
 					amountToSpawn="10"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -310,6 +346,7 @@
 					amountToSpawn="8"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -317,6 +354,7 @@
 					amountToSpawn="8"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -324,6 +362,7 @@
 					amountToSpawn="6"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -333,6 +372,7 @@
 					amountToSpawn="15"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -340,6 +380,7 @@
 					amountToSpawn="7"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -352,6 +393,7 @@
 					amountToSpawn="6"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -359,6 +401,7 @@
 					amountToSpawn="10"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -366,6 +409,7 @@
 					amountToSpawn="8"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -375,6 +419,7 @@
 					amountToSpawn="16"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -382,6 +427,7 @@
 					amountToSpawn="8"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
@@ -394,6 +440,7 @@
 					amountToSpawn="8"
 					health="50"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="1"
 					damageAmount="15">
 				</Cyborg>
@@ -401,6 +448,7 @@
 					amountToSpawn="10"
 					health="100"
 					moveSpeed="2.3"
+					turnSpeed="1.5"
 					attackSpeed="2"
 					damageAmount="20">
 				</Cat>
@@ -408,6 +456,7 @@
 					amountToSpawn="8"
 					health="120"
 					moveSpeed="2"
+					turnSpeed="2"
 					attackSpeed="3"
 					damageAmount="30">
 				</Tiger>
@@ -417,6 +466,7 @@
 					amountToSpawn="16"
 					health="75"
 					moveSpeed="2.5"
+					turnSpeed="2"
 					attackSpeed="1"
 					damageAmount="10">
 				</Scavenger>
@@ -424,6 +474,7 @@
 					amountToSpawn="10"
 					health="150"
 					moveSpeed="1"
+					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>

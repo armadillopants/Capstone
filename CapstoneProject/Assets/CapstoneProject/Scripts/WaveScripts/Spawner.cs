@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour {
 		public int amountToSpawn;
 		public float health;
 		public float moveSpeed;
+		public float turnSpeed;
 		public float attackSpeed;
 		public float damageAmount;
 	}
@@ -51,6 +52,7 @@ public class Spawner : MonoBehaviour {
 			cyborgData.amountToSpawn = int.Parse(cyborgData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			cyborgData.health = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("health").Value);
 			cyborgData.moveSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
+			cyborgData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			cyborgData.attackSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			cyborgData.damageAmount = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 			
@@ -58,6 +60,7 @@ public class Spawner : MonoBehaviour {
 			catData.amountToSpawn = int.Parse(catData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			catData.health = float.Parse(catData.firstNode.Attributes.GetNamedItem("health").Value);
 			catData.moveSpeed = float.Parse(catData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
+			catData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			catData.attackSpeed = float.Parse(catData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			catData.damageAmount = float.Parse(catData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 			
@@ -65,6 +68,7 @@ public class Spawner : MonoBehaviour {
 			tigerData.amountToSpawn = int.Parse(tigerData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			tigerData.health = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("health").Value);
 			tigerData.moveSpeed = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
+			tigerData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			tigerData.attackSpeed = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			tigerData.damageAmount = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 			
@@ -72,17 +76,19 @@ public class Spawner : MonoBehaviour {
 		}
 		
 		if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
-			scavengerData.firstNode = doc.SelectSingleNode("/WaveData/Wave/Wave"+waveNum + "/Day/Scavenger");
+			scavengerData.firstNode = doc.SelectSingleNode("/WaveData/Wave/Wave"+waveNum + "/Night/Scavenger");
 			scavengerData.amountToSpawn = int.Parse(scavengerData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			scavengerData.health = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("health").Value);
 			scavengerData.moveSpeed = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
+			scavengerData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			scavengerData.attackSpeed = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			scavengerData.damageAmount = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 			
-			crusherData.firstNode = doc.SelectSingleNode("/WaveData/Wave/Wave"+waveNum + "/Day/Crusher");
+			crusherData.firstNode = doc.SelectSingleNode("/WaveData/Wave/Wave"+waveNum + "/Night/Crusher");
 			crusherData.amountToSpawn = int.Parse(crusherData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			crusherData.health = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("health").Value);
 			crusherData.moveSpeed = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
+			crusherData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			crusherData.attackSpeed = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			crusherData.damageAmount = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 
@@ -118,19 +124,14 @@ public class Spawner : MonoBehaviour {
 		switch(enemyName){
 		case "Cyborg":
 			return cyborgData.health;
-			break;
 		case "CyberCat":
 			return catData.health;
-			break;
 		case "RoboTiger":
 			return tigerData.health;
-			break;
 		case "Scavenger":
 			return scavengerData.health;
-			break;
 		case "Crusher":
 			return crusherData.health;
-			break;
 		}
 		
 		return 0;
@@ -140,19 +141,31 @@ public class Spawner : MonoBehaviour {
 		switch(enemyName){
 		case "Cyborg":
 			return cyborgData.moveSpeed;
-			break;
 		case "CyberCat":
 			return catData.moveSpeed;
-			break;
 		case "RoboTiger":
 			return tigerData.moveSpeed;
-			break;
 		case "Scavenger":
 			return scavengerData.moveSpeed;
-			break;
 		case "Crusher":
 			return crusherData.moveSpeed;
-			break;
+		}
+		
+		return 0;
+	}
+	
+	public float SetEnemyTurnSpeed(string enemyName){
+		switch(enemyName){
+		case "Cyborg":
+			return cyborgData.turnSpeed;
+		case "CyberCat":
+			return catData.turnSpeed;
+		case "RoboTiger":
+			return tigerData.turnSpeed;
+		case "Scavenger":
+			return scavengerData.turnSpeed;
+		case "Crusher":
+			return crusherData.turnSpeed;
 		}
 		
 		return 0;
@@ -162,19 +175,14 @@ public class Spawner : MonoBehaviour {
 		switch(enemyName){
 		case "Cyborg":
 			return cyborgData.attackSpeed;
-			break;
 		case "CyberCat":
 			return catData.attackSpeed;
-			break;
 		case "RoboTiger":
 			return tigerData.attackSpeed;
-			break;
 		case "Scavenger":
 			return scavengerData.attackSpeed;
-			break;
 		case "Crusher":
 			return crusherData.attackSpeed;
-			break;
 		}
 		
 		return 0;
@@ -184,19 +192,14 @@ public class Spawner : MonoBehaviour {
 		switch(enemyName){
 		case "Cyborg":
 			return cyborgData.damageAmount;
-			break;
 		case "CyberCat":
 			return catData.damageAmount;
-			break;
 		case "RoboTiger":
 			return tigerData.damageAmount;
-			break;
 		case "Scavenger":
 			return scavengerData.damageAmount;
-			break;
 		case "Crusher":
 			return crusherData.damageAmount;
-			break;
 		}
 		
 		return 0;

@@ -60,6 +60,7 @@ public class Enemy : AIPath {
 		
 		health.ModifyHealth(spawner.SetEnemyHealth(gameObject.name));
 		speed = spawner.SetEnemyMoveSpeed(gameObject.name);
+		turningSpeed = spawner.SetEnemyTurnSpeed(gameObject.name);
 		coolDownLength = spawner.SetEnemyAttackSpeed(gameObject.name);
 		damageAmount = spawner.SetEnemyDamageAmount(gameObject.name);
 		

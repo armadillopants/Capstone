@@ -48,6 +48,7 @@ public class BaseWeapon : MonoBehaviour {
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;
 		clips = maxClips*bulletsPerClip;
+		maxClips *= bulletsPerClip;
 	}
 	
 	public void PurchasedAmmo(int bulletsBought, int clipsBought){
