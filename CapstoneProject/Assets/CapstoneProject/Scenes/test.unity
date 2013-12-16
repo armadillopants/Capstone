@@ -2650,12 +2650,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crossHair: {fileID: 2800000, guid: 784d83f2e79523d4f96b71c876744def, type: 3}
-  pos:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
 --- !u!33 &389515198
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4503,7 +4497,7 @@ GameObject:
   - 114: {fileID: 660478420}
   - 114: {fileID: 660478419}
   m_Layer: 0
-  m_Name: DontPurchaseL
+  m_Name: GrenadeLauncher
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4548,7 +4542,7 @@ MonoBehaviour:
   roundsPerBurst: 0
   lagBetweenShots: 0
   id: 10
-  projectile: {fileID: 5400000, guid: 25acaa6e943423841aa37912893abce6, type: 2}
+  projectile: {fileID: 5400000, guid: 742d213693b698c4f9de3ce3af4b2be5, type: 2}
   muzzlePos: {fileID: 810800684}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
@@ -5422,6 +5416,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c9a4a3b92c614184691dbc0c862cce99, type: 2}
+    - target: {fileID: 11400046, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 5400000, guid: 742d213693b698c4f9de3ce3af4b2be5, type: 2}
+    - target: {fileID: 100052, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: m_Name
+      value: GrenadeLauncher
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
   m_RootGameObject: {fileID: 1653515481}

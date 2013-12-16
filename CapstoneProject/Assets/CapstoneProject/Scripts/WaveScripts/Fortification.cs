@@ -57,7 +57,7 @@ public class Fortification : MonoBehaviour {
 	void FortifyHandling(){
 		buildWave.StopWave(); // Stops the wave
 		
-		//timer -= Time.deltaTime;
+		timer -= Time.deltaTime;
 		
 		if(timer <= 0){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;

@@ -4,7 +4,7 @@ using UnityEngine;
 public class WaveController : MonoBehaviour {
 	
 	public bool isWaiting = false;
-	private int waveNumber = 1;
+	private int waveNumber = 2;
 	private float waitTime = 5.0f;
 	private static Wave curWave;
 	public bool canBeginWave = false;

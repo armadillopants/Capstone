@@ -10,33 +10,15 @@ public class Health : MonoBehaviour {
 	private bool isDead = false;
 	public GameObject explosion;
 	public float waitTime = 3f;
-	private bool isFortification = false;
-	private bool isEnemy = false;
-	private bool isShip = false;
-	private bool isPlayer = false;
 	
 	private float regenSpeed = 0.5f;
 	
 	public AudioClip damageClip;
 	public AudioClip deathClip;
-
-	void Start(){
-		if(gameObject.tag == Globals.FORTIFICATION){
-			isFortification = true;
-		} else if(gameObject.tag == Globals.SHIP){
-			isShip = true;
-		} else if(gameObject.tag == Globals.ENEMY){
-			isEnemy = true;
-		} else if(gameObject.tag == Globals.PLAYER){
-			isPlayer = true;
-		} else {
-			Debug.Log("Uhhh, something");
-		}
-	}
 	
 	void Update(){
 		
-		if(isPlayer){
+		if(gameObject.tag == Globals.PLAYER){
 			if(curHealth < maxHealth){
 				curHealth = Mathf.Min(maxHealth, curHealth+regenSpeed*Time.deltaTime);
 			}
@@ -70,7 +52,7 @@ public class Health : MonoBehaviour {
 			audio.PlayOneShot(damageClip);
 		}
 		
-		if(isShip){
+		if(gameObject.tag == Globals.SHIP){
 			if(curHealth % 5 == 0){
 				gameObject.GetComponent<ShipDecay>().Release();
 			}
@@ -88,15 +70,15 @@ public class Health : MonoBehaviour {
 			audio.PlayOneShot(deathClip);
 		}
 		
-		if(isFortification){
+		if(gameObject.tag == Globals.FORTIFICATION){
 			GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider, gameObject);
-		} else if(isEnemy){
+		} else if(gameObject.tag == Globals.ENEMY){
 			GameController.Instance.AddResources(Mathf.RoundToInt(gameObject.GetComponent<Enemy>().AmountToGive()));
 			Destroy(gameObject.GetComponent<Collider>());
 			StartCoroutine(BeginDeathSequence());
-		} else if(isShip){
+		} else if(gameObject.tag == Globals.SHIP){
 			Debug.Log("Ship is dead");
-		} else if(isPlayer){
+		} else if(gameObject.tag == Globals.PLAYER){
 			Destroy(gameObject.GetComponent<LocalInput>());
 			Destroy(gameObject.GetComponent<PlayerMovement>());
 			rigidbody.freezeRotation = true;
