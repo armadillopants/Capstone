@@ -76,17 +76,17 @@
 			coneAngle= "8"
 			costPerBullet= "1">
 		</Shotgun>
-		<MissileLauncher
+		<RayBlaster
 			range= "3"
 			fireRate= "0.1"
 			force= "1"
-			bulletsPerClip= "5"
+			bulletsPerClip= "30"
 			clips= "6"
 			reloadSpeed= "1.7"
 			damage= "10"
 			coneAngle= "2"
 			costPerBullet= "3">
-		</MissileLauncher>
+		</RayBlaster>
 		<LightningBlaster
 			range= "5"
 			fireRate= "0.1"

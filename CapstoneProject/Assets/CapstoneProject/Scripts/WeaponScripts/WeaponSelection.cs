@@ -30,15 +30,15 @@ public class WeaponSelection : MonoBehaviour {
 	void Update(){
 		if(weapon.isAutomatic){
 			if(Input.GetButton("Fire1") && GameController.Instance.canShoot){
-				BroadcastMessage("Fire");
 				weapon.isFiring = true;
+				BroadcastMessage("Fire");
 			} else {
 				weapon.isFiring = false;
 			}
 		} else {
 			if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
-				BroadcastMessage("Fire");
 				weapon.isFiring = true;
+				BroadcastMessage("Fire");
 			} else {
 				weapon.isFiring = false;
 			}

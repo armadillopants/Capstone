@@ -43,7 +43,8 @@ public class Spawner : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("WaveData", typeof(TextAsset));
-		doc.LoadXml(asset.text);
+		//doc.LoadXml(asset.text);
+		doc.Load(Application.dataPath + "/WaveData.xml");
 	}
 	
 	public void SetWaveData(Wave wave, int waveNum){

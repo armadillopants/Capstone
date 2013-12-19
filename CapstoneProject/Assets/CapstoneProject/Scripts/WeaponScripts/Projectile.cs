@@ -64,7 +64,7 @@ public class Projectile : MonoBehaviour {
 		}
 
 		// Detach children
-		trans.DetachChildren();
+		//trans.DetachChildren();
 		
 		// Destroy the projectile
 		Destroy(gameObject);

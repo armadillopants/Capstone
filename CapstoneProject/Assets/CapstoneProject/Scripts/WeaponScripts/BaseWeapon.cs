@@ -80,7 +80,7 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	public virtual void Update(){
-		if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < bulletsPerClip){
+		if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < bulletsPerClip && clips > 0){
 			StartCoroutine("Reload");
 			return;
 		}
@@ -138,7 +138,7 @@ public class BaseWeapon : MonoBehaviour {
 		}
 	}
 
-	public void CreateProjectile(){
+	public virtual void CreateProjectile(){
 		// Spawn visual bullet
 		Quaternion coneRandomRotation = 
 			Quaternion.Euler(Random.Range(-coneAngle, coneAngle), Random.Range(-coneAngle, coneAngle), 0);

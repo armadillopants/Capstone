@@ -15,8 +15,8 @@ public class XMLVendorReader : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("VendorData", typeof(TextAsset));
-		doc.LoadXml(asset.text);
-		//doc.Load(Application.dataPath + "/VendorData.xml");
+		//doc.LoadXml(asset.text);
+		doc.Load(Application.dataPath + "/VendorData.xml");
 	}
 	
 	public int GetCurrentWeaponCost(int cost, int i, string itemName, int currentUpgrade){
@@ -38,6 +38,11 @@ public class XMLVendorReader : MonoBehaviour {
 			manager.allWeapons[i].reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
 			manager.allWeapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 			manager.allWeapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
+			if(manager.allWeapons[i].name == "RocketLauncher"){
+				manager.allWeapons[i].projectile.GetComponent<Projectile>().isHoming = true;
+				manager.allWeapons[i].projectile.GetComponent<Projectile>().bulletSpeed = 10;
+				manager.allWeapons[i].projectile.GetComponent<Projectile>().damp = 3f;
+			}
 			manager.allWeapons[i].Replenish();
 		}
 	}
