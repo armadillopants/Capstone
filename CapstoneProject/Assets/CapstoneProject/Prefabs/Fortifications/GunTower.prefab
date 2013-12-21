@@ -345,6 +345,7 @@ MonoBehaviour:
   cost: 300
   preview: {fileID: 0}
   purchased: 0
+  soldOut: 0
   currentUpgrade: 1
   id: 0
   upgradedItem: {fileID: 0}
@@ -374,9 +375,9 @@ MonoBehaviour:
   roundsPerBurst: 0
   lagBetweenShots: 0
   id: 0
-  projectile: {fileID: 5400000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
+  projectile: {fileID: 5400000, guid: d949c63cdee55584a825422c0696f66e, type: 2}
   muzzlePos: {fileID: 400000}
-  muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
+  muzzleFlash: {fileID: 2300000, guid: baf33affcb9d8b34eaae7586963133c1, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
   isReloading: 0
   isAutomatic: 0

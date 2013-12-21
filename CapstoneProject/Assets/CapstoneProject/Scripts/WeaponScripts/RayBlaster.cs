@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class RayBlaster : BaseWeapon {
 	
@@ -34,6 +34,11 @@ public class RayBlaster : BaseWeapon {
 			ParticleEmitter emitter = visibleProj.GetComponentInChildren<ParticleEmitter>();
 			emitter.minSize = Mathf.Min(1f, emitter.minSize+0.1f*Time.deltaTime);
 			emitter.maxSize = Mathf.Min(1f, emitter.maxSize+0.1f*Time.deltaTime);
+			Vector3 boundSize = visibleProj.GetComponent<BoxCollider>().size;
+			boundSize.Set(	Mathf.Min(1f, boundSize.x+0.1f*Time.deltaTime),
+							Mathf.Min(1f, boundSize.y+0.1f*Time.deltaTime),
+							Mathf.Min(1f, boundSize.z+0.1f*Time.deltaTime) );
+			visibleProj.GetComponent<BoxCollider>().size = boundSize;
 			if(Input.GetButtonUp("Fire1")){
 				chargeTime -= chargeRegenSpeed;
 				damage += Mathf.RoundToInt(extraDamage);
@@ -68,7 +73,7 @@ public class RayBlaster : BaseWeapon {
 		if(chargeTime > 0 && canFire && bulletsLeft > 0){
 			chargeTime -= 1f*Time.deltaTime;
 			bulletsToSubtract = Mathf.Min(5, bulletsToSubtract+1f*Time.deltaTime);
-			extraDamage = Mathf.Min(extraDamage+5, extraDamage+1f*Time.deltaTime);
+			extraDamage = Mathf.Min(extraDamage+50, extraDamage+10f*Time.deltaTime);
 			
 			if(!createBullet){
 				audio.PlayOneShot(chargeClip);

@@ -6,6 +6,7 @@ public class Explosion : MonoBehaviour {
 	public float explosivePower = 10.0f;
 	public float blastDamage = 100.0f;
 	public float timeOut = 3.0f;
+	public string[] targetName;
 
 	void Start(){
 		Vector3 pos = transform.position;
@@ -21,12 +22,14 @@ public class Explosion : MonoBehaviour {
 			double hitPoints = 1.0 - Mathf.Clamp01(distance/blastRadius);
 			hitPoints *= blastDamage;
 			
-			// Tell the rigidbody or any other script attached to the hit object how much damage is to be applied
-			hit.SendMessageUpwards("TakeDamage", hitPoints, SendMessageOptions.DontRequireReceiver);
+			for(int i=0; i<targetName.Length; i++){
+				if(hit.tag == targetName[i]){
+					// Tell the rigidbody or any other script attached to the hit object how much damage is to be applied
+					hit.SendMessageUpwards("TakeDamage", hitPoints, SendMessageOptions.DontRequireReceiver);
+				}
+			}
 		}
 		// Apply explosion forces to all rigidbodies
-		// This needs to be in two steps for ragdolls to work correctly.
-		// (Enemies are first turned into ragdolls with TakeDamage then we apply forces to all the spawned body parts)
 		foreach(Collider hit in colliders){
 			if(hit.rigidbody){
 				hit.rigidbody.AddExplosionForce(explosivePower, pos, blastRadius, 1.0f);

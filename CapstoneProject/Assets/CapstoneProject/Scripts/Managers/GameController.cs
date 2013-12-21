@@ -1,6 +1,5 @@
-using UnityEngine;
-using System.Collections;
 using Pathfinding;
+using UnityEngine;
 
 public class GameController : MonoBehaviour {
 	
@@ -22,15 +21,11 @@ public class GameController : MonoBehaviour {
 	private int endWave;
 	
 	// Fortification data
-	private GameObject fortToSpawn;
 	public GameObject current;
-	private bool fortSpawned = false;
-	private bool canPlace = false;
 	public Material validGreen;
 	public Material invalidRed;
 	private Material originalMat;
 	
-	private XMLReader weaponReader;
 	private DayNightCycle cycle;
 	
 	#region Singleton
@@ -53,8 +48,6 @@ public class GameController : MonoBehaviour {
 		
 		playerHealth = player.GetComponent<Health>();
 		shipHealth = ship.GetComponent<Health>();
-		
-		weaponReader = GameObject.Find("XMLReader").GetComponent<XMLReader>();
 		
 		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 	}
@@ -118,7 +111,7 @@ public class GameController : MonoBehaviour {
 			SwitchUIState(UIManager.UIState.PAUSE);
 		}
 		
-		if(fortSpawned){
+		if(current){
 			UpdateFortPosWithMouseLoc();
 		}
 		
@@ -151,7 +144,7 @@ public class GameController : MonoBehaviour {
 		foreach(ParticleEmitter light in GameObject.FindWithTag(Globals.SHIP).GetComponentsInChildren<ParticleEmitter>()){
 			light.emit = false;
 		}
-		weaponReader.Reset();
+		GameObject.Find("XMLReader").GetComponent<XMLReader>().Reset();
 	}
 	
 	void DestroyEnemies(){
@@ -184,15 +177,14 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public void SetFortificationToSpawn(GameObject fort){
-		fortToSpawn = fort;
-		originalMat = fortToSpawn.renderer.sharedMaterial;
+		originalMat = fort.renderer.sharedMaterial;
 		
-		if(fortToSpawn){
-			SpawnFortification();
+		if(fort){
+			SpawnFortification(fort);
 		}
 	}
 	
-	void SpawnFortification(){
+	void SpawnFortification(GameObject fortToSpawn){
 		RaycastHit hit = new RaycastHit();
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		
@@ -202,7 +194,6 @@ public class GameController : MonoBehaviour {
 			//fort.transform.parent = GameObject.Find("CombinedMeshes").transform;
 			current = fort;
 		}
-		fortSpawned = true;
 	}
 	
 	void UpdateFortPosWithMouseLoc(){
@@ -254,7 +245,7 @@ public class GameController : MonoBehaviour {
 		snapPos = SnapToGrid(snapPos, gridX, gridZ, current);
 		current.transform.position = snapPos;
 		
-		canPlace = true;
+		bool canPlace = true;
 		current.renderer.material = validGreen;
 		
 		for(int i=0; i<forts.Length; i++){
@@ -309,16 +300,26 @@ public class GameController : MonoBehaviour {
 			}
 		}
 		
+		// Place current fortification
 		if(Input.GetMouseButtonDown(0) && canPlace){
 			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ, current);
 			current.renderer.material = originalMat;
 			DeleteResources(current.GetComponent<SellableItem>().cost);
-			StartCoroutine("AddDragable");
-			fortSpawned = false;
+			current.GetComponent<Dragable>().enabled = true;
+			current.GetComponent<Dragable>().canUpdate = true;
+			// Keep respawning fortifications until we've run out of money
+			if(amountOfResources < current.GetComponent<SellableItem>().cost){
+				current = null;
+				UIManager.Instance.uiState = UIManager.UIState.NONE;
+			} else {
+				GameObject temp = current;
+				current = null;
+				SpawnFortification(temp);
+			}
 		}
 		
+		// Cancel current fortification
 		if(Input.GetMouseButtonDown(1)){
-			fortSpawned = false;
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			Destroy(current);
 			current = null;
@@ -327,19 +328,6 @@ public class GameController : MonoBehaviour {
 	
 	public Vector3 SnapToGrid(Vector3 pos, float rot1, float rot2, GameObject g){
 		return new Vector3(Mathf.RoundToInt(pos.x/rot1)*rot1, g.GetComponent<Dragable>().height, Mathf.RoundToInt(pos.z/rot2)*rot2);
-	}
-	
-	private IEnumerator AddDragable(){
-		yield return new WaitForSeconds(0.1f);
-		current.GetComponent<Dragable>().enabled = true;
-		current.GetComponent<Dragable>().canUpdate = true;
-		if(amountOfResources < current.GetComponent<SellableItem>().cost){
-			fortSpawned = false;
-			current = null;
-			UIManager.Instance.uiState = UIManager.UIState.NONE;
-		} else {
-			SpawnFortification();
-		}
 	}
 	
 	public void TurnDragableOn(){

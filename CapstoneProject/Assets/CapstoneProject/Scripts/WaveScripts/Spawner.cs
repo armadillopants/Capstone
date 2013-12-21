@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour {
 		public float damageAmount;
 	}
 	
-	private List<GameObject> enemiesToSpawn = new List<GameObject>();
+	public List<GameObject> enemiesToSpawn = new List<GameObject>();
 	public GameObject cyborg;
 	public GameObject cat;
 	public GameObject tiger;
@@ -48,6 +48,8 @@ public class Spawner : MonoBehaviour {
 	}
 	
 	public void SetWaveData(Wave wave, int waveNum){
+		bool isDay = false;
+		
 		if(cycle.currentPhase == DayNightCycle.DayPhase.DAY || cycle.currentPhase == DayNightCycle.DayPhase.DAWN){
 			cyborgData.firstNode = doc.SelectSingleNode("/WaveData/Wave/Wave"+waveNum + "/Day/Cyborg");
 			cyborgData.amountToSpawn = int.Parse(cyborgData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
@@ -61,7 +63,7 @@ public class Spawner : MonoBehaviour {
 			catData.amountToSpawn = int.Parse(catData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			catData.health = float.Parse(catData.firstNode.Attributes.GetNamedItem("health").Value);
 			catData.moveSpeed = float.Parse(catData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
-			catData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
+			catData.turnSpeed = float.Parse(catData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			catData.attackSpeed = float.Parse(catData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			catData.damageAmount = float.Parse(catData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 			
@@ -69,11 +71,12 @@ public class Spawner : MonoBehaviour {
 			tigerData.amountToSpawn = int.Parse(tigerData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			tigerData.health = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("health").Value);
 			tigerData.moveSpeed = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
-			tigerData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
+			tigerData.turnSpeed = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			tigerData.attackSpeed = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			tigerData.damageAmount = float.Parse(tigerData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 			
 			wave.amountToSpawn = cyborgData.amountToSpawn+catData.amountToSpawn+tigerData.amountToSpawn;
+			isDay = true;
 		}
 		
 		if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
@@ -81,7 +84,7 @@ public class Spawner : MonoBehaviour {
 			scavengerData.amountToSpawn = int.Parse(scavengerData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			scavengerData.health = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("health").Value);
 			scavengerData.moveSpeed = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
-			scavengerData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
+			scavengerData.turnSpeed = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			scavengerData.attackSpeed = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			scavengerData.damageAmount = float.Parse(scavengerData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 			
@@ -89,35 +92,37 @@ public class Spawner : MonoBehaviour {
 			crusherData.amountToSpawn = int.Parse(crusherData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
 			crusherData.health = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("health").Value);
 			crusherData.moveSpeed = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
-			crusherData.turnSpeed = float.Parse(cyborgData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
+			crusherData.turnSpeed = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			crusherData.attackSpeed = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			crusherData.damageAmount = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 
 			wave.amountToSpawn = scavengerData.amountToSpawn+crusherData.amountToSpawn;
 		}
 		
-		CalculateEnemiesToSpawn();
+		CalculateEnemiesToSpawn(isDay);
 	}
 	
-	public void CalculateEnemiesToSpawn(){
-		for(int i=0; i<cyborgData.amountToSpawn; i++){
-			enemiesToSpawn.Add(cyborg);
-		}
-		
-		for(int i=0; i<catData.amountToSpawn; i++){
-			enemiesToSpawn.Add(cat);
-		}
-		
-		for(int i=0; i<tigerData.amountToSpawn; i++){
-			enemiesToSpawn.Add(tiger);
-		}
-		
-		for(int i=0; i<scavengerData.amountToSpawn; i++){
-			enemiesToSpawn.Add(scavenger);
-		}
-		
-		for(int i=0; i<crusherData.amountToSpawn; i++){
-			enemiesToSpawn.Add(crusher);
+	public void CalculateEnemiesToSpawn(bool isDayTime){
+		if(isDayTime){
+			for(int i=0; i<cyborgData.amountToSpawn; i++){
+				enemiesToSpawn.Add(cyborg);
+			}
+			
+			for(int i=0; i<catData.amountToSpawn; i++){
+				enemiesToSpawn.Add(cat);
+			}
+			
+			for(int i=0; i<tigerData.amountToSpawn; i++){
+				enemiesToSpawn.Add(tiger);
+			}
+		} else {
+			for(int i=0; i<scavengerData.amountToSpawn; i++){
+				enemiesToSpawn.Add(scavenger);
+			}
+			
+			for(int i=0; i<crusherData.amountToSpawn; i++){
+				enemiesToSpawn.Add(crusher);
+			}
 		}
 	}
 	

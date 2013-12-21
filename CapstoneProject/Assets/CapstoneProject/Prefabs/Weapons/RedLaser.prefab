@@ -12,7 +12,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 96: {fileID: 9600000}
   m_Layer: 10
-  m_Name: Bullet
+  m_Name: RedLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ TrailRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1ebf48fb5a1b5ac489b924688ea690ef, type: 2}
+  - {fileID: 2100000, guid: 8905f103e32a7374cb5d5910651c306f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

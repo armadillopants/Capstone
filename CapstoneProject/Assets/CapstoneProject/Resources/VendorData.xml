@@ -365,7 +365,7 @@
 			<Upgrades>
 				<Upgrade1
 					cost= "500"
-					health= "300"
+					health= "350"
 					fortDamage= "0"
 					damage= "2"
 					range= "20"
@@ -394,7 +394,7 @@
 		<RocketTower>
 			<Upgrades>
 				<Upgrade1
-					cost= "500"
+					cost= "350"
 					health= "300"
 					fortDamage= "0"
 					range= "20"
@@ -407,7 +407,7 @@
 					coneAngle= "2.3">
 				</Upgrade1>
 				<Upgrade2
-					cost= "600"
+					cost= "400"
 					health= "400"
 					fortDamage= "0"
 					range= "25"
@@ -425,7 +425,7 @@
 			<Upgrades>
 				<Upgrade1
 					cost= "200"
-					health= "70"
+					health= "50"
 					fortDamage= "0"
 					damage= "2"
 					range= "35"
@@ -455,7 +455,7 @@
 			<Upgrades>
 				<Upgrade1
 					cost= "200"
-					health= "70"
+					health= "50"
 					fortDamage= "0"
 					damage= "2"
 					range= "35"
@@ -485,7 +485,7 @@
 			<Upgrades>
 				<Upgrade1
 					cost= "200"
-					health= "70"
+					health= "50"
 					fortDamage= "0"
 					damage= "2"
 					range= "35"

@@ -18,6 +18,7 @@ public class Laser : MonoBehaviour {
 	}
 	
 	void Update(){
+		laser.transform.position = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<BaseWeapon>().muzzlePos.position;
 		if(!GameController.Instance.canShoot){
 			laser.enabled = false;
 			lightObj.light.enabled = false;
@@ -36,10 +37,16 @@ public class Laser : MonoBehaviour {
 			RaycastHit hit = new RaycastHit();
 			
 			if(Physics.Raycast(ray, out hit) && GameController.Instance.canShoot){
-				laser.SetPosition(0, startPos);
-				laser.SetPosition(1, hit.point);
-				lightObj.transform.position = hit.point + hit.normal * 0.2f;
-				lightObj.light.enabled = true;
+				if(!hit.collider.isTrigger){
+					laser.SetPosition(0, startPos);
+					laser.SetPosition(1, hit.point);
+					lightObj.transform.position = hit.point + hit.normal * 0.2f;
+					lightObj.light.enabled = true;
+				} else {
+					laser.SetPosition(0, startPos);
+					laser.SetPosition(1, endPos);
+					lightObj.light.enabled = false;
+				}
 			} else {
 				laser.SetPosition(0, startPos);
 				laser.SetPosition(1, endPos);

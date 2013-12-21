@@ -466,7 +466,7 @@ GameObject:
   - 114: {fileID: 11400048}
   - 114: {fileID: 11400050}
   m_Layer: 0
-  m_Name: DontPurchaseS
+  m_Name: ThunderGun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4811,7 +4811,7 @@ MonoBehaviour:
   lagBetweenShots: 0
   id: 7
   projectile: {fileID: 0}
-  muzzlePos: {fileID: 0}
+  muzzlePos: {fileID: 400212}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
@@ -4924,9 +4924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: LRHM-Missile Launcher
-  description: Semi-Automatic.NEWLINEFires heat seeking missilesNEWLINEthat zero in
-    onNEWLINEnearest enemy target.NEWLINEMedium damage plusNEWLINEblast damage.
+  itemName: LRHM-Ray Blaster
+  description: Semi-Automatic.NEWLINEHold trigger down toNEWLINEdeal more damage.
   cost: 500
   preview: {fileID: 0}
   purchased: 0
@@ -5227,7 +5226,7 @@ MonoBehaviour:
   lagBetweenShots: 0
   id: 3
   projectile: {fileID: 0}
-  muzzlePos: {fileID: 0}
+  muzzlePos: {fileID: 400206}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0
@@ -5436,10 +5435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: LRHM-Missile Launcher
+  itemName: ThunderGun
   description: Semi-Automatic.NEWLINEFires heat seeking missilesNEWLINEthat zero in
     onNEWLINEnearest enemy target.NEWLINEMedium damage plusNEWLINEblast damage.
-  cost: 500
+  cost: 600
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0
@@ -5481,7 +5480,7 @@ MonoBehaviour:
   isFiring: 0
   hitParticles: {fileID: 0}
   useLayerMask: 1
-  gripID: 2
+  gripID: 3
   costPerBullet: 3
   fireClip: {fileID: 0}
   reloadClip: {fileID: 8300000, guid: 906f8328f177a79489efaec62f3d5250, type: 3}

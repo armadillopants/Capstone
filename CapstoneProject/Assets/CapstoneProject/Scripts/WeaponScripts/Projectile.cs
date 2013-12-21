@@ -10,12 +10,9 @@ public class Projectile : MonoBehaviour {
 	public bool isHoming = false;
 	public float damp = 6.0f;
 	
-	void Awake(){
+	void Start(){
 		Transform player = GameController.Instance.GetPlayer();
 		weapon = player.GetComponentInChildren<BaseWeapon>();
-	}
-	
-	void Start(){
 		trans = transform;
 		Invoke("Kill", weapon.range);
 	}

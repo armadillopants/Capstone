@@ -18,7 +18,7 @@ public class Wave : MonoBehaviour {
 	
 	public int waveIncrementor = 6;
 
-	void Awake(){
+	void Start(){
 		spawner = GetComponentInChildren<Spawner>();
 	}
 	
@@ -39,7 +39,6 @@ public class Wave : MonoBehaviour {
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 		controller = wave;
 		waveNumber = waveNum;
-		spawner.SetWaveData(this, waveNum);
 		beginWave = false;
     	StartCoroutine("WaveHandling");
   	}
@@ -68,6 +67,7 @@ public class Wave : MonoBehaviour {
 	
 	public void BeginWave(){
 		UIManager.Instance.uiState = UIManager.UIState.NEXTWAVE;
+		spawner.SetWaveData(this, waveNumber);
 		StartCoroutine("BeginNewWave");
 	}
 	
@@ -94,16 +94,18 @@ public class Wave : MonoBehaviour {
 		
 		numEnemies = GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length;
 		
-		// Spawn enemies here
-		if(beginWave && amountToSpawn > 0){
-			if(numEnemies < amountOfEnemiesToSpawnAtOnce && enemiesSpawned < amountToSpawn){
-				spawner.SpawnEnemy();
-				enemiesSpawned++;
+		// Spawn enemies once the wave has started
+		if(beginWave){
+			if(amountToSpawn > 0){
+				if(numEnemies < amountOfEnemiesToSpawnAtOnce && enemiesSpawned < amountToSpawn){
+					spawner.SpawnEnemy();
+					enemiesSpawned++;
+				}
 			}
-		}
-		
-		if(enemiesSpawned >= amountToSpawn && numEnemies <=0){
-			endWave = true;
+			
+			if(enemiesSpawned >= amountToSpawn && numEnemies <=0){
+				endWave = true;
+			}
 		}
 	}
 }

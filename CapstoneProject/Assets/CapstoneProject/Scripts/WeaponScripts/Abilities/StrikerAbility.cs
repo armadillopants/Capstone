@@ -16,13 +16,13 @@ public class StrikerAbility : MonoBehaviour {
 
 	void Start(){
 		player = GameObject.FindWithTag(Globals.PLAYER).transform;
-		striker = (GameObject)Resources.Load("OrbitalStriker", typeof(GameObject));
+		striker = (GameObject)Resources.Load("BeamStrike", typeof(GameObject));
 		holder = (Transform)Resources.Load("OrbitHolder", typeof(Transform));
 		trigger = (GameObject)Resources.Load("Trigger", typeof(GameObject));
 		
-		pos[0] = new Vector3(0, 0, 10);
-		pos[1] = new Vector3(10, 0, -10);
-		pos[2] = new Vector3(-10, 0, -10);
+		pos[0] = new Vector3(0, 0, 6);
+		pos[1] = new Vector3(6, 0, -6);
+		pos[2] = new Vector3(-6, 0, -6);
 		
 		timer = maxTimer;
 	}

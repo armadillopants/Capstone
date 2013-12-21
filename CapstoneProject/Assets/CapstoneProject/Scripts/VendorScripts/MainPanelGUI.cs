@@ -10,7 +10,6 @@ public class MainPanelGUI : MonoBehaviour {
 	public Texture2D buttonActive;
 	
 	private WeaponSelection selection;
-	private WeaponPanelGUI weaponPanel;
 	
 	private int buttonWidth = 200;
 	private int buttonHeight = 50;
@@ -68,6 +67,8 @@ public class MainPanelGUI : MonoBehaviour {
 					foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
 						vendor.Cancel();
 					}
+					Destroy(GameController.Instance.current);
+					GameController.Instance.current = null;
 					//GameObject.Find("CombinedMeshes").GetComponent<CombineChildren>().Combine();
 					buildWave.BeginWave();
 					Destroy(GameObject.Find("WaveController").GetComponent<Fortification>());

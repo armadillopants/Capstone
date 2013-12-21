@@ -35,6 +35,8 @@ public class Fortification : MonoBehaviour {
 		buildUpgradePanel = vendor.GetComponent<BuildUpgradeGUI>();
 		
 		selection = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponSelection>();
+		selection.changingWeapons = false;
+		selection.drawWeapon = false;
 		
 		/*GameObject[] combinedMeshes = GameObject.FindGameObjectsWithTag("CombinedMesh");
 		foreach(GameObject combine in combinedMeshes){
@@ -70,6 +72,8 @@ public class Fortification : MonoBehaviour {
 			foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
 				vendor.Cancel();
 			}
+			Destroy(GameController.Instance.current);
+			GameController.Instance.current = null;
 			buildWave.BeginWave();
 			Destroy(this);
 		}
@@ -130,7 +134,7 @@ public class Fortification : MonoBehaviour {
 	string GuiTime(float time){
 		float guiTime = time;
 		int seconds = (int)(guiTime % 60); // Creates 00 for seconds
-		string text = ""; // For displaying the the timer in min
+		string text = ""; // For displaying the the timer in sec
 	    text = string.Format("{0:00}", seconds);
 	    return text;
 	}

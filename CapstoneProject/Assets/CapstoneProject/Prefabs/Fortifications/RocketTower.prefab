@@ -299,6 +299,7 @@ MonoBehaviour:
   cost: 350
   preview: {fileID: 0}
   purchased: 0
+  soldOut: 0
   currentUpgrade: 1
   id: 0
   upgradedItem: {fileID: 0}
@@ -348,6 +349,8 @@ MonoBehaviour:
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -389,7 +392,7 @@ MonoBehaviour:
   id: 0
   projectile: {fileID: 5400000, guid: f264e17109caebf4280186e8762281d3, type: 2}
   muzzlePos: {fileID: 400000}
-  muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
+  muzzleFlash: {fileID: 2300000, guid: baf33affcb9d8b34eaae7586963133c1, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
   isReloading: 0
   isAutomatic: 0
@@ -401,6 +404,7 @@ MonoBehaviour:
   fireClip: {fileID: 8300000, guid: 645a5ef33fcdd4b4ebff7b4b79fc9e2c, type: 3}
   reloadClip: {fileID: 0}
   emptyClip: {fileID: 0}
+  oneShot: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

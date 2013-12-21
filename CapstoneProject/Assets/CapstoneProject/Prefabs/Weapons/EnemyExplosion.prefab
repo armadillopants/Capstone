@@ -31,7 +31,6 @@ GameObject:
   - 15: {fileID: 1500000}
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
-  - 111: {fileID: 11100002}
   m_Layer: 0
   m_Name: large flames
   m_TagString: Untagged
@@ -53,7 +52,6 @@ GameObject:
   - 15: {fileID: 1500002}
   - 12: {fileID: 1200002}
   - 26: {fileID: 2600002}
-  - 111: {fileID: 11100004}
   m_Layer: 0
   m_Name: large flames
   m_TagString: Untagged
@@ -75,7 +73,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
   m_Layer: 0
-  m_Name: SmallExplosion
+  m_Name: EnemyExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,13 +150,13 @@ ParticleAnimator:
   Does Animate Color?: 1
   colorAnimation[0]:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294964224
   colorAnimation[1]:
     serializedVersion: 2
-    rgba: 2238106063
+    rgba: 2248132222
   colorAnimation[2]:
     serializedVersion: 2
-    rgba: 2734701178
+    rgba: 2751428608
   colorAnimation[3]:
     serializedVersion: 2
     rgba: 3858759680
@@ -185,13 +183,13 @@ ParticleAnimator:
   Does Animate Color?: 1
   colorAnimation[0]:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4278252795
   colorAnimation[1]:
     serializedVersion: 2
-    rgba: 4280699760
+    rgba: 4283493096
   colorAnimation[2]:
     serializedVersion: 2
-    rgba: 2734689821
+    rgba: 2747072256
   colorAnimation[3]:
     serializedVersion: 2
     rgba: 3858759680
@@ -345,7 +343,7 @@ AudioSource:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 879620cea32b0dd4d961dc7d78e6132b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f3edb96cbf74c9846b7e22d4dd61a742, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -407,7 +405,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 1, g: .469455123, b: .18569839, a: 1}
+  m_Color: {r: .23359853, g: .18569839, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 15
   m_SpotAngle: 30
@@ -457,45 +455,9 @@ Animation:
 --- !u!1002 &11100001
 EditorExtensionImpl:
   serializedVersion: 6
---- !u!111 &11100002
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 327835a878f496675e402fdba3e0a4bc, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 327835a878f496675e402fdba3e0a4bc, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
-  m_UserAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1002 &11100003
 EditorExtensionImpl:
   serializedVersion: 6
---- !u!111 &11100004
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 327835a878f496675e402fdba3e0a4bc, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 327835a878f496675e402fdba3e0a4bc, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
-  m_UserAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1002 &11100005
 EditorExtensionImpl:
   serializedVersion: 6
@@ -514,6 +476,10 @@ MonoBehaviour:
   explosivePower: 10
   blastDamage: 10
   timeOut: 2
+  targetName:
+  - Player
+  - Ship
+  - Fortification
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6

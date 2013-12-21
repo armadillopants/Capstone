@@ -10,12 +10,11 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 65: {fileID: 6500000}
-  - 23: {fileID: 2300000}
-  - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
   m_Layer: 10
-  m_Name: Missile
+  m_Name: ThunderBlast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +32,7 @@ GameObject:
   - 12: {fileID: 1200000}
   - 26: {fileID: 2600000}
   m_Layer: 0
-  m_Name: Smoke Trail
+  m_Name: BlastTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +70,7 @@ ParticleAnimator:
   Does Animate Color?: 1
   colorAnimation[0]:
     serializedVersion: 2
-    rgba: 2323711
+    rgba: 4934475
   colorAnimation[1]:
     serializedVersion: 2
     rgba: 2789425987
@@ -86,7 +85,7 @@ ParticleAnimator:
     rgba: 2960685
   worldRotationAxis: {x: 0, y: 0, z: 0}
   localRotationAxis: {x: 0, y: 0, z: 0}
-  sizeGrow: .889508128
+  sizeGrow: 1
   rndForce: {x: 0, y: 0, z: 0}
   force: {x: 0, y: 0, z: 0}
   damping: 1
@@ -101,9 +100,9 @@ EllipsoidParticleEmitter:
   serializedVersion: 2
   m_Enabled: 1
   m_Emit: 1
-  minSize: 1
-  maxSize: 1
-  minEnergy: 2
+  minSize: 5
+  maxSize: 5
+  minEnergy: 1
   maxEnergy: 2
   minEmission: 60
   maxEmission: 60
@@ -117,26 +116,8 @@ EllipsoidParticleEmitter:
   rndRotation: 1
   Simulate in Worldspace?: 1
   m_OneShot: 0
-  m_Ellipsoid: {x: 0, y: 0, z: 0}
+  m_Ellipsoid: {x: 3, y: 0, z: 3}
   m_MinEmitterRange: 0
---- !u!23 &2300000
-Renderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
 --- !u!26 &2600000
 ParticleRenderer:
   m_ObjectHideFlags: 1
@@ -160,7 +141,7 @@ ParticleRenderer:
   m_StretchParticles: 0
   m_LengthScale: 0
   m_VelocityScale: 0
-  m_MaxParticleSize: .788849711
+  m_MaxParticleSize: 1
   UV Animation:
     x Tile: 1
     y Tile: 1
@@ -197,7 +178,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 20, y: 10, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8200000
 AudioSource:
@@ -207,18 +188,18 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 645a5ef33fcdd4b4ebff7b4b79fc9e2c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 31102bfdfc57a574f817d269c6acd517, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Priority: 128
+  Priority: 255
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -226,14 +207,19 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: .438524604
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.01010108
+      tangentMode: 0
+    - time: .254582942
+      value: .374847651
+      inSlope: -.62584877
+      outSlope: -.62584877
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: .274590164
+      inSlope: -.0309759527
+      outSlope: -.0309759527
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -268,11 +254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd2e6b52ea50f440b657a03c7e80013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 100006, guid: 927a7591b135d3945b4f087b9b0a029d, type: 2}
-  bulletSpeed: 10
+  explosion: {fileID: 0}
+  bulletSpeed: 30
   target: {fileID: 0}
-  isHoming: 1
-  damp: 3
+  isHoming: 0
+  damp: 6
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

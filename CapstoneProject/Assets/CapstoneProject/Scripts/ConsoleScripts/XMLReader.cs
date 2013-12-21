@@ -41,6 +41,7 @@ public class XMLReader : MonoBehaviour {
 			manager.allWeapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 			manager.allWeapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
 			manager.allWeapons[i].costPerBullet = int.Parse(firstNode.Attributes.GetNamedItem("costPerBullet").Value);
+			manager.allWeapons[i].GetComponent<SellableItem>().cost = int.Parse(firstNode.Attributes.GetNamedItem("cost").Value);
 			manager.allWeapons[i].Replenish();
 		}
 	}

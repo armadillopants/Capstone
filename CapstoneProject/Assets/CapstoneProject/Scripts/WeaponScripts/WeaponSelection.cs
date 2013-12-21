@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class WeaponSelection : MonoBehaviour {
 	
@@ -11,13 +11,19 @@ public class WeaponSelection : MonoBehaviour {
 	private float slowmoTime = 2f;
 	public List<GameObject> weaponSlots = new List<GameObject>();
 	private WeaponManager manager;
-	
 	private BaseWeapon weapon;
+	public Texture2D weaponEquipped;
+	public Texture2D weaponUnEquipped;
+	private Rect[] weaponDisplayRect = new Rect[4];
 	
 	void Awake(){
 		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
 		manager = player.GetComponentInChildren<WeaponManager>();
 		weapon = GetComponentInChildren<BaseWeapon>();
+		weaponDisplayRect[0] = new Rect((Screen.width/2 - (buttonSize.x/2))-200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y);
+		weaponDisplayRect[1] = new Rect((Screen.width/2 - (buttonSize.x/2))+200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y);
+		weaponDisplayRect[2] = new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))-200, buttonSize.x, buttonSize.y);
+		weaponDisplayRect[3] = new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))+200, buttonSize.x, buttonSize.y);
 		UpdateWeaponsSlots();
 	}
 	
@@ -87,29 +93,24 @@ public class WeaponSelection : MonoBehaviour {
 	
 	void OnGUI(){
 		if(changingWeapons){
-			// Display 4 GUI buttons: left, right, top, bottom
-			if(weaponSlots[0] != null){
-				if(GUI.Button(new Rect((Screen.width/2 - (buttonSize.x/2))-200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y), weaponSlots[0].name)){
-					SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
-					drawWeapon = true;
-				}
-			}
-			if(weaponSlots[1] != null){
-				if(GUI.Button(new Rect((Screen.width/2 - (buttonSize.x/2))+200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y), weaponSlots[1].name)){
-					SelectWeapon(weaponSlots[1].GetComponent<BaseWeapon>().id);
-					drawWeapon = true;
-				}
-			}
-			if(weaponSlots[2] != null){
-				if(GUI.Button(new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))-200, buttonSize.x, buttonSize.y), weaponSlots[2].name)){
-					SelectWeapon(weaponSlots[2].GetComponent<BaseWeapon>().id);
-					drawWeapon = true;
-				}
-			}
-			if(weaponSlots[3] != null){
-				if(GUI.Button(new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))+200, buttonSize.x, buttonSize.y), weaponSlots[3].name)){
-					SelectWeapon(weaponSlots[3].GetComponent<BaseWeapon>().id);
-					drawWeapon = true;
+			for(int i=0; i<weaponSlots.Count; i++){
+				GUIStyle selectedWeaponStyle = new GUIStyle();
+				selectedWeaponStyle.font = UIManager.Instance.resourceFont;
+				selectedWeaponStyle.fontSize = 12;
+				selectedWeaponStyle.alignment = TextAnchor.MiddleCenter;
+				selectedWeaponStyle.normal.textColor = Color.white;
+				if(weaponSlots[i] != null){
+					if(weaponSlots[i].gameObject.activeSelf){
+						selectedWeaponStyle.normal.background = weaponEquipped;
+					} else {
+						selectedWeaponStyle.normal.background = weaponUnEquipped;
+					}
+					
+					// Display 4 GUI buttons: left, right, top, bottom
+					if(GUI.Button(weaponDisplayRect[i], weaponSlots[i].name, selectedWeaponStyle)){
+						SelectWeapon(weaponSlots[i].GetComponent<BaseWeapon>().id);
+						drawWeapon = true;
+					}
 				}
 			}
 		}

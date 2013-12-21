@@ -19,7 +19,8 @@
 			reloadSpeed= "1.2"
 			damage= "10"
 			coneAngle= "1.5"
-			costPerBullet= "2">
+			costPerBullet= "2"
+			cost= "100">
 		</MachineGun>
 		<Pistol
 			range= "100"
@@ -30,7 +31,8 @@
 			reloadSpeed= "1"
 			damage= "10"
 			coneAngle= "1"
-			costPerBullet= "1">
+			costPerBullet= "1"
+			cost= "50">
 		</Pistol>
 		<RocketLauncher
 			range= "2"
@@ -41,7 +43,8 @@
 			reloadSpeed= "1.5"
 			damage= "15"
 			coneAngle= "2"
-			costPerBullet= "4">
+			costPerBullet= "4"
+			cost= "300">
 		</RocketLauncher>
 		<FlameThrower
 			range= "20"
@@ -52,7 +55,8 @@
 			reloadSpeed= "2.5"
 			damage= "10"
 			coneAngle= "2"
-			costPerBullet= "1">
+			costPerBullet= "1"
+			cost= "700">
 		</FlameThrower>
 		<BurstRifle
 			range= "100"
@@ -63,7 +67,8 @@
 			reloadSpeed= "1.5"
 			damage= "15"
 			coneAngle= "1.2"
-			costPerBullet= "2">
+			costPerBullet= "2"
+			cost= "200">
 		</BurstRifle>
 		<Shotgun
 			range= "100"
@@ -74,7 +79,8 @@
 			reloadSpeed= "2"
 			damage= "10"
 			coneAngle= "8"
-			costPerBullet= "1">
+			costPerBullet= "1"
+			cost= "250">
 		</Shotgun>
 		<RayBlaster
 			range= "3"
@@ -85,7 +91,8 @@
 			reloadSpeed= "1.7"
 			damage= "10"
 			coneAngle= "2"
-			costPerBullet= "3">
+			costPerBullet= "3"
+			cost= "350">
 		</RayBlaster>
 		<LightningBlaster
 			range= "5"
@@ -96,7 +103,8 @@
 			reloadSpeed= "2.5"
 			damage= "5"
 			coneAngle= "1.8"
-			costPerBullet= "1">
+			costPerBullet= "1"
+			cost= "900">
 		</LightningBlaster>
 		<Revolver
 			range= "100"
@@ -107,7 +115,8 @@
 			reloadSpeed= "1.5"
 			damage= "15"
 			coneAngle= "1.5"
-			costPerBullet= "2">
+			costPerBullet= "2"
+			cost= "100">
 		</Revolver>
 		<SMG
 			range= "100"
@@ -118,7 +127,8 @@
 			reloadSpeed= "1.3"
 			damage= "15"
 			coneAngle= "1.7"
-			costPerBullet= "2">
+			costPerBullet= "2"
+			cost= "150">
 		</SMG>
 		<GrenadeLauncher
 			range= "15"
@@ -129,19 +139,21 @@
 			reloadSpeed= "2"
 			damage= "10"
 			coneAngle= "1.5"
-			costPerBullet= "2">
+			costPerBullet= "2"
+			cost= "250">
 		</GrenadeLauncher>
-		<DontPurchaseS
-			range= "0"
-			fireRate= "0"
-			force= "0"
-			bulletsPerClip= "0"
-			clips= "0"
-			reloadSpeed= "0"
-			damage= "0"
-			coneAngle= "0"
-			costPerBullet= "0">
-		</DontPurchaseS>
+		<ThunderGun
+			range= "3"
+			fireRate= "0.5"
+			force= "10"
+			bulletsPerClip= "5"
+			clips= "6"
+			reloadSpeed= "3"
+			damage= "30"
+			coneAngle= "2.5"
+			costPerBullet= "3"
+			cost= "850">
+		</ThunderGun>
 	</WeaponData>
 	
 	<!-- BASE FORTIFICATION VALUES -->
@@ -172,7 +184,7 @@
 			fortDamage= "0">
 		</Wall>
 		<GunTower
-			health= "500"
+			health= "300"
 			fortDamage= "0"
 			range= "15"
 			fireRate= "0.1"
@@ -184,7 +196,7 @@
 			coneAngle= "2">
 		</GunTower>
 		<RocketTower
-			health= "500"
+			health= "300"
 			fortDamage= "0"
 			range= "15"
 			fireRate= "1"
