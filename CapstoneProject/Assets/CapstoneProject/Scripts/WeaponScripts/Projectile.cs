@@ -33,24 +33,26 @@ public class Projectile : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision collision){
-		// Instantiate explosion at the impact point and rotate the explosion
-		// so that the y-axis faces along the surface normal
-		ContactPoint contact = collision.contacts[0];
-		Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
-		Vector3 pos = contact.point;
-		if(explosion){
-			Instantiate(explosion, pos, rotation);
-		}
 		
 		collision.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);
-		
+			
 		if(collision.rigidbody){
 			Vector3 force = trans.forward * weapon.force;
 			collision.rigidbody.AddForce(force, ForceMode.Impulse);
 		}
-	
-		// Call function to destroy the rocket
-		Kill();
+		
+		if(explosion){
+			// Instantiate explosion at the impact point and rotate the explosion
+			// so that the y-axis faces along the surface normal
+			ContactPoint contact = collision.contacts[0];
+			Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
+			Vector3 pos = contact.point;
+			
+			Instantiate(explosion, pos, rotation);
+		
+			// Call function to destroy the rocket
+			Kill();
+		}
 	}
 	
 	void Kill(){

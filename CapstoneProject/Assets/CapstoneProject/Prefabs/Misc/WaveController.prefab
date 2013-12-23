@@ -79,13 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41752ce8ab6023c41a39ae01b070cfff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayEnemies:
-  - {fileID: 100136, guid: 284c0d8ff56b7f64dba4c61e34a1ed4a, type: 2}
-  - {fileID: 100074, guid: 9342dd4f4da79134795cbdc388d8fc91, type: 2}
-  - {fileID: 100074, guid: 8e22899ea32b0c34b94456eafad6c0f4, type: 2}
-  nightEnemies:
-  - {fileID: 100094, guid: 12e17776242371244885845aa26e8fde, type: 2}
-  - {fileID: 100076, guid: aa3ee0965b91f144881c14a07c53621f, type: 2}
+  cyborg: {fileID: 100136, guid: 284c0d8ff56b7f64dba4c61e34a1ed4a, type: 2}
+  cat: {fileID: 100074, guid: 9342dd4f4da79134795cbdc388d8fc91, type: 2}
+  tiger: {fileID: 100074, guid: 8e22899ea32b0c34b94456eafad6c0f4, type: 2}
+  scavenger: {fileID: 100076, guid: aa3ee0965b91f144881c14a07c53621f, type: 2}
+  crusher: {fileID: 100094, guid: 12e17776242371244885845aa26e8fde, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

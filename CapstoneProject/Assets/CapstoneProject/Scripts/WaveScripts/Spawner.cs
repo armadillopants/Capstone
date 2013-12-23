@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour {
 		public float damageAmount;
 	}
 	
-	public List<GameObject> enemiesToSpawn = new List<GameObject>();
+	private List<GameObject> enemiesToSpawn = new List<GameObject>();
 	public GameObject cyborg;
 	public GameObject cat;
 	public GameObject tiger;
@@ -43,8 +43,8 @@ public class Spawner : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("WaveData", typeof(TextAsset));
-		//doc.LoadXml(asset.text);
-		doc.Load(Application.dataPath + "/WaveData.xml");
+		doc.LoadXml(asset.text);
+		//doc.Load(Application.dataPath + "/WaveData.xml");
 	}
 	
 	public void SetWaveData(Wave wave, int waveNum){

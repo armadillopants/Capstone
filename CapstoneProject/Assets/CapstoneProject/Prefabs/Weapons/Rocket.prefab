@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd2e6b52ea50f440b657a03c7e80013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 100006, guid: 695e9dda491257d4b84446c02df2021a, type: 2}
+  explosion: {fileID: 100004, guid: 3788abab1b4b5d84d9611810a8716290, type: 2}
   bulletSpeed: 15
   target: {fileID: 0}
   isHoming: 0

@@ -151,7 +151,7 @@
 			reloadSpeed= "3"
 			damage= "30"
 			coneAngle= "2.5"
-			costPerBullet= "3"
+			costPerBullet= "5"
 			cost= "850">
 		</ThunderGun>
 	</WeaponData>

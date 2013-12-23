@@ -15,8 +15,8 @@ public class XMLReader : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("WeaponData", typeof(TextAsset));
-		//doc.LoadXml(asset.text);
-		doc.Load(Application.dataPath + "/WeaponData.xml");
+		doc.LoadXml(asset.text);
+		//doc.Load(Application.dataPath + "/WeaponData.xml");
 		
 		for(int i=0; i<manager.allWeapons.Count; i++){
 			SetWeapon(manager.allWeapons[i].id, "/BaseValueData/WeaponData/"+manager.allWeapons[i].name);

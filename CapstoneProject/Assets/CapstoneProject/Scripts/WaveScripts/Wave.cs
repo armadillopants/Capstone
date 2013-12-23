@@ -18,7 +18,7 @@ public class Wave : MonoBehaviour {
 	
 	public int waveIncrementor = 6;
 
-	void Start(){
+	void Awake(){
 		spawner = GetComponentInChildren<Spawner>();
 	}
 	

@@ -40,7 +40,7 @@ public class RayBlaster : BaseWeapon {
 							Mathf.Min(1f, boundSize.z+0.1f*Time.deltaTime) );
 			visibleProj.GetComponent<BoxCollider>().size = boundSize;
 			if(Input.GetButtonUp("Fire1")){
-				chargeTime -= chargeRegenSpeed;
+				chargeTime -= chargeRegenSpeed*chargeRegenSpeed;
 				damage += Mathf.RoundToInt(extraDamage);
 				
 				if(Time.time - fireRate > nextFireTime){
