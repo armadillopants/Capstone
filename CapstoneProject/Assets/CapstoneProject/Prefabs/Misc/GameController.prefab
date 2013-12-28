@@ -96,14 +96,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiState: 5
   isPaused: 0
-  mainBase: {fileID: 2800000, guid: 5a727316273a71a48bd3db1a7a976d75, type: 3}
-  buttonNormal: {fileID: 2800000, guid: 68da7d638186792458d3b5c075e8f682, type: 3}
-  buttonHover: {fileID: 2800000, guid: 3cbee59e747da44428db16a651481aff, type: 3}
-  buttonActive: {fileID: 2800000, guid: 3e4a79b2e5317924db9c23a7c9a77524, type: 3}
-  fortFont: {fileID: 12800000, guid: 6b1ca2fe9a7d0904b9519cb524168dea, type: 3}
-  buildBase: {fileID: 0}
-  weaponBase: {fileID: 2800000, guid: 808087ef524c0a943a578945ff9434b3, type: 3}
-  abilityBase: {fileID: 0}
+  fortification: {fileID: 0}
+  resourceBackground: {fileID: 2800000, guid: 729c8fe5a95ddd04684b8c1c905d1b4e, type: 3}
+  resourceFont: {fileID: 12800000, guid: a5a5cb6ca4901d446b4ad0acb6855953, type: 3}
+  displayUI: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -47,14 +47,14 @@ public class XMLVendorReader : MonoBehaviour {
 		}
 	}
 	
-	public int GetCurrentFortificationCost(int cost, int i, string itemName, int currentUpgrade){
+	public int GetCurrentFortificationCost(int cost, string itemName, int currentUpgrade){
 		string result = itemName.Replace(" " , "");
 		firstNode = doc.SelectSingleNode("/VendorData/Fortifications/" + result + "/Upgrades/" + "Upgrade" + currentUpgrade);
 		cost = int.Parse(firstNode.Attributes.GetNamedItem("cost").Value);
 		return cost;
 	}
 	
-	public void UpgradeFortificationData(int i, string itemName, int currentUpgrade){
+	public void UpgradeFortificationData(string itemName, int currentUpgrade){
 		string result = itemName.Replace(" " , "");
 		if(fortData){
 			firstNode = doc.SelectSingleNode("/VendorData/Fortifications/" + result + "/Upgrades/" + "Upgrade" + currentUpgrade);

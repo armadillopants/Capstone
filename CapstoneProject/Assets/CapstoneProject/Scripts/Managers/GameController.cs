@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 0;
+	private int amountOfResources = 10000;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -176,20 +176,21 @@ public class GameController : MonoBehaviour {
 		UIManager.Instance.uiState = state;
 	}
 	
-	public void SetFortificationToSpawn(GameObject fort){
+	public void SetFortificationToSpawn(GameObject fort, float rot){
 		originalMat = fort.renderer.sharedMaterial;
 		
 		if(fort){
-			SpawnFortification(fort);
+			SpawnFortification(fort, rot);
 		}
 	}
 	
-	void SpawnFortification(GameObject fortToSpawn){
+	void SpawnFortification(GameObject fortToSpawn, float rot){
 		RaycastHit hit = new RaycastHit();
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		
 		if(Physics.Raycast(ray, out hit)){
 			GameObject fort = (GameObject)Instantiate(fortToSpawn, hit.point, Quaternion.identity);
+			fort.transform.eulerAngles = new Vector3(0,rot,0);
 			fort.name = fortToSpawn.name;
 			//fort.transform.parent = GameObject.Find("CombinedMeshes").transform;
 			current = fort;
@@ -303,6 +304,7 @@ public class GameController : MonoBehaviour {
 		// Place current fortification
 		if(Input.GetMouseButtonDown(0) && canPlace){
 			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ, current);
+			float rot = current.transform.eulerAngles.y;
 			current.renderer.material = originalMat;
 			DeleteResources(current.GetComponent<SellableItem>().cost);
 			current.GetComponent<Dragable>().enabled = true;
@@ -314,7 +316,7 @@ public class GameController : MonoBehaviour {
 			} else {
 				GameObject temp = current;
 				current = null;
-				SpawnFortification(temp);
+				SpawnFortification(temp, rot);
 			}
 		}
 		

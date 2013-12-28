@@ -38,6 +38,7 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		style.active.textColor = Color.white;
 		style.alignment = TextAnchor.MiddleCenter;
 		style.font = font;
+		style.wordWrap = true;
 		
 		switch(state){
 		case State.FORTINFO:
@@ -59,10 +60,10 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		
 		GUI.DrawTexture(new Rect(0, 0, drawRect.width, drawRect.height), backGround);
 		
-		string[] fortInfo = new string[3]{"Upgrade", "Destroy", "Cancel"};
+		string[] fortInfo = new string[3]{"UPGRADE", "DESTROY", "CANCEL"};
 		for(int i=0; i<fortInfo.Length; i++){
 			string curFortInfo = fortInfo[i];
-			if(GUI.Button(new Rect(drawRect.width/4f, drawRect.height/6f+(i*60), 100, 50), curFortInfo, style)){
+			if(GUI.Button(new Rect(drawRect.width-150, drawRect.height-250+(i*60), 100, 50), curFortInfo, style)){
 				if(curFortInfo == fortInfo[0]){
 					state = State.UPGRADE;
 				} else if(curFortInfo == fortInfo[1]){
@@ -81,10 +82,22 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		
 		GUI.DrawTexture(new Rect(0, 0, drawRect.width, drawRect.height), backGround);
 		
-		if(GameController.Instance.GetResources() >= curItem.GetComponent<SellableItem>().cost){
-			if(GUI.Button(new Rect(drawRect.width/4f, drawRect.height/6f, 80, 20), "UPGRADE", style)){
+		XMLVendorReader vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
+		SellableItem sellItem = curItem.GetComponent<SellableItem>().upgradedItem.GetComponent<SellableItem>();
+		if(sellItem.currentUpgrade < 2){
+			sellItem.cost = vendorReader.GetCurrentFortificationCost(sellItem.cost, sellItem.itemName, sellItem.currentUpgrade);
+		}
+		
+		if(GameController.Instance.GetResources() >= sellItem.cost){
+			if(GUI.Button(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "UPGRADE: "+sellItem.cost, style)){
 				itemVendor.Upgrade(curItem);
 			}
+			GUI.Label(new Rect(drawRect.width-200, drawRect.height-200, 200, 100), 
+				sellItem.GetComponent<SellableItem>().description, style);
+		}
+		
+		if(GUI.Button(new Rect(drawRect.width-150, drawRect.height-100, 100, 50), "BACK", style)){
+			state = State.FORTINFO;
 		}
 		
 		GUI.EndGroup();
@@ -95,10 +108,10 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		GUI.BeginGroup(drawRect);
 		
 		GUI.DrawTexture(new Rect(0, 0, drawRect.width, drawRect.height), backGround);
-		string[] fortInfo = new string[2]{"Yes", "No"};
+		string[] fortInfo = new string[2]{"YES", "NO"};
 		for(int i=0; i<fortInfo.Length; i++){
 			string curFortInfo = fortInfo[i];
-			if(GUI.Button(new Rect(drawRect.width/4f, drawRect.height/6f+(i*60), 100, 50), curFortInfo, style)){
+			if(GUI.Button(new Rect(drawRect.width-150, drawRect.height-250+(i*60), 100, 50), curFortInfo, style)){
 				if(curFortInfo == fortInfo[0]){
 					// Destory the object and update graph
 					Health fortHealth = UIManager.Instance.fortification.GetComponent<Health>();

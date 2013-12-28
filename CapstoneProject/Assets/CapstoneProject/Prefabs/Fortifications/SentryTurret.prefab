@@ -83,7 +83,7 @@ GameObject:
   - 23: {fileID: 2300012}
   - 114: {fileID: 11400010}
   m_Layer: 9
-  m_Name: GunTurret
+  m_Name: SentryTurret
   m_TagString: Fortification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

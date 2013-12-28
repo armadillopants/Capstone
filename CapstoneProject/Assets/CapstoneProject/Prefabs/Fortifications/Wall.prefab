@@ -46,7 +46,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 6120d4bef3a7ac54f8c967bdba656f6e, type: 2}
+  - {fileID: 2100000, guid: 0cdb46d040b9d1241adce7328d57bf1c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -98,14 +98,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Wall
-  description: Strong stone wall.NEWLINEProtects against bullets
+  description: Strong, Stone wall. Protects against enemy bullets.
   cost: 75
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0
-  currentUpgrade: 1
+  currentUpgrade: 0
   id: 0
-  upgradedItem: {fileID: 0}
+  upgradedItem: {fileID: 100000, guid: acbbdc5b44633c14ba7639f1709b0bc4, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

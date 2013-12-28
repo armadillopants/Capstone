@@ -295,6 +295,30 @@
 				</Upgrade2>
 			</Upgrades>
 		</GrenadeLauncher>
+		<ThunderGun>
+			<Upgrades>
+				<Upgrade1
+					range= "4"
+					fireRate= "0.3"
+					force= "12"
+					bulletsPerClip= "6"
+					clips= "6"
+					reloadSpeed= "2.8"
+					damage= "35"
+					coneAngle= "2.3">
+				</Upgrade1>
+				<Upgrade2
+					range= "5"
+					fireRate= "0.1"
+					force= "14"
+					bulletsPerClip= "7"
+					clips= "6"
+					reloadSpeed= "2.6"
+					damage= "40"
+					coneAngle= "2.1">
+				</Upgrade2>
+			</Upgrades>
+		</ThunderGun>
 	</Weapons>
 	
 	<!-- UPGRADES FOR FORTIFICATIONS -->
@@ -313,55 +337,32 @@
 		<Barrier>
 			<Upgrades>
 				<Upgrade1
-					cost= "400"
-					health= "200"
-					fortDamage= "0">
+					cost= "50"
+					health= "150"
+					fortDamage= "0.5">
 				</Upgrade1>
+				<Upgrade2
+					cost= "100"
+					health= "200"
+					fortDamage= "1">
+				</Upgrade2>
 			</Upgrades>
 		</Barrier>
-		<SpikedBarrier>
-			<Upgrades>
-				<Upgrade1
-					cost= "600"
-					health= "250"
-					fortDamage= "10">
-				</Upgrade1>
-			</Upgrades>
-		</SpikedBarrier>
-		<BarbedWireBarrier>
-			<Upgrades>
-				<Upgrade1
-					cost= "800"
-					health= "300"
-					fortDamage= "10">
-				</Upgrade1>
-			</Upgrades>
-		</BarbedWireBarrier>
 		<Wall>
 			<Upgrades>
 				<Upgrade1
-					cost= "500"
-					health= "300"
+					cost= "75"
+					health= "200"
 					fortDamage= "0">
 				</Upgrade1>
 				<Upgrade2
-					cost= "600"
-					health= "400"
+					cost= "125"
+					health= "250"
 					fortDamage= "0">
 				</Upgrade2>
-				<Upgrade3
-					cost= "800"
-					health= "500"
-					fortDamage= "0">
-				</Upgrade3>
-				<Upgrade4
-					cost= "1000"
-					health= "600"
-					fortDamage= "0">
-				</Upgrade4>
 			</Upgrades>
 		</Wall>
-		<GunTower>
+		<SentryTower>
 			<Upgrades>
 				<Upgrade1
 					cost= "500"
@@ -390,7 +391,7 @@
 					coneAngle= "1.3">
 				</Upgrade2>
 			</Upgrades>
-		</GunTower>
+		</SentryTower>
 		<RocketTower>
 			<Upgrades>
 				<Upgrade1
@@ -421,7 +422,7 @@
 				</Upgrade2>
 			</Upgrades>
 		</RocketTower>
-		<GunTurret>
+		<SentryTurret>
 			<Upgrades>
 				<Upgrade1
 					cost= "200"
@@ -450,7 +451,7 @@
 					coneAngle= "1.3">
 				</Upgrade2>
 			</Upgrades>
-		</GunTurret>
+		</SentryTurret>
 		<RocketTurret>
 			<Upgrades>
 				<Upgrade1

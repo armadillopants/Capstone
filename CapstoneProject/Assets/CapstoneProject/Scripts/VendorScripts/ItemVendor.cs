@@ -22,44 +22,41 @@ public class ItemVendor : MonoBehaviour {
 		if(GameController.Instance.GetResources() >= sellItem.cost){
 			if(sellItem.GetComponent<Dragable>()){
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
-				GameController.Instance.SetFortificationToSpawn(sellItem.gameObject);
+				GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
 				reader.SetFortData();
 				reader.SetFortification(sellItem.name);
 			} else {
 				GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
 			}
-			//GameController.Instance.DeleteResources(sellItem.cost);
-			
-			Debug.Log("Purchased: " + sellItem.itemName);
-		} else {
-			Debug.Log("Not enough funds to purchase: " + sellItem.itemName);
 		}
 	}
 	
 	public void Upgrade(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
-		if(GameController.Instance.GetResources() >= sellItem.cost && sellItem.currentUpgrade <= 4){
-			GameController.Instance.DeleteResources(sellItem.cost);
-			vendorReader.SetFortData(sellItem.gameObject);
-			vendorReader.UpgradeFortificationData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
+		if(GameController.Instance.GetResources() >= sellItem.cost && sellItem.currentUpgrade < 2){
+			
 			if(sellItem.upgradedItem){
 				GameObject upgradedItem = (GameObject)Instantiate(sellItem.upgradedItem, sellItem.gameObject.transform.position, sellItem.gameObject.transform.rotation);
 				upgradedItem.name = sellItem.upgradedItem.name;
 				upgradedItem.GetComponent<Dragable>().enabled = true;
+				upgradedItem.GetComponent<Dragable>().canUpdate = true;
+				SellableItem itemToUpgrade = upgradedItem.GetComponent<SellableItem>();
+				itemToUpgrade.cost = vendorReader.GetCurrentFortificationCost(itemToUpgrade.cost, itemToUpgrade.itemName, itemToUpgrade.currentUpgrade);
+				vendorReader.SetFortData(itemToUpgrade.gameObject);
+				vendorReader.UpgradeFortificationData(itemToUpgrade.itemName, itemToUpgrade.currentUpgrade);
+				GameController.Instance.DeleteResources(itemToUpgrade.cost);
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
 				Destroy(sellItem.gameObject);
+			} else {
+				GameController.Instance.DeleteResources(sellItem.cost);
+				vendorReader.SetFortData(sellItem.gameObject);
+				vendorReader.UpgradeFortificationData(sellItem.itemName, sellItem.currentUpgrade);
+				sellItem.currentUpgrade += 1;
+				if(sellItem.currentUpgrade < 2){
+					sellItem.cost = vendorReader.GetCurrentFortificationCost(sellItem.cost, sellItem.itemName, sellItem.currentUpgrade);
+				}
 			}
-			
-			sellItem.currentUpgrade += 1;
-			if(sellItem.currentUpgrade <=2){
-				sellItem.cost = vendorReader.GetCurrentFortificationCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
-			}
-			Debug.Log("Purchased upgrade for: " + sellItem.itemName);
-		} else if(sellItem.currentUpgrade >= 3){
-			Debug.Log("No more upgrades for: " + sellItem.itemName);
-		} else {
-			Debug.Log("Not enough funds to purchase upgrade for: " + sellItem.itemName);
 		}
 	}
 }

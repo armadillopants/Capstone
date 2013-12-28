@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour {
 	void OnCollisionEnter(Collision collision){
 		
 		collision.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);
-			
+		
 		if(collision.rigidbody){
 			Vector3 force = trans.forward * weapon.force;
 			collision.rigidbody.AddForce(force, ForceMode.Impulse);

@@ -25,6 +25,10 @@ public class UIManager : MonoBehaviour {
 	private Rect shipHealthRect;
 	private Rect resourceRect;
 	private Rect waveNumberRect;
+	private Rect fortDisplayRect;
+	private bool displayFortData = false;
+	private Health fortHealth;
+	private BaseWeapon fortWeapon;
 	
 	public Texture2D resourceBackground;
 	public Font resourceFont;
@@ -77,7 +81,7 @@ public class UIManager : MonoBehaviour {
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
 		waveNumberRect = new Rect(50, Screen.height-50, 150, 50);
 		
-		playerHealthRect = new Rect(Screen.width-150, Screen.height-30, 135, 25);
+		playerHealthRect = new Rect(Screen.width-135, Screen.height-25, 135, 25);
 		resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
 		
 		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
@@ -94,6 +98,23 @@ public class UIManager : MonoBehaviour {
 		
 		Vector3 shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
 		shipHealthRect = new Rect(shipPos.x, Screen.height - shipPos.y, 400, 20);
+		
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit = new RaycastHit();
+		if(Physics.Raycast(ray, out hit)){
+			if(hit.transform.tag == Globals.FORTIFICATION && GameController.Instance.current == null){
+				Vector3 fortPos = Camera.main.WorldToScreenPoint(hit.point);
+				fortHealth = hit.transform.GetComponent<Health>();
+				if(hit.transform.GetComponentInChildren<BaseWeapon>() != null){
+					fortWeapon = hit.transform.GetComponentInChildren<BaseWeapon>();
+					Logger.Log("Found weapon");
+				}
+				fortDisplayRect = new Rect(fortPos.x, Screen.height-fortPos.y, 50, 10);
+				displayFortData = true;
+			} else {
+				displayFortData = false;
+			}
+		}
 	}
 	
 	public void SetFortification(GameObject fort){
@@ -133,10 +154,13 @@ public class UIManager : MonoBehaviour {
 		
 		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
 			if(displayUI){
-			DrawPlayerHealth();
-			DrawShipHealth();
-			DrawResources();
-			DrawCurWaveScreen();
+				DrawPlayerHealth();
+				DrawShipHealth();
+				DrawResources();
+				DrawCurWaveScreen();
+				if(displayFortData){
+					DrawFortDisplay();
+				}
 			}
 		}
 	}
@@ -244,39 +268,61 @@ public class UIManager : MonoBehaviour {
 	
 	void DrawPlayerHealth(){
 		GUI.BeginGroup(playerHealthRect);
-		{
-			GUI.DrawTexture(new Rect(0, 0, 
-				playerHealthRect.width*GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
-				grayBar, ScaleMode.StretchToFill);
-			GUI.DrawTexture(new Rect(0, 0, 
-				playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
-				playerHealthBar, ScaleMode.StretchToFill);
-		}
+		
+		GUI.DrawTexture(new Rect(0, 0, 
+			playerHealthRect.width*GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
+			grayBar, ScaleMode.StretchToFill);
+		GUI.DrawTexture(new Rect(0, 0, 
+			playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
+			playerHealthBar, ScaleMode.StretchToFill);
+
 		GUI.EndGroup();
 	}
 	
 	void DrawShipHealth(){
 		GUI.BeginGroup(shipHealthRect);
-		{
-			GUI.DrawTexture(new Rect(0, 0, 
-				shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
-				grayBar, ScaleMode.StretchToFill);
-			GUI.DrawTexture(new Rect(0, 0, 
-				shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
-				shipHealthBar, ScaleMode.StretchToFill);
-		}
+		
+		GUI.DrawTexture(new Rect(0, 0, 
+			shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+			grayBar, ScaleMode.StretchToFill);
+		GUI.DrawTexture(new Rect(0, 0, 
+			shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+			shipHealthBar, ScaleMode.StretchToFill);
+		
+		GUI.EndGroup();
+	}
+	
+	void DrawFortDisplay(){
+		GUI.BeginGroup(fortDisplayRect);
+		
+		GUI.DrawTexture(new Rect(0, 0, 
+			fortDisplayRect.width*fortHealth.GetMaxHealth(), fortDisplayRect.height), 
+			grayBar, ScaleMode.StretchToFill);
+		GUI.DrawTexture(new Rect(0, 0, 
+			fortDisplayRect.width*fortHealth.curHealth/fortHealth.GetMaxHealth(), fortDisplayRect.height), 
+			playerHealthBar, ScaleMode.StretchToFill);
+		
+		GUIStyle style = new GUIStyle();
+		style.normal.background = resourceBackground;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.alignment = TextAnchor.MiddleCenter;
+		
+		GUI.Label(new Rect(0, 0, fortDisplayRect.width, fortDisplayRect.height), 
+							"Ammo: "+fortWeapon.bulletsLeft+"/"+fortWeapon.clips, style);
+		
 		GUI.EndGroup();
 	}
 	
 	void DrawResources(){
 		GUI.BeginGroup(resourceRect);
-		{
-			GUIStyle style = new GUIStyle();
-			style.normal.background = resourceBackground;
-			style.font = resourceFont;
-			style.alignment = TextAnchor.MiddleCenter;
-			GUI.Label(new Rect(0, 0, resourceRect.width, resourceRect.height), "RESOURCES: " + GameController.Instance.GetResources(), style);
-		}
+		
+		GUIStyle style = new GUIStyle();
+		style.normal.background = resourceBackground;
+		style.font = resourceFont;
+		style.alignment = TextAnchor.MiddleCenter;
+		GUI.Label(new Rect(0, 0, resourceRect.width, resourceRect.height), "RESOURCES: " + GameController.Instance.GetResources(), style);
+		
 		GUI.EndGroup();
 	}
 

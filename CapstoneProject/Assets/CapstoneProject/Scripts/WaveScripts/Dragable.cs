@@ -22,9 +22,9 @@ public class Dragable : MonoBehaviour {
 		if(canUpdate){
 			// If we right click on a gameobject, display upgrade item screen
 			if(Input.GetMouseButton(1)){
-				UIManager.Instance.SetFortification(gameObject);
 				ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
 				itemVendor.upgradeItemVendor = gameObject;
+				UIManager.Instance.SetFortification(gameObject);
 			}
 		}
 	}

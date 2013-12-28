@@ -171,10 +171,6 @@
 			health= "100"
 			fortDamage= "0">
 		</Barrier>
-		<BarbedWireBarrier
-			health= "150"
-			fortDamage= "1">
-		</BarbedWireBarrier>
 		<ElectricFence
 			health= "200"
 			fortDamage= "1">
@@ -183,7 +179,7 @@
 			health= "150"
 			fortDamage= "0">
 		</Wall>
-		<GunTower
+		<SentryTower
 			health= "300"
 			fortDamage= "0"
 			range= "15"
@@ -194,7 +190,7 @@
 			reloadSpeed= "1.5"
 			damage= "1"
 			coneAngle= "2">
-		</GunTower>
+		</SentryTower>
 		<RocketTower
 			health= "300"
 			fortDamage= "0"
@@ -207,7 +203,7 @@
 			damage= "2"
 			coneAngle= "2.5">
 		</RocketTower>
-		<GunTurret
+		<SentryTurret
 			health= "20"
 			fortDamage= "0"
 			range= "10"
@@ -218,7 +214,7 @@
 			reloadSpeed= "1.5"
 			damage= "1"
 			coneAngle= "2">
-		</GunTurret>
+		</SentryTurret>
 		<RocketTurret
 			health= "20"
 			fortDamage= "0"
