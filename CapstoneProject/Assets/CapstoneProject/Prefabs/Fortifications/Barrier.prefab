@@ -84,7 +84,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 1, z: .800000012}
+  m_Size: {x: 2.79999995, y: 1, z: .800000012}
   m_Center: {x: 0, y: .5, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Barrier
-  description: Stone barrier. Tough and protects against attacking enemies.
+  description: Stone barrier. Protects against attackers.
   cost: 50
   preview: {fileID: 0}
   purchased: 0

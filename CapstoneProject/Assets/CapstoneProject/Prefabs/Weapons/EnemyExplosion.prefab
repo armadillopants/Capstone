@@ -480,6 +480,7 @@ MonoBehaviour:
   - Player
   - Ship
   - Fortification
+  dealShieldDamage: 1
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6

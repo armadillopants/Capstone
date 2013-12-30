@@ -340,8 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Sentry Tower
-  description: Strong stone tower, with highNEWLINEresistance to attack.NEWLINEEquipped
-    with a turretNEWLINEthat aims at nearest target.
+  description: Strong, stone sentry tower, with high resistance to attack.
   cost: 300
   preview: {fileID: 0}
   purchased: 0

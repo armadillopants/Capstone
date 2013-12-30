@@ -545,7 +545,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .800000012, y: 1, z: .800000012}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!76 &7600000
 WorldParticleCollider:
@@ -591,6 +591,8 @@ MonoBehaviour:
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,11 +618,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Flame Turret
-  description: Turret that blasts enemiesNEWLINEwith hot fire whenNEWLINEin range.NEWLINEHigh
-    damage towards BEETLES
+  description: Blasts enemies with fire when in range. High damage towards BEETLES.
   cost: 250
   preview: {fileID: 0}
   purchased: 0
+  soldOut: 0
   currentUpgrade: 1
   id: 0
   upgradedItem: {fileID: 0}
@@ -661,6 +663,10 @@ MonoBehaviour:
   useLayerMask: 1
   gripID: 0
   costPerBullet: 0
+  fireClip: {fileID: 0}
+  reloadClip: {fileID: 0}
+  emptyClip: {fileID: 0}
+  oneShot: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class Explosion : MonoBehaviour {
 	public float blastDamage = 100.0f;
 	public float timeOut = 3.0f;
 	public string[] targetName;
+	public bool dealShieldDamage = false;
 
 	void Start(){
 		Vector3 pos = transform.position;
@@ -24,6 +25,11 @@ public class Explosion : MonoBehaviour {
 			
 			for(int i=0; i<targetName.Length; i++){
 				if(hit.tag == targetName[i]){
+					if(dealShieldDamage){
+						if(hit.tag == "Shield"){
+							hit.renderer.enabled = true;
+						}
+					}
 					// Tell the rigidbody or any other script attached to the hit object how much damage is to be applied
 					hit.SendMessageUpwards("TakeDamage", hitPoints, SendMessageOptions.DontRequireReceiver);
 				}

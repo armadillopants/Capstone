@@ -176,6 +176,12 @@ public class BaseWeapon : MonoBehaviour {
 				if(bullet){
 					bullet.distance = hit.distance;
 				}
+				
+				if(!useLayerMask){
+					if(hit.collider.tag == "Shield"){
+						hit.collider.gameObject.renderer.enabled = true;
+					}
+				}
 				// Place the particle system for spawing out of place where we hit the surface!
 				// And spawn a couple of particles
 				/*if(hitParticles){

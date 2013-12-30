@@ -12,7 +12,7 @@ public class Fortification : MonoBehaviour {
 	private Rect timerRect = new Rect(100,50,100,50);
 	
 	private Wave buildWave;
-	private float timer = 30f;
+	private float timer = 60f;
 	
 	private MainPanelGUI mainPanel;
 	private BuildPanelGUI buildPanel;

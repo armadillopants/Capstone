@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 10000;
+	private int amountOfResources = 0;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -220,17 +220,17 @@ public class GameController : MonoBehaviour {
 		
 		switch(current.GetComponent<Dragable>().state){
 		case Dragable.FortState.THREE_ONE:
-			if(current.transform.eulerAngles.y == Globals.ROTATION_H_LEFT || current.transform.eulerAngles.y == Globals.ROTATION_H_RIGHT){
+			if(Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_H_LEFT || Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_H_RIGHT){
 				gridZ = 3f;
 			} else {
 				gridZ = 1f;
 			}
 		
-			if(current.transform.eulerAngles.y == Globals.ROTATION_V_UP || current.transform.eulerAngles.y == Globals.ROTATION_V_DOWN){
+			if(Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_V_UP || Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_V_DOWN){
 				gridX = 3f;
 			} else {
 				gridX = 1f;
-			}	
+			}
 			break;
 		case Dragable.FortState.THREE_THREE:
 			gridZ = 3f;
@@ -256,47 +256,13 @@ public class GameController : MonoBehaviour {
 				
 				canPlace = false;
 				current.renderer.material = invalidRed;
-				Debug.Log("Cannot place object");
 			}
 			
-			/*GeomRect rectA = new GeomRect();
-			rectA.x1 = current.collider.transform.position.x;
-			rectA.x2 = current.collider.transform.position.x + current.collider.bounds.size.x;
-			rectA.y1 = current.collider.transform.position.z;
-			rectA.y2 = current.collider.transform.position.z + current.collider.bounds.size.z;
-			
-			GeomRect rectB = new GeomRect();
-			rectB.x1 = forts[i].collider.transform.position.x;
-			rectB.x2 = forts[i].collider.transform.position.x + current.collider.bounds.size.x;
-			rectB.y1 = forts[i].collider.transform.position.z;
-			rectB.y2 = forts[i].collider.transform.position.z + current.collider.bounds.size.z;
-			
 			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
-				if(rectA.RectInside(rectB)){
+				
+				if(current.collider.bounds.Intersects(forts[i].collider.bounds)){
 					canPlace = false;
 					current.renderer.material = invalidRed;
-					Debug.Log("Cannot place object");
-				}
-			}*/
-			
-			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
-				if(current.transform.eulerAngles.y == Globals.ROTATION_H_LEFT || current.transform.eulerAngles.y == Globals.ROTATION_H_RIGHT){
-					if(current.collider.bounds.Contains(forts[i].collider.bounds.center)){
-						canPlace = false;
-						current.renderer.material = invalidRed;
-						Debug.Log("Cannot place object");
-					}
-				}
-				
-				if(current.transform.eulerAngles.y == Globals.ROTATION_V_UP || current.transform.eulerAngles.y == Globals.ROTATION_V_DOWN){
-					if(current.collider.bounds.Contains(forts[i].collider.bounds.center) || 
-						current.collider.bounds.Contains(forts[i].collider.bounds.center-new Vector3(0,0,1)) || 
-						current.collider.bounds.Contains(forts[i].collider.bounds.center+new Vector3(0,0,1))){
-						
-						canPlace = false;
-						current.renderer.material = invalidRed;
-						Debug.Log("Cannot place object");
-					}
 				}
 			}
 		}
@@ -304,7 +270,7 @@ public class GameController : MonoBehaviour {
 		// Place current fortification
 		if(Input.GetMouseButtonDown(0) && canPlace){
 			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ, current);
-			float rot = current.transform.eulerAngles.y;
+			float rot = Mathf.FloorToInt(current.transform.eulerAngles.y);
 			current.renderer.material = originalMat;
 			DeleteResources(current.GetComponent<SellableItem>().cost);
 			current.GetComponent<Dragable>().enabled = true;

@@ -430,7 +430,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .800000012, y: 1, z: .800000012}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8200000
 AudioSource:
@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Sentry Turret
-  description: Turret that fires ballisticNEWLINEammunition. Low damage.
+  description: Equipped with ballistic ammunition. Low damage.
   cost: 150
   preview: {fileID: 0}
   purchased: 0

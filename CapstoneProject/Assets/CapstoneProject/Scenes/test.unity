@@ -3499,6 +3499,10 @@ Prefab:
       propertyPath: weaponUnEquipped
       value: 
       objectReference: {fileID: 2800000, guid: 7b2fd78548ceecc4fbb26630a378a2f1, type: 3}
+    - target: {fileID: 11400010, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: useLayerMask
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
   m_RootGameObject: {fileID: 1653515481}
@@ -5146,9 +5150,9 @@ MonoBehaviour:
   labelCanBuy: {fileID: 2800000, guid: 8356c74ecb64d454c8e10315f9cd0829, type: 3}
   labelCantBuy: {fileID: 2800000, guid: 717b6c190fdd783468e87ba4baea3843, type: 3}
   labelFont: {fileID: 12800000, guid: ee95f231a49bf1547b745a49acd0e771, type: 3}
-  buyNormal: {fileID: 2800000, guid: f3c989d1a22ab0b4d82991e37d8aa1cc, type: 3}
-  buyHover: {fileID: 2800000, guid: b3ab4fdd1c0186c48afea0fc1e110616, type: 3}
-  buyActive: {fileID: 2800000, guid: 5a623af199500684d8fbfcab7b02fe2f, type: 3}
+  buyNormal: {fileID: 2800000, guid: 3398cd2926fa6bc4fbe37513ba731325, type: 3}
+  buyHover: {fileID: 2800000, guid: 4b19fa4a4a899504d83600dd3f7b3e2f, type: 3}
+  buyActive: {fileID: 2800000, guid: b91857f8ee3b406498bc5ca4b3b44fc9, type: 3}
 --- !u!114 &680767236
 MonoBehaviour:
   m_ObjectHideFlags: 0

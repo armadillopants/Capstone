@@ -40,8 +40,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Satellite Tower
-  description: Sends a Call Sign MaydayNEWLINEwhich ignitiates the final tenNEWLINEwaves
-    to survive beforeNEWLINErescue.
+  description: Sends a Call Sign Mayday which begins the final ten waves.
   cost: 1000
   preview: {fileID: 0}
   purchased: 0

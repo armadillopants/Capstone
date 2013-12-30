@@ -302,14 +302,14 @@ public class UIManager : MonoBehaviour {
 			fortDisplayRect.width*fortHealth.curHealth/fortHealth.GetMaxHealth(), fortDisplayRect.height), 
 			playerHealthBar, ScaleMode.StretchToFill);
 		
-		GUIStyle style = new GUIStyle();
+		/*GUIStyle style = new GUIStyle();
 		style.normal.background = resourceBackground;
 		style.normal.textColor = Color.white;
 		style.font = resourceFont;
 		style.alignment = TextAnchor.MiddleCenter;
 		
 		GUI.Label(new Rect(0, 0, fortDisplayRect.width, fortDisplayRect.height), 
-							"Ammo: "+fortWeapon.bulletsLeft+"/"+fortWeapon.clips, style);
+							"Ammo: "+fortWeapon.bulletsLeft+"/"+fortWeapon.clips, style);*/
 		
 		GUI.EndGroup();
 	}

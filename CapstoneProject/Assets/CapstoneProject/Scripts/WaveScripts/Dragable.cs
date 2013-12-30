@@ -78,13 +78,13 @@ public class Dragable : MonoBehaviour {
 					
 					switch(state){
 					case FortState.THREE_ONE:
-						if(yRot == Globals.ROTATION_H_LEFT || yRot == Globals.ROTATION_H_RIGHT){
+						if(Mathf.FloorToInt(yRot) == Globals.ROTATION_H_LEFT || Mathf.FloorToInt(yRot) == Globals.ROTATION_H_RIGHT){
 							gridz = 3f;
 						} else {
 							gridz = 1f;
 						}
 					
-						if(yRot == Globals.ROTATION_V_UP || yRot == Globals.ROTATION_V_DOWN){
+						if(Mathf.FloorToInt(yRot) == Globals.ROTATION_V_UP || Mathf.FloorToInt(yRot) == Globals.ROTATION_V_DOWN){
 							gridx = 3f;
 						} else {
 							gridx = 1f;

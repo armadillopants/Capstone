@@ -2,15 +2,51 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="97" Column="16" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="270" Column="36" />
-      <File FileName="Assets\CapstoneProject\Resources\VendorData.xml" Line="378" Column="23" />
-      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\BuildUpgradeGUI.cs" Line="81" Column="23" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="64" Column="18" />
-      <File FileName="Assets\CapstoneProject\Scripts\ConsoleScripts\XMLVendorReader.cs" Line="53" Column="69" />
-      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\ItemVendor.cs" Line="43" Column="60" />
+      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\BuildPanelGUI.cs" Line="52" Column="12" />
+      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\BuildUpgradeGUI.cs" Line="86" Column="36" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="16" Column="35" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
+      <File FileName="Assets\CapstoneProject\Resources\VendorData.xml" Line="359" Column="17" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="15" Column="25" />
+      <File FileName="Assets\CapstoneProject\Scripts\EventScripts\ShieldAnim.cs" Line="11" Column="8" />
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\EnemyWeapon.cs" Line="37" Column="18" />
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\BaseWeapon.cs" Line="183" Column="7" />
+      <File FileName="Assets\CapstoneProject\Scripts\ConsoleScripts\XMLReader.cs" Line="19" Column="3" />
+      <File FileName="Assets\CapstoneProject\Scripts\ConsoleScripts\XMLVendorReader.cs" Line="19" Column="3" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Spawner.cs" Line="47" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="CapstoneProject" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="ConsoleScripts" expanded="True" />
+                  <Node name="EventScripts" expanded="True" />
+                  <Node name="Managers" expanded="True" />
+                  <Node name="VendorScripts" expanded="True" />
+                  <Node name="WaveScripts" expanded="True">
+                    <Node name="Fortification.cs" selected="True" />
+                  </Node>
+                  <Node name="WeaponScripts" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="CapstoneProject" expanded="True">
+                <Node name="Resources" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

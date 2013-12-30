@@ -38,7 +38,6 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		style.active.textColor = Color.white;
 		style.alignment = TextAnchor.MiddleCenter;
 		style.font = font;
-		style.wordWrap = true;
 		
 		switch(state){
 		case State.FORTINFO:
@@ -84,7 +83,7 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		
 		XMLVendorReader vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 		SellableItem sellItem = curItem.GetComponent<SellableItem>().upgradedItem.GetComponent<SellableItem>();
-		if(sellItem.currentUpgrade < 2){
+		if(sellItem.currentUpgrade <= 2){
 			sellItem.cost = vendorReader.GetCurrentFortificationCost(sellItem.cost, sellItem.itemName, sellItem.currentUpgrade);
 		}
 		
@@ -92,8 +91,15 @@ public class BuildUpgradeGUI : MonoBehaviour {
 			if(GUI.Button(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "UPGRADE: "+sellItem.cost, style)){
 				itemVendor.Upgrade(curItem);
 			}
+			
+			GUIStyle descriptionStyle = new GUIStyle();
+			descriptionStyle.alignment = TextAnchor.MiddleCenter;
+			descriptionStyle.font = font;
+			descriptionStyle.wordWrap = true;
+			descriptionStyle.normal.textColor = Color.white;
+			
 			GUI.Label(new Rect(drawRect.width-200, drawRect.height-200, 200, 100), 
-				sellItem.GetComponent<SellableItem>().description, style);
+				sellItem.GetComponent<SellableItem>().description, descriptionStyle);
 		}
 		
 		if(GUI.Button(new Rect(drawRect.width-150, drawRect.height-100, 100, 50), "BACK", style)){
