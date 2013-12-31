@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: concrete texture
+  m_Name: spiked texture
   m_Shader: {fileID: 4800000, guid: 85014f3c561e20c43a70af9799e48ac9, type: 3}
   m_ShaderKeywords: []
   m_SavedProperties:
@@ -16,14 +16,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: db97253e72e89f248bd9469e2b323d31, type: 3}
+          m_Texture: {fileID: 2800000, guid: 8127b4424c9accb478921a754f478036, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: 2da2909f867166b4087d8961e0ca9d29, type: 3}
+          m_Texture: {fileID: 2800000, guid: 83a9e0029a42c424593a722f3dba1a7a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -37,7 +37,7 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .279665381
+        second: 1
       data:
         first:
           name: _Outline

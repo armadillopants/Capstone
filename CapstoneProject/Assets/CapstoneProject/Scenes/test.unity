@@ -3503,6 +3503,10 @@ Prefab:
       propertyPath: useLayerMask
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100204, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
   m_RootGameObject: {fileID: 1653515481}
@@ -5094,7 +5098,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: b823180831c3fb94583a87d2d098d2d0, type: 2}
   - {fileID: 100004, guid: 7896ff275b75ce2448441d842817c1b8, type: 2}
   - {fileID: 100008, guid: 0694a8a472bd1744abf5c5c20f250c6b, type: 2}
-  - {fileID: 100008, guid: e175b9bde51bb73428830530fa272d39, type: 2}
+  - {fileID: 100004, guid: facd1992fc50e8840ac499ce29d30306, type: 2}
   - {fileID: 100008, guid: b667cca6a999718479781273c1d8707f, type: 2}
   - {fileID: 100008, guid: 1f3f88fe6eb824b4288ce4dc24a7d529, type: 2}
   - {fileID: 100004, guid: 9e4477ae50f0d0b48b6200231b8183dc, type: 2}
@@ -7092,6 +7096,8 @@ MonoBehaviour:
   current: {fileID: 0}
   validGreen: {fileID: 2100000, guid: 25f6fdae1c340e74eac651c8b2350040, type: 2}
   invalidRed: {fileID: 2100000, guid: 88fbe8e595060fa4ebc2572ffbb6627a, type: 2}
+  originalMat: {fileID: 0}
+  originalMats: []
 --- !u!1 &946740445
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using Pathfinding;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 	
@@ -13,7 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 0;
+	private int amountOfResources = 100000;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -24,7 +25,8 @@ public class GameController : MonoBehaviour {
 	public GameObject current;
 	public Material validGreen;
 	public Material invalidRed;
-	private Material originalMat;
+	public Material originalMat;
+	public List<Material> originalMats = new List<Material>();
 	
 	private DayNightCycle cycle;
 	
@@ -177,7 +179,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public void SetFortificationToSpawn(GameObject fort, float rot){
-		originalMat = fort.renderer.sharedMaterial;
+		originalMats.Clear();
 		
 		if(fort){
 			SpawnFortification(fort, rot);
@@ -192,6 +194,16 @@ public class GameController : MonoBehaviour {
 			GameObject fort = (GameObject)Instantiate(fortToSpawn, hit.point, Quaternion.identity);
 			fort.transform.eulerAngles = new Vector3(0,rot,0);
 			fort.name = fortToSpawn.name;
+			
+			if(fort.GetComponent<MeshRenderer>()){
+				originalMat = fort.renderer.sharedMaterial;
+			} else {
+				foreach(MeshRenderer rend in fort.GetComponentsInChildren<MeshRenderer>()){
+					if(rend.enabled){
+						originalMats.Add(rend.sharedMaterial);
+					}
+				}
+			}
 			//fort.transform.parent = GameObject.Find("CombinedMeshes").transform;
 			current = fort;
 		}
@@ -247,7 +259,15 @@ public class GameController : MonoBehaviour {
 		current.transform.position = snapPos;
 		
 		bool canPlace = true;
-		current.renderer.material = validGreen;
+		if(current.GetComponent<MeshRenderer>()){
+			current.renderer.material = validGreen;
+		} else {
+			foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
+				if(rend.enabled){
+					rend.material = validGreen;
+				}
+			}
+		}
 		
 		for(int i=0; i<forts.Length; i++){
 			Vector3 gridPos = GameObject.FindWithTag(Globals.GRID).transform.position;
@@ -255,14 +275,32 @@ public class GameController : MonoBehaviour {
 				hit.point.z <= gridPos.z-Globals.GRID_SIZE || hit.point.z >= gridPos.z+Globals.GRID_SIZE){
 				
 				canPlace = false;
-				current.renderer.material = invalidRed;
+				//current.renderer.material = invalidRed;
+				if(current.GetComponent<MeshRenderer>()){
+					current.renderer.material = invalidRed;
+				} else {
+					foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
+						if(rend.enabled){
+							rend.material = invalidRed;
+						}
+					}
+				}
 			}
 			
 			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
 				
 				if(current.collider.bounds.Intersects(forts[i].collider.bounds)){
 					canPlace = false;
-					current.renderer.material = invalidRed;
+					//current.renderer.material = invalidRed;
+					if(current.GetComponent<MeshRenderer>()){
+						current.renderer.material = invalidRed;
+					} else {
+						foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
+							if(rend.enabled){
+								rend.material = invalidRed;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -271,7 +309,18 @@ public class GameController : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0) && canPlace){
 			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ, current);
 			float rot = Mathf.FloorToInt(current.transform.eulerAngles.y);
-			current.renderer.material = originalMat;
+			if(current.GetComponent<MeshRenderer>()){
+				current.renderer.material = originalMat;
+			} else {
+				for(int i=0; i<originalMats.Count; i++){
+					foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
+						if(rend.enabled){
+							rend.material = originalMats[i];
+							originalMats.RemoveAt(i);
+						}
+					}
+				}
+			}
 			DeleteResources(current.GetComponent<SellableItem>().cost);
 			current.GetComponent<Dragable>().enabled = true;
 			current.GetComponent<Dragable>().canUpdate = true;
@@ -291,6 +340,7 @@ public class GameController : MonoBehaviour {
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			Destroy(current);
 			current = null;
+			originalMats.Clear();
 		}
 	}
 	

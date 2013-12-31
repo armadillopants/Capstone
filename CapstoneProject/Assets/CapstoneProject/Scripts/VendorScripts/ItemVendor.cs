@@ -24,7 +24,7 @@ public class ItemVendor : MonoBehaviour {
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
 				GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
 				reader.SetFortData();
-				reader.SetFortification(sellItem.name);
+				reader.SetFortification(sellItem.itemName);
 			} else {
 				GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
 			}
