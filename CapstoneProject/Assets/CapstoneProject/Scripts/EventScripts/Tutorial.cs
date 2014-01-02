@@ -11,7 +11,6 @@ public class Tutorial : MonoBehaviour {
 	
 	private WaveController waveController;
 	private Vector3 playerPos;
-	private Transform playerTrans;
 	private bool beginTutorial = false;
 	private bool spawnRightMouse = false;
 	private GameObject link = null;
@@ -20,25 +19,21 @@ public class Tutorial : MonoBehaviour {
 	
 	void Start(){
 		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
-		link = gameObject;
 	}
 	
 	void Update(){
-		playerTrans = GameController.Instance.GetPlayer();
+		Transform playerTrans = GameController.Instance.GetPlayer();
 		playerPos = playerTrans.position+new Vector3(0,1,0);
 		
 		if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && waveController.GetWaveNumber() == 1 && !beginTutorial){
 			StartCoroutine(BeginWASDLink());
-			key = "Player";
 			beginTutorial = true;
 		}
 		
-		if(link != gameObject){
+		if(link != null){
 			if(key == "Player"){
 				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z);
-			} else if(key == "LeftClick"){
-				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);
-			} else if(key == "LeftShift"){
+			} else if(key == "LeftClick" || key == "LeftShift"){
 				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);
 			} else if(key == "RightClick"){
 				link.transform.position = new Vector3(link.transform.position.x, 1, link.transform.position.z);
@@ -56,11 +51,14 @@ public class Tutorial : MonoBehaviour {
 	}
 			
 	IEnumerator BeginWASDLink(){
+		key = "ProtectShip";
+		yield return new WaitForSeconds(waitTime);
+		key = "Player";
+		yield return new WaitForSeconds(waitTime);
 		link = Spawn(WASD, playerPos, false);
 		yield return new WaitForSeconds(waitTime);
 		Destroy(GameObject.Find(link.name));
-		link = gameObject;
-		yield return new WaitForSeconds(waitTime);
+		link = null;
 		StartCoroutine(BeginMouseLeftLink());
 	}
 	
@@ -69,7 +67,7 @@ public class Tutorial : MonoBehaviour {
 		link = Spawn(mouseLeft, playerPos, false);
 		yield return new WaitForSeconds(waitTime);
 		Destroy(GameObject.Find(link.name));
-		link = gameObject;
+		link = null;
 		StartCoroutine(BeginLeftShiftLink());
 	}
 	
@@ -78,21 +76,27 @@ public class Tutorial : MonoBehaviour {
 		link = Spawn(leftShift, playerPos, false);
 		yield return new WaitForSeconds(waitTime);
 		Destroy(GameObject.Find(link.name));
-		link = gameObject;
+		link = null;
 	}
 	
-	IEnumerator CountDown(){
+	IEnumerator WaitForBuildScreen(){
 		if(UIManager.Instance.uiState == UIManager.UIState.FORT_BUILD_SCREEN){
 			yield return new WaitForSeconds(1f);
 			if(GameObject.FindWithTag(Globals.FORTIFICATION)){
-				key = "Arrow2";
+				key = "QandE";
+				yield return new WaitForSeconds(waitTime);
+				key = "ClickLeft";
+				yield return new WaitForSeconds(waitTime);
+				key = "ClickRight";
+				yield return new WaitForSeconds(waitTime);
+				StartCoroutine(WaitForFortPlacement());
 			}
 		} else {
 			yield return new WaitForSeconds(Time.deltaTime);
 		}
 	}
 	
-	IEnumerator CountDownTwo(){
+	IEnumerator WaitForFortPlacement(){
 		if(GameObject.FindWithTag(Globals.FORTIFICATION).GetComponent<Dragable>().canUpdate){
 			yield return new WaitForSeconds(1f);
 			if(!spawnRightMouse){
@@ -110,21 +114,47 @@ public class Tutorial : MonoBehaviour {
 			link = Spawn(mouseRight, GameObject.FindWithTag(Globals.FORTIFICATION).transform.position-new Vector3(2,0,0), false);
 			yield return new WaitForSeconds(waitTime);
 			Destroy(GameObject.Find(link.name));
-			link = gameObject;
+			link = null;
+			key = "WeaponScreen";
 		} else {
 			yield return new WaitForSeconds(Time.deltaTime);
 		}
 	}
 	
-	void OnGUI(){
-		/*if(key == "Arrow"){
-			GUI.DrawTexture(new Rect(Screen.width-300, (Screen.height-Screen.height)+80*2, 50, 50), arrow);
-			StartCoroutine(CountDown());
-		}
+	void DrawScreen(string text, int fontSize){
+		Rect shipRect = new Rect((Screen.width/2) - (Screen.width/2), (Screen.height/2) - (600/2) - 100, Screen.width, 600);
 		
-		if(key == "Arrow2"){
-			GUI.DrawTexture(new Rect(Screen.width/3.0f, Screen.height/5, 50, 50), arrow);
-			StartCoroutine(CountDownTwo());
-		}*/
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = UIManager.Instance.resourceFont;
+		style.fontSize = fontSize;
+		
+		GUI.BeginGroup(shipRect);
+		
+		GUI.Label(new Rect(0, 0, shipRect.width, shipRect.height), text, style);
+		
+		GUI.EndGroup();
+	}
+	
+	void OnGUI(){
+		if(key == "ProtectShip"){
+			DrawScreen("PROTECT the SHIP at ALL COSTS", 50);
+		} else if(key == "BuildScreen"){
+			DrawScreen("Click BUILD to access fortifications", 30);
+			StartCoroutine(WaitForBuildScreen());
+		} else if(key == "QandE"){
+			DrawScreen("Q or E to rotate current fortification", 30);
+		} else if(key == "ClickLeft"){
+			DrawScreen("LEFT CLICK to place current fortification", 30);
+		} else if(key == "ClickRight"){
+			DrawScreen("RIGHT CLICK to cancel current fortification", 30);
+		} else if(key == "WeaponScreen"){
+			DrawScreen("Click WEAPONS to access weaponry", 30);
+		} else if(key == "AbilityScreen"){
+			DrawScreen("Click ABILITIES to access abilities", 30);
+		} else if(key == "BeginWaveScreen"){
+			DrawScreen("Click BEGIN WAVE to begin the next wave", 30);
+		}
 	}
 }

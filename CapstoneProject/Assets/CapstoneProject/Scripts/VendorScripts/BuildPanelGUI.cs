@@ -43,7 +43,7 @@ public class BuildPanelGUI : MonoBehaviour {
 	    GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
 	    for(int i=0; i<allForts.Count; i++){
 			
-			GUI.BeginGroup(new Rect(0, i*regionHeight, drawArea.width, regionHeight*labelOffset));
+			GUI.BeginGroup(new Rect(labelOffset*2, i*regionHeight, drawArea.width, regionHeight*labelOffset));
 			
 	      	GUIStyle itemLabelStyle = new GUIStyle();
 	      	itemLabelStyle.alignment = TextAnchor.MiddleLeft;

@@ -77,7 +77,7 @@ public class WeaponPanelGUI : MonoBehaviour {
 	      	List<BaseWeapon> type = new List<BaseWeapon>();
 	      	type = weapons.FindAll(x => (int)x.weaponType == i);
 			
-			GUI.BeginGroup(new Rect(0, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
+			GUI.BeginGroup(new Rect(labelOffset*2, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
 			
 	      	GUIStyle headerStyle = new GUIStyle();
 	      	headerStyle.alignment = TextAnchor.MiddleLeft;

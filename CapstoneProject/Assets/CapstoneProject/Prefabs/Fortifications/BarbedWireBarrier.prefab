@@ -531,13 +531,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Barrier
   description: Upgrade to Barbed Wire Barrier. Deals 2x more damage.
-  cost: 150
+  cost: 100
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0
   currentUpgrade: 2
   id: 0
-  upgradedItem: {fileID: 100000, guid: 2798b5fbc093d734897e593905ab913c, type: 2}
+  upgradedItem: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

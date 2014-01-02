@@ -77,13 +77,13 @@ public class MenuContainer : MonoBehaviour {
 			rend.enabled = true;
 		}
 		yield return new WaitForSeconds(1f);
+		CSM.renderer.enabled = true;
+		yield return new WaitForSeconds(0.5f);
 		call.renderer.enabled = true;
 		yield return new WaitForSeconds(0.5f);
 		sign.renderer.enabled = true;
 		yield return new WaitForSeconds(0.5f);
 		mayday.renderer.enabled = true;
-		yield return new WaitForSeconds(1f);
-		CSM.renderer.enabled = true;
 		yield return new WaitForSeconds(0.5f);
 		play.renderer.enabled = true;
 		yield return new WaitForSeconds(0.5f);

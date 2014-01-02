@@ -4,8 +4,8 @@ using UnityEngine;
 public class Fortification : MonoBehaviour {
 	
 	private Rect mainScreen = new Rect(Screen.width-512, Screen.height-(Screen.height-16), 512, 512);
-	private Rect buildDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
-	private Rect weaponDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
+	private Rect buildDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500);
+	private Rect weaponDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500);
 	private Rect abilityDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
 	private Rect buildUpgradeDisplayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
 	

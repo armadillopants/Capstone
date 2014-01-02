@@ -16,17 +16,15 @@ public class UIManager : MonoBehaviour {
 	
 	public GameObject fortification;
 	
-	private Texture2D playerHealthBar;
-	private Texture2D shipHealthBar;
 	private Texture2D grayBar;
 	
 	private Rect waveRect;
-	private Rect playerHealthRect;
 	private Rect shipHealthRect;
 	private Rect resourceRect;
-	private Rect waveNumberRect;
-	private Rect fortDisplayRect;
-	private bool displayFortData = false;
+	private Rect fortHealthDisplayRect;
+	private Rect fortWeaponDisplayRect;
+	private bool displayFortHealthData = false;
+	private bool displayFortWeaponData = false;
 	private Health fortHealth;
 	private BaseWeapon fortWeapon;
 	
@@ -66,22 +64,12 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void Start(){
-		playerHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		playerHealthBar.SetPixel(0, 0, Color.red);
-		playerHealthBar.Apply();
-		
-		shipHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		shipHealthBar.SetPixel(0, 0, Color.green);
-		shipHealthBar.Apply();
-		
 		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
 		
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
-		waveNumberRect = new Rect(50, Screen.height-50, 150, 50);
 		
-		playerHealthRect = new Rect(Screen.width-135, Screen.height-25, 135, 25);
 		resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
 		
 		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
@@ -107,12 +95,15 @@ public class UIManager : MonoBehaviour {
 				fortHealth = hit.transform.GetComponent<Health>();
 				if(hit.transform.GetComponentInChildren<BaseWeapon>() != null){
 					fortWeapon = hit.transform.GetComponentInChildren<BaseWeapon>();
-					Logger.Log("Found weapon");
+					displayFortWeaponData = true;
 				}
-				fortDisplayRect = new Rect(fortPos.x, Screen.height-fortPos.y, 50, 10);
-				displayFortData = true;
+				fortHealthDisplayRect = new Rect(fortPos.x, Screen.height-fortPos.y, 100, 10);
+				fortWeaponDisplayRect = new Rect(fortPos.x, (Screen.height-fortPos.y)+10, 100, 50);
+				displayFortHealthData = true;
 			} else {
-				displayFortData = false;
+				fortWeapon = null;
+				displayFortHealthData = false;
+				displayFortWeaponData = false;
 			}
 		}
 	}
@@ -158,8 +149,11 @@ public class UIManager : MonoBehaviour {
 				DrawShipHealth();
 				DrawResources();
 				DrawCurWaveScreen();
-				if(displayFortData){
-					DrawFortDisplay();
+				if(displayFortHealthData){
+					DrawFortHealthDisplay();
+				}
+				if(displayFortWeaponData){
+					DrawFortWeaponDisplay();
 				}
 			}
 		}
@@ -259,6 +253,8 @@ public class UIManager : MonoBehaviour {
 		style.font = resourceFont;
 		style.fontSize = 50;
 		
+		Rect waveNumberRect = new Rect(50, Screen.height-50, 150, 50);
+		
 		GUI.BeginGroup(waveNumberRect);
 		
 		GUI.Label(new Rect(0, 0, waveNumberRect.width, waveNumberRect.height), waveController.GetWaveNumber().ToString(), style);
@@ -267,7 +263,13 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawPlayerHealth(){
+		Rect playerHealthRect = new Rect(Screen.width-200, Screen.height-50, 200, 30);
+		
 		GUI.BeginGroup(playerHealthRect);
+		
+		Texture2D playerHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		playerHealthBar.SetPixel(0, 0, Color.red);
+		playerHealthBar.Apply();
 		
 		GUI.DrawTexture(new Rect(0, 0, 
 			playerHealthRect.width*GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
@@ -282,6 +284,10 @@ public class UIManager : MonoBehaviour {
 	void DrawShipHealth(){
 		GUI.BeginGroup(shipHealthRect);
 		
+		Texture2D shipHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		shipHealthBar.SetPixel(0, 0, Color.green);
+		shipHealthBar.Apply();
+		
 		GUI.DrawTexture(new Rect(0, 0, 
 			shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
 			grayBar, ScaleMode.StretchToFill);
@@ -292,24 +298,35 @@ public class UIManager : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	
-	void DrawFortDisplay(){
-		GUI.BeginGroup(fortDisplayRect);
+	void DrawFortHealthDisplay(){
+		GUI.BeginGroup(fortHealthDisplayRect);
+		
+		Texture2D fortHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		fortHealthBar.SetPixel(0, 0, Color.red);
+		fortHealthBar.Apply();
 		
 		GUI.DrawTexture(new Rect(0, 0, 
-			fortDisplayRect.width*fortHealth.GetMaxHealth(), fortDisplayRect.height), 
+			fortHealthDisplayRect.width*fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
 			grayBar, ScaleMode.StretchToFill);
 		GUI.DrawTexture(new Rect(0, 0, 
-			fortDisplayRect.width*fortHealth.curHealth/fortHealth.GetMaxHealth(), fortDisplayRect.height), 
-			playerHealthBar, ScaleMode.StretchToFill);
+			fortHealthDisplayRect.width*fortHealth.curHealth/fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
+			fortHealthBar, ScaleMode.StretchToFill);
 		
-		/*GUIStyle style = new GUIStyle();
+		GUI.EndGroup();
+	}
+	
+	void DrawFortWeaponDisplay(){
+		GUI.BeginGroup(fortWeaponDisplayRect);
+		
+		GUIStyle style = new GUIStyle();
 		style.normal.background = resourceBackground;
 		style.normal.textColor = Color.white;
 		style.font = resourceFont;
+		style.fontSize = 8;
 		style.alignment = TextAnchor.MiddleCenter;
 		
-		GUI.Label(new Rect(0, 0, fortDisplayRect.width, fortDisplayRect.height), 
-							"Ammo: "+fortWeapon.bulletsLeft+"/"+fortWeapon.clips, style);*/
+		GUI.Label(new Rect(0, 0, fortWeaponDisplayRect.width, fortWeaponDisplayRect.height), 
+							"Ammo: "+fortWeapon.bulletsLeft+"/"+fortWeapon.clips, style);
 		
 		GUI.EndGroup();
 	}
@@ -327,8 +344,8 @@ public class UIManager : MonoBehaviour {
 	}
 
 	void DrawCurrentFortInfoScreen(){
-		GUILayout.Label("LEFT CLICK to place current fortification");
-		GUILayout.Label("RIGHT CLICK to cancel current fortification");
+		GUILayout.Label("LEFT CLICK and DRAG over current fortification to move selection");
+		GUILayout.Label("RIGHT CLICK over fortification to upgrade selection");
 		GUILayout.Label("Q and E to rotate current fortification");
 	}
 	

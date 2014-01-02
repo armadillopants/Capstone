@@ -82,24 +82,31 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		GUI.DrawTexture(new Rect(0, 0, drawRect.width, drawRect.height), backGround);
 		
 		XMLVendorReader vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
-		SellableItem sellItem = curItem.GetComponent<SellableItem>().upgradedItem.GetComponent<SellableItem>();
-		if(sellItem.currentUpgrade <= 2){
-			sellItem.cost = vendorReader.GetCurrentFortificationCost(sellItem.cost, sellItem.itemName, sellItem.currentUpgrade);
+		SellableItem sellItem = null;
+		if(curItem.GetComponent<SellableItem>().upgradedItem){
+			sellItem = curItem.GetComponent<SellableItem>().upgradedItem.GetComponent<SellableItem>();
 		}
-		
-		if(GameController.Instance.GetResources() >= sellItem.cost){
-			if(GUI.Button(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "UPGRADE: "+sellItem.cost, style)){
-				itemVendor.Upgrade(curItem);
+		if(sellItem != null){
+			if(sellItem.currentUpgrade <= 2){
+				sellItem.cost = vendorReader.GetCurrentFortificationCost(sellItem.cost, sellItem.itemName, sellItem.currentUpgrade);
 			}
 			
-			GUIStyle descriptionStyle = new GUIStyle();
-			descriptionStyle.alignment = TextAnchor.MiddleCenter;
-			descriptionStyle.font = font;
-			descriptionStyle.wordWrap = true;
-			descriptionStyle.normal.textColor = Color.white;
-			
-			GUI.Label(new Rect(drawRect.width-200, drawRect.height-200, 200, 100), 
-				sellItem.GetComponent<SellableItem>().description, descriptionStyle);
+			if(GameController.Instance.GetResources() >= sellItem.cost){
+				if(GUI.Button(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "UPGRADE: "+sellItem.cost, style)){
+					itemVendor.Upgrade(curItem);
+				}
+				
+				GUIStyle descriptionStyle = new GUIStyle();
+				descriptionStyle.alignment = TextAnchor.MiddleCenter;
+				descriptionStyle.font = font;
+				descriptionStyle.wordWrap = true;
+				descriptionStyle.normal.textColor = Color.white;
+				
+				GUI.Label(new Rect(drawRect.width-200, drawRect.height-200, 200, 100), 
+					sellItem.GetComponent<SellableItem>().description, descriptionStyle);
+			}
+		} else {
+			GUI.Label(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "FULLY UPGRADED", style);
 		}
 		
 		if(GUI.Button(new Rect(drawRect.width-150, drawRect.height-100, 100, 50), "BACK", style)){

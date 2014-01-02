@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Sentry Turret
-  description: Equipped with ballistic ammunition. Low damage.
+  description: Deals 3x damage. High fire rate.
   cost: 250
   preview: {fileID: 0}
   purchased: 0

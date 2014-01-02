@@ -15,8 +15,6 @@ public class Wave : MonoBehaviour {
 	private int amountOfEnemiesToSpawnAtOnce = 15; // Max number of enemies to spawn at once
 	private int enemiesSpawned = 0; // Enemies spawned this wave
 	private Spawner spawner;
-	
-	public int waveIncrementor = 6;
 
 	void Awake(){
 		spawner = GetComponentInChildren<Spawner>();
@@ -26,14 +24,8 @@ public class Wave : MonoBehaviour {
 		// Spawn amount based on wave number
 		if(GameController.Instance.EndWave() != 0){
 			if(waveNum == GameController.Instance.CurWave()+GameController.Instance.EndWave()){
-				//amountToSpawn = Mathf.Infinity;
 				GameController.Instance.SpawnRescueShip();
-			} else {
-				//amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
 			}
-		} else {
-			//spawner.SetWaveData(this, waveNum);
-			//amountToSpawn = Mathf.FloorToInt(waveNum * 0.5f) + waveIncrementor;
 		}
 		
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
@@ -54,7 +46,7 @@ public class Wave : MonoBehaviour {
 			
 			if(waveNumber == 2){
 				Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
-				tut.key = "Arrow";
+				tut.key = "BuildScreen";
 			}
 		} else {
 			BeginWave();
