@@ -25,6 +25,7 @@ public class Fortification : MonoBehaviour {
 	void Awake(){
 		GameController.Instance.canShoot = false;
 		GameController.Instance.canChangeWeapons = false;
+		UIManager.Instance.displayUI = false;
 		
 		GameObject vendor = GameObject.Find("Vendor");
 		
@@ -59,10 +60,11 @@ public class Fortification : MonoBehaviour {
 	void FortifyHandling(){
 		buildWave.StopWave(); // Stops the wave
 		
-		//timer -= Time.deltaTime;
+		timer -= Time.deltaTime;
 		
 		if(timer <= 0){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
+			UIManager.Instance.displayUI = true;
 			GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
 			selection.UpdateWeaponsSlots();
 			selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);
@@ -81,23 +83,21 @@ public class Fortification : MonoBehaviour {
 	
 	void OnGUI(){
 		if(GameController.Instance.current == null){
-			if(UIManager.Instance.displayUI){
+			//if(UIManager.Instance.displayUI){
 				mainPanel.Draw(mainScreen, buildWave);
-			}
+			//}
 		}
 		
-		if(UIManager.Instance.displayUI){
+		//if(UIManager.Instance.displayUI){
 		GUI.BeginGroup(timerRect);
-		{
-			GUIStyle style = new GUIStyle();
-			style.alignment = TextAnchor.MiddleCenter;
-			style.normal.textColor = Color.white;
-			style.font = UIManager.Instance.resourceFont;
-			style.fontSize = 50;
-			GUI.Label(new Rect(0, 0, timerRect.width, timerRect.height), GuiTime(timer), style);
-		}
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = UIManager.Instance.resourceFont;
+		style.fontSize = 50;
+		GUI.Label(new Rect(0, 0, timerRect.width, timerRect.height), GuiTime(timer), style);
 		GUI.EndGroup();
-		}
+		//}
 		
 		switch(UIManager.Instance.uiState){
 		case UIManager.UIState.FORT_BUILD_SCREEN:

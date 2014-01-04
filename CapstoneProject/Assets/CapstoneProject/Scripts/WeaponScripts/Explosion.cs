@@ -26,8 +26,8 @@ public class Explosion : MonoBehaviour {
 			for(int i=0; i<targetName.Length; i++){
 				if(hit.tag == targetName[i]){
 					if(dealShieldDamage){
-						if(hit.tag == "Shield"){
-							hit.renderer.enabled = true;
+						if(hit.collider.tag == "Shield"){
+							hit.collider.gameObject.renderer.enabled = true;
 						}
 					}
 					// Tell the rigidbody or any other script attached to the hit object how much damage is to be applied

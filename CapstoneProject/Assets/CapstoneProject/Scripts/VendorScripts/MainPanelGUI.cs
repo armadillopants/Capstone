@@ -65,6 +65,7 @@ public class MainPanelGUI : MonoBehaviour {
 					} else if(tut.key == "BeginWaveScreen"){
 						if(curFortName == fortNames[3]){
 							UIManager.Instance.uiState = UIManager.UIState.NONE;
+							UIManager.Instance.displayUI = true;
 							GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
 							selection.UpdateWeaponsSlots();
 							selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);
@@ -92,6 +93,7 @@ public class MainPanelGUI : MonoBehaviour {
 						UIManager.Instance.uiState = UIManager.UIState.FORT_ABILITY_SCREEN;
 					} else if(curFortName == fortNames[3]){
 						UIManager.Instance.uiState = UIManager.UIState.NONE;
+						UIManager.Instance.displayUI = true;
 						GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
 						selection.UpdateWeaponsSlots();
 						selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);

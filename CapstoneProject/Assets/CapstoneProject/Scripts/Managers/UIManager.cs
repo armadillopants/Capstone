@@ -144,11 +144,11 @@ public class UIManager : MonoBehaviour {
 		}
 		
 		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
+			DrawResources();
+			DrawCurWaveScreen();
 			if(displayUI){
 				DrawPlayerHealth();
 				DrawShipHealth();
-				DrawResources();
-				DrawCurWaveScreen();
 				if(displayFortHealthData){
 					DrawFortHealthDisplay();
 				}

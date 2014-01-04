@@ -90,6 +90,9 @@ public class Tutorial : MonoBehaviour {
 				key = "ClickRight";
 				yield return new WaitForSeconds(waitTime);
 				StartCoroutine(WaitForFortPlacement());
+			} else {
+				key = "PurchaseFort";
+				StartCoroutine(WaitForBuildScreen());
 			}
 		} else {
 			yield return new WaitForSeconds(Time.deltaTime);
@@ -121,14 +124,41 @@ public class Tutorial : MonoBehaviour {
 		}
 	}
 	
+	IEnumerator WaitForWeaponScreen(){
+		if(UIManager.Instance.uiState == UIManager.UIState.FORT_WEAPON_SCREEN){
+			yield return new WaitForSeconds(1f);
+			key = "PurchaseAmmo";
+			yield return new WaitForSeconds(waitTime);
+			key = "PurchaseWeapon";
+			yield return new WaitForSeconds(waitTime);
+			key = "AbilityScreen";
+		} else {
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
+	}
+	
+	IEnumerator WaitForAbilityScreen(){
+		if(UIManager.Instance.uiState == UIManager.UIState.FORT_ABILITY_SCREEN){
+			yield return new WaitForSeconds(1f);
+			key = "PurchaseAbility";
+			yield return new WaitForSeconds(waitTime);
+			key = "BeginWaveScreen";
+			yield return new WaitForSeconds(waitTime);
+			key = "";
+		} else {
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
+	}
+	
 	void DrawScreen(string text, int fontSize){
-		Rect shipRect = new Rect((Screen.width/2) - (Screen.width/2), (Screen.height/2) - (600/2) - 100, Screen.width, 600);
+		Rect shipRect = new Rect((Screen.width/2) - (900/2), (Screen.height/2) - (80/2) - 250, 900, 80);
 		
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
 		style.font = UIManager.Instance.resourceFont;
 		style.fontSize = fontSize;
+		style.normal.background = UIManager.Instance.resourceBackground;
 		
 		GUI.BeginGroup(shipRect);
 		
@@ -143,6 +173,8 @@ public class Tutorial : MonoBehaviour {
 		} else if(key == "BuildScreen"){
 			DrawScreen("Click BUILD to access fortifications", 30);
 			StartCoroutine(WaitForBuildScreen());
+		} else if(key == "PurchaseFort"){
+			DrawScreen("Purchase the BARRIER", 30);
 		} else if(key == "QandE"){
 			DrawScreen("Q or E to rotate current fortification", 30);
 		} else if(key == "ClickLeft"){
@@ -151,10 +183,18 @@ public class Tutorial : MonoBehaviour {
 			DrawScreen("RIGHT CLICK to cancel current fortification", 30);
 		} else if(key == "WeaponScreen"){
 			DrawScreen("Click WEAPONS to access weaponry", 30);
+			StartCoroutine(WaitForWeaponScreen());
 		} else if(key == "AbilityScreen"){
 			DrawScreen("Click ABILITIES to access abilities", 30);
+			StartCoroutine(WaitForAbilityScreen());
 		} else if(key == "BeginWaveScreen"){
-			DrawScreen("Click BEGIN WAVE to begin the next wave", 30);
+			DrawScreen("Click BEGIN to begin the next wave", 30);
+		} else if(key == "PurchaseAmmo"){
+			DrawScreen("REFILL AMMO for equipped weapon slots", 30);
+		} else if(key == "PurchaseWeapon"){
+			DrawScreen("BUY weapons, UPGRADE, and EQUIP them", 30);
+		} else if(key == "PurchaseAbility"){
+			DrawScreen("BUY abilities for help in tight situations", 30);
 		}
 	}
 }
