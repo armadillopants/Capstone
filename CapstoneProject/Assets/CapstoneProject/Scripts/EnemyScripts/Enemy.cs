@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using Pathfinding;
+﻿using Pathfinding;
+using UnityEngine;
 
 [RequireComponent(typeof(Seeker))]
 public class Enemy : AIPath {
@@ -66,7 +65,7 @@ public class Enemy : AIPath {
 		
 		for(int i=0; i<health.curHealth; i++){
 			if(health.curHealth % i == 0){
-				amountToGive += 10;
+				amountToGive += 5;
 			}
 		}
 		
@@ -306,7 +305,8 @@ public class Enemy : AIPath {
 				anim.Blend("Walk", 0, 0.2f);
 			} else {
 				// Fade in walking animation
-				anim.Blend("Attack", 0, 0.2f);
+				string curAnim = anim.clip.name;
+				anim.Blend(curAnim, 0, 0.2f);
 				anim.Blend("Walk", 1, 0.2f);
 				
 				AnimationState state = anim["Walk"];

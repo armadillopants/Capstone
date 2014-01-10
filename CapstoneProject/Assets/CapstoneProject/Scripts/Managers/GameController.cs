@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 	

@@ -169,7 +169,7 @@ public class Tutorial : MonoBehaviour {
 	
 	void OnGUI(){
 		if(key == "ProtectShip"){
-			DrawScreen("PROTECT the SHIP at ALL COSTS", 50);
+			DrawScreen("PROTECT the SHIP at ALL COSTS", 30);
 		} else if(key == "BuildScreen"){
 			DrawScreen("Click BUILD to access fortifications", 30);
 			StartCoroutine(WaitForBuildScreen());
