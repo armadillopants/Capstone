@@ -196,7 +196,7 @@
 		<LightningBlaster>
 			<Upgrades>
 				<Upgrade1
-					cost= "500"
+					cost= "900"
 					range = "5"
 					fireRate= "0.1"
 					force= "1"
@@ -207,7 +207,7 @@
 					coneAngle= "1.8">
 				</Upgrade1>
 				<Upgrade2
-					cost= "550"
+					cost= "1000"
 					range = "5"
 					fireRate= "0.1"
 					force= "1"

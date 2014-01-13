@@ -10,11 +10,13 @@ public class LightningBlaster : BaseWeapon {
 	public Light endLight;
 	
 	public GameObject secondStrike;
+	public Transform endPos;
 
 	private Perlin noise;
 	private float oneOverZigs;
 	
 	private Particle[] particles;
+	private bool spawnedSecondStrike = false;
 	
 	void Start(){
 		oneOverZigs = 1f / (float)zigs;
@@ -30,13 +32,14 @@ public class LightningBlaster : BaseWeapon {
 			startLight.light.enabled = false;
 			endLight.light.enabled = false;
 			targets[0] = null;
+			targets[1] = null;
 		}
 		base.Update();
 	}
 	
 	public override void Fire(){
 		
-		if(clips >= 0){
+		if(clips >= 0 && bulletsLeft > 0){
 			
 			if(targets[0] != null){
 				
@@ -45,7 +48,7 @@ public class LightningBlaster : BaseWeapon {
 				float timez = Time.time * speed * 2.5564f;
 				
 				for(int i=0; i<particles.Length; i++){
-					Vector3 position = Vector3.Lerp(transform.position, targets[0].position, oneOverZigs * (float)i);
+					Vector3 position = Vector3.Lerp(muzzlePos.position, targets[0].position, oneOverZigs * (float)i);
 					Vector3 offset = new Vector3(noise.Noise(timex + position.x, timex + position.y, timex + position.z),
 												noise.Noise(timey + position.x, timey + position.y, timey + position.z),
 												noise.Noise(timez + position.x, timez + position.y, timez + position.z));
@@ -66,17 +69,25 @@ public class LightningBlaster : BaseWeapon {
 					if(endLight){
 						endLight.light.enabled = true;
 						endLight.transform.position = particles[particles.Length-1].position;
-						/*targets[1] = GameController.Instance.FindNearestTarget(Globals.ENEMY, endLight.transform).transform;
-						
-						if(targets[1] != null){
-							GameObject strike = (GameObject)Instantiate(secondStrike, endLight.transform.position, Quaternion.identity);
-							strike.GetComponent<LightningBolt>().target = targets[1];
-							strike.transform.parent = endLight.transform;
-						}*/	
+						if(GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length > 1){
+							targets[1] = GameController.Instance.FindNearestTarget(Globals.ENEMY, targets[0]).transform;
+							
+							if(targets[1] != null && !spawnedSecondStrike){
+								GameObject strike = (GameObject)Instantiate(secondStrike, endLight.transform.position, Quaternion.identity);
+								strike.GetComponent<LightningBolt>().target = targets[1];
+								strike.transform.parent = endLight.transform;
+								spawnedSecondStrike = true;
+							}
+						}
 					}
 				}
 			} else {
-				targets[0] = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform).transform;
+				if(GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length > 0){
+					targets[0] = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform).transform;
+					spawnedSecondStrike = false;
+				} else {
+					targets[0] = endPos;
+				}
 			}
 		}
 		

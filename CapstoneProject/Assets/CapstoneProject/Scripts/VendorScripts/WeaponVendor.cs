@@ -18,6 +18,7 @@ public class WeaponVendor : MonoBehaviour {
 			sellItem.purchased = true;
 			manager.DetermineWeaponType(sellItem);
 			Debug.Log("Purchased: " + sellItem.itemName);
+			sellItem.cost = reader.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 		}
 	}
 	
@@ -28,7 +29,7 @@ public class WeaponVendor : MonoBehaviour {
 		reader.UpgradeWeaponData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			
 		sellItem.currentUpgrade += 1;
-		if(sellItem.currentUpgrade < 2){
+		if(sellItem.currentUpgrade <= 2){
 			sellItem.cost = reader.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 		}
 		Debug.Log("Purchased upgrade for: " + sellItem.itemName);

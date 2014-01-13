@@ -8,7 +8,6 @@ public class RayBlaster : BaseWeapon {
 	private float maxChargeTime = 5f;
 	private float chargeRegenSpeed = 0.5f;
 	private bool canFire = true;
-	private float waitTime;
 	private float initDamage;
 	private float extraDamage;
 	
@@ -21,11 +20,17 @@ public class RayBlaster : BaseWeapon {
 		initDamage = damage;
 	}
 	
+	void OnEnable(){
+		canFire = true;
+		hitParticles.emit = false;
+		extraDamage = 0;
+	}
+	
 	public override void Update(){
 		
 		if(!isFiring){
 			chargeTime = Mathf.Min(maxChargeTime, chargeTime+chargeRegenSpeed*Time.deltaTime);
-			damage = Mathf.Max(initDamage, damage-chargeRegenSpeed*Time.deltaTime);
+			damage = Mathf.Max(initDamage, damage-maxChargeTime*Time.deltaTime);
 		}
 		
 		if(visibleProj && !visibleProj.GetComponent<Projectile>().enabled){
@@ -54,7 +59,6 @@ public class RayBlaster : BaseWeapon {
 				
 				if(chargeTime <= 0){
 					canFire = false;
-					waitTime = maxChargeTime;
 					chargeTime = 0;
 					StartCoroutine("CoolDown");
 				}
@@ -73,7 +77,7 @@ public class RayBlaster : BaseWeapon {
 		if(chargeTime > 0 && canFire && bulletsLeft > 0){
 			chargeTime -= 1f*Time.deltaTime;
 			bulletsToSubtract = Mathf.Min(5, bulletsToSubtract+1f*Time.deltaTime);
-			extraDamage = Mathf.Min(extraDamage+50, extraDamage+10f*Time.deltaTime);
+			extraDamage = Mathf.Min(extraDamage+50, extraDamage+5f*Time.deltaTime);
 			
 			if(!createBullet){
 				audio.PlayOneShot(chargeClip);
@@ -98,7 +102,6 @@ public class RayBlaster : BaseWeapon {
 				damage += Mathf.RoundToInt(extraDamage);
 				canFire = false;
 				chargeTime = 0;
-				waitTime = maxChargeTime;
 				StartCoroutine("CoolDown");
 			}
 		}
@@ -126,7 +129,7 @@ public class RayBlaster : BaseWeapon {
 	
 	private IEnumerator CoolDown(){
 		hitParticles.emit = true;
-		yield return new WaitForSeconds(waitTime);
+		yield return new WaitForSeconds(maxChargeTime);
 		damage = initDamage;
 		extraDamage = 0;
 		hitParticles.emit = false;

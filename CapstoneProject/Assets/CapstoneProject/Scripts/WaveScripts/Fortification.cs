@@ -60,7 +60,11 @@ public class Fortification : MonoBehaviour {
 	void FortifyHandling(){
 		buildWave.StopWave(); // Stops the wave
 		
-		timer -= Time.deltaTime;
+		if(buildWave.GetWaveNumber() == 2){
+			timer = 60f;
+		} else {
+			timer -= Time.deltaTime;
+		}
 		
 		if(timer <= 0){
 			UIManager.Instance.uiState = UIManager.UIState.NONE;

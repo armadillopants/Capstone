@@ -1285,8 +1285,6 @@ MonoBehaviour:
   lastTarget: {fileID: 0}
   curTarget: {fileID: 0}
   doDamage: 0
-  chasePlayer: 1
-  canAttackBoth: 0
   isPathBlocked: 0
   coolDownLength: 2
   damageAmount: 20
@@ -1312,10 +1310,10 @@ MonoBehaviour:
   detailedGizmos: 0
   saveGetNearestHints: 1
   startEndModifier:
-    priority: 0
+    priority: 2
     addPoints: 0
-    exactStartPoint: 1
-    exactEndPoint: 1
+    exactStartPoint: 3
+    exactEndPoint: 3
     useRaycasting: 0
     mask:
       serializedVersion: 2

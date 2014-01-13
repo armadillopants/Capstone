@@ -9,23 +9,19 @@ public class Tutorial : MonoBehaviour {
 	public GameObject leftShift;
 	public Texture2D arrow;
 	
-	private WaveController waveController;
 	private Vector3 playerPos;
-	private bool beginTutorial = false;
+	public bool beginTutorial = false;
 	private bool spawnRightMouse = false;
 	private GameObject link = null;
 	private float waitTime = 5f;
 	public string key = "";
-	
-	void Start(){
-		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
-	}
+	private string curKey = "";
 	
 	void Update(){
 		Transform playerTrans = GameController.Instance.GetPlayer();
 		playerPos = playerTrans.position+new Vector3(0,1,0);
 		
-		if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && waveController.GetWaveNumber() == 1 && !beginTutorial){
+		if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && GameObject.Find("WaveController").GetComponent<WaveController>().GetWaveNumber() == 1 && !beginTutorial){
 			StartCoroutine(BeginWASDLink());
 			beginTutorial = true;
 		}
@@ -38,6 +34,24 @@ public class Tutorial : MonoBehaviour {
 			} else if(key == "RightClick"){
 				link.transform.position = new Vector3(link.transform.position.x, 1, link.transform.position.z);
 			}
+		}
+		
+		if(curKey == "BuildScreen"){
+			WaitForBuildScreen();
+		} else if(curKey == "QandE"){
+			QandE();
+		} else if(curKey == "ClickLeft"){
+			ClickLeft();
+		} else if(curKey == "ClickRight"){
+			ClickRight();
+		} else if(curKey == "FortPlacement"){
+			WaitForFortPlacement();
+		} else if(curKey == "DestroyMouseRightLink"){
+			DestroyMouseRightLink();
+		} else if(curKey == "WeaponScreen"){
+			WaitForWeaponScreen();
+		} else if(curKey == "AbilityScreen"){
+			WaitForAbilityScreen();
 		}
 	}
 	
@@ -79,74 +93,102 @@ public class Tutorial : MonoBehaviour {
 		link = null;
 	}
 	
-	IEnumerator WaitForBuildScreen(){
+	void WaitForBuildScreen(){
 		if(UIManager.Instance.uiState == UIManager.UIState.FORT_BUILD_SCREEN){
-			yield return new WaitForSeconds(1f);
+			key = "PurchaseFort";
+		} else {
 			if(GameObject.FindWithTag(Globals.FORTIFICATION)){
 				key = "QandE";
-				yield return new WaitForSeconds(waitTime);
-				key = "ClickLeft";
-				yield return new WaitForSeconds(waitTime);
-				key = "ClickRight";
-				yield return new WaitForSeconds(waitTime);
-				StartCoroutine(WaitForFortPlacement());
 			} else {
-				key = "PurchaseFort";
-				StartCoroutine(WaitForBuildScreen());
+				key = "BuildScreen";
 			}
-		} else {
-			yield return new WaitForSeconds(Time.deltaTime);
 		}
 	}
 	
-	IEnumerator WaitForFortPlacement(){
+	void QandE(){
+		if(Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E)){
+			key = "ClickLeft";
+			ClickLeft();
+		}
+		
+		if(Input.GetKey(KeyCode.Mouse1)){
+			key = "BuildScreen";
+		}
+	}
+	
+	void ClickLeft(){
+		if(Input.GetKey(KeyCode.Mouse0)){
+			key = "ClickRight";
+			ClickRight();
+		}
+		
+		if(Input.GetKey(KeyCode.Mouse1)){
+			key = "BuildScreen";
+		}
+	}
+	
+	void ClickRight(){
+		if(Input.GetKey(KeyCode.Mouse1)){
+			curKey = "FortPlacement";
+			key = "";
+		}
+	}
+	
+	void WaitForFortPlacement(){
 		if(GameObject.FindWithTag(Globals.FORTIFICATION).GetComponent<Dragable>().canUpdate){
-			yield return new WaitForSeconds(1f);
 			if(!spawnRightMouse){
-				StartCoroutine(BeginMouseRightLink());
+				BeginMouseRightLinks();
 				spawnRightMouse = true;
 			}
-		} else {
-			yield return new WaitForSeconds(Time.deltaTime);
 		}
 	}
 	
-	IEnumerator BeginMouseRightLink(){
+	void BeginMouseRightLinks(){
 		if(GameObject.FindWithTag(Globals.FORTIFICATION)){
 			key = "RightClick";
 			link = Spawn(mouseRight, GameObject.FindWithTag(Globals.FORTIFICATION).transform.position-new Vector3(2,0,0), false);
-			yield return new WaitForSeconds(waitTime);
+			curKey = "DestroyMouseRightLink";
+		}
+	}
+	
+	void DestroyMouseRightLink(){
+		Debug.Log("Called");
+		waitTime -= Time.deltaTime;
+		if(waitTime <= 0){
 			Destroy(GameObject.Find(link.name));
 			link = null;
 			key = "WeaponScreen";
-		} else {
-			yield return new WaitForSeconds(Time.deltaTime);
+			waitTime = 15f;
 		}
 	}
 	
-	IEnumerator WaitForWeaponScreen(){
+	void WaitForWeaponScreen(){
 		if(UIManager.Instance.uiState == UIManager.UIState.FORT_WEAPON_SCREEN){
-			yield return new WaitForSeconds(1f);
-			key = "PurchaseAmmo";
-			yield return new WaitForSeconds(waitTime);
-			key = "PurchaseWeapon";
-			yield return new WaitForSeconds(waitTime);
-			key = "AbilityScreen";
+			waitTime -= Time.deltaTime;
+			if(waitTime >= 10f){
+				key = "PurchaseAmmo";
+			} else if(waitTime >= 5f && waitTime < 10f){
+				key = "PurchaseWeapon"; 
+			} else if(waitTime >= 0f && waitTime < 5f) {
+				key = "AbilityScreen";
+				waitTime = 10f;
+			}
 		} else {
-			yield return new WaitForSeconds(Time.deltaTime);
+			key = "WeaponScreen";
 		}
 	}
 	
-	IEnumerator WaitForAbilityScreen(){
+	void WaitForAbilityScreen(){
 		if(UIManager.Instance.uiState == UIManager.UIState.FORT_ABILITY_SCREEN){
-			yield return new WaitForSeconds(1f);
-			key = "PurchaseAbility";
-			yield return new WaitForSeconds(waitTime);
-			key = "BeginWaveScreen";
-			yield return new WaitForSeconds(waitTime);
-			key = "";
+			waitTime -= Time.deltaTime;
+			if(waitTime >= 5f){
+				key = "PurchaseAbility";
+			} else if(waitTime >= 0 && waitTime < 5){
+				key = "BeginWaveScreen";
+				curKey = "";
+			}
 		} else {
-			yield return new WaitForSeconds(Time.deltaTime);
+			key = "AbilityScreen";
 		}
 	}
 	
@@ -172,21 +214,26 @@ public class Tutorial : MonoBehaviour {
 			DrawScreen("PROTECT the SHIP at ALL COSTS", 30);
 		} else if(key == "BuildScreen"){
 			DrawScreen("Click BUILD to access fortifications", 30);
-			StartCoroutine(WaitForBuildScreen());
+			curKey = key;
 		} else if(key == "PurchaseFort"){
 			DrawScreen("Purchase the BARRIER", 30);
 		} else if(key == "QandE"){
 			DrawScreen("Q or E to rotate current fortification", 30);
+			curKey = key;
 		} else if(key == "ClickLeft"){
 			DrawScreen("LEFT CLICK to place current fortification", 30);
+			curKey = key;
 		} else if(key == "ClickRight"){
 			DrawScreen("RIGHT CLICK to cancel current fortification", 30);
+			curKey = key;
+		} else if(key == "RightClick"){
+			DrawScreen("RIGHT CLICK over fortification to UPGRADE it", 30);
 		} else if(key == "WeaponScreen"){
 			DrawScreen("Click WEAPONS to access weaponry", 30);
-			StartCoroutine(WaitForWeaponScreen());
+			curKey = key;
 		} else if(key == "AbilityScreen"){
 			DrawScreen("Click ABILITIES to access abilities", 30);
-			StartCoroutine(WaitForAbilityScreen());
+			curKey = key;
 		} else if(key == "BeginWaveScreen"){
 			DrawScreen("Click BEGIN to begin the next wave", 30);
 		} else if(key == "PurchaseAmmo"){

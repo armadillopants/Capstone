@@ -20,6 +20,10 @@ public class Wave : MonoBehaviour {
 		spawner = GetComponentInChildren<Spawner>();
 	}
 	
+	public int GetWaveNumber(){
+		return waveNumber;
+	}
+	
 	public void StartWave(WaveController wave, int waveNum){
 		// Spawn amount based on wave number
 		if(GameController.Instance.EndWave() != 0){

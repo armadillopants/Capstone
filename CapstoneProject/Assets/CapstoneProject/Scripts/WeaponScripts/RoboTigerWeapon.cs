@@ -4,7 +4,6 @@ using UnityEngine;
 public class RoboTigerWeapon : MonoBehaviour {
 	
 	private BaseWeapon gun;
-	private Enemy tiger;
 	private Health health;
 	public GameObject gunObject;
 	public float distance = 15f;
@@ -17,7 +16,6 @@ public class RoboTigerWeapon : MonoBehaviour {
 	void Start(){
 		gun = transform.GetComponentInChildren<BaseWeapon>();
 		health = GetComponent<Health>();
-		tiger = GetComponent<Enemy>();
 	}
 	
 	void Update(){

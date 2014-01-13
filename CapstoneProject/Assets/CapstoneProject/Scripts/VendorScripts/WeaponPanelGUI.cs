@@ -188,7 +188,7 @@ public class WeaponPanelGUI : MonoBehaviour {
 					buttonStyle.hover.background = upgradeHover;
 					buttonStyle.active.background = upgradeActive;
 					
-					if(GameController.Instance.GetResources() > type[j].GetComponent<SellableItem>().cost && type[j].GetComponent<SellableItem>().currentUpgrade <= 4){
+					if(GameController.Instance.GetResources() > type[j].GetComponent<SellableItem>().cost && type[j].GetComponent<SellableItem>().currentUpgrade < 3){
 	          			if(GUI.Button(new Rect(buttonColOneX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "UPGRADE: "+type[j].GetComponent<SellableItem>().cost.ToString(), buttonStyle)){
 							weaponVendor.Upgrade(type[j].gameObject);
 						}

@@ -397,11 +397,13 @@ public class GameController : MonoBehaviour {
 		float distance = Mathf.Infinity;
 		
 		foreach(GameObject targetCheck in targets){
-			Vector3 diff = targetCheck.transform.position - other.position;
-			float curDist = diff.sqrMagnitude;
-			if(curDist < distance){
-				closest = targetCheck;
-				distance = curDist;
+			if(targetCheck != other){
+				Vector3 diff = targetCheck.transform.position - other.position;
+				float curDist = diff.sqrMagnitude;
+				if(curDist < distance){
+					closest = targetCheck;
+					distance = curDist;
+				}
 			}
 		}
 		return closest;

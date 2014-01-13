@@ -1,18 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Resources\VendorData.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EventScripts\Tutorial.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Resources\VendorData.xml" Line="33" Column="15" />
-      <File FileName="Assets\CapstoneProject\Resources\WeaponData.xml" Line="18" Column="13" />
-      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\EnemyWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\RoboTigerWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="29" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="1" Column="17" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="63" Column="3" />
-      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Enemy.cs" Line="2" Column="19" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="2" Column="16" />
-      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\MainPanelGUI.cs" Line="51" Column="10" />
-      <File FileName="Assets\CapstoneProject\Resources\WaveData.xml" Line="253" Column="16" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\LightningBolt.cs" Line="56" Column="18" />
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\LightningBlaster.cs" Line="70" Column="37" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="400" Column="29" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\MainPanelGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Wave.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\EventScripts\Tutorial.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,12 +18,15 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="CapstoneProject" expanded="True">
-                <Node name="Resources" expanded="True">
-                  <Node name="VendorData.xml" selected="True" />
-                </Node>
+                <Node name="Resources" expanded="True" />
                 <Node name="Scripts" expanded="True">
+                  <Node name="ConsoleScripts" expanded="True" />
                   <Node name="EnemyScripts" expanded="True" />
+                  <Node name="EventScripts" expanded="True">
+                    <Node name="Tutorial.cs" selected="True" />
+                  </Node>
                   <Node name="Managers" expanded="True" />
+                  <Node name="PlayerScripts" expanded="True" />
                   <Node name="VendorScripts" expanded="True" />
                   <Node name="WaveScripts" expanded="True" />
                   <Node name="WeaponScripts" expanded="True" />

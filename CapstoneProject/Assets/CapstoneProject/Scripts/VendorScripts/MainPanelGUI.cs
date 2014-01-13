@@ -64,6 +64,7 @@ public class MainPanelGUI : MonoBehaviour {
 						}
 					} else if(tut.key == "BeginWaveScreen"){
 						if(curFortName == fortNames[3]){
+							tut.key = "";
 							UIManager.Instance.uiState = UIManager.UIState.NONE;
 							UIManager.Instance.displayUI = true;
 							GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();

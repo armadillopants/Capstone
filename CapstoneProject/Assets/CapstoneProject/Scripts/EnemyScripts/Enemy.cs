@@ -16,8 +16,6 @@ public class Enemy : AIPath {
 	public Transform curTarget;
 	
 	public bool doDamage = false;
-	public bool chasePlayer = true;
-	public bool canAttackBoth = false;
 	public bool isPathBlocked = false;
 	private bool isDead = false;
 	
@@ -37,7 +35,6 @@ public class Enemy : AIPath {
 	private Health health;
 	
 	public GameObject money;
-	private Camera cam;
 	
 	private Material curDamageMat;
 	public Material fireMat;
@@ -69,12 +66,7 @@ public class Enemy : AIPath {
 			}
 		}
 		
-		if(chasePlayer){
-			SwitchTarget(Globals.PLAYER);
-		} else {
-			SwitchTarget(Globals.SHIP);
-		}
-		
+		SwitchTarget(Globals.PLAYER);
 		lastTarget = target;
 		
 		if(anim){
@@ -85,7 +77,6 @@ public class Enemy : AIPath {
 			anim.Play("Walk");
 		}
 		
-		cam = Camera.main;
 		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
 		base.Start();
@@ -100,8 +91,6 @@ public class Enemy : AIPath {
 	}
 	
 	protected new void Update(){
-		
-		RenderEnemy();
 		
 		if(curTarget != null){
 			lastTarget = curTarget;
@@ -142,22 +131,19 @@ public class Enemy : AIPath {
 				}
 			}
 			
-			if(canAttackBoth){
-				if(shipTarget){
-					if(Vector3.Distance(playerTarget.position, tr.position) > distance){
-						SwitchTarget(Globals.SHIP);
-						lastTarget = playerTarget;
-					} else if(Vector3.Distance(playerTarget.position, tr.position) <= distance){
-						SwitchTarget(Globals.PLAYER);
-						lastTarget = shipTarget;
-					}
+			if(shipTarget){
+				if(Vector3.Distance(playerTarget.position, tr.position) > distance){
+					SwitchTarget(Globals.SHIP);
+					lastTarget = playerTarget;
+				} else if(Vector3.Distance(playerTarget.position, tr.position) <= distance){
+					SwitchTarget(Globals.PLAYER);
+					lastTarget = shipTarget;
 				}
 			}
 		}
 		
 		if(GameController.Instance.GetShipHealth().IsDead){
 			SwitchTarget(Globals.PLAYER);
-			canAttackBoth = false;
 		}
 		
 		if(currentCoolDown > 0){
@@ -177,8 +163,10 @@ public class Enemy : AIPath {
 			emitter.emit = true;
 			if(curDamageMat == fireMat){
 				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(burnDamage/Time.time), SendMessageOptions.DontRequireReceiver);
-			} else {
+			} else if(curDamageMat == lightningMat){
 				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(lightningDamage/Time.time), SendMessageOptions.DontRequireReceiver);
+			} else {
+				Debug.Log("No extra damage taken");
 			}
 		}
 	}
@@ -237,7 +225,6 @@ public class Enemy : AIPath {
 	
 	public override void OnTargetReached(){
 		Debug.Log("Reached Target");
-		// TODO: Enemy attacks player
 	}
 	
 	void FixedUpdate(){
@@ -353,16 +340,6 @@ public class Enemy : AIPath {
 			isTakingExtraDamage = true;
 		} else {
 			isTakingExtraDamage = false;
-		}
-	}
-	
-	void RenderEnemy(){
-		Renderer data = transform.GetComponentInChildren<Renderer>().renderer;
-		if(!data.IsVisibleFrom(cam)){
-			data.enabled = false;
-		}
-		if(data.IsVisibleFrom(cam)){
-			data.enabled = true;
 		}
 	}
 }
