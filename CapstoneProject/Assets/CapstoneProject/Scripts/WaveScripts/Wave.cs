@@ -10,7 +10,6 @@ public class Wave : MonoBehaviour {
 	public bool endWave = false;
 	private WaveController controller;
 	private float waitTime = 5.0f;
-	public int numEnemies; // Number of enemies on screen
 	public float amountToSpawn; // Current number of enemies to spawn all together
 	private int amountOfEnemiesToSpawnAtOnce = 15; // Max number of enemies to spawn at once
 	private int enemiesSpawned = 0; // Enemies spawned this wave
@@ -44,7 +43,6 @@ public class Wave : MonoBehaviour {
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			GameObject.Find("GridContainer").GetComponent<GridSpawner>().EnableGrid();
 			GameController.Instance.TurnDragableOn();
-			//GameController.Instance.AddDynamicObstacleToFortifications();
 			Fortification fort = gameObject.AddComponent<Fortification>();
 			fort.StartFortifying(this);
 			
@@ -88,7 +86,7 @@ public class Wave : MonoBehaviour {
 			Destroy(this);
 		}
 		
-		numEnemies = GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length;
+		int numEnemies = GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length;
 		
 		// Spawn enemies once the wave has started
 		if(beginWave){

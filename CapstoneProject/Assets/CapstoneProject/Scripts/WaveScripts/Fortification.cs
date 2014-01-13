@@ -38,15 +38,6 @@ public class Fortification : MonoBehaviour {
 		selection = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponSelection>();
 		selection.changingWeapons = false;
 		selection.drawWeapon = false;
-		
-		/*GameObject[] combinedMeshes = GameObject.FindGameObjectsWithTag("CombinedMesh");
-		foreach(GameObject combine in combinedMeshes){
-			Destroy(combine);
-		}
-		
-		foreach(Dragable fort in GameObject.Find("CombinedMeshes").GetComponentsInChildren<Dragable>()){
-			fort.renderer.enabled = true;
-		}*/
 	}
 	
 	public void StartFortifying(Wave wave){
@@ -63,7 +54,7 @@ public class Fortification : MonoBehaviour {
 		if(buildWave.GetWaveNumber() == 2){
 			timer = 60f;
 		} else {
-			timer -= Time.deltaTime;
+			//timer -= Time.deltaTime;
 		}
 		
 		if(timer <= 0){
@@ -87,12 +78,9 @@ public class Fortification : MonoBehaviour {
 	
 	void OnGUI(){
 		if(GameController.Instance.current == null){
-			//if(UIManager.Instance.displayUI){
-				mainPanel.Draw(mainScreen, buildWave);
-			//}
+			mainPanel.Draw(mainScreen, buildWave);
 		}
 		
-		//if(UIManager.Instance.displayUI){
 		GUI.BeginGroup(timerRect);
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
@@ -101,7 +89,6 @@ public class Fortification : MonoBehaviour {
 		style.fontSize = 50;
 		GUI.Label(new Rect(0, 0, timerRect.width, timerRect.height), GuiTime(timer), style);
 		GUI.EndGroup();
-		//}
 		
 		switch(UIManager.Instance.uiState){
 		case UIManager.UIState.FORT_BUILD_SCREEN:

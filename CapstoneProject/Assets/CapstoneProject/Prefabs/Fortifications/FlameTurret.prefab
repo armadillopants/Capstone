@@ -586,8 +586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 50
-  maxHealth: 50
+  curHealth: 20
+  maxHealth: 20
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
@@ -604,8 +604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7231f78aeb2fd44688cdbc4e2e2f7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 11400002}
   fortDamage: 0
+  weapon: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

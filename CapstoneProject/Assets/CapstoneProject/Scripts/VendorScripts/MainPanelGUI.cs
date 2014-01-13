@@ -78,7 +78,6 @@ public class MainPanelGUI : MonoBehaviour {
 							}
 							Destroy(GameController.Instance.current);
 							GameController.Instance.current = null;
-							//GameObject.Find("CombinedMeshes").GetComponent<CombineChildren>().Combine();
 							buildWave.BeginWave();
 							Destroy(GameObject.Find("WaveController").GetComponent<Fortification>());
 						}
@@ -106,7 +105,6 @@ public class MainPanelGUI : MonoBehaviour {
 						}
 						Destroy(GameController.Instance.current);
 						GameController.Instance.current = null;
-						//GameObject.Find("CombinedMeshes").GetComponent<CombineChildren>().Combine();
 						buildWave.BeginWave();
 						Destroy(GameObject.Find("WaveController").GetComponent<Fortification>());
 					}

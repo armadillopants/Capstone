@@ -44,7 +44,7 @@
 			damage= "25"
 			coneAngle= "2"
 			costPerBullet= "4"
-			cost= "300">
+			cost= "400">
 		</RocketLauncher>
 		<FlameThrower
 			range= "20"
@@ -92,7 +92,7 @@
 			damage= "15"
 			coneAngle= "2"
 			costPerBullet= "3"
-			cost= "350">
+			cost= "600">
 		</RayBlaster>
 		<LightningBlaster
 			range= "5"
@@ -140,7 +140,7 @@
 			damage= "10"
 			coneAngle= "1.5"
 			costPerBullet= "2"
-			cost= "250">
+			cost= "300">
 		</GrenadeLauncher>
 		<ThunderGun
 			range= "3"
@@ -168,40 +168,40 @@
 	<!-- CONE ANGLE: How much rotation the projectile is given at first creation (adds more realism) -->
 	<FortificationData>
 		<Barrier
-			health= "100"
-			fortDamage= "0">
+			health= "50"
+			fortDamage= "0"
+			cost= "50">
 		</Barrier>
-		<ElectricFence
-			health= "200"
-			fortDamage= "1">
-		</ElectricFence>
 		<Wall
-			health= "150"
-			fortDamage= "0">
+			health= "75"
+			fortDamage= "0"
+			cost= "75">
 		</Wall>
 		<SentryTower
-			health= "300"
+			health= "100"
 			fortDamage= "0"
 			range= "15"
-			fireRate= "0.1"
+			fireRate= "0.3"
 			force= "1.5"
 			bulletsPerClip= "100"
-			clips= "5"
-			reloadSpeed= "1.5"
+			clips= "3"
+			reloadSpeed= "2.0"
 			damage= "1"
-			coneAngle= "2">
+			coneAngle= "2"
+			cost= "500">
 		</SentryTower>
 		<RocketTower
-			health= "300"
+			health= "150"
 			fortDamage= "0"
 			range= "15"
 			fireRate= "1"
 			force= "2"
 			bulletsPerClip= "10"
 			clips= "5"
-			reloadSpeed= "2"
-			damage= "2"
-			coneAngle= "2.5">
+			reloadSpeed= "2.5"
+			damage= "5"
+			coneAngle= "2.5"
+			cost= "550">
 		</RocketTower>
 		<SentryTurret
 			health= "20"
@@ -213,7 +213,8 @@
 			clips= "2"
 			reloadSpeed= "1.5"
 			damage= "1"
-			coneAngle= "2">
+			coneAngle= "2"
+			cost= "150">
 		</SentryTurret>
 		<RocketTurret
 			health= "20"
@@ -225,7 +226,8 @@
 			clips= "2"
 			reloadSpeed= "2"
 			damage= "2"
-			coneAngle= "2.5">
+			coneAngle= "2.5"
+			cost= "200">
 		</RocketTurret>
 		<FlameTurret
 			health= "20"
@@ -237,11 +239,13 @@
 			clips= "2"
 			reloadSpeed= "2.5"
 			damage= "2"
-			coneAngle= "2.5">
+			coneAngle= "2.5"
+			cost = "250">
 		</FlameTurret>
 		<SatelliteTower
 			health= "500"
-			fortDamage= "0">
+			fortDamage= "0"
+			cost= "1000">
 		</SatelliteTower>
 	</FortificationData>
 </BaseValueData>	

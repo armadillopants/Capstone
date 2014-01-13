@@ -23,10 +23,11 @@ public class GameController : MonoBehaviour {
 	
 	// Fortification data
 	public GameObject current;
+	private GameObject originalObject;
 	public Material validGreen;
 	public Material invalidRed;
-	public Material originalMat;
-	public List<Material> originalMats = new List<Material>();
+	private Material originalMat;
+	private List<Material> originalMats = new List<Material>();
 	
 	private DayNightCycle cycle;
 	
@@ -181,6 +182,8 @@ public class GameController : MonoBehaviour {
 	public void SetFortificationToSpawn(GameObject fort, float rot){
 		originalMats.Clear();
 		
+		originalObject = fort;
+		
 		if(fort){
 			SpawnFortification(fort, rot);
 		}
@@ -204,7 +207,6 @@ public class GameController : MonoBehaviour {
 					}
 				}
 			}
-			//fort.transform.parent = GameObject.Find("CombinedMeshes").transform;
 			current = fort;
 		}
 	}
@@ -229,77 +231,68 @@ public class GameController : MonoBehaviour {
 		
 		float gridX = 1f;
 		float gridZ = 1f;
+		bool canPlace = true;
 		
-		switch(current.GetComponent<Dragable>().state){
-		case Dragable.FortState.THREE_ONE:
-			if(Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_H_LEFT || Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_H_RIGHT){
-				gridZ = 3f;
+		if(Physics.Raycast(current.transform.position, Vector3.down, out hit)){
+			if(hit.collider.tag == Globals.GRID){
+				canPlace = true;
+				switch(current.GetComponent<Dragable>().state){
+				case Dragable.FortState.THREE_ONE:
+					if(Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_H_LEFT || Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_H_RIGHT){
+						gridZ = 3f;
+					} else {
+						gridZ = 1f;
+					}
+				
+					if(Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_V_UP || Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_V_DOWN){
+						gridX = 3f;
+					} else {
+						gridX = 1f;
+					}
+					break;
+				case Dragable.FortState.THREE_THREE:
+					gridZ = 3f;
+					gridX = 3f;
+					break;
+				case Dragable.FortState.ONE_ONE:
+					gridZ = 1f;
+					gridX = 1f;
+					break;
+				}
 			} else {
-				gridZ = 1f;
+				canPlace = false;
 			}
-		
-			if(Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_V_UP || Mathf.FloorToInt(current.transform.eulerAngles.y) == Globals.ROTATION_V_DOWN){
-				gridX = 3f;
-			} else {
-				gridX = 1f;
-			}
-			break;
-		case Dragable.FortState.THREE_THREE:
-			gridZ = 3f;
-			gridX = 3f;
-			break;
-		case Dragable.FortState.ONE_ONE:
-			gridZ = 1f;
-			gridX = 1f;
-			break;
 		}
 		
 		Vector3 snapPos = mouseLoc;
 		snapPos = SnapToGrid(snapPos, gridX, gridZ, current);
 		current.transform.position = snapPos;
 		
-		bool canPlace = true;
-		if(current.GetComponent<MeshRenderer>()){
-			current.renderer.material = validGreen;
-		} else {
-			foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
-				if(rend.enabled){
-					rend.material = validGreen;
+		for(int i=0; i<forts.Length; i++){
+			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
+				if(current.collider.bounds.Intersects(forts[i].collider.bounds)){
+					canPlace = false;
 				}
 			}
 		}
 		
-		for(int i=0; i<forts.Length; i++){
-			Vector3 gridPos = GameObject.FindWithTag(Globals.GRID).transform.position;
-			if(hit.point.x <= gridPos.x-Globals.GRID_SIZE || hit.point.x >= gridPos.x+Globals.GRID_SIZE || 
-				hit.point.z <= gridPos.z-Globals.GRID_SIZE || hit.point.z >= gridPos.z+Globals.GRID_SIZE){
-				
-				canPlace = false;
-				//current.renderer.material = invalidRed;
-				if(current.GetComponent<MeshRenderer>()){
-					current.renderer.material = invalidRed;
-				} else {
-					foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
-						if(rend.enabled){
-							rend.material = invalidRed;
-						}
+		if(canPlace){
+			if(current.GetComponent<MeshRenderer>()){
+				current.renderer.material = validGreen;
+			} else {
+				foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
+					if(rend.enabled){
+						rend.material = validGreen;
 					}
 				}
 			}
-			
-			if(current.gameObject != forts[i].gameObject && forts.Length > 1){
-				
-				if(current.collider.bounds.Intersects(forts[i].collider.bounds)){
-					canPlace = false;
-					//current.renderer.material = invalidRed;
-					if(current.GetComponent<MeshRenderer>()){
-						current.renderer.material = invalidRed;
-					} else {
-						foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
-							if(rend.enabled){
-								rend.material = invalidRed;
-							}
-						}
+		} else {
+			if(current.GetComponent<MeshRenderer>()){
+				current.renderer.material = invalidRed;
+			} else {
+				foreach(MeshRenderer rend in current.GetComponentsInChildren<MeshRenderer>()){
+					if(rend.enabled){
+						rend.material = invalidRed;
 					}
 				}
 			}
@@ -331,7 +324,7 @@ public class GameController : MonoBehaviour {
 			} else {
 				GameObject temp = current;
 				current = null;
-				SpawnFortification(temp, rot);
+				SpawnFortification(originalObject, rot);
 			}
 		}
 		
@@ -363,7 +356,6 @@ public class GameController : MonoBehaviour {
 			Bounds b = fort.collider.bounds;
 			GraphUpdateObject guo = new GraphUpdateObject(b);
 			AstarPath.active.UpdateGraphs(guo);
-			//AstarPath.active.FlushGraphUpdates();
 		}
 	}
 	
@@ -373,7 +365,6 @@ public class GameController : MonoBehaviour {
 		Destroy(g);
 		GraphUpdateObject guo = new GraphUpdateObject(b);
 		AstarPath.active.UpdateGraphs(guo, 0.0f);
-		//AstarPath.active.FlushGraphUpdates();
 	}
 	
 	public void AddDynamicObstacleToFortifications(){
@@ -381,7 +372,6 @@ public class GameController : MonoBehaviour {
 		foreach(GameObject fort in fortifications){
 			if(fort.GetComponent<DynamicGridObstacle>() == null){
 				fort.AddComponent<DynamicGridObstacle>();
-				fort.GetComponent<DynamicGridObstacle>().updateError = 0.001f;
 			}
 		}
 	}

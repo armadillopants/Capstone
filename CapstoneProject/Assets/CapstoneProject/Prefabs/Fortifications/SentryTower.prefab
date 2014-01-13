@@ -308,8 +308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 500
-  maxHealth: 500
+  curHealth: 300
+  maxHealth: 300
   canTakeDamage: 1
   explosion: {fileID: 0}
   waitTime: 3
@@ -326,8 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7231f78aeb2fd44688cdbc4e2e2f7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 11400002}
   fortDamage: 0
+  weapon: {fileID: 11400008}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sentry Tower
   description: Strong, stone sentry tower, with high resistance to attack.
-  cost: 300
+  cost: 500
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0

@@ -1,16 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EventScripts\Tutorial.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\WaveScripts\GridSpawner.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\LightningBolt.cs" Line="56" Column="18" />
-      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\LightningBlaster.cs" Line="70" Column="37" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="400" Column="29" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\MainPanelGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Wave.cs" Line="1" Column="1" />
-      <File FileName="Assets\CapstoneProject\Scripts\EventScripts\Tutorial.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Dragable.cs" Line="7" Column="18" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="226" Column="8" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Fortification.cs" Line="66" Column="6" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="74" Column="3" />
+      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\MainPanelGUI.cs" Line="108" Column="46" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Wave.cs" Line="45" Column="50" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\GridSpawner.cs" Line="39" Column="72" />
+      <File FileName="Assets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" Line="84" Column="73" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,13 +22,14 @@
                 <Node name="Scripts" expanded="True">
                   <Node name="ConsoleScripts" expanded="True" />
                   <Node name="EnemyScripts" expanded="True" />
-                  <Node name="EventScripts" expanded="True">
-                    <Node name="Tutorial.cs" selected="True" />
-                  </Node>
+                  <Node name="EventScripts" expanded="True" />
                   <Node name="Managers" expanded="True" />
+                  <Node name="MenuScripts" expanded="True" />
                   <Node name="PlayerScripts" expanded="True" />
                   <Node name="VendorScripts" expanded="True" />
-                  <Node name="WaveScripts" expanded="True" />
+                  <Node name="WaveScripts" expanded="True">
+                    <Node name="GridSpawner.cs" selected="True" />
+                  </Node>
                   <Node name="WeaponScripts" expanded="True" />
                 </Node>
               </Node>
@@ -38,6 +39,11 @@
             <Node name="Assets" expanded="True">
               <Node name="CapstoneProject" expanded="True">
                 <Node name="Resources" expanded="True" />
+              </Node>
+              <Node name="Standard Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Utility Scripts" expanded="True" />
+                </Node>
               </Node>
             </Node>
           </Node>

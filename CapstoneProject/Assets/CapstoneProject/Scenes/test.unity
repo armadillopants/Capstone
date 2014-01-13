@@ -431,7 +431,7 @@ Transform:
   m_PrefabInternal: {fileID: 86153717}
   m_GameObject: {fileID: 59542198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.1271362, y: 29.0751228, z: 13}
+  m_LocalPosition: {x: -34.1271362, y: 29.0751228, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60849413}
@@ -628,7 +628,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1230,7 +1230,7 @@ MonoBehaviour:
   coneAngle: 1.5
   roundsPerBurst: 0
   lagBetweenShots: 0
-  id: 2
+  id: 6
   projectile: {fileID: 5400000, guid: f264e17109caebf4280186e8762281d3, type: 2}
   muzzlePos: {fileID: 1154093951}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
@@ -1265,7 +1265,7 @@ MonoBehaviour:
   purchased: 0
   soldOut: 0
   currentUpgrade: 1
-  id: 2
+  id: 6
   upgradedItem: {fileID: 0}
 --- !u!4 &237597368
 Transform:
@@ -1364,8 +1364,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  weaponEquipped: {fileID: 2800000, guid: e0838bcbb9a07e24da0141be9543980c, type: 3}
-  weaponUnEquipped: {fileID: 2800000, guid: 7b2fd78548ceecc4fbb26630a378a2f1, type: 3}
+  weaponEquipped: {fileID: 2800000, guid: 148255a331c692d49927ee41c5bc0ee8, type: 3}
+  weaponUnEquipped: {fileID: 2800000, guid: db35b003ea0746d408f99efcad34695d, type: 3}
 --- !u!1 &254224462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,7 +2157,7 @@ Transform:
   m_GameObject: {fileID: 325153182}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .285436213, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 4}
+  m_LocalScale: {x: 2.29999995, y: 2.5, z: 3.5}
   m_Children:
   - {fileID: 848952850}
   - {fileID: 1129323079}
@@ -3205,6 +3205,14 @@ Prefab:
       propertyPath: shipHealthGrey
       value: 
       objectReference: {fileID: 100000, guid: 9eae68e2ac536ff49a39731f11d56a1f, type: 2}
+    - target: {fileID: 400000, guid: 7a912fb3a5fa9cc42961fdafeae23357, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 7a912fb3a5fa9cc42961fdafeae23357, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.29999995
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a912fb3a5fa9cc42961fdafeae23357, type: 2}
   m_RootGameObject: {fileID: 2079428245}
@@ -3365,7 +3373,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3423,7 +3431,7 @@ Transform:
   m_PrefabInternal: {fileID: 576213592}
   m_GameObject: {fileID: 508479557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -63.3956375, y: 47.9376526, z: 13}
+  m_LocalPosition: {x: -63.3956375, y: 47.9376526, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60849413}
@@ -3656,7 +3664,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4304,7 +4312,7 @@ MonoBehaviour:
   coneAngle: 1.5
   roundsPerBurst: 0
   lagBetweenShots: 0
-  id: 10
+  id: 2
   projectile: {fileID: 5400000, guid: 742d213693b698c4f9de3ce3af4b2be5, type: 2}
   muzzlePos: {fileID: 810800684}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
@@ -4340,7 +4348,7 @@ MonoBehaviour:
   purchased: 0
   soldOut: 0
   currentUpgrade: 1
-  id: 10
+  id: 2
   upgradedItem: {fileID: 0}
 --- !u!1 &662065592
 GameObject:
@@ -5565,7 +5573,7 @@ Transform:
   m_PrefabInternal: {fileID: 1130565836}
   m_GameObject: {fileID: 754305370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.8753643, y: 20.8887825, z: 13}
+  m_LocalPosition: {x: -22.8753643, y: 20.8887825, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60849413}
@@ -5885,6 +5893,50 @@ Prefab:
       propertyPath: endPos
       value: 
       objectReference: {fileID: 1118326609}
+    - target: {fileID: 11400046, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400044, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: allWeapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 660478419}
+    - target: {fileID: 11400004, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: id
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: allWeapons.Array.data[10]
+      value: 
+      objectReference: {fileID: 1621227238}
+    - target: {fileID: 11400000, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: allWeapons.Array.data[6]
+      value: 
+      objectReference: {fileID: 237597366}
+    - target: {fileID: 11400016, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: id
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: weaponEquipped
+      value: 
+      objectReference: {fileID: 2800000, guid: 148255a331c692d49927ee41c5bc0ee8, type: 3}
+    - target: {fileID: 11400018, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
+      propertyPath: weaponUnEquipped
+      value: 
+      objectReference: {fileID: 2800000, guid: db35b003ea0746d408f99efcad34695d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
   m_RootGameObject: {fileID: 1653515481}
@@ -6931,8 +6983,6 @@ MonoBehaviour:
   current: {fileID: 0}
   validGreen: {fileID: 2100000, guid: 25f6fdae1c340e74eac651c8b2350040, type: 2}
   invalidRed: {fileID: 2100000, guid: 88fbe8e595060fa4ebc2572ffbb6627a, type: 2}
-  originalMat: {fileID: 0}
-  originalMats: []
 --- !u!1 &946740445
 GameObject:
   m_ObjectHideFlags: 0
@@ -7348,7 +7398,7 @@ Transform:
   m_PrefabInternal: {fileID: 1088425544}
   m_GameObject: {fileID: 1024000575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.3435068, y: 11.0762024, z: 13}
+  m_LocalPosition: {x: -14.3435068, y: 11.0762024, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60849413}
@@ -8013,7 +8063,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8444,7 +8494,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8670,7 +8720,7 @@ Transform:
   m_PrefabInternal: {fileID: 1661511846}
   m_GameObject: {fileID: 1164985687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.040451, y: 37.5562859, z: 13}
+  m_LocalPosition: {x: -48.040451, y: 37.5562859, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60849413}
@@ -9640,7 +9690,7 @@ Transform:
   m_PrefabInternal: {fileID: 508436556}
   m_GameObject: {fileID: 1253179941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.42019463, y: 2, z: 13}
+  m_LocalPosition: {x: 9.42019463, y: 2, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60849413}
@@ -11952,7 +12002,7 @@ MonoBehaviour:
   purchased: 0
   soldOut: 0
   currentUpgrade: 1
-  id: 6
+  id: 10
   upgradedItem: {fileID: 0}
 --- !u!114 &1621227238
 MonoBehaviour:
@@ -11980,7 +12030,7 @@ MonoBehaviour:
   coneAngle: 1.5
   roundsPerBurst: 0
   lagBetweenShots: 0
-  id: 6
+  id: 10
   projectile: {fileID: 5400000, guid: 38d1cb13abad3c74a8b182a54b43db19, type: 2}
   muzzlePos: {fileID: 293353292}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
@@ -12558,7 +12608,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12624,15 +12674,15 @@ MonoBehaviour:
   allWeapons:
   - {fileID: 2060132219}
   - {fileID: 2067123442}
-  - {fileID: 237597366}
+  - {fileID: 660478419}
   - {fileID: 2133670133}
   - {fileID: 796732267}
   - {fileID: 1202356947}
-  - {fileID: 1621227238}
+  - {fileID: 237597366}
   - {fileID: 674552601}
   - {fileID: 2035616491}
   - {fileID: 1035880393}
-  - {fileID: 660478419}
+  - {fileID: 1621227238}
   - {fileID: 1229462685}
   equippedWeapons:
   - {fileID: 2060132217}
@@ -12814,7 +12864,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 13
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c576cadbb2b4b047937ef7050c10b6e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -13393,6 +13443,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1775623492}
   - 114: {fileID: 1775623493}
+  - 114: {fileID: 1775623494}
   m_Layer: 0
   m_Name: GridContainer
   m_TagString: Untagged
@@ -13407,7 +13458,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1775623491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.5, y: 0, z: 10.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13422,7 +13473,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc50ecf29df8e864a87bf29bc32c37b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 100000, guid: 2f89bfd61df7f464fa864d4643e59a53, type: 2}
+  grid: {fileID: 100016, guid: 6108ab9265c3988419270fef4b4f47ea, type: 2}
+--- !u!114 &1775623494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1775623491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31179a6bbd11e2c3d000dc0b8d76c639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateTriangleStrips: 1
 --- !u!1 &1784912863
 GameObject:
   m_ObjectHideFlags: 0
@@ -13693,7 +13756,7 @@ Transform:
   m_PrefabInternal: {fileID: 1695079838}
   m_GameObject: {fileID: 1810398062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.00188589, y: 4.25773239, z: 13}
+  m_LocalPosition: {x: -4.00188589, y: 4.25773239, z: 11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60849413}

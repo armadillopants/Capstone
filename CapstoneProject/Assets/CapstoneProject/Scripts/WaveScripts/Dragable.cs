@@ -10,13 +10,9 @@ public class Dragable : MonoBehaviour {
 
 	private Vector3 screenPoint;
 	private Vector3 offset;
-	private Vector3 setY; // A fix for the Y position of the gameobject
 	private bool checkPlaneHit = false;
-	//private FortPlane fp;
 	
 	private Vector3 lastPosition;
-	private float gridx = 1f;
-	private float gridz = 1f;
 	
 	void OnMouseOver(){
 		if(canUpdate){
@@ -45,7 +41,7 @@ public class Dragable : MonoBehaviour {
 	    	Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 	
 	    	Vector3 curPos = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-			setY = new Vector3(curPos.x, height, curPos.z); // Object moves with mouse location
+			Vector3 setY = new Vector3(curPos.x, height, curPos.z); // Object moves with mouse location
 			lastPosition = transform.position;
 			
 			transform.position = setY; // Fixes the objects Y postion
@@ -69,12 +65,11 @@ public class Dragable : MonoBehaviour {
 			RaycastHit hit;
 			
 			if(Physics.Raycast(transform.position, Vector3.down, out hit)){
-				if(hit.transform.tag == Globals.GRID){
-					//fp = hit.transform.parent.gameObject.GetComponent<FortPlane>();
-					
-					//NullableVector3 newPos = fp.DeterminePlane(transform, hit.transform.gameObject, hit.point);
+				if(hit.collider.tag == Globals.GRID){
 					
 					float yRot = transform.eulerAngles.y;
+					float gridx = 1f;
+					float gridz = 1f;
 					
 					switch(state){
 					case FortState.THREE_ONE:
@@ -103,10 +98,6 @@ public class Dragable : MonoBehaviour {
 					Vector3 snapPos = transform.position;
 					snapPos = GameController.Instance.SnapToGrid(snapPos, gridx, gridz, gameObject);
 					transform.position = snapPos;
-					
-					/*if(newPos != null){
-						transform.position = newPos.vector;
-					}*/
 				} else {
 					transform.position = lastPosition;
 				}

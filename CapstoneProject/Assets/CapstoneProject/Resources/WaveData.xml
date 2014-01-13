@@ -4,7 +4,7 @@
 <!-- amountToSpawn: sets the amount to spawn of that type of enemy -->
 <!-- health: sets the health of the enemy for that wave -->
 <!-- moveSpeed: sets how fast the enemy will move. Higher values yield faster move speeds -->
-<!-- turnSpeed: sets how fast the enemy will turn. Higher values yiled faster turn speeds -->
+<!-- turnSpeed: sets how fast the enemy will turn. Higher values yield faster turn speeds -->
 <!-- attackSpeed: sets the timer for when the enemy can attack next. Lower attack speed means quicker attacks -->
 <!-- damageAmount: sets the amount of damage the enemy deals after each attack -->
 

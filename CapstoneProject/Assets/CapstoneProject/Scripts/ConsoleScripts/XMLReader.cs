@@ -21,6 +21,13 @@ public class XMLReader : MonoBehaviour {
 		for(int i=0; i<manager.allWeapons.Count; i++){
 			SetWeapon(manager.allWeapons[i].id, "/BaseValueData/WeaponData/"+manager.allWeapons[i].name);
 		}
+		
+		ItemVendor vendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
+		
+		for(int i=0; i<vendor.itemVendor.Count; i++){
+			fortData = vendor.itemVendor[i].GetComponent<FortificationData>();
+			SetFortification(vendor.itemVendor[i].GetComponent<SellableItem>().itemName);
+		}
 	}
 	
 	public void Reset(){
@@ -52,17 +59,17 @@ public class XMLReader : MonoBehaviour {
 			firstNode = doc.SelectSingleNode(path);
 			fortData.health.ModifyHealth(float.Parse(firstNode.Attributes.GetNamedItem("health").Value));
 			fortData.fortDamage = float.Parse(firstNode.Attributes.GetNamedItem("fortDamage").Value);
-			if(fortData.GetComponentInChildren<BaseWeapon>() != null){
-				BaseWeapon weapon = fortData.GetComponentInChildren<BaseWeapon>();
-				weapon.range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
-				weapon.fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
-				weapon.force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
-				weapon.bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
-				weapon.maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
-				weapon.reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
-				weapon.damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
-				weapon.coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
-				weapon.Replenish();
+			fortData.GetComponent<SellableItem>().cost = int.Parse(firstNode.Attributes.GetNamedItem("cost").Value);
+			if(fortData.weapon != null){
+				fortData.weapon.range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
+				fortData.weapon.fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
+				fortData.weapon.force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
+				fortData.weapon.bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
+				fortData.weapon.maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+				fortData.weapon.reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
+				fortData.weapon.damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
+				fortData.weapon.coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
+				fortData.weapon.Replenish();
 			}
 		}
 	}
