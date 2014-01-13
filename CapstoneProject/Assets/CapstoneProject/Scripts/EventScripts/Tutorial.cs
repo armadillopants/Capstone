@@ -152,7 +152,6 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	void DestroyMouseRightLink(){
-		Debug.Log("Called");
 		waitTime -= Time.deltaTime;
 		if(waitTime <= 0){
 			Destroy(GameObject.Find(link.name));

@@ -25,7 +25,7 @@
 					coneAngle= "1.3">
 				</Upgrade1>
 				<Upgrade2
-					cost= "150"
+					cost= "200"
 					range= "100"
 					fireRate= "0.05"
 					force= "0.9"
@@ -73,18 +73,18 @@
 					bulletsPerClip= "6"
 					clips= "6"
 					reloadSpeed= "1.3"
-					damage= "12"
+					damage= "30"
 					coneAngle= "1.8">
 				</Upgrade1>
 				<Upgrade2
-					cost= "350"
+					cost= "400"
 					range = "4"
 					fireRate= "0.07"
 					force= "1.4"
 					bulletsPerClip= "7"
 					clips= "6"
 					reloadSpeed= "1.1"
-					damage= "14"
+					damage= "35"
 					coneAngle= "1.6">
 				</Upgrade2>
 			</Upgrades>
@@ -92,22 +92,22 @@
 		<FlameThrower>
 			<Upgrades>
 				<Upgrade1
-					cost= "400"
+					cost= "700"
 					range = "22"
 					fireRate= "0.09"
 					force= "0.03"
-					bulletsPerClip= "150"
+					bulletsPerClip= "100"
 					clips= "2"
 					reloadSpeed= "2.3"
 					damage= "6"
 					coneAngle= "1.8">
 				</Upgrade1>
 				<Upgrade2
-					cost= "450"
+					cost= "800"
 					range = "24"
 					fireRate= "0.08"
 					force= "0.05"
-					bulletsPerClip= "200"
+					bulletsPerClip= "150"
 					clips= "2"
 					reloadSpeed= "2.1"
 					damage= "7"
@@ -146,23 +146,23 @@
 				<Upgrade1
 					cost= "250"
 					range= "100"
-					fireRate= "0.08"
+					fireRate= "0.1"
 					force= "0.6"
 					bulletsPerClip= "72"
 					clips= "4"
 					reloadSpeed= "1.8"
-					damage= "12"
+					damage= "20"
 					coneAngle= "8">
 				</Upgrade1>
 				<Upgrade2
-					cost= "300"
+					cost= "350"
 					range= "100"
-					fireRate= "0.07"
+					fireRate= "0.08"
 					force= "0.7"
 					bulletsPerClip= "80"
 					clips= "4"
 					reloadSpeed= "1.6"
-					damage= "14"
+					damage= "25"
 					coneAngle= "8">
 				</Upgrade2>
 			</Upgrades>
@@ -170,25 +170,25 @@
 		<RayBlaster>
 			<Upgrades>
 				<Upgrade1
-					cost= "500"
+					cost= "350"
 					range = "4"
 					fireRate= "0.08"
 					force= "1.2"
 					bulletsPerClip= "35"
 					clips= "6"
 					reloadSpeed= "1.5"
-					damage= "17"
+					damage= "20"
 					coneAngle= "1.8">
 				</Upgrade1>
 				<Upgrade2
-					cost= "550"
+					cost= "450"
 					range = "5"
 					fireRate= "0.07"
 					force= "1.4"
 					bulletsPerClip= "40"
 					clips= "6"
 					reloadSpeed= "1.3"
-					damage= "19"
+					damage= "25"
 					coneAngle= "1.6">
 				</Upgrade2>
 			</Upgrades>
@@ -200,7 +200,7 @@
 					range = "5"
 					fireRate= "0.1"
 					force= "1"
-					bulletsPerClip= "150"
+					bulletsPerClip= "100"
 					clips= "2"
 					reloadSpeed= "2.3"
 					damage= "6"
@@ -211,7 +211,7 @@
 					range = "5"
 					fireRate= "0.1"
 					force= "1"
-					bulletsPerClip= "200"
+					bulletsPerClip= "150"
 					clips= "2"
 					reloadSpeed= "2.1"
 					damage= "7"
@@ -224,23 +224,23 @@
 				<Upgrade1
 					cost= "100"
 					range= "100"
-					fireRate= "0.3"
+					fireRate= "0.1"
 					force= "1.7"
 					bulletsPerClip= "8"
 					clips= "6"
-					reloadSpeed= "1.3"
-					damage= "17"
+					reloadSpeed= "1.8"
+					damage= "25"
 					coneAngle= "1.3">
 				</Upgrade1>
 				<Upgrade2
 					cost= "200"
 					range= "100"
-					fireRate= "0.3"
+					fireRate= "0.08"
 					force= "1.9"
 					bulletsPerClip= "10"
 					clips= "6"
-					reloadSpeed= "1.1"
-					damage= "19"
+					reloadSpeed= "1.5"
+					damage= "30"
 					coneAngle= "1.1">
 				</Upgrade2>
 			</Upgrades>
@@ -254,8 +254,8 @@
 					force= "1.2"
 					bulletsPerClip= "30"
 					clips= "6"
-					reloadSpeed= "1.1"
-					damage= "17"
+					reloadSpeed= "1.3"
+					damage= "20"
 					coneAngle= "1.5">
 				</Upgrade1>
 				<Upgrade2
@@ -265,8 +265,8 @@
 					force= "1.4"
 					bulletsPerClip= "35"
 					clips= "6"
-					reloadSpeed= "0.9"
-					damage= "19"
+					reloadSpeed= "1.1"
+					damage= "25"
 					coneAngle= "1.3">
 				</Upgrade2>
 			</Upgrades>
@@ -281,7 +281,7 @@
 					bulletsPerClip= "12"
 					clips= "6"
 					reloadSpeed= "1.8"
-					damage= "12"
+					damage= "15"
 					coneAngle= "1.3">
 				</Upgrade1>
 				<Upgrade2
@@ -292,7 +292,7 @@
 					bulletsPerClip= "14"
 					clips= "6"
 					reloadSpeed= "1.6"
-					damage= "14"
+					damage= "20"
 					coneAngle= "1.1">
 				</Upgrade2>
 			</Upgrades>
@@ -302,7 +302,7 @@
 				<Upgrade1
 					cost= "1000"
 					range= "4"
-					fireRate= "0.3"
+					fireRate= "0.5"
 					force= "12"
 					bulletsPerClip= "6"
 					clips= "3"
@@ -313,7 +313,7 @@
 				<Upgrade2
 					cost= "1200"
 					range= "5"
-					fireRate= "0.1"
+					fireRate= "0.3"
 					force= "14"
 					bulletsPerClip= "7"
 					clips= "3"

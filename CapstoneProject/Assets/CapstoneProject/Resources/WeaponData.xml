@@ -41,7 +41,7 @@
 			bulletsPerClip= "5"
 			clips= "6"
 			reloadSpeed= "1.5"
-			damage= "15"
+			damage= "25"
 			coneAngle= "2"
 			costPerBullet= "4"
 			cost= "300">
@@ -50,7 +50,7 @@
 			range= "20"
 			fireRate= "0.1"
 			force= "0.01"
-			bulletsPerClip= "100"
+			bulletsPerClip= "50"
 			clips= "2"
 			reloadSpeed= "2.5"
 			damage= "5"
@@ -72,12 +72,12 @@
 		</BurstRifle>
 		<Shotgun
 			range= "100"
-			fireRate= "0.1"
+			fireRate= "0.3"
 			force= "0.5"
 			bulletsPerClip= "64"
 			clips= "4"
 			reloadSpeed= "2"
-			damage= "10"
+			damage= "15"
 			coneAngle= "8"
 			costPerBullet= "1"
 			cost= "250">
@@ -89,7 +89,7 @@
 			bulletsPerClip= "30"
 			clips= "6"
 			reloadSpeed= "1.7"
-			damage= "10"
+			damage= "15"
 			coneAngle= "2"
 			costPerBullet= "3"
 			cost= "350">
@@ -98,7 +98,7 @@
 			range= "5"
 			fireRate= "0.1"
 			force= "1"
-			bulletsPerClip= "100"
+			bulletsPerClip= "50"
 			clips= "2"
 			reloadSpeed= "2.5"
 			damage= "5"
@@ -112,8 +112,8 @@
 			force= "1.5"
 			bulletsPerClip= "6"
 			clips= "6"
-			reloadSpeed= "1.5"
-			damage= "15"
+			reloadSpeed= "2.0"
+			damage= "20"
 			coneAngle= "1.5"
 			costPerBullet= "2"
 			cost= "100">
@@ -124,7 +124,7 @@
 			force= "1.0"
 			bulletsPerClip= "25"
 			clips= "6"
-			reloadSpeed= "1.3"
+			reloadSpeed= "1.5"
 			damage= "15"
 			coneAngle= "1.7"
 			costPerBullet= "2"
@@ -144,7 +144,7 @@
 		</GrenadeLauncher>
 		<ThunderGun
 			range= "3"
-			fireRate= "0.5"
+			fireRate= "0.7"
 			force= "10"
 			bulletsPerClip= "5"
 			clips= "3"
