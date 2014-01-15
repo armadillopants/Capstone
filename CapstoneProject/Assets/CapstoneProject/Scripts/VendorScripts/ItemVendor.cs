@@ -8,11 +8,9 @@ public class ItemVendor : MonoBehaviour {
 	
 	public Texture2D icon;
 	
-	private XMLReader reader;
 	private XMLVendorReader vendorReader;
 
 	void Start(){
-		reader = GameObject.Find("XMLReader").GetComponent<XMLReader>();
 		vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 	}
 	
@@ -23,8 +21,6 @@ public class ItemVendor : MonoBehaviour {
 			if(sellItem.GetComponent<Dragable>()){
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
 				GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
-				//reader.SetFortData();
-				//reader.SetFortification(sellItem.itemName);
 			} else {
 				GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
 			}

@@ -47,7 +47,7 @@ public class MainPanelGUI : MonoBehaviour {
 			style.active.background = buttonActive;
 			style.alignment = TextAnchor.MiddleCenter;
 			
-			if(GameObject.Find("WaveController").GetComponent<WaveController>().GetWaveNumber() == 2){
+			if(GameController.Instance.GetWaveController().GetWaveNumber() == 2){
 				Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
 				if(GUI.Button(new Rect(offsetWidth, offsetHeight, buttonWidth, buttonHeight), curFortName, style)){
 					if(tut.key == "BuildScreen"){
@@ -62,9 +62,14 @@ public class MainPanelGUI : MonoBehaviour {
 						if(curFortName == fortNames[2] && UIManager.Instance.uiState != UIManager.UIState.FORT_ABILITY_SCREEN){
 							UIManager.Instance.uiState = UIManager.UIState.FORT_ABILITY_SCREEN;
 						}
-					} else if(tut.key == "BeginWaveScreen"){
-						if(curFortName == fortNames[3]){
-							tut.key = "";
+					} else if(tut.key == ""){
+						if(curFortName == fortNames[0] && UIManager.Instance.uiState != UIManager.UIState.FORT_BUILD_SCREEN){
+							UIManager.Instance.uiState = UIManager.UIState.FORT_BUILD_SCREEN;
+						} else if(curFortName == fortNames[1] && UIManager.Instance.uiState != UIManager.UIState.FORT_WEAPON_SCREEN){
+							UIManager.Instance.uiState = UIManager.UIState.FORT_WEAPON_SCREEN;
+						} else if(curFortName == fortNames[2] && UIManager.Instance.uiState != UIManager.UIState.FORT_ABILITY_SCREEN){
+							UIManager.Instance.uiState = UIManager.UIState.FORT_ABILITY_SCREEN;
+						} else if(curFortName == fortNames[3]){
 							UIManager.Instance.uiState = UIManager.UIState.NONE;
 							UIManager.Instance.displayUI = true;
 							GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();

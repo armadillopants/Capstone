@@ -21,11 +21,11 @@ public class Spawner : MonoBehaviour {
 	public GameObject scavenger;
 	public GameObject crusher;
 	
-	private GameObject enemy;
-	private Vector3 pos;
-	
 	private GameObject[] spawnPoints;
 	private Transform spawnPoint;
+	private GameObject[] digPoints;
+	private Transform digPoint;
+	private bool canDig = false;
 	
 	private DayNightCycle cycle;
 	
@@ -39,6 +39,7 @@ public class Spawner : MonoBehaviour {
 
 	void Start(){
 		spawnPoints = GameObject.FindGameObjectsWithTag(Globals.SPAWN_POINT);
+		digPoints = GameObject.FindGameObjectsWithTag(Globals.DIG_POINT);
 		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 		
 		TextAsset asset = new TextAsset();
@@ -77,6 +78,7 @@ public class Spawner : MonoBehaviour {
 			
 			wave.amountToSpawn = cyborgData.amountToSpawn+catData.amountToSpawn+tigerData.amountToSpawn;
 			isDay = true;
+			canDig = false;
 		}
 		
 		if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
@@ -97,6 +99,7 @@ public class Spawner : MonoBehaviour {
 			crusherData.damageAmount = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 
 			wave.amountToSpawn = scavengerData.amountToSpawn+crusherData.amountToSpawn;
+			canDig = true;
 		}
 		
 		CalculateEnemiesToSpawn(isDay);
@@ -213,13 +216,36 @@ public class Spawner : MonoBehaviour {
 	
 	public void SpawnEnemy(){
 		
-		enemy = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
+		GameObject enemy = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
 		
 		spawnPoint = spawnPoints[Random.Range(0,spawnPoints.Length)].transform;
-		pos = spawnPoint.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
+		
+		Vector3 pos = new Vector3();
+		Quaternion rot = new Quaternion();
+		
+		if(canDig){
+			digPoint = digPoints[Random.Range(0,digPoints.Length)].transform;
+			if(Random.Range(0, 100) <= 30f){
+				pos = digPoint.position;
+				rot = Quaternion.Euler(-90f,0,0);
+			} else {
+				pos = spawnPoint.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
 												0, 
 												Mathf.Sin(Random.Range(0,360)))*(Random.Range(3,3));
-		GameObject enemyToSpawn = (GameObject)Instantiate(enemy, pos, Quaternion.identity);
+				rot = Quaternion.identity;
+			}
+		} else {
+			pos = spawnPoint.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
+												0, 
+												Mathf.Sin(Random.Range(0,360)))*(Random.Range(3,3));
+			rot = Quaternion.identity;
+		}
+		
+		GameObject enemyToSpawn = (GameObject)Instantiate(enemy, pos, rot);
+		if(canDig && pos == digPoint.position){
+			enemyToSpawn.GetComponent<Enemy>().isUnderground = true;
+			enemyToSpawn.AddComponent<DigOutOfGround>();
+		}
 		enemyToSpawn.name = enemy.name;
 		enemiesToSpawn.Remove(enemy);
 	}

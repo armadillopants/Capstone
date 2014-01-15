@@ -7,10 +7,9 @@ public class Tutorial : MonoBehaviour {
 	public GameObject mouseLeft;
 	public GameObject mouseRight;
 	public GameObject leftShift;
-	public Texture2D arrow;
 	
 	private Vector3 playerPos;
-	public bool beginTutorial = false;
+	private bool beginTutorial = false;
 	private bool spawnRightMouse = false;
 	private GameObject link = null;
 	private float waitTime = 5f;
@@ -21,7 +20,7 @@ public class Tutorial : MonoBehaviour {
 		Transform playerTrans = GameController.Instance.GetPlayer();
 		playerPos = playerTrans.position+new Vector3(0,1,0);
 		
-		if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && GameObject.Find("WaveController").GetComponent<WaveController>().GetWaveNumber() == 1 && !beginTutorial){
+		if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && GameController.Instance.GetWaveController().GetWaveNumber() == 1 && !beginTutorial){
 			StartCoroutine(BeginWASDLink());
 			beginTutorial = true;
 		}
@@ -170,7 +169,7 @@ public class Tutorial : MonoBehaviour {
 				key = "PurchaseWeapon"; 
 			} else if(waitTime >= 0f && waitTime < 5f) {
 				key = "AbilityScreen";
-				waitTime = 10f;
+				waitTime = 15f;
 			}
 		} else {
 			key = "WeaponScreen";
@@ -180,10 +179,12 @@ public class Tutorial : MonoBehaviour {
 	void WaitForAbilityScreen(){
 		if(UIManager.Instance.uiState == UIManager.UIState.FORT_ABILITY_SCREEN){
 			waitTime -= Time.deltaTime;
-			if(waitTime >= 5f){
+			if(waitTime >= 10f){
 				key = "PurchaseAbility";
-			} else if(waitTime >= 0 && waitTime < 5){
+			} else if(waitTime >= 5f && waitTime < 10f){
 				key = "BeginWaveScreen";
+			} else if(waitTime >=0f && waitTime < 5f){
+				key = "";
 				curKey = "";
 			}
 		} else {

@@ -18,6 +18,7 @@ public class Enemy : AIPath {
 	public bool doDamage = false;
 	public bool isPathBlocked = false;
 	private bool isDead = false;
+	public bool isUnderground = false;
 	
 	private float currentCoolDown = 0f;
 	public float coolDownLength = 1f;
@@ -62,7 +63,7 @@ public class Enemy : AIPath {
 		
 		for(int i=0; i<health.curHealth; i++){
 			if(health.curHealth % i == 0){
-				amountToGive += 5;
+				amountToGive += 10;
 			}
 		}
 		
@@ -91,6 +92,10 @@ public class Enemy : AIPath {
 	}
 	
 	protected new void Update(){
+		
+		if(isUnderground){
+			return;
+		}
 		
 		if(curTarget != null){
 			lastTarget = curTarget;
@@ -228,6 +233,10 @@ public class Enemy : AIPath {
 	}
 	
 	void FixedUpdate(){
+		if(isUnderground){
+			return;
+		}
+		
 		switch(state){
 		case EnemyState.CHASING:
 			ChaseObject();
@@ -292,9 +301,10 @@ public class Enemy : AIPath {
 				anim.Blend("Walk", 0, 0.2f);
 			} else {
 				// Fade in walking animation
-				string curAnim = anim.clip.name;
-				anim.Blend(curAnim, 0, 0.2f);
-				anim.Blend("Walk", 1, 0.2f);
+				//string curAnim = anim.clip.name;
+				//anim.Blend(curAnim, 0, 0.2f);
+				//anim.Blend("Walk", 1, 0.2f);
+				anim.CrossFade("Walk", 0.2f);
 				
 				AnimationState state = anim["Walk"];
 				

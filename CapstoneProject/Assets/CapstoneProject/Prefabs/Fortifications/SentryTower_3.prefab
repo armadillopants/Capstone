@@ -48,7 +48,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
   m_Layer: 9
-  m_Name: SentryTower
+  m_Name: SentryTower_3
   m_TagString: Fortification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,12 +341,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Sentry Tower
-  description: Strong, stone sentry tower, with high resistance to attack.
+  description: Deals 3x damage. High fire rate.
   cost: 500
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0
-  currentUpgrade: 0
+  currentUpgrade: 2
   id: 0
   upgradedItem: {fileID: 0}
 --- !u!114 &11400008

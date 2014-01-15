@@ -3,14 +3,6 @@ using UnityEngine;
 
 public class Fortification : MonoBehaviour {
 	
-	private Rect mainScreen = new Rect(Screen.width-512, Screen.height-(Screen.height-16), 512, 512);
-	private Rect buildDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500);
-	private Rect weaponDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500);
-	private Rect abilityDisplayScreen = new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500);
-	private Rect buildUpgradeDisplayScreen = new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300);
-	
-	private Rect timerRect = new Rect(100,50,100,50);
-	
 	private Wave buildWave;
 	private float timer = 60f;
 	
@@ -51,10 +43,10 @@ public class Fortification : MonoBehaviour {
 	void FortifyHandling(){
 		buildWave.StopWave(); // Stops the wave
 		
-		if(buildWave.GetWaveNumber() == 2){
+		if(buildWave.GetWaveNumber() == 2 && GameObject.Find("Tutorial").GetComponent<Tutorial>().key != ""){
 			timer = 60f;
 		} else {
-			//timer -= Time.deltaTime;
+			timer -= Time.deltaTime;
 		}
 		
 		if(timer <= 0){
@@ -78,16 +70,19 @@ public class Fortification : MonoBehaviour {
 	
 	void OnGUI(){
 		if(GameController.Instance.current == null){
-			mainPanel.Draw(mainScreen, buildWave);
+			mainPanel.Draw(new Rect(Screen.width-512, Screen.height-(Screen.height-16), 512, 512), buildWave);
 		}
 		
+		Rect timerRect = new Rect(100,50,100,50);
 		GUI.BeginGroup(timerRect);
+		
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
 		style.font = UIManager.Instance.resourceFont;
 		style.fontSize = 50;
 		GUI.Label(new Rect(0, 0, timerRect.width, timerRect.height), GuiTime(timer), style);
+		
 		GUI.EndGroup();
 		
 		switch(UIManager.Instance.uiState){
@@ -107,19 +102,19 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void DrawFortBuyScreen(){
-		buildPanel.Draw(buildDisplayScreen);
+		buildPanel.Draw(new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500));
 	}
 	
 	void DrawWeaponBuyScreen(){
-		weaponPanel.Draw(weaponDisplayScreen);
+		weaponPanel.Draw(new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500));
 	}
 	
 	void DrawAbilityBuyScreen(){
-		abilityPanel.Draw(abilityDisplayScreen);
+		abilityPanel.Draw(new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500));
 	}
 
 	void DrawFortUpgradeScreen(){
-		buildUpgradePanel.Draw(buildUpgradeDisplayScreen);
+		buildUpgradePanel.Draw(new Rect((Screen.width/2f) - (200/2), (Screen.height/2f) - (300/2), 200, 300));
 	}
 	
 	string GuiTime(float time){

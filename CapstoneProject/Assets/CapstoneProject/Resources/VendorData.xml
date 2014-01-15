@@ -374,7 +374,7 @@
 					fortDamage= "0"
 					damage= "2"
 					range= "20"
-					fireRate= "0.1"
+					fireRate= "0.09"
 					force= "1.7"
 					bulletsPerClip= "150"
 					clips= "4"
@@ -387,7 +387,7 @@
 					fortDamage= "0"
 					damage= "3"
 					range= "25"
-					fireRate= "0.09"
+					fireRate= "0.08"
 					force= "1.9"
 					bulletsPerClip= "200"
 					clips= "5"
@@ -489,7 +489,7 @@
 		<FlameTurret>
 			<Upgrades>
 				<Upgrade1
-					cost= "200"
+					cost= "250"
 					health= "50"
 					fortDamage= "0"
 					damage= "2"
@@ -502,7 +502,7 @@
 					coneAngle= "1.5">
 				</Upgrade1>
 				<Upgrade2
-					cost= "250"
+					cost= "300"
 					health= "70"
 					fortDamage= "0"
 					damage= "3"

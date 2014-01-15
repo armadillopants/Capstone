@@ -181,7 +181,7 @@
 			health= "100"
 			fortDamage= "0"
 			range= "15"
-			fireRate= "0.3"
+			fireRate= "0.1"
 			force= "1.5"
 			bulletsPerClip= "100"
 			clips= "3"

@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour {
 	public GameObject explosion;
 	private BaseWeapon weapon;
 	public float bulletSpeed = 0.0f;
-	public GameObject target;
 	public bool isHoming = false;
 	public float damp = 6.0f;
 	
@@ -19,7 +18,7 @@ public class Projectile : MonoBehaviour {
 	
 	void Update(){
 		if(isHoming){
-			target = GameController.Instance.FindNearestTarget(Globals.ENEMY, this.trans);
+			GameObject target = GameController.Instance.FindNearestTarget(Globals.ENEMY, this.trans);
 			if(target){
 				rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
 				Quaternion rotate = Quaternion.LookRotation(target.transform.position - trans.position);

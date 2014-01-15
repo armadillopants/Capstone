@@ -73,8 +73,4 @@ public class XMLReader : MonoBehaviour {
 			}
 		}
 	}
-	
-	public void SetFortData(){
-		fortData = GameController.Instance.current.GetComponent<FortificationData>();
-	}
 }

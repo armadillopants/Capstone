@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
-	private int amountOfResources = 1000000;
+	private int amountOfResources = 0;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -65,6 +65,10 @@ public class GameController : MonoBehaviour {
 		
 	}
 	
+	public WaveController GetWaveController(){
+		return GameObject.Find("WaveController").GetComponent<WaveController>();
+	}
+	
 	public Transform GetPlayer(){
 		return player;
 	}
@@ -103,7 +107,7 @@ public class GameController : MonoBehaviour {
 			if(!beginFade){
 				StartCoroutine(UIManager.Instance.Fade());
 				StartCoroutine(UIManager.Instance.FadeComplete());
-				Destroy(GameObject.Find("WaveController").GetComponent<Wave>());
+				Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
 				beginFade = true;
 			}
 			return;
@@ -142,7 +146,7 @@ public class GameController : MonoBehaviour {
 		GetShipHealth().IsDead = false;
 		beginFade = false;
 		UIManager.Instance.FadeCompleted = false;
-		GameObject.Find("WaveController").GetComponent<WaveController>().ResetWave(1);
+		GetWaveController().ResetWave(1);
 		amountOfResources = 0;
 		foreach(ParticleEmitter light in GameObject.FindWithTag(Globals.SHIP).GetComponentsInChildren<ParticleEmitter>()){
 			light.emit = false;
@@ -322,7 +326,6 @@ public class GameController : MonoBehaviour {
 				current = null;
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
 			} else {
-				GameObject temp = current;
 				current = null;
 				SpawnFortification(originalObject, rot);
 			}

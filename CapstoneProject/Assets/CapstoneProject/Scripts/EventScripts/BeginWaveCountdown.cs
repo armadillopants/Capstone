@@ -3,29 +3,16 @@ using System.Collections;
 
 public class BeginWaveCountdown : MonoBehaviour {
 	
-	private Animation anim;
 	private int amountOfWavesLeft = 10;
-	
-	private GameObject waveController;
 
 	void Start(){
-		//anim = GetComponent<Animation>();
-		
-		waveController = GameObject.Find("WaveController");
-		
-		/*if(anim){
-			anim.wrapMode = WrapMode.Loop;
-			
-			anim.Play("Swirl");
-		}*/
-		
-		GameController.Instance.SetCurWave(waveController.GetComponent<WaveController>().GetWaveNumber());
+		GameController.Instance.SetCurWave(GameController.Instance.GetWaveController().GetWaveNumber());
 		GameController.Instance.SetEndWave(amountOfWavesLeft);
 	}
 	
 	void Update(){
-		if(waveController.GetComponent<Wave>() != null){
-			if(waveController.GetComponent<Wave>().endWave){
+		if(GameController.Instance.GetWaveController().GetComponent<Wave>() != null){
+			if(GameController.Instance.GetWaveController().GetComponent<Wave>().endWave){
 				amountOfWavesLeft -= 1;
 			}
 		}

@@ -83,7 +83,7 @@ GameObject:
   - 23: {fileID: 2300012}
   - 114: {fileID: 11400010}
   m_Layer: 9
-  m_Name: RocketTurret
+  m_Name: RocketTurret_3
   m_TagString: Fortification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0
-  currentUpgrade: 0
+  currentUpgrade: 2
   id: 0
   upgradedItem: {fileID: 0}
 --- !u!114 &11400008
@@ -571,15 +571,15 @@ MonoBehaviour:
   state: 1
   weaponType: 0
   fireRate: 1
-  range: 30
-  force: 5
-  bulletsLeft: 0
+  range: 10
+  force: 1
+  bulletsLeft: 10
   bulletsPerClip: 10
-  clips: 5
-  maxClips: 0
+  clips: 20
+  maxClips: 20
   reloadSpeed: 2
-  damage: 10
-  coneAngle: 1.70000005
+  damage: 2
+  coneAngle: 2.5
   roundsPerBurst: 0
   lagBetweenShots: 0
   id: 0

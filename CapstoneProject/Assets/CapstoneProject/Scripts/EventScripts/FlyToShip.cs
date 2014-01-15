@@ -8,7 +8,6 @@ public class FlyToShip : MonoBehaviour {
 	private float step;
 	private float offset;
 	private Vector3 shipPos;
-	private bool hover = true;
 	
 	private float timer = 120.0f;
 	
@@ -26,25 +25,23 @@ public class FlyToShip : MonoBehaviour {
 		Quaternion rotateShip = Quaternion.LookRotation(ship.forward, transform.up);
 		transform.rotation = Quaternion.Slerp(transform.rotation, rotateShip, 1*Time.deltaTime);
 		
-		if(hover){
-			step += 0.01f;
-		
-			if(step > 999999f){
-				step = 1f;
-			}
-			
-			Hover();
+		step += 0.01f;
+	
+		if(step > 999999f){
+			step = 1f;
 		}
 		
-		if(GameObject.Find("WaveController").GetComponent<Wave>() != null){
-			if(GameObject.Find("WaveController").GetComponent<Wave>().beginWave){
+		Hover();
+		
+		if(GameController.Instance.GetWaveController().GetComponent<Wave>() != null){
+			if(GameController.Instance.GetWaveController().GetComponent<Wave>().beginWave){
 				timer -= Time.deltaTime;
 			}
 		}
 		
 		if(timer <= 0){
 			timer = 0;
-			Destroy(GameObject.Find("WaveController").GetComponent<Wave>());
+			Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
 			Destroy(GameObject.FindWithTag(Globals.PLAYER).GetComponent<LocalInput>());
 			Destroy(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>());
 			UIManager.Instance.uiState = UIManager.UIState.GAMEWON;

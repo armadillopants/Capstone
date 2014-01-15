@@ -86,8 +86,4 @@ public class CombineChildren : MonoBehaviour {
 			}
 		}	
 	}
-	
-	public void UpdateCombinedMesh(){
-		
-	}
 }

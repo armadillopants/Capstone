@@ -240,15 +240,4 @@ public class BaseWeapon : MonoBehaviour {
 		}
 		isReloading = false;
 	}
-	
-	void PlayAudioClip(AudioClip clip, Vector3 pos, float volume) {
-	    GameObject go = new GameObject("One shot audio");
-	    go.transform.position = pos;
-	    AudioSource source = go.AddComponent<AudioSource>();
-	    source.clip = clip;
-	    source.volume = volume;
-		source.pitch = Random.Range(0.95f,1.05f);
-	    source.Play();
-	    Destroy(go, clip.length);
-	}
 }

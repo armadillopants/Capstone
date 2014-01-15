@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour {
 	
 	private Rect waveRect;
 	private Rect shipHealthRect;
-	private Rect resourceRect;
 	private Rect fortHealthDisplayRect;
 	private Rect fortWeaponDisplayRect;
 	private bool displayFortHealthData = false;
@@ -32,8 +31,6 @@ public class UIManager : MonoBehaviour {
 	public Font resourceFont;
 	
 	public bool displayUI = true;
-	
-	private WaveController waveController;
 	
 	#region Singleton
 	
@@ -69,10 +66,6 @@ public class UIManager : MonoBehaviour {
 		grayBar.Apply();
 		
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
-		
-		resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
-		
-		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
 	}
 	
 	void Update(){
@@ -212,7 +205,7 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(waveRect);
 		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE "+waveController.GetWaveNumber(), style);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE "+GameController.Instance.GetWaveController().GetWaveNumber().ToString(), style);
 		
 		GUI.EndGroup();
 	}
@@ -257,7 +250,7 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(waveNumberRect);
 		
-		GUI.Label(new Rect(0, 0, waveNumberRect.width, waveNumberRect.height), waveController.GetWaveNumber().ToString(), style);
+		GUI.Label(new Rect(0, 0, waveNumberRect.width, waveNumberRect.height), GameController.Instance.GetWaveController().GetWaveNumber().ToString(), style);
 		
 		GUI.EndGroup();
 	}
@@ -332,6 +325,7 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawResources(){
+		Rect resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
 		GUI.BeginGroup(resourceRect);
 		
 		GUIStyle style = new GUIStyle();
