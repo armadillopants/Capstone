@@ -1147,7 +1147,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 8, z: 15}
+  m_Size: {x: 6, y: 12, z: 15}
   m_Center: {x: 0, y: 6, z: 1}
 --- !u!82 &8200000
 AudioSource:
@@ -1286,6 +1286,7 @@ MonoBehaviour:
   curTarget: {fileID: 0}
   doDamage: 0
   isPathBlocked: 0
+  isUnderground: 0
   coolDownLength: 2
   damageAmount: 20
   distance: 10

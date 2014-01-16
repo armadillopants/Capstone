@@ -38,6 +38,7 @@ public class RoboTigerWeapon : MonoBehaviour {
 			
 			if(health.curHealth < health.GetMaxHealth()/Random.Range(2,4) && !dropGun){
 				StopCoroutine("Firing");
+				gunObject.AddComponent<BoxCollider>();
 				gunObject.AddComponent<Rigidbody>().AddForce(new Vector3(transform.position.x+2,0,transform.position.z+2));
 				gunObject.AddComponent<DestroyTimer>();
 				gunObject.transform.parent = null;

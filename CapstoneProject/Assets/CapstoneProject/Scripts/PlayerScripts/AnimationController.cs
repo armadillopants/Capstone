@@ -58,7 +58,7 @@ public class AnimationController : MonoBehaviour {
 		}
 	}
 	
-	void FixedUpdate(){
+	/*void FixedUpdate(){
 		// Turn lower body towards its target direction
 		lowerBodyForward = Vector3.RotateTowards(lowerBodyForward, lowerBodyForwardTarget, Time.deltaTime * 520 * Mathf.Deg2Rad, 1);
 		
@@ -78,7 +78,7 @@ public class AnimationController : MonoBehaviour {
 		
 		// Counter-rotate the upper body so it wont be affected
 		//upperBody.rotation = Quaternion.Inverse(lowerBodyDeltaRotation) * upperBody.rotation;
-	}
+	}*/
 	
 	private float HorizontalAngle(Vector3 dir){
 		return Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;

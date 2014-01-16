@@ -536,7 +536,6 @@ GameObject:
   - 4: {fileID: 400070}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 65: {fileID: 6500002}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -1259,20 +1258,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 8, z: 15}
-  m_Center: {x: 0, y: 6, z: 1}
---- !u!65 &6500002
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100070}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.40245771, y: 4.59958553, z: 7.55936623}
-  m_Center: {x: -.0690271854, y: -.0395019054, z: 1.60352242}
+  m_Size: {x: 6, y: 14, z: 15}
+  m_Center: {x: 0, y: 7, z: 1}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1467,9 +1454,8 @@ MonoBehaviour:
   lastTarget: {fileID: 0}
   curTarget: {fileID: 0}
   doDamage: 0
-  chasePlayer: 0
-  canAttackBoth: 1
   isPathBlocked: 0
+  isUnderground: 0
   coolDownLength: 3
   damageAmount: 30
   distance: 10
@@ -1548,6 +1534,7 @@ MonoBehaviour:
   id: 0
   projectile: {fileID: 5400000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
   muzzlePos: {fileID: 400080}
+  gunPos: {fileID: 0}
   muzzleFlash: {fileID: 2300000, guid: 9cc9f391e947cb540b2b27dd0a64a4fc, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
   isReloading: 0

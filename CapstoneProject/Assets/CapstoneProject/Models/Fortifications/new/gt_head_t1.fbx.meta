@@ -1,0 +1,106 @@
+fileFormatVersion: 2
+guid: 32c42b0fe9804f8488a7a93b7bdde2c7
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: ammo_bar1
+    100002: ammo_bar2
+    100004: ammo_drum_loaded
+    100006: ammo_drum_spare
+    100008: barrel
+    100010: barrel1
+    100012: //RootNode
+    100014: gt_tier1
+    100016: gun_turret_vert
+    100018: gun_turrethead_1
+    100020: loading_arm
+    100022: loading_disc
+    400000: ammo_bar1
+    400002: ammo_bar2
+    400004: ammo_drum_loaded
+    400006: ammo_drum_spare
+    400008: barrel
+    400010: barrel1
+    400012: //RootNode
+    400014: gt_tier1
+    400016: gun_turret_vert
+    400018: gun_turrethead_1
+    400020: loading_arm
+    400022: loading_disc
+    2300000: ammo_bar1
+    2300002: ammo_bar2
+    2300004: ammo_drum_loaded
+    2300006: ammo_drum_spare
+    2300008: barrel
+    2300010: gt_tier1
+    2300012: loading_arm
+    2300014: loading_disc
+    3300000: ammo_bar1
+    3300002: ammo_bar2
+    3300004: ammo_drum_loaded
+    3300006: ammo_drum_spare
+    3300008: barrel
+    3300010: gt_tier1
+    3300012: loading_arm
+    3300014: loading_disc
+    4300000: loading_disc
+    4300002: loading_arm
+    4300004: ammo_drum_spare
+    4300006: barrel
+    4300008: ammo_drum_loaded
+    4300010: ammo_bar1
+    4300012: ammo_bar2
+    4300014: gt_tier1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

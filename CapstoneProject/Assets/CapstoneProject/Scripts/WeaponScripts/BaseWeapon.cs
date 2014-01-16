@@ -23,6 +23,7 @@ public class BaseWeapon : MonoBehaviour {
 	public int id;
 	public Rigidbody projectile;
 	public Transform muzzlePos;
+	public Transform gunPos;
 	
 	private Renderer muzzle;
 	private Light gunFlash;
@@ -89,6 +90,11 @@ public class BaseWeapon : MonoBehaviour {
 			if(audio){
 				audio.PlayOneShot(emptyClip);
 			}
+		}
+		
+		if(gunPos){
+			transform.position = gunPos.position;
+			transform.rotation = GameObject.FindWithTag(Globals.PLAYER).transform.rotation;
 		}
 	}
 	
