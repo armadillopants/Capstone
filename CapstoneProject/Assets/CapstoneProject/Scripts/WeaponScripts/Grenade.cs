@@ -12,7 +12,7 @@ public class Grenade : MonoBehaviour {
 	}
 	
 	void Update(){
-		rigidbody.velocity = transform.TransformDirection(new Vector3(0, Physics.gravity.y, weapon.range));
+		rigidbody.velocity = transform.TransformDirection(new Vector3(0, Physics.gravity.y/3, weapon.range));
 	}
 	
 	void OnCollisionEnter(Collision collision){

@@ -24,6 +24,8 @@ public class BaseWeapon : MonoBehaviour {
 	public Rigidbody projectile;
 	public Transform muzzlePos;
 	public Transform gunPos;
+	public Transform leftHand;
+	public Transform handPos;
 	
 	private Renderer muzzle;
 	private Light gunFlash;
@@ -95,6 +97,9 @@ public class BaseWeapon : MonoBehaviour {
 		if(gunPos){
 			transform.position = gunPos.position;
 			transform.rotation = GameObject.FindWithTag(Globals.PLAYER).transform.rotation;
+		}
+		if(leftHand){
+			leftHand.position = handPos.position;
 		}
 	}
 	
