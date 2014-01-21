@@ -5,7 +5,6 @@ public class StartGameButton : MonoBehaviour {
 	
 	public bool beginGame = false;
 	private Transform cam;
-	private Transform player;
 	public Transform startCam;
 	public Transform endCam;
 	public bool lerpToStart = false;
@@ -16,12 +15,11 @@ public class StartGameButton : MonoBehaviour {
 	
 	void Start(){
 		cam = Camera.main.transform;
-		player = GameController.Instance.GetPlayer();
 	}
 	
 	void Update(){
-		
-		if(player != null){
+		if(GameController.Instance.GetPlayer()){
+			Transform player = GameController.Instance.GetPlayer();
 			if(beginGame && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
 				cam.position = Vector3.Lerp(cam.position, endCam.position, 0.5f*Time.deltaTime);
 				cam.rotation = Quaternion.Lerp(cam.rotation, Quaternion.Euler(new Vector3(endCam.eulerAngles.x, 0, 0)), 0.5f*Time.deltaTime);
@@ -44,7 +42,7 @@ public class StartGameButton : MonoBehaviour {
 				cam.rotation = Quaternion.Lerp(cam.rotation, Quaternion.Euler(new Vector3(startCam.eulerAngles.x, 0, 0)), 0.5f*Time.deltaTime);
 			}
 			
-			if(cam.position.z <= startCam.position.z+0.1f && lerpToStart){
+			if(cam.position.z <= startCam.position.z+0.5f && lerpToStart){
 				cam.position = startCam.position;
 				cam.rotation = Quaternion.Euler(startCam.eulerAngles.x, 0, 0);
 				MenuManager.Instance.menuState = MenuManager.MenuState.MAINMENU;

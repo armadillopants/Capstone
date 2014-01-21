@@ -24,6 +24,10 @@ public class MainPanelGUI : MonoBehaviour {
 	public Texture2D[] fortNames;
 	
 	void Start(){
+		Reset();
+	}
+	
+	public void Reset(){
 		selection = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponSelection>();
 	}
 	

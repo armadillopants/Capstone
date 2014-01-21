@@ -53,9 +53,11 @@ public class AbilityPanelGUI : MonoBehaviour {
 	void Start(){
 		abilityVendor = GameObject.Find("Vendor").GetComponent<AbilityVendor>();
 		allAbilities = abilityVendor.abilityVendor;
-		
+		Reset();
+	}
+	
+	public void Reset(){
 		abilityManager = GameController.Instance.GetPlayer().GetComponent<AbilitiesManager>();
-		
 		abilityHolder = GameObject.Find("AbilityHolder");
 	}
 	

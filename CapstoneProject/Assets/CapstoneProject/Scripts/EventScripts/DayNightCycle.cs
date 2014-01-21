@@ -20,7 +20,8 @@ public class DayNightCycle : MonoBehaviour {
     private float quarterDay;
     private float lightIntensity;
 	
-    void Initialize(){
+    public void Initialize(){
+		curTime = 0;
 		dayLength = 500.0f;
         quarterDay = dayLength * 0.25f;
         dawnTime = 0.0f;
@@ -30,6 +31,8 @@ public class DayNightCycle : MonoBehaviour {
         if(light != null){ 
 			lightIntensity = light.intensity;
 		}
+		SetDawn();
+		UpdateDaylight();
     }
  
     void Start(){
@@ -37,20 +40,22 @@ public class DayNightCycle : MonoBehaviour {
     }
  
     void Update(){
-		if(curTime > dayTime && currentPhase == DayPhase.DAWN){
-			SetDay();
-		} else if(curTime > duskTime && currentPhase == DayPhase.DAY){
-			SetDusk();
-		} else if(curTime > nightTime && currentPhase == DayPhase.DUSK){
-			SetNight();
-		} else if(curTime > dawnTime && curTime < dayTime && currentPhase == DayPhase.NIGHT){
-			SetDawn();
+		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
+			if(curTime > dayTime && currentPhase == DayPhase.DAWN){
+				SetDay();
+			} else if(curTime > duskTime && currentPhase == DayPhase.DAY){
+				SetDusk();
+			} else if(curTime > nightTime && currentPhase == DayPhase.DUSK){
+				SetNight();
+			} else if(curTime > dawnTime && curTime < dayTime && currentPhase == DayPhase.NIGHT){
+				SetDawn();
+			}
+	
+	        UpdateDaylight();
+	 
+	        curTime += Time.deltaTime;
+	        curTime %= dayLength;
 		}
-
-        UpdateDaylight();
- 
-        curTime += Time.deltaTime;
-        curTime %= dayLength;
     }
  
     void SetDawn(){

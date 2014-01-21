@@ -14,6 +14,7 @@ public class Laser : MonoBehaviour {
 		laser.SetVertexCount(2);
 		laser.SetWidth(width, width);
 		lightObj = (GameObject)Instantiate(laserLight);
+		lightObj.name = laserLight.name;
 		lightObj.light.enabled = false;
 	}
 	

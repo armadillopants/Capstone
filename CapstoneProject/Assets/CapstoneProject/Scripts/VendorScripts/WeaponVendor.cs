@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class WeaponVendor : MonoBehaviour {
 	
-	private XMLVendorReader reader;
-	private WeaponManager manager;
+	private XMLVendorReader vendorReader;
 
 	void Start(){
-		reader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
-		manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
+		vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 	}
 	
 	public void Purchase(GameObject item){
@@ -16,9 +14,9 @@ public class WeaponVendor : MonoBehaviour {
 		if(!sellItem.purchased){
 			GameController.Instance.DeleteResources(sellItem.cost);
 			sellItem.purchased = true;
-			manager.DetermineWeaponType(sellItem);
+			GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>().DetermineWeaponType(sellItem);
 			Debug.Log("Purchased: " + sellItem.itemName);
-			sellItem.cost = reader.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
+			sellItem.cost = vendorReader.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 		}
 	}
 	
@@ -26,11 +24,11 @@ public class WeaponVendor : MonoBehaviour {
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
 		GameController.Instance.DeleteResources(sellItem.cost);
-		reader.UpgradeWeaponData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
+		vendorReader.UpgradeWeaponData(sellItem.id, sellItem.name, sellItem.currentUpgrade);
 			
 		sellItem.currentUpgrade += 1;
 		if(sellItem.currentUpgrade <= 2){
-			sellItem.cost = reader.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
+			sellItem.cost = vendorReader.GetCurrentWeaponCost(sellItem.cost, sellItem.id, sellItem.name, sellItem.currentUpgrade);
 		}
 		Debug.Log("Purchased upgrade for: " + sellItem.itemName);
 	}

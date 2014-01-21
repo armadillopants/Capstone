@@ -19,6 +19,25 @@ public class WeaponManager : MonoBehaviour {
 	private string[] launcherTypes = new string[3]{ "RocketLauncher", "RayBlaster", "GrenadeLauncher" };
 	private string[] specialTypes = new string[3]{ "FlameThrower", "LightningBlaster", "ThunderGun" };
 	
+	void Awake(){
+		Reset();
+	}
+	
+	public void Reset(){
+		equippedWeapons[0] = null;
+		equippedWeapons[1] = null;
+		equippedWeapons[2] = null;
+		equippedWeapons[3] = null;
+		rifleWeapons.Clear();
+		pistolWeapons.Clear();
+		launcherWeapons.Clear();
+		specialWeapons.Clear();
+		equippedWeapons[0] = GameObject.Find(rifleTypes[0]);
+		equippedWeapons[1] = GameObject.Find(pistolTypes[0]);
+		rifleWeapons.Add(GameObject.Find(rifleTypes[0]));
+		pistolWeapons.Add(GameObject.Find(pistolTypes[0]));
+	}
+	
 	public void DetermineWeaponType(SellableItem item){
 		for(int i=0; i<rifleTypes.Length; i++){
 			if(item.name == rifleTypes[i]){

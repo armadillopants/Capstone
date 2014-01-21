@@ -1,12 +1,14 @@
 using System.Collections.Generic;
+using System.Collections;
 using Pathfinding;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
 	
+	public GameObject playerPrefab;
+	
 	private Health shipHealth;
 	private Health playerHealth;
-	private GameObject[] enemies;
 	
 	private Transform player;
 	private Transform ship;
@@ -46,11 +48,7 @@ public class GameController : MonoBehaviour {
 		}
 		_instance = this;
 		
-		player = GameObject.FindWithTag(Globals.PLAYER).transform;
-		ship = GameObject.FindWithTag(Globals.SHIP).transform;
-		
-		playerHealth = player.GetComponent<Health>();
-		shipHealth = ship.GetComponent<Health>();
+		SpawnPlayer();
 		
 		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 	}
@@ -61,8 +59,12 @@ public class GameController : MonoBehaviour {
 	
 	#endregion
 	
-	void Start(){
-		
+	void SpawnPlayer(){
+		Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+		player = GameObject.FindWithTag(Globals.PLAYER).transform;
+		ship = GameObject.FindWithTag(Globals.SHIP).transform;
+		playerHealth = player.GetComponent<Health>();
+		shipHealth = ship.GetComponent<Health>();
 	}
 	
 	public WaveController GetWaveController(){
@@ -102,61 +104,84 @@ public class GameController : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(playerHealth.IsDead){
-			SwitchUIState(UIManager.UIState.GAMEOVER);
-			if(!beginFade){
-				StartCoroutine(UIManager.Instance.Fade());
-				StartCoroutine(UIManager.Instance.FadeComplete());
-				Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
-				beginFade = true;
+		if(player){
+			if(playerHealth.IsDead){
+				UIManager.Instance.uiState = UIManager.UIState.GAMEOVER;
+				canShoot = false;
+				canChangeWeapons = false;
+				if(!beginFade){
+					StartCoroutine(UIManager.Instance.Fade());
+					StartCoroutine(UIManager.Instance.FadeComplete());
+					Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
+					beginFade = true;
+				}
+				//return;
 			}
-			return;
+			
+			if(Input.GetKeyDown(KeyCode.Escape) && UIManager.Instance.uiState != UIManager.UIState.GAMEOVER && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
+				UIManager.Instance.isPaused = true;
+				UIManager.Instance.uiState = UIManager.UIState.PAUSE;
+			}
+			
+			if(current){
+				UpdateFortPosWithMouseLoc();
+			}
+			
+			if(cycle.currentPhase == DayNightCycle.DayPhase.DAY || cycle.currentPhase == DayNightCycle.DayPhase.DAWN){
+				player.GetComponentInChildren<Flashlight>().TurnOff();
+			}
+			
+			if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
+				player.GetComponentInChildren<Flashlight>().TurnOn();
+			}
 		}
-		
-		if(Input.GetKeyDown(KeyCode.Escape) && UIManager.Instance.uiState != UIManager.UIState.GAMEOVER && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
-			UIManager.Instance.isPaused = true;
-			SwitchUIState(UIManager.UIState.PAUSE);
-		}
-		
-		if(current){
-			UpdateFortPosWithMouseLoc();
-		}
-		
-		if(cycle.currentPhase == DayNightCycle.DayPhase.DAY || cycle.currentPhase == DayNightCycle.DayPhase.DAWN){
-			player.GetComponentInChildren<Flashlight>().TurnOff();
-		}
-		
-		if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
-			player.GetComponentInChildren<Flashlight>().TurnOn();
-		}
+	}
+	
+	public IEnumerator RestartGame(){
+		DestroyEnemies();
+		DestroyFortifications();
+		Destroy(GameObject.FindWithTag(Globals.PLAYER));
+		Destroy(GameObject.Find("LaserLight"));
+		yield return new WaitForSeconds(0.1f);
+		SpawnPlayer();
+		GameObject.Find("XMLReader").GetComponent<XMLReader>().Reset();
+		player.GetComponentInChildren<WeaponManager>().Reset();
+		GameObject.Find("Sun").GetComponent<DayNightCycle>().Initialize();
+		Reset();
 	}
 	
 	public void Reset(){
-		DestroyEnemies();
-		DestroyFortifications();
-		GameObject.Find("Ship").AddComponent<AttachPlayerToShip>();
+		//DestroyEnemies();
+		//DestroyFortifications();
+		//Destroy(GameObject.FindWithTag(Globals.PLAYER));
 		if(shipToSpawn){
 			Destroy(shipToSpawn);
 		}
-		canShoot = false;
-		canChangeWeapons = false;
-		GetPlayerHealth().ModifyHealth(GetPlayerHealth().GetMaxHealth());
-		GetShipHealth().ModifyHealth(GetShipHealth().GetMaxHealth());
-		GetPlayerHealth().IsDead = false;
-		GetShipHealth().IsDead = false;
-		beginFade = false;
-		UIManager.Instance.FadeCompleted = false;
-		GetWaveController().ResetWave(1);
-		amountOfResources = 0;
 		foreach(ParticleEmitter light in GameObject.FindWithTag(Globals.SHIP).GetComponentsInChildren<ParticleEmitter>()){
 			light.emit = false;
 		}
-		GameObject.Find("XMLReader").GetComponent<XMLReader>().Reset();
+		//SpawnPlayer();
+		GameObject.Find("Ship").AddComponent<AttachPlayerToShip>();
+		//GetPlayerHealth().ModifyHealth(GetPlayerHealth().GetMaxHealth());
+		GetShipHealth().ModifyHealth(GetShipHealth().GetMaxHealth());
+		//GetPlayerHealth().IsDead = false;
+		GetShipHealth().IsDead = false;
+		GameObject.Find("Tutorial").GetComponent<Tutorial>().ResetTutorial();
+		GameObject.Find("Vendor").GetComponent<WeaponPanelGUI>().Reset();
+		GameObject.Find("Vendor").GetComponent<MainPanelGUI>().Reset();
+		GameObject.Find("Vendor").GetComponent<AbilityPanelGUI>().Reset();
+		//Destroy(GetPlayer().GetComponent<PlayerMovement>());
+		//Destroy(GetPlayer().GetComponent<LocalInput>());
+		//Destroy(GetPlayer().GetComponent<AnimationController>());
+		beginFade = false;
+		UIManager.Instance.FadeCompleted();
+		GetWaveController().ResetWave(1);
+		amountOfResources = 0;
+		UIManager.Instance.uiState = UIManager.UIState.NONE;
 	}
 	
 	void DestroyEnemies(){
-		enemies = GameObject.FindGameObjectsWithTag(Globals.ENEMY);
-		foreach(GameObject enemy in enemies){
+		foreach(GameObject enemy in GameObject.FindGameObjectsWithTag(Globals.ENEMY)){
 			Destroy(enemy);
 		}
 	}
@@ -177,10 +202,6 @@ public class GameController : MonoBehaviour {
 	
 	public void DeleteResources(int amount){
 		amountOfResources -= amount;
-	}
-	
-	void SwitchUIState(UIManager.UIState state){
-		UIManager.Instance.uiState = state;
 	}
 	
 	public void SetFortificationToSpawn(GameObject fort, float rot){

@@ -13,6 +13,7 @@ GameObject:
   - 64: {fileID: 6400000}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400026}
   m_Layer: 9
   m_Name: Hull
   m_TagString: Ship
@@ -338,8 +339,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .285436213, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 4}
+  m_LocalPosition: {x: -.0344390869, y: .057636261, z: -.0352287292}
+  m_LocalScale: {x: .899999976, y: 1, z: .899999976}
   m_Children:
   - {fileID: 400012}
   - {fileID: 400018}
@@ -421,8 +422,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .114572145, y: .272490859, z: .733562708}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .25}
+  m_LocalPosition: {x: .332191467, y: .9090271, z: 3.32616615}
+  m_LocalScale: {x: .920000017, y: 1, z: .875}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!4 &400014
@@ -454,8 +455,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .251882941, y: .196299151, z: 1.13492393}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .25}
+  m_LocalPosition: {x: .648002625, y: .718547821, z: 4.73092937}
+  m_LocalScale: {x: .920000017, y: 1, z: .875}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!4 &400020
@@ -487,8 +488,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.628039539, y: -.267316282, z: .288943291}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .25}
+  m_LocalPosition: {x: -1.37581635, y: -.440490723, z: 1.7699976}
+  m_LocalScale: {x: .920000017, y: 1, z: .875}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!4 &400026
@@ -498,8 +499,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.398535162, y: .0260949861, z: 1.43674707}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .25}
+  m_LocalPosition: {x: -.847961426, y: .293037415, z: 5.7873106}
+  m_LocalScale: {x: .920000017, y: 1, z: .875}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!4 &400028
@@ -509,8 +510,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .607400537, y: .0359613188, z: .264857054}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .25}
+  m_LocalPosition: {x: 1.46569061, y: .317703247, z: 1.6856966}
+  m_LocalScale: {x: .920000017, y: 1, z: .875}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!4 &400030
@@ -531,8 +532,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.628625512, y: -.22783111, z: .635809898}
-  m_LocalScale: {x: .400000006, y: .400000006, z: .25}
+  m_LocalPosition: {x: -1.37716675, y: -.341777802, z: 2.98403072}
+  m_LocalScale: {x: .920000017, y: 1, z: .875}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!4 &400034
@@ -900,7 +901,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: d1194323237f7924ea74e8a66ffa2156, type: 2}
+  - {fileID: 2100000, guid: 464a049efcb807344ae67be0c24bf177, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1242,7 +1243,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300002, guid: 7c9dae30cac12674ca3b98885a155cdc, type: 3}
+  m_Mesh: {fileID: 4300000, guid: f369f46eecc9ebb48b64e5aa5e35bdc4, type: 3}
 --- !u!33 &3300002
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1318,7 +1319,7 @@ MeshCollider:
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
-  m_Mesh: {fileID: 4300002, guid: 7c9dae30cac12674ca3b98885a155cdc, type: 3}
+  m_Mesh: {fileID: 4300000, guid: f369f46eecc9ebb48b64e5aa5e35bdc4, type: 3}
 --- !u!64 &6400002
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -1479,11 +1480,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 500
-  maxHealth: 500
+  curHealth: 1000
+  maxHealth: 1000
   canTakeDamage: 1
   explosion: {fileID: 100006, guid: 45eb2ff886bff3d4c91840e878e2097a, type: 2}
   waitTime: 3
+  damageClip: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1492,16 +1495,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced3924954a62a8448dd69d7d710c11c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4763e61e28b54dc45a88a503cf2a27e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles:
-  - {fileID: 100012}
-  - {fileID: 100018}
-  - {fileID: 100026}
-  - {fileID: 100032}
-  - {fileID: 100024}
-  - {fileID: 100028}
+  indicatorTex: {fileID: 2800000, guid: 94223aeb372d99b4ab2c36cc23d40cf9, type: 3}
+  arrow: {fileID: 2800000, guid: aef833c93a7fc77409087bb748cffaaf, type: 3}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1637,6 +1635,24 @@ MonoBehaviour:
   - {fileID: 0}
   curWaypoint: 0
   totalWayPoints: 0
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced3924954a62a8448dd69d7d710c11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+  - {fileID: 100012}
+  - {fileID: 100018}
+  - {fileID: 100026}
+  - {fileID: 100032}
+  - {fileID: 100024}
+  - {fileID: 100028}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

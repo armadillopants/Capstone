@@ -8,12 +8,6 @@ public class ItemVendor : MonoBehaviour {
 	
 	public Texture2D icon;
 	
-	private XMLVendorReader vendorReader;
-
-	void Start(){
-		vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
-	}
-	
 	public void Purchase(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
@@ -29,6 +23,7 @@ public class ItemVendor : MonoBehaviour {
 	
 	public void Upgrade(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
+		XMLVendorReader vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 		
 		if(GameController.Instance.GetResources() >= sellItem.cost && sellItem.currentUpgrade < 2){
 			

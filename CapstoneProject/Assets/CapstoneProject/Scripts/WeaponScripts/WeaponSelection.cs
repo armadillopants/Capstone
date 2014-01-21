@@ -23,12 +23,12 @@ public class WeaponSelection : MonoBehaviour {
 		weaponDisplayRect[1] = new Rect((Screen.width/2 - (buttonSize.x/2))+200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y);
 		weaponDisplayRect[2] = new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))-200, buttonSize.x, buttonSize.y);
 		weaponDisplayRect[3] = new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))+200, buttonSize.x, buttonSize.y);
-		UpdateWeaponsSlots();
 	}
 	
 	void Start(){
 		drawWeapon = true;
 		// Choose first weapon
+		UpdateWeaponsSlots();
 		SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
 		weapon = GetComponentInChildren<BaseWeapon>();
 	}

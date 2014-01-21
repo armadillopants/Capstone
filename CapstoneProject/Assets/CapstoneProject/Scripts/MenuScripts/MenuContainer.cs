@@ -6,7 +6,7 @@ public class MenuContainer : MonoBehaviour {
 	private BoxCollider[] boxCols;
 	private Renderer[] rends;
 	private MoveToTarget target;
-	private float waitTime = 5f;
+	private float waitTime = 3f;
 	public bool renderMenu = false;
 	
 	private GameObject barL;
@@ -56,8 +56,13 @@ public class MenuContainer : MonoBehaviour {
 		}
 		
 		if(barL && barR){
-			barL.transform.position = Vector3.Lerp(barL.transform.position, new Vector3(-2.6f, 8, -51), 5f*Time.deltaTime);
-			barR.transform.position = Vector3.Lerp(barR.transform.position, new Vector3(2.6f, 8, -51), 5f*Time.deltaTime);
+			if(barL.renderer.enabled && barR.renderer.enabled){
+				barL.transform.position = Vector3.Lerp(barL.transform.position, new Vector3(-2.6f, 8, -51), 5f*Time.deltaTime);
+				barR.transform.position = Vector3.Lerp(barR.transform.position, new Vector3(2.6f, 8, -51), 5f*Time.deltaTime);
+			} else {
+				barL.transform.position = Vector3.Lerp(barL.transform.position, new Vector3(0, 8, -51), 5f*Time.deltaTime);
+				barR.transform.position = Vector3.Lerp(barR.transform.position, new Vector3(0, 8, -51), 5f*Time.deltaTime);
+			}
 		}
 	}
 	
@@ -68,8 +73,13 @@ public class MenuContainer : MonoBehaviour {
 	}
 	
 	IEnumerator RenderMenu(){
-		barL = (GameObject)Instantiate(barLeft, new Vector3(0, 8, -51), Quaternion.identity);
-		barR = (GameObject)Instantiate(barRight, new Vector3(0, 8, -51), Quaternion.identity);
+		if(barL == null && barR == null){
+			barL = (GameObject)Instantiate(barLeft, new Vector3(0, 8, -51), Quaternion.identity);
+			barR = (GameObject)Instantiate(barRight, new Vector3(0, 8, -51), Quaternion.identity);
+		} else {
+			barL.renderer.enabled = true;
+			barR.renderer.enabled = true;
+		}
 		barL.transform.parent = transform;
 		barR.transform.parent = transform;
 		yield return new WaitForSeconds(1f);

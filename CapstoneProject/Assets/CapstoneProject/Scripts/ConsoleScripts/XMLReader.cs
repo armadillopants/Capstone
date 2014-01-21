@@ -10,17 +10,12 @@ public class XMLReader : MonoBehaviour {
 	private FortificationData fortData;
 	
 	void Awake(){
-		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
-		manager = player.GetComponentInChildren<WeaponManager>();
-		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("WeaponData", typeof(TextAsset));
 		doc.LoadXml(asset.text);
 		//doc.Load(Application.dataPath + "/WeaponData.xml");
 		
-		for(int i=0; i<manager.allWeapons.Count; i++){
-			SetWeapon(manager.allWeapons[i].id, "/BaseValueData/WeaponData/"+manager.allWeapons[i].name);
-		}
+		Reset();
 		
 		ItemVendor vendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
 		
@@ -31,6 +26,8 @@ public class XMLReader : MonoBehaviour {
 	}
 	
 	public void Reset(){
+		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
+		manager = player.GetComponentInChildren<WeaponManager>();
 		for(int i=0; i<manager.allWeapons.Count; i++){
 			SetWeapon(manager.allWeapons[i].id, "/BaseValueData/WeaponData/"+manager.allWeapons[i].name);
 		}

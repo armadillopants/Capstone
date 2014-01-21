@@ -9,7 +9,7 @@ public class Tutorial : MonoBehaviour {
 	public GameObject leftShift;
 	
 	private Vector3 playerPos;
-	private bool beginTutorial = false;
+	public bool beginTutorial = false;
 	private bool spawnRightMouse = false;
 	private GameObject link = null;
 	private float waitTime = 5f;
@@ -17,41 +17,47 @@ public class Tutorial : MonoBehaviour {
 	private string curKey = "";
 	
 	void Update(){
-		Transform playerTrans = GameController.Instance.GetPlayer();
-		playerPos = playerTrans.position+new Vector3(0,1,0);
-		
-		if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && GameController.Instance.GetWaveController().GetWaveNumber() == 1 && !beginTutorial){
-			StartCoroutine(BeginWASDLink());
-			beginTutorial = true;
-		}
-		
-		if(link != null){
-			if(key == "Player"){
-				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z);
-			} else if(key == "LeftClick" || key == "LeftShift"){
-				link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);
-			} else if(key == "RightClick"){
-				link.transform.position = new Vector3(link.transform.position.x, 1, link.transform.position.z);
+		if(GameController.Instance.GetPlayer()){
+			Transform playerTrans = GameController.Instance.GetPlayer();
+			playerPos = playerTrans.position+new Vector3(0,1,0);
+			
+			if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && GameController.Instance.GetWaveController().GetWaveNumber() == 1 && !beginTutorial){
+				StartCoroutine(BeginWASDLink());
+				beginTutorial = true;
+			}
+			
+			if(link != null){
+				if(key == "Player"){
+					link.transform.position = new Vector3(playerPos.x, 1, playerPos.z);
+				} else if(key == "LeftClick" || key == "LeftShift"){
+					link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);
+				} else if(key == "RightClick"){
+					link.transform.position = new Vector3(link.transform.position.x, 1, link.transform.position.z);
+				}
+			}
+			
+			if(curKey == "BuildScreen"){
+				WaitForBuildScreen();
+			} else if(curKey == "QandE"){
+				QandE();
+			} else if(curKey == "ClickLeft"){
+				ClickLeft();
+			} else if(curKey == "ClickRight"){
+				ClickRight();
+			} else if(curKey == "FortPlacement"){
+				WaitForFortPlacement();
+			} else if(curKey == "DestroyMouseRightLink"){
+				DestroyMouseRightLink();
+			} else if(curKey == "WeaponScreen"){
+				WaitForWeaponScreen();
+			} else if(curKey == "AbilityScreen"){
+				WaitForAbilityScreen();
 			}
 		}
-		
-		if(curKey == "BuildScreen"){
-			WaitForBuildScreen();
-		} else if(curKey == "QandE"){
-			QandE();
-		} else if(curKey == "ClickLeft"){
-			ClickLeft();
-		} else if(curKey == "ClickRight"){
-			ClickRight();
-		} else if(curKey == "FortPlacement"){
-			WaitForFortPlacement();
-		} else if(curKey == "DestroyMouseRightLink"){
-			DestroyMouseRightLink();
-		} else if(curKey == "WeaponScreen"){
-			WaitForWeaponScreen();
-		} else if(curKey == "AbilityScreen"){
-			WaitForAbilityScreen();
-		}
+	}
+	
+	public void ResetTutorial(){
+		beginTutorial = false;
 	}
 	
 	GameObject Spawn(GameObject g, Vector3 pos, bool spawned){
@@ -193,7 +199,7 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	void DrawScreen(string text, int fontSize){
-		Rect shipRect = new Rect((Screen.width/2) - (900/2), (Screen.height/2) - (80/2) - 250, 900, 80);
+		Rect shipRect = new Rect((Screen.width/2) - (900/2), /*(Screen.height/2) - (80/2) - 250*/(Screen.height-Screen.height)+80, 900, 80);
 		
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;

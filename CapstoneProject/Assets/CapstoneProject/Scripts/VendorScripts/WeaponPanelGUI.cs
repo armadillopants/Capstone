@@ -60,10 +60,14 @@ public class WeaponPanelGUI : MonoBehaviour {
 	public Texture2D refillActive;
 	
 	void Start(){
-	    weaponManager = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponManager>();
-	    weapons = weaponManager.allWeapons;
+		Reset();
 		weaponVendor = GameObject.Find("Vendor").GetComponent<WeaponVendor>();
 		ammoVendorContainer = GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors;
+	}
+	
+	public void Reset(){
+	    weaponManager = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponManager>();
+	    weapons = weaponManager.allWeapons;
 	}
 	
 	public void Draw(Rect drawRect){
@@ -106,23 +110,39 @@ public class WeaponPanelGUI : MonoBehaviour {
 				// Dispense the ammo
 				if(refillType == types[0]){
 					if(weaponManager.equippedWeapons[1]){
-						ammoVendorContainer[0].SetWeapon(weaponManager.equippedWeapons[1]);
-						ammoVendorContainer[0].Vendor();
+						if(GameController.Instance.GetResources() < ammoVendorContainer[0].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[0].isDisplaying){
+							ammoVendorContainer[0].Cancel();
+						} else {
+							ammoVendorContainer[0].SetWeapon(weaponManager.equippedWeapons[1]);
+							ammoVendorContainer[0].Vendor();
+						}
 					}
 				} else if(refillType == types[1]){
 					if(weaponManager.equippedWeapons[0]){
-						ammoVendorContainer[1].SetWeapon(weaponManager.equippedWeapons[0]);
-						ammoVendorContainer[1].Vendor();
+						if(GameController.Instance.GetResources() < ammoVendorContainer[1].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[1].isDisplaying){
+							ammoVendorContainer[1].Cancel();
+						} else {
+							ammoVendorContainer[1].SetWeapon(weaponManager.equippedWeapons[0]);
+							ammoVendorContainer[1].Vendor();
+						}
 					}
 				} else if(refillType == types[2]){
 					if(weaponManager.equippedWeapons[2]){
-						ammoVendorContainer[2].SetWeapon(weaponManager.equippedWeapons[2]);
-						ammoVendorContainer[2].Vendor();
+						if(GameController.Instance.GetResources() < ammoVendorContainer[2].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[2].isDisplaying){
+							ammoVendorContainer[2].Cancel();
+						} else {
+							ammoVendorContainer[2].SetWeapon(weaponManager.equippedWeapons[2]);
+							ammoVendorContainer[2].Vendor();
+						}
 					}
 				} else {
 					if(weaponManager.equippedWeapons[3]){
-						ammoVendorContainer[3].SetWeapon(weaponManager.equippedWeapons[3]);
-						ammoVendorContainer[3].Vendor();
+						if(GameController.Instance.GetResources() < ammoVendorContainer[0].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[3].isDisplaying){
+							ammoVendorContainer[3].Cancel();
+						} else {
+							ammoVendorContainer[3].SetWeapon(weaponManager.equippedWeapons[3]);
+							ammoVendorContainer[3].Vendor();
+						}
 					}
 				}
 				
@@ -191,6 +211,7 @@ public class WeaponPanelGUI : MonoBehaviour {
 					if(GameController.Instance.GetResources() > type[j].GetComponent<SellableItem>().cost && type[j].GetComponent<SellableItem>().currentUpgrade < 3){
 	          			if(GUI.Button(new Rect(buttonColOneX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "UPGRADE: "+type[j].GetComponent<SellableItem>().cost.ToString(), buttonStyle)){
 							weaponVendor.Upgrade(type[j].gameObject);
+							ammoVendorContainer[i].Cancel();
 						}
 					}
 					

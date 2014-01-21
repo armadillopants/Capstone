@@ -16,7 +16,7 @@ public class DigOutOfGround : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider hit){
 		if(hit.tag == Globals.FORTIFICATION){
-			Destroy(hit.gameObject);
+			GameController.Instance.UpdateGraphOnDestroyedObject(hit.gameObject.collider, hit.gameObject);
 		}
 	}
 }

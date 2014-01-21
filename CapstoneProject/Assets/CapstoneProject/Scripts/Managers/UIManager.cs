@@ -56,8 +56,8 @@ public class UIManager : MonoBehaviour {
 	
 	#endregion
 	
-	public bool FadeCompleted {
-		set { fadeComplete = value; }
+	public void FadeCompleted(){
+		fadeComplete = false;
 	}
 	
 	void Start(){
@@ -136,17 +136,19 @@ public class UIManager : MonoBehaviour {
 			break;
 		}
 		
-		if(GameController.Instance.GetPlayer().GetComponent<PlayerMovement>() != null){
-			DrawResources();
-			DrawCurWaveScreen();
-			if(displayUI){
-				DrawPlayerHealth();
-				DrawShipHealth();
-				if(displayFortHealthData){
-					DrawFortHealthDisplay();
-				}
-				if(displayFortWeaponData){
-					DrawFortWeaponDisplay();
+		if(GameObject.FindWithTag(Globals.PLAYER)){
+			if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>() != null){
+				DrawResources();
+				DrawCurWaveScreen();
+				if(displayUI){
+					DrawPlayerHealth();
+					DrawShipHealth();
+					if(displayFortHealthData){
+						DrawFortHealthDisplay();
+					}
+					if(displayFortWeaponData){
+						DrawFortWeaponDisplay();
+					}
 				}
 			}
 		}
@@ -213,9 +215,10 @@ public class UIManager : MonoBehaviour {
 	void DrawGameOverScreen(){
 		if(fadeComplete){
 			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50), "Restart")){
-				GameController.Instance.Reset();
+				//GameController.Instance.Reset();
 				MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
-				uiState = UIState.NONE;
+				//uiState = UIState.NONE;
+				StartCoroutine(GameController.Instance.RestartGame());
 			}
 			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2)+50, 100, 50), "Quit")){
 				Application.Quit();

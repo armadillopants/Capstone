@@ -5,7 +5,7 @@ public class AmmoVendor : MonoBehaviour {
 	public GameObject ammoVendor;
 	public GameObject weaponLink;
 	public Texture2D icon;
-	private bool isDisplaying = false;
+	public bool isDisplaying = false;
 	private DisplayItem ammo;
 	private BaseWeapon curWeapon;
 	

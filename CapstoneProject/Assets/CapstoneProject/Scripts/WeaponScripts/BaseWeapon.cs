@@ -232,7 +232,7 @@ public class BaseWeapon : MonoBehaviour {
 		// Wait for reload time first and then add more bullets!
 		isReloading = true;
 		
-		if(audio){
+		if(audio && !audio.isPlaying){
 			audio.PlayOneShot(reloadClip);
 		}
 		
