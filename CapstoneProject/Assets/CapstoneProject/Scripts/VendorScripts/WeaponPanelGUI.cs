@@ -149,22 +149,18 @@ public class WeaponPanelGUI : MonoBehaviour {
 				// If so, then purchase it
 				if(GUI.Button(refillRect, "Refill Ammo: "+ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost, refillStyle)){
 					if(refillType == types[0]){
-						Debug.Log(types[0]);
 						if(weaponManager.equippedWeapons[1]){
 							ammoVendorContainer[0].Purchase(ammoVendorContainer[0].ammoVendor);
 						}
 					} else if(refillType == types[1]){
-						Debug.Log(types[1]);
 						if(weaponManager.equippedWeapons[0]){
 							ammoVendorContainer[1].Purchase(ammoVendorContainer[1].ammoVendor);
 						}
 					} else if(refillType == types[2]){
-						Debug.Log(types[2]);
 						if(weaponManager.equippedWeapons[2]){
 							ammoVendorContainer[2].Purchase(ammoVendorContainer[2].ammoVendor);
 						}
 					} else {
-						Debug.Log(types[3]);
 						if(weaponManager.equippedWeapons[3]){
 							ammoVendorContainer[3].Purchase(ammoVendorContainer[3].ammoVendor);
 						}

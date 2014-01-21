@@ -181,7 +181,7 @@ public class BaseWeapon : MonoBehaviour {
 		  	// Does the ray intersect any objects excluding the player and fort layer
 		  	if(Physics.Raycast(startPos, direction, out hit, range, layerMaskFinal)){
 				// Apply a force to the rigidbody we hit
-				if(hit.rigidbody){
+				if(hit.rigidbody && !hit.collider.isTrigger){
 					hit.rigidbody.AddForceAtPosition(force * direction, hit.point, ForceMode.Impulse);
 				}
 				if(bullet){
@@ -202,7 +202,9 @@ public class BaseWeapon : MonoBehaviour {
 				}*/
 				Debug.DrawRay(startPos, direction * hit.distance, Color.blue);
 				// Send a damage message to the hit object
-				hit.collider.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+				if(!hit.collider.isTrigger){
+					hit.collider.gameObject.SendMessageUpwards("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+				}
 		  	} else {
 				if(bullet){
 					bullet.distance = range;

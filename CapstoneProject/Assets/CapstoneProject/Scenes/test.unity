@@ -3518,7 +3518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f5b31c9cba2044999aa66f4c36fdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backGround: {fileID: 2800000, guid: 808087ef524c0a943a578945ff9434b3, type: 3}
+  backGround: {fileID: 2800000, guid: de0b300ef28dfc74f9aa3e1b3d0ffe48, type: 3}
   labelEquipped: {fileID: 2800000, guid: 4c7671884f66af341b8c01260b3df338, type: 3}
   labelOwned: {fileID: 2800000, guid: 8356c74ecb64d454c8e10315f9cd0829, type: 3}
   labelLocked: {fileID: 2800000, guid: 717b6c190fdd783468e87ba4baea3843, type: 3}

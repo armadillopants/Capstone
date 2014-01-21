@@ -171,7 +171,7 @@ public class Enemy : AIPath {
 			} else if(curDamageMat == lightningMat){
 				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(lightningDamage/Time.time), SendMessageOptions.DontRequireReceiver);
 			} else {
-				Debug.Log("No extra damage taken");
+				// No extra damage taken
 			}
 		}
 	}
@@ -343,7 +343,7 @@ public class Enemy : AIPath {
 		} else if(curMat.material == lightningMat){
 			curDamageMat = lightningMat;
 		} else {
-			Debug.Log("WRONG MATERIAL");
+			// Wrong material
 		}
 		
 		if(!isTakingExtraDamage){
