@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Rock Rain Ability
-  description: Creates a barrage of meteors
+  description: Calls a barrage of meteors that rains down upon surrounding enemies.
   cost: 400
   preview: {fileID: 0}
   purchased: 0

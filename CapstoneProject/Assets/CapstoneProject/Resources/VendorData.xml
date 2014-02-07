@@ -151,7 +151,7 @@
 					bulletsPerClip= "72"
 					clips= "4"
 					reloadSpeed= "1.8"
-					damage= "20"
+					damage= "4"
 					coneAngle= "8">
 				</Upgrade1>
 				<Upgrade2
@@ -162,7 +162,7 @@
 					bulletsPerClip= "80"
 					clips= "4"
 					reloadSpeed= "1.6"
-					damage= "25"
+					damage= "5"
 					coneAngle= "8">
 				</Upgrade2>
 			</Upgrades>

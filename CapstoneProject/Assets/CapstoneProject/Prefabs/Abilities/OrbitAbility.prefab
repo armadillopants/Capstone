@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Orbit Ability
-  description: Creates a sprial of protective rocks around you
+  description: Creates a spiral of protective rocks around the player
   cost: 300
   preview: {fileID: 0}
   purchased: 0

@@ -102,15 +102,15 @@ public class Fortification : MonoBehaviour {
 	}
 	
 	void DrawFortBuyScreen(){
-		buildPanel.Draw(new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500));
+		buildPanel.Draw(new Rect(Screen.width-750, Screen.height-(Screen.height-200), 400, 500));
 	}
 	
 	void DrawWeaponBuyScreen(){
-		weaponPanel.Draw(new Rect(Screen.width-700, Screen.height-(Screen.height-200), 400, 500));
+		weaponPanel.Draw(new Rect(Screen.width-750, Screen.height-(Screen.height-200), 400, 500));
 	}
 	
 	void DrawAbilityBuyScreen(){
-		abilityPanel.Draw(new Rect(Screen.width-700, Screen.height-(Screen.height-200), 350, 500));
+		abilityPanel.Draw(new Rect(Screen.width-750, Screen.height-(Screen.height-200), 400, 500));
 	}
 
 	void DrawFortUpgradeScreen(){

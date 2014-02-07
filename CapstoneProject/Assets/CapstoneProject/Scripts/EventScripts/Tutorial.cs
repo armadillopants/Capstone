@@ -241,7 +241,7 @@ public class Tutorial : MonoBehaviour {
 			DrawScreen("Click ABILITIES to access abilities", 30);
 			curKey = key;
 		} else if(key == "BeginWaveScreen"){
-			DrawScreen("Click BEGIN to begin the next wave", 30);
+			DrawScreen("Click BEGIN when ready to begin the next wave", 30);
 		} else if(key == "PurchaseAmmo"){
 			DrawScreen("REFILL AMMO for equipped weapon slots", 30);
 		} else if(key == "PurchaseWeapon"){

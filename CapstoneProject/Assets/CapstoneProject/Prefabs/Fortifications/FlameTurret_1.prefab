@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Flame Turret
-  description: Short ranged, automated flame thrower. High damage towards BEETLES.
+  description: Short ranged, flame thrower. High damage towards BEETLES.
   cost: 250
   preview: {fileID: 0}
   purchased: 0
@@ -655,6 +655,9 @@ MonoBehaviour:
   id: 0
   projectile: {fileID: 0}
   muzzlePos: {fileID: 0}
+  gunPos: {fileID: 0}
+  leftHand: {fileID: 0}
+  handPos: {fileID: 0}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
   isReloading: 0

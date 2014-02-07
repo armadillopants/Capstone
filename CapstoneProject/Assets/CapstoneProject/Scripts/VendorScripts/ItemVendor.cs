@@ -6,18 +6,15 @@ public class ItemVendor : MonoBehaviour {
 	public List<GameObject> itemVendor = new List<GameObject>();
 	public GameObject upgradeItemVendor;
 	
-	public Texture2D icon;
-	
 	public void Purchase(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
-		if(GameController.Instance.GetResources() >= sellItem.cost){
-			if(sellItem.GetComponent<Dragable>()){
-				UIManager.Instance.uiState = UIManager.UIState.NONE;
-				GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
-			} else {
-				GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
-			}
+		if(sellItem.GetComponent<Dragable>()){
+			UIManager.Instance.uiState = UIManager.UIState.NONE;
+			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
+		} else {
+			GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
+			GameController.Instance.DeleteResources(sellItem.cost);
 		}
 	}
 	
@@ -25,7 +22,7 @@ public class ItemVendor : MonoBehaviour {
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		XMLVendorReader vendorReader = GameObject.Find("XMLReader").GetComponent<XMLVendorReader>();
 		
-		if(GameController.Instance.GetResources() >= sellItem.cost && sellItem.currentUpgrade < 2){
+		if(sellItem.currentUpgrade < 2){
 			
 			if(sellItem.upgradedItem){
 				GameObject upgradedItem = (GameObject)Instantiate(sellItem.upgradedItem, sellItem.gameObject.transform.position, sellItem.gameObject.transform.rotation);

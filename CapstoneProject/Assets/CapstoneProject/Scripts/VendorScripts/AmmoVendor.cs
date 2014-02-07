@@ -3,23 +3,20 @@ using UnityEngine;
 public class AmmoVendor : MonoBehaviour {
 
 	public GameObject ammoVendor;
-	public GameObject weaponLink;
-	public Texture2D icon;
 	public bool isDisplaying = false;
-	private DisplayItem ammo;
 	private BaseWeapon curWeapon;
 	
 	private int clipsToBuy;
 	private int bulletsToBuy;
 	
 	public void SetWeapon(GameObject weapon){
-		weaponLink = weapon;
+		GameObject weaponLink = weapon;
 		curWeapon = weaponLink.GetComponent<BaseWeapon>();
 	}
 	
 	public void Vendor(){
 		if(!isDisplaying){
-			ammo = ScriptableObject.CreateInstance<DisplayItem>();
+			DisplayItem ammo = ScriptableObject.CreateInstance<DisplayItem>();
 			ammo.item = ammoVendor;
 			ammo.sellItem = ammoVendor.GetComponent<SellableItem>();
 			
@@ -56,7 +53,7 @@ public class AmmoVendor : MonoBehaviour {
 	public void Purchase(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
-		if(GameController.Instance.GetResources() >= sellItem.cost && !sellItem.purchased){
+		if(!sellItem.purchased){
 			GameController.Instance.DeleteResources(sellItem.cost);
 			sellItem.cost = 0;
 			curWeapon.PurchasedAmmo(bulletsToBuy, clipsToBuy);

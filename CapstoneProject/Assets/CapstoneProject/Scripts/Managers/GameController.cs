@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour {
 	
 	private Transform player;
 	
-	private int amountOfResources = 0;
+	private int amountOfResources = 10000;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -220,7 +220,6 @@ public class GameController : MonoBehaviour {
 	}
 	
 	void UpdateFortPosWithMouseLoc(){
-		UIManager.Instance.uiState = UIManager.UIState.CURRENT_FORT_INFO;
 		if(Input.GetKeyDown(KeyCode.E)){
 			current.transform.Rotate(0, 90, 0);
 		}

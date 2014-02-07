@@ -6,12 +6,12 @@ public class BuildPanelGUI : MonoBehaviour {
   	private int labelOffset = 10;
 	
 	// Label Placement
-  	private int labelHeight = 48;
+  	private int labelHeight = 30;//48;
 	private int labelWidth = 340;
   	
 	// Button Placement
 	private int buttonWidth = 80;
-  	private int buttonHeight = 24;
+  	private int buttonHeight = 20;
   	private int buttonPosX = 200;
 	
 	private List<GameObject> allForts = new List<GameObject>();
@@ -37,13 +37,13 @@ public class BuildPanelGUI : MonoBehaviour {
 	
 	public void Draw(Rect drawRect){
 		Rect drawArea = drawRect;
-		int regionHeight = labelHeight + labelOffset;
+		int regionHeight = labelHeight + (labelOffset*3);
 		
 		GUI.BeginGroup(drawArea);
 	    GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
 	    for(int i=0; i<allForts.Count; i++){
 			
-			GUI.BeginGroup(new Rect(labelOffset*2, i*regionHeight, drawArea.width, regionHeight*labelOffset));
+			GUI.BeginGroup(new Rect(labelOffset*2, i*regionHeight+labelOffset, drawArea.width, regionHeight*labelOffset));
 			
 	      	GUIStyle itemLabelStyle = new GUIStyle();
 	      	itemLabelStyle.alignment = TextAnchor.MiddleLeft;
@@ -65,7 +65,7 @@ public class BuildPanelGUI : MonoBehaviour {
 			descriptionStyle.wordWrap = true;
 			descriptionStyle.normal.textColor = Color.white;
 			
-			GUI.Label(new Rect(labelOffset, buttonHeight+4, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().description, descriptionStyle);
+			GUI.Label(new Rect(labelOffset, buttonHeight+labelOffset, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().description, descriptionStyle);
 			
 			GUIStyle buttonStyle = new GUIStyle();
 			buttonStyle.font = labelFont;
@@ -79,11 +79,11 @@ public class BuildPanelGUI : MonoBehaviour {
 			buttonStyle.active.textColor = Color.white;
 			
 			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut){
-				if(GUI.Button(new Rect(buttonPosX, labelOffset+4, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
+				if(GUI.Button(new Rect(buttonPosX, labelOffset/2/*4*/, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
+					itemVendor.Purchase(allForts[i]);
 					if(allForts[i].name == "SatelliteTower"){
 						allForts[i].GetComponent<SellableItem>().soldOut = true;
 					}
-					itemVendor.Purchase(allForts[i]);
 				}
 			}
 			GUI.EndGroup();

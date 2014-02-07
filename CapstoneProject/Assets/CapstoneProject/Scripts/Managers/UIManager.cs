@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour {
 		WAVEWON, WAVELOST, NEXTWAVE, 
 		GAMEOVER, NONE, CURWAVE, FORT_BUILD_SCREEN,
 		FORT_WEAPON_SCREEN, FORT_UPGRADE_SCREEN, 
-		FORT_ABILITY_SCREEN, GAMEWON, CURRENT_FORT_INFO };
+		FORT_ABILITY_SCREEN, GAMEWON };
 	public UIState uiState = UIState.NONE;
 	
 	public bool isPaused = false;
@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour {
 	
 	public Texture2D resourceBackground;
 	public Font resourceFont;
-	
+	public Texture2D ammoUI;
 	public bool displayUI = true;
 	
 	#region Singleton
@@ -131,15 +131,13 @@ public class UIManager : MonoBehaviour {
 		case UIState.GAMEWON:
 			DrawGameWonScreen();
 			break;
-		case UIState.CURRENT_FORT_INFO:
-			DrawCurrentFortInfoScreen();
-			break;
 		}
 		
 		if(GameObject.FindWithTag(Globals.PLAYER)){
-			if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>() != null){
+			//if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>() != null){
 				DrawResources();
 				DrawCurWaveScreen();
+				DrawAmmoDisplay();
 				if(displayUI){
 					DrawPlayerHealth();
 					DrawShipHealth();
@@ -150,7 +148,7 @@ public class UIManager : MonoBehaviour {
 						DrawFortWeaponDisplay();
 					}
 				}
-			}
+			//}
 		}
 	}
 	
@@ -339,11 +337,36 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.EndGroup();
 	}
-
-	void DrawCurrentFortInfoScreen(){
-		GUILayout.Label("LEFT CLICK and DRAG over current fortification to move selection");
-		GUILayout.Label("RIGHT CLICK over fortification to upgrade selection");
-		GUILayout.Label("Q and E to rotate current fortification");
+	
+	void DrawAmmoDisplay(){
+		BaseWeapon weapon = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<BaseWeapon>();
+		WeaponManager manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
+		Rect ammoRect = new Rect(Screen.width-500, Screen.height-100, 500, 30);
+		
+		GUI.BeginGroup(ammoRect);
+		
+		for(int i=0; i<weapon.bulletsLeft; i++){
+			if(weapon == manager.allWeapons[5]){
+				if(i % 8 == 0){
+					GUI.DrawTexture(new Rect(450 +(i*-2),0,20,20), ammoUI);
+				}
+			} else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
+				Texture2D ammoBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+				ammoBar.SetPixel(0, 0, Color.blue);
+				ammoBar.Apply();
+				
+				GUI.DrawTexture(new Rect(400, 0, 100*weapon.bulletsLeft/weapon.clips, ammoRect.height), ammoBar, ScaleMode.StretchToFill);
+			} else {
+				GUI.DrawTexture(new Rect(450 +(i*-5),0,20,20), ammoUI);
+			}
+		}
+		GUIStyle style = new GUIStyle();
+		style.font = resourceFont;
+		style.fontSize = 15;
+		style.normal.textColor = Color.white;
+		GUI.Label(new Rect(455, 0, 50, 30), weapon.clips.ToString(), style);
+		
+		GUI.EndGroup();
 	}
 	
 	public IEnumerator FadeComplete(){

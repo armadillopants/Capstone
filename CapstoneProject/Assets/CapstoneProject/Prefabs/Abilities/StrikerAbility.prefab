@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Striker Ability
-  description: Creates three orbital strikes that rotate around the player
+  description: Beams down three orbital strikes that rotate around the player
   cost: 500
   preview: {fileID: 0}
   purchased: 0

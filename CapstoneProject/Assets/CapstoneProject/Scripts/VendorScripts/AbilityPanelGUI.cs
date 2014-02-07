@@ -1,20 +1,23 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class AbilityPanelGUI : MonoBehaviour {
 	
 	private int labelOffset = 10;
 	
 	// Label Placement
-  	private int labelHeight = 48;
-	private int labelWidth = 330;
+  	private int labelHeight = 30;//48;
+	private int labelWidth = 360;
   	
 	// Button Placement
-	private int buttonWidth = 80;
-  	private int buttonHeight = 18;
-	private int refillButtonX = 120;
-  	private int buttonColOneX = 170;
-  	private int buttonColTwoX = 250;
+	private int buyButtonWidth = 80;
+	private int upgradeButtonWidth = 100;
+	private int equipButtonWidth = 60;
+  	private int buttonHeight = 20;//18;
+	private int buttonColRefill = 120;
+  	private int buttonColBuy = 200;
+	private int buttonColUpgrade = 190;
+  	private int buttonColEquip = 300;
 	
 	// Back ground
 	public Texture2D backGround;
@@ -64,10 +67,14 @@ public class AbilityPanelGUI : MonoBehaviour {
 	public void Draw(Rect drawRect){
 		Rect drawArea = drawRect;
 		
+		int abilityRegionHeight = labelHeight + (4*labelHeight);
+		
 		GUI.BeginGroup(drawArea);
 		
 		GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
 	    for(int i=0; i<allAbilities.Count; i++){
+			
+			GUI.BeginGroup(new Rect(labelOffset, i * abilityRegionHeight, drawArea.width, abilityRegionHeight+labelOffset));
 			
 			GameObject curAbility = allAbilities[i];
 			
@@ -85,7 +92,16 @@ public class AbilityPanelGUI : MonoBehaviour {
 				abilityLabelStyle.normal.background = labelLocked;
 			}
 	
-	      	GUI.Label(new Rect(labelOffset, labelOffset+i*labelHeight + labelHeight+labelHeight, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
+	      	GUI.Label(new Rect(labelOffset, labelOffset/*+i*labelHeight + labelHeight+labelHeight*/, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
+			
+			GUIStyle descriptionStyle = new GUIStyle();
+			descriptionStyle.alignment = TextAnchor.MiddleLeft;
+			descriptionStyle.font = labelFont;
+			descriptionStyle.fontSize = 15;
+			descriptionStyle.wordWrap = true;
+			descriptionStyle.normal.textColor = Color.white;
+			
+			GUI.Label(new Rect(labelOffset, labelHeight+buttonHeight, labelWidth, labelHeight), allAbilities[i].GetComponent<SellableItem>().description, descriptionStyle);
 			
 			GUIStyle buttonStyle = new GUIStyle();
 			buttonStyle.font = labelFont;
@@ -109,7 +125,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 				buttonStyle.active.background = upgradeActive;
 				
 				if(GameController.Instance.GetResources() > allAbilities[i].GetComponent<SellableItem>().cost){
-					if(GUI.Button(new Rect(buttonColOneX, labelOffset+i*labelHeight + labelHeight+labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "UPGRADE", buttonStyle)){
+					if(GUI.Button(new Rect(buttonColUpgrade, labelOffset+5/*+i*labelHeight + labelHeight+labelHeight+(buttonHeight/2)*/, upgradeButtonWidth, buttonHeight), "UPGRADE: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Upgrade(allAbilities[i]);
 					}
 				}
@@ -117,7 +133,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 				equipStyle.normal.background = equipNormal;
 				equipStyle.hover.background = equipHover;
 				equipStyle.active.background = equipActive;
-				if(GUI.Button(new Rect(buttonColTwoX, labelOffset+i*labelHeight + labelHeight+labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "EQUIP", buttonStyle)){
+				if(GUI.Button(new Rect(buttonColEquip, labelOffset+5/*+i*labelHeight + labelHeight+labelHeight+(buttonHeight/2)*/, equipButtonWidth, buttonHeight), "EQUIP", equipStyle)){
 					if(curAbility == allAbilities[0]){
 						if(abilityHolder.GetComponent(allAbilities[0].name) == null){
 							abilityHolder.AddComponent(allAbilities[0].name);
@@ -147,13 +163,13 @@ public class AbilityPanelGUI : MonoBehaviour {
 					buttonStyle.hover.background = buyHover;
 					buttonStyle.active.background = buyActive;
 					
-					if(GUI.Button(new Rect(buttonColOneX, labelOffset+i*labelHeight+labelHeight+labelHeight+(buttonHeight/2), buttonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
+					if(GUI.Button(new Rect(buttonColBuy, labelOffset+5/*+i*labelHeight+labelHeight+labelHeight+(buttonHeight/2)*/, buyButtonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Purchase(allAbilities[i]);
 					}
 				}
         	}
+			GUI.EndGroup();
 	    }
-		
 		GUI.EndGroup();
 	}
 }

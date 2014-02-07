@@ -8,18 +8,22 @@ public class WeaponPanelGUI : MonoBehaviour {
 	
 	// Header Placement
   	private int headerHeight = 48;
-	private int headerWidth = 330;
+	private int headerWidth = 360;//330;
 	
 	// Weapon Placement
-	private int weaponWidth = 330;
+	private int weaponWidth = 360;//330;
  	private int weaponHeight = 24;
   	
 	// Button Placement
-	private int buttonWidth = 80;
+	private int buyButtonWidth = 100;
+	private int upgradeButtonWidth = 120;//80;
+	private int refillButtonWidth = 80;
+	private int equipButtonWidth = 60;
   	private int buttonHeight = 18;
-	private int refillButtonX = 120;
-  	private int buttonColOneX = 170;
-  	private int buttonColTwoX = 250;
+	private int buttonColRefill = 160;//120;
+	private int buttonColBuy = 190;
+  	private int buttonColUpgrade = 180;//170;
+  	private int buttonColEquip = 300;//250;
 
   	private List<BaseWeapon> weapons;
 	private WeaponManager weaponManager;
@@ -81,7 +85,7 @@ public class WeaponPanelGUI : MonoBehaviour {
 	      	List<BaseWeapon> type = new List<BaseWeapon>();
 	      	type = weapons.FindAll(x => (int)x.weaponType == i);
 			
-			GUI.BeginGroup(new Rect(labelOffset*2, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
+			GUI.BeginGroup(new Rect(labelOffset/**2*/, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
 			
 	      	GUIStyle headerStyle = new GUIStyle();
 	      	headerStyle.alignment = TextAnchor.MiddleLeft;
@@ -105,7 +109,7 @@ public class WeaponPanelGUI : MonoBehaviour {
 			if(weaponManager.equippedWeapons[i]){
 				// Handle Refill of weapon
 				string refillType = types[i];
-				Rect refillRect = new Rect(refillButtonX+labelOffset+labelOffset, labelOffset+labelOffset, buttonWidth*2f, buttonHeight*1.5f);
+				Rect refillRect = new Rect(buttonColRefill+labelOffset+labelOffset, labelOffset+labelOffset, refillButtonWidth*2f, buttonHeight*1.5f);
 				
 				// Dispense the ammo
 				if(refillType == types[0]){
@@ -147,22 +151,24 @@ public class WeaponPanelGUI : MonoBehaviour {
 				}
 				
 				// If so, then purchase it
-				if(GUI.Button(refillRect, "Refill Ammo: "+ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost, refillStyle)){
-					if(refillType == types[0]){
-						if(weaponManager.equippedWeapons[1]){
-							ammoVendorContainer[0].Purchase(ammoVendorContainer[0].ammoVendor);
-						}
-					} else if(refillType == types[1]){
-						if(weaponManager.equippedWeapons[0]){
-							ammoVendorContainer[1].Purchase(ammoVendorContainer[1].ammoVendor);
-						}
-					} else if(refillType == types[2]){
-						if(weaponManager.equippedWeapons[2]){
-							ammoVendorContainer[2].Purchase(ammoVendorContainer[2].ammoVendor);
-						}
-					} else {
-						if(weaponManager.equippedWeapons[3]){
-							ammoVendorContainer[3].Purchase(ammoVendorContainer[3].ammoVendor);
+				if(GameController.Instance.GetResources() >= ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost){
+					if(GUI.Button(refillRect, "Refill Ammo: "+ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost, refillStyle)){
+						if(refillType == types[0]){
+							if(weaponManager.equippedWeapons[1]){
+								ammoVendorContainer[0].Purchase(ammoVendorContainer[0].ammoVendor);
+							}
+						} else if(refillType == types[1]){
+							if(weaponManager.equippedWeapons[0]){
+								ammoVendorContainer[1].Purchase(ammoVendorContainer[1].ammoVendor);
+							}
+						} else if(refillType == types[2]){
+							if(weaponManager.equippedWeapons[2]){
+								ammoVendorContainer[2].Purchase(ammoVendorContainer[2].ammoVendor);
+							}
+						} else {
+							if(weaponManager.equippedWeapons[3]){
+								ammoVendorContainer[3].Purchase(ammoVendorContainer[3].ammoVendor);
+							}
 						}
 					}
 				}
@@ -204,8 +210,8 @@ public class WeaponPanelGUI : MonoBehaviour {
 					buttonStyle.hover.background = upgradeHover;
 					buttonStyle.active.background = upgradeActive;
 					
-					if(GameController.Instance.GetResources() > type[j].GetComponent<SellableItem>().cost && type[j].GetComponent<SellableItem>().currentUpgrade < 3){
-	          			if(GUI.Button(new Rect(buttonColOneX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "UPGRADE: "+type[j].GetComponent<SellableItem>().cost.ToString(), buttonStyle)){
+					if(GameController.Instance.GetResources() >= type[j].GetComponent<SellableItem>().cost && type[j].GetComponent<SellableItem>().currentUpgrade < 3){
+	          			if(GUI.Button(new Rect(buttonColUpgrade, labelOffset+2+j*weaponHeight + headerHeight + 1, upgradeButtonWidth, buttonHeight), "UPGRADE: "+type[j].GetComponent<SellableItem>().cost.ToString(), buttonStyle)){
 							weaponVendor.Upgrade(type[j].gameObject);
 							ammoVendorContainer[i].Cancel();
 						}
@@ -214,7 +220,7 @@ public class WeaponPanelGUI : MonoBehaviour {
 					equipStyle.normal.background = equipNormal;
 					equipStyle.hover.background = equipHover;
 					equipStyle.active.background = equipActive;
-					if(GUI.Button(new Rect(buttonColTwoX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "EQUIP", equipStyle)){
+					if(GUI.Button(new Rect(buttonColEquip, labelOffset+2+j*weaponHeight + headerHeight + 1, equipButtonWidth, buttonHeight), "EQUIP", equipStyle)){
 						if(weaponManager.rifleWeapons.Contains(type[j].gameObject)){
 							weaponManager.equippedWeapons[0] = type[j].gameObject;
 							ammoVendorContainer[1].Cancel();
@@ -230,12 +236,12 @@ public class WeaponPanelGUI : MonoBehaviour {
 						}
 					}
 	        	} else {
-					if(GameController.Instance.GetResources() > type[j].GetComponent<SellableItem>().cost){
+					if(GameController.Instance.GetResources() >= type[j].GetComponent<SellableItem>().cost){
 						buttonStyle.normal.background = buyNormal;
 						buttonStyle.hover.background = buyHover;
 						buttonStyle.active.background = buyActive;
 						
-		          		if(GUI.Button(new Rect(buttonColOneX, labelOffset+2+j*weaponHeight + headerHeight + 1, buttonWidth, buttonHeight), "BUY: "+type[j].GetComponent<SellableItem>().cost.ToString(), buttonStyle)){
+		          		if(GUI.Button(new Rect(buttonColBuy, labelOffset+2+j*weaponHeight + headerHeight + 1, buyButtonWidth, buttonHeight), "BUY: "+type[j].GetComponent<SellableItem>().cost.ToString(), buttonStyle)){
 							weaponVendor.Purchase(type[j].gameObject);
 						}
 					}
