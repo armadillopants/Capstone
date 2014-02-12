@@ -134,7 +134,7 @@ public class UIManager : MonoBehaviour {
 		}
 		
 		if(GameObject.FindWithTag(Globals.PLAYER)){
-			//if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>() != null){
+			if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>() != null){
 				DrawResources();
 				DrawCurWaveScreen();
 				DrawAmmoDisplay();
@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour {
 						DrawFortWeaponDisplay();
 					}
 				}
-			//}
+			}
 		}
 	}
 	
@@ -257,7 +257,7 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawPlayerHealth(){
-		Rect playerHealthRect = new Rect(Screen.width-200, Screen.height-50, 200, 30);
+		Rect playerHealthRect = new Rect(Screen.width-250, Screen.height-50, 200, 30);
 		
 		GUI.BeginGroup(playerHealthRect);
 		
@@ -265,11 +265,11 @@ public class UIManager : MonoBehaviour {
 		playerHealthBar.SetPixel(0, 0, Color.red);
 		playerHealthBar.Apply();
 		
-		GUI.DrawTexture(new Rect(0, 0, 
-			playerHealthRect.width*GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
+		GUI.DrawTexture(new Rect(playerHealthRect.width, 0, 
+			-playerHealthRect.width*GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
 			grayBar, ScaleMode.StretchToFill);
-		GUI.DrawTexture(new Rect(0, 0, 
-			playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
+		GUI.DrawTexture(new Rect(playerHealthRect.width, 0, 
+			-playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
 			playerHealthBar, ScaleMode.StretchToFill);
 
 		GUI.EndGroup();
@@ -282,11 +282,11 @@ public class UIManager : MonoBehaviour {
 		shipHealthBar.SetPixel(0, 0, Color.green);
 		shipHealthBar.Apply();
 		
-		GUI.DrawTexture(new Rect(0, 0, 
-			shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+		GUI.DrawTexture(new Rect(shipHealthRect.width, 0, 
+			-shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
 			grayBar, ScaleMode.StretchToFill);
-		GUI.DrawTexture(new Rect(0, 0, 
-			shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
+		GUI.DrawTexture(new Rect(shipHealthRect.width, 0, 
+			-shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
 			shipHealthBar, ScaleMode.StretchToFill);
 		
 		GUI.EndGroup();
@@ -299,11 +299,11 @@ public class UIManager : MonoBehaviour {
 		fortHealthBar.SetPixel(0, 0, Color.red);
 		fortHealthBar.Apply();
 		
-		GUI.DrawTexture(new Rect(0, 0, 
-			fortHealthDisplayRect.width*fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
+		GUI.DrawTexture(new Rect(fortHealthDisplayRect.width, 0, 
+			-fortHealthDisplayRect.width*fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
 			grayBar, ScaleMode.StretchToFill);
-		GUI.DrawTexture(new Rect(0, 0, 
-			fortHealthDisplayRect.width*fortHealth.curHealth/fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
+		GUI.DrawTexture(new Rect(fortHealthDisplayRect.width, 0, 
+			-fortHealthDisplayRect.width*fortHealth.curHealth/fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
 			fortHealthBar, ScaleMode.StretchToFill);
 		
 		GUI.EndGroup();
@@ -341,30 +341,31 @@ public class UIManager : MonoBehaviour {
 	void DrawAmmoDisplay(){
 		BaseWeapon weapon = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<BaseWeapon>();
 		WeaponManager manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
-		Rect ammoRect = new Rect(Screen.width-500, Screen.height-100, 500, 30);
 		
-		GUI.BeginGroup(ammoRect);
+		GUI.BeginGroup(new Rect(Screen.width-500, Screen.height-100, 500, 30));
 		
 		for(int i=0; i<weapon.bulletsLeft; i++){
 			if(weapon == manager.allWeapons[5]){
 				if(i % 8 == 0){
-					GUI.DrawTexture(new Rect(450 +(i*-2),0,20,20), ammoUI);
+					GUI.DrawTexture(new Rect(440 +(i*-2),0,20,20), ammoUI);
 				}
 			} else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
 				Texture2D ammoBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 				ammoBar.SetPixel(0, 0, Color.blue);
 				ammoBar.Apply();
 				
-				GUI.DrawTexture(new Rect(400, 0, 100*weapon.bulletsLeft/weapon.clips, ammoRect.height), ammoBar, ScaleMode.StretchToFill);
+				float width = Mathf.Clamp(200f*Mathf.Round((weapon.bulletsLeft/150f)*100f)/100f, 0, 200);
+				GUI.DrawTexture(new Rect(440, 0, -width, 20), ammoBar, ScaleMode.StretchToFill);
 			} else {
-				GUI.DrawTexture(new Rect(450 +(i*-5),0,20,20), ammoUI);
+				GUI.DrawTexture(new Rect(440 +(i*-5),0,20,20), ammoUI);
 			}
 		}
+		
 		GUIStyle style = new GUIStyle();
 		style.font = resourceFont;
 		style.fontSize = 15;
 		style.normal.textColor = Color.white;
-		GUI.Label(new Rect(455, 0, 50, 30), weapon.clips.ToString(), style);
+		GUI.Label(new Rect(455, 0, 20, 30), weapon.clips.ToString(), style);
 		
 		GUI.EndGroup();
 	}

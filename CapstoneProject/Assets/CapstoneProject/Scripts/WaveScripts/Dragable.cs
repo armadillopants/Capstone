@@ -7,6 +7,7 @@ public class Dragable : MonoBehaviour {
 	public float height;
 	public bool canDrag = true;
 	public bool canUpdate = true;
+	private GameObject curObj;
 
 	private Vector3 screenPoint;
 	private Vector3 offset;
@@ -50,6 +51,18 @@ public class Dragable : MonoBehaviour {
 	
 	void OnMouseUp(){
 		checkPlaneHit = false;
+	}
+	
+	void OnMouseEnter(){
+		if(GameController.Instance.current == null && curObj == null && canUpdate){
+			curObj = (GameObject)Instantiate(GameController.Instance.haloEffectObject, transform.position, Quaternion.identity);
+		}
+	}
+	
+	void OnMouseExit(){
+		if(curObj){
+			Destroy(curObj);
+		}
 	}
 	
 	void Update(){
