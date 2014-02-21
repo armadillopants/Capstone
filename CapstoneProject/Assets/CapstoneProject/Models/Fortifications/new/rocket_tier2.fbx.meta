@@ -1,0 +1,130 @@
+fileFormatVersion: 2
+guid: 260ad82296208774580e8240e2db94ed
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: antenna
+    100002: hatch1
+    100004: hatch2
+    100006: hatch3
+    100008: hatch4
+    100010: hatch5
+    100012: hinge1
+    100014: hinge2
+    100016: hinge3
+    100018: hinge4
+    100020: hinge5
+    100022: horiz_pivot
+    100024: launcher
+    100026: //RootNode
+    100028: vert_pivot
+    400000: antenna
+    400002: hatch1
+    400004: hatch2
+    400006: hatch3
+    400008: hatch4
+    400010: hatch5
+    400012: hinge1
+    400014: hinge2
+    400016: hinge3
+    400018: hinge4
+    400020: hinge5
+    400022: horiz_pivot
+    400024: launcher
+    400026: //RootNode
+    400028: vert_pivot
+    2300000: antenna
+    2300002: hatch1
+    2300004: hatch2
+    2300006: hatch3
+    2300008: hatch4
+    2300010: hatch5
+    2300012: hinge1
+    2300014: hinge2
+    2300016: hinge3
+    2300018: hinge4
+    2300020: hinge5
+    2300022: horiz_pivot
+    2300024: launcher
+    2300026: vert_pivot
+    3300000: antenna
+    3300002: hatch1
+    3300004: hatch2
+    3300006: hatch3
+    3300008: hatch4
+    3300010: hatch5
+    3300012: hinge1
+    3300014: hinge2
+    3300016: hinge3
+    3300018: hinge4
+    3300020: hinge5
+    3300022: horiz_pivot
+    3300024: launcher
+    3300026: vert_pivot
+    4300000: horiz_pivot
+    4300002: vert_pivot
+    4300004: launcher
+    4300006: hinge1
+    4300008: hatch1
+    4300010: hinge2
+    4300012: hatch2
+    4300014: hinge3
+    4300016: hatch3
+    4300018: hinge4
+    4300020: hatch4
+    4300022: hinge5
+    4300024: hatch5
+    4300026: antenna
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
