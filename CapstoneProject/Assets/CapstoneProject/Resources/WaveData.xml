@@ -55,6 +55,14 @@
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="0"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave1>
 		<Wave2>
@@ -102,6 +110,14 @@
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="0"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave2>
 		<Wave3>
@@ -134,7 +150,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="10"
+					amountToSpawn="5"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -142,13 +158,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="2"
+					amountToSpawn="5"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="2"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave3>
 		<Wave4>
@@ -181,7 +205,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="10"
+					amountToSpawn="4"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -189,13 +213,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="4"
+					amountToSpawn="6"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="4"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave4>
 		<Wave5>
@@ -228,7 +260,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="10"
+					amountToSpawn="6"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -236,13 +268,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="6"
+					amountToSpawn="5"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="5"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave5>
 		<Wave6>
@@ -275,7 +315,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="12"
+					amountToSpawn="6"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -290,6 +330,14 @@
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="6"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave6>
 		<Wave7>
@@ -322,7 +370,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="10"
+					amountToSpawn="6"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -330,13 +378,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="10"
+					amountToSpawn="8"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="6"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave7>
 		<Wave8>
@@ -369,7 +425,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="15"
+					amountToSpawn="8"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -377,13 +433,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="7"
+					amountToSpawn="8"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="6"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave8>
 		<Wave9>
@@ -416,7 +480,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="16"
+					amountToSpawn="6"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -424,13 +488,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="8"
+					amountToSpawn="10"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="8"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave9>
 		<Wave10>
@@ -463,7 +535,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="16"
+					amountToSpawn="8"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -478,6 +550,14 @@
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="8"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave10>
 		<Wave11>
@@ -510,7 +590,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="16"
+					amountToSpawn="8"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -518,13 +598,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="12"
+					amountToSpawn="10"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="10"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave11>
 		<Wave12>
@@ -557,7 +645,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="18"
+					amountToSpawn="8"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -572,6 +660,14 @@
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="10"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave12>
 		<Wave13>
@@ -604,7 +700,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="18"
+					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -612,13 +708,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="14"
+					amountToSpawn="12"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="10"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave13>
 		<Wave14>
@@ -651,7 +755,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="18"
+					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -659,13 +763,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="16"
+					amountToSpawn="12"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="12"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave14>
 		<Wave15>
@@ -698,7 +810,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="20"
+					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -706,13 +818,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="16"
+					amountToSpawn="14"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="12"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave15>
 		<Wave16>
@@ -745,7 +865,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="20"
+					amountToSpawn="10"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -753,13 +873,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="18"
+					amountToSpawn="14"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="14"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave16>
 		<Wave17>
@@ -792,7 +920,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="22"
+					amountToSpawn="12"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -800,13 +928,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="18"
+					amountToSpawn="14"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="14"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave17>
 		<Wave18>
@@ -839,7 +975,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="24"
+					amountToSpawn="12"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -847,13 +983,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="18"
+					amountToSpawn="16"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="14"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave18>
 		<Wave19>
@@ -886,7 +1030,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="24"
+					amountToSpawn="14"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -894,13 +1038,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="20"
+					amountToSpawn="16"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="14"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave19>
 		<Wave20>
@@ -933,7 +1085,7 @@
 			</Day>
 			<Night>
 				<Scavenger
-					amountToSpawn="26"
+					amountToSpawn="14"
 					health="75"
 					moveSpeed="2.5"
 					turnSpeed="2"
@@ -941,13 +1093,21 @@
 					damageAmount="10">
 				</Scavenger>
 				<Crusher
-					amountToSpawn="20"
+					amountToSpawn="18"
 					health="150"
 					moveSpeed="1"
 					turnSpeed="1.5"
 					attackSpeed="3"
 					damageAmount="30">
 				</Crusher>
+				<Worm
+					amountToSpawn="14"
+					health="100"
+					moveSpeed="2"
+					turnSpeed="1"
+					attackSpeed="2"
+					damageAmount="20">
+				</Worm>
 			</Night>
 		</Wave20>
 	</Wave>

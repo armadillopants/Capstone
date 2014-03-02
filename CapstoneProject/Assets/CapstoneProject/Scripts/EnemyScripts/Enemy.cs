@@ -4,10 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Seeker))]
 public class Enemy : AIPath {
 	
-	public enum EnemyState { CHASING, ATTACKING, IDLE, DEAD };
+	public enum EnemyState { CHASING, ATTACKING, IDLE, DEAD, SHOOTING, HOVER };
 	public EnemyState state = EnemyState.CHASING;
 	
-	private Animation anim;
+	protected Animation anim;
 	public float animationSpeed = 0.2f;
 	
 	private Transform playerTarget;
@@ -17,27 +17,27 @@ public class Enemy : AIPath {
 	
 	public bool doDamage = false;
 	public bool isPathBlocked = false;
-	private bool isDead = false;
+	protected bool isDead = false;
 	public bool isUnderground = false;
 	
-	private float currentCoolDown = 0f;
+	protected float currentCoolDown = 0f;
 	public float coolDownLength = 1f;
 	public float damageAmount = 10f;
 	public float distance = 10f;
 	public float targetHeight = 1f;
 	private int amountToGive = 0;
-	private float sleepVelocity = 0.4f;
+	protected float sleepVelocity = 0.4f;
 
-	private bool isTakingExtraDamage = false;
-	private ParticleEmitter emitter;
+	protected bool isTakingExtraDamage = false;
+	protected ParticleEmitter emitter;
 	public float burnDamage;
 	public float lightningDamage;
 	
-	private Health health;
+	protected Health health;
 	
 	public GameObject money;
 	
-	private Material curDamageMat;
+	protected Material curDamageMat;
 	public Material fireMat;
 	public Material lightningMat;
 	
@@ -91,7 +91,7 @@ public class Enemy : AIPath {
 		return rigid.position;
 	}
 	
-	protected new void Update(){
+	public virtual void Update(){
 		
 		if(isUnderground){
 			return;
@@ -232,7 +232,7 @@ public class Enemy : AIPath {
 		Debug.Log("Reached Target");
 	}
 	
-	void FixedUpdate(){
+	public virtual void FixedUpdate(){
 		if(isUnderground){
 			return;
 		}
@@ -266,7 +266,7 @@ public class Enemy : AIPath {
 		}
 	}
 	
-	void ChaseObject(){
+	public virtual void ChaseObject(){
 		
 		Vector3 velocity;
 		if(canMove){
@@ -281,7 +281,7 @@ public class Enemy : AIPath {
 			}
 			
 			if(dir.sqrMagnitude > sleepVelocity*sleepVelocity){
-				// Move the enemey
+				// Move the enemy
 				if(rigid != null){
 					rigid.velocity = dir * speed;
 				}

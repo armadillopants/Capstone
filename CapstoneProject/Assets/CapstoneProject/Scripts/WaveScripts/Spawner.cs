@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour {
 	public GameObject tiger;
 	public GameObject scavenger;
 	public GameObject crusher;
+	public GameObject worm;
 	
 	private GameObject[] spawnPoints;
 	private Transform spawnPoint;
@@ -36,6 +37,7 @@ public class Spawner : MonoBehaviour {
 	private EnemyData tigerData = new EnemyData();
 	private EnemyData scavengerData = new EnemyData();
 	private EnemyData crusherData = new EnemyData();
+	private EnemyData wormData = new EnemyData();
 
 	void Start(){
 		spawnPoints = GameObject.FindGameObjectsWithTag(Globals.SPAWN_POINT);
@@ -97,8 +99,16 @@ public class Spawner : MonoBehaviour {
 			crusherData.turnSpeed = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
 			crusherData.attackSpeed = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
 			crusherData.damageAmount = float.Parse(crusherData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
+			
+			wormData.firstNode = doc.SelectSingleNode("/WaveData/Wave/Wave"+waveNum + "/Night/Worm");
+			wormData.amountToSpawn = int.Parse(wormData.firstNode.Attributes.GetNamedItem("amountToSpawn").Value);
+			wormData.health = float.Parse(wormData.firstNode.Attributes.GetNamedItem("health").Value);
+			wormData.moveSpeed = float.Parse(wormData.firstNode.Attributes.GetNamedItem("moveSpeed").Value);
+			wormData.turnSpeed = float.Parse(wormData.firstNode.Attributes.GetNamedItem("turnSpeed").Value);
+			wormData.attackSpeed = float.Parse(wormData.firstNode.Attributes.GetNamedItem("attackSpeed").Value);
+			wormData.damageAmount = float.Parse(wormData.firstNode.Attributes.GetNamedItem("damageAmount").Value);
 
-			wave.amountToSpawn = scavengerData.amountToSpawn+crusherData.amountToSpawn;
+			wave.amountToSpawn = scavengerData.amountToSpawn+crusherData.amountToSpawn+wormData.amountToSpawn;
 			canDig = true;
 		}
 		
@@ -126,6 +136,10 @@ public class Spawner : MonoBehaviour {
 			for(int i=0; i<crusherData.amountToSpawn; i++){
 				enemiesToSpawn.Add(crusher);
 			}
+			
+			for(int i=0; i<wormData.amountToSpawn; i++){
+				enemiesToSpawn.Add(worm);
+			}
 		}
 	}
 	
@@ -141,6 +155,8 @@ public class Spawner : MonoBehaviour {
 			return scavengerData.health;
 		case "Crusher":
 			return crusherData.health;
+		case "Worm":
+			return wormData.health;
 		}
 		
 		return 0;
@@ -158,6 +174,8 @@ public class Spawner : MonoBehaviour {
 			return scavengerData.moveSpeed;
 		case "Crusher":
 			return crusherData.moveSpeed;
+		case "Worm":
+			return wormData.moveSpeed;
 		}
 		
 		return 0;
@@ -175,6 +193,8 @@ public class Spawner : MonoBehaviour {
 			return scavengerData.turnSpeed;
 		case "Crusher":
 			return crusherData.turnSpeed;
+		case "Worm":
+			return wormData.turnSpeed;
 		}
 		
 		return 0;
@@ -192,6 +212,8 @@ public class Spawner : MonoBehaviour {
 			return scavengerData.attackSpeed;
 		case "Crusher":
 			return crusherData.attackSpeed;
+		case "Worm":
+			return wormData.attackSpeed;
 		}
 		
 		return 0;
@@ -209,6 +231,8 @@ public class Spawner : MonoBehaviour {
 			return scavengerData.damageAmount;
 		case "Crusher":
 			return crusherData.damageAmount;
+		case "Worm":
+			return wormData.damageAmount;
 		}
 		
 		return 0;
@@ -223,7 +247,7 @@ public class Spawner : MonoBehaviour {
 		Vector3 pos = new Vector3();
 		Quaternion rot = new Quaternion();
 		
-		if(canDig){
+		if(canDig && enemy.name != "Worm"){
 			digPoint = digPoints[Random.Range(0,digPoints.Length)].transform;
 			if(Random.Range(0, 100) <= 30f){
 				pos = digPoint.position;

@@ -20,6 +20,7 @@ SubShader {
 	Pass {
 		Name "FORWARD"
 		Tags { "LightMode" = "ForwardBase" }
+		
 Program "vp" {
 // Vertex combos: 12
 //   opengl - ALU: 7 to 80

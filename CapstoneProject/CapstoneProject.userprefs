@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EnemyScripts\Worm.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="15" Column="35" />
-      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
+      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Worm.cs" Line="120" Column="30" />
+      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Enemy.cs" Line="23" Column="11" />
+      <File FileName="Assets\CapstoneProject\Resources\WaveData.xml" Line="1104" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

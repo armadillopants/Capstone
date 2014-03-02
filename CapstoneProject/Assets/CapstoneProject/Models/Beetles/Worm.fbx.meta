@@ -1,0 +1,207 @@
+fileFormatVersion: 2
+guid: 7f455d38b37875e44a1a9ae3fe98395d
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Frontjoint_01
+    100002: Frontjoint_02
+    100004: Global_Control
+    100006: HeadJoint_01
+    100008: HeadJoint_02
+    100010: LeftBigClaw_01
+    100012: LeftBigClaw_02
+    100014: LeftBigClaw_03
+    100016: LeftBigClaw_04
+    100018: LeftSmallClaw_01
+    100020: LeftSmallClaw_02
+    100022: LeftSmallClaw_03
+    100024: Midjoint_01
+    100026: Midjoint_02
+    100028: Midjoint_03
+    100030: NoseJoint
+    100032: Rearjoint_01
+    100034: RightBigClaw_01
+    100036: RightBigClaw_02
+    100038: RightBigClaw_03
+    100040: RightBigClaw_04
+    100042: RightSmallClaw_01
+    100044: RightSmallClaw_02
+    100046: RightSmallClaw_03
+    100048: Root_joint
+    100050: Rootjoint_02
+    100052: Rootjoint_03
+    100054: //RootNode
+    100056: WormA
+    400000: Frontjoint_01
+    400002: Frontjoint_02
+    400004: Global_Control
+    400006: HeadJoint_01
+    400008: HeadJoint_02
+    400010: LeftBigClaw_01
+    400012: LeftBigClaw_02
+    400014: LeftBigClaw_03
+    400016: LeftBigClaw_04
+    400018: LeftSmallClaw_01
+    400020: LeftSmallClaw_02
+    400022: LeftSmallClaw_03
+    400024: Midjoint_01
+    400026: Midjoint_02
+    400028: Midjoint_03
+    400030: NoseJoint
+    400032: Rearjoint_01
+    400034: RightBigClaw_01
+    400036: RightBigClaw_02
+    400038: RightBigClaw_03
+    400040: RightBigClaw_04
+    400042: RightSmallClaw_01
+    400044: RightSmallClaw_02
+    400046: RightSmallClaw_03
+    400048: Root_joint
+    400050: Rootjoint_02
+    400052: Rootjoint_03
+    400054: //RootNode
+    400056: WormA
+    4300000: WormA
+    7400000: Walk
+    7400002: Attack
+    7400004: Shoot
+    7400006: Death
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: WormA
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: Walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 48
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Attack
+      takeName: Take 001
+      firstFrame: 49
+      lastFrame: 96
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Shoot
+      takeName: Take 001
+      firstFrame: 97
+      lastFrame: 144
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: Death
+      takeName: Take 001
+      firstFrame: 145
+      lastFrame: 192
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 

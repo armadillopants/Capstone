@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 60e70e492eac20340b573dc136bad28f
+guid: d01d65cdd43b8c3419d5cf8b4e073dc4
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -50,7 +50,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []

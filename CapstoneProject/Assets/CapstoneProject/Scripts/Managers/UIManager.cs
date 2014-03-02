@@ -22,14 +22,18 @@ public class UIManager : MonoBehaviour {
 	private Rect shipHealthRect;
 	private Rect fortHealthDisplayRect;
 	private Rect fortWeaponDisplayRect;
+	private Rect enemyHealthDisplayRect;
 	private bool displayFortHealthData = false;
 	private bool displayFortWeaponData = false;
+	private bool displayEnemyHealthData = false;
 	private Health fortHealth;
 	private BaseWeapon fortWeapon;
+	private Health enemyHealth;
 	
 	public Texture2D resourceBackground;
 	public Font resourceFont;
 	public Texture2D ammoUI;
+	public Texture2D shotgunShellUI;
 	public bool displayUI = true;
 	
 	#region Singleton
@@ -98,6 +102,15 @@ public class UIManager : MonoBehaviour {
 				displayFortHealthData = false;
 				displayFortWeaponData = false;
 			}
+			
+			if(hit.transform.tag == Globals.ENEMY){
+				Vector3 enemyPos = Camera.main.WorldToScreenPoint(hit.point);
+				enemyHealth = hit.transform.GetComponent<Health>();
+				enemyHealthDisplayRect = new Rect(enemyPos.x, Screen.height-enemyPos.y, 100, 10);
+				displayEnemyHealthData = true;
+			} else {
+				displayEnemyHealthData = false;
+			}
 		}
 	}
 	
@@ -138,6 +151,9 @@ public class UIManager : MonoBehaviour {
 				DrawResources();
 				DrawCurWaveScreen();
 				DrawAmmoDisplay();
+				if(displayEnemyHealthData){
+					DrawEnemyHealthDisplay();
+				}
 				if(displayUI){
 					DrawPlayerHealth();
 					DrawShipHealth();
@@ -325,6 +341,23 @@ public class UIManager : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	
+	void DrawEnemyHealthDisplay(){
+		GUI.BeginGroup(enemyHealthDisplayRect);
+		
+		Texture2D enemyHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		enemyHealthBar.SetPixel(0, 0, Color.red);
+		enemyHealthBar.Apply();
+		
+		GUI.DrawTexture(new Rect(enemyHealthDisplayRect.width, 0, 
+			-enemyHealthDisplayRect.width*enemyHealth.GetMaxHealth(), enemyHealthDisplayRect.height), 
+			grayBar, ScaleMode.StretchToFill);
+		GUI.DrawTexture(new Rect(enemyHealthDisplayRect.width, 0, 
+			-enemyHealthDisplayRect.width*enemyHealth.curHealth/enemyHealth.GetMaxHealth(), enemyHealthDisplayRect.height), 
+			enemyHealthBar, ScaleMode.StretchToFill);
+		
+		GUI.EndGroup();
+	}
+	
 	void DrawResources(){
 		Rect resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
 		GUI.BeginGroup(resourceRect);
@@ -347,7 +380,7 @@ public class UIManager : MonoBehaviour {
 		for(int i=0; i<weapon.bulletsLeft; i++){
 			if(weapon == manager.allWeapons[5]){
 				if(i % 8 == 0){
-					GUI.DrawTexture(new Rect(440 +(i*-2),0,20,20), ammoUI);
+					GUI.DrawTexture(new Rect(440 +(i*-2),0,20,20), shotgunShellUI);
 				}
 			} else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
 				Texture2D ammoBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
