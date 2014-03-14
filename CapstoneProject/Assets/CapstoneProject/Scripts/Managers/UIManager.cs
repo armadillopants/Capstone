@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour {
 	public Font resourceFont;
 	public Texture2D ammoUI;
 	public Texture2D shotgunShellUI;
+	public Texture2D[] canisters;
+	public Texture2D[] batteries;
 	public bool displayUI = true;
 	
 	#region Singleton
@@ -375,20 +377,52 @@ public class UIManager : MonoBehaviour {
 		BaseWeapon weapon = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<BaseWeapon>();
 		WeaponManager manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
 		
-		GUI.BeginGroup(new Rect(Screen.width-500, Screen.height-100, 500, 30));
+		GUI.BeginGroup(new Rect(Screen.width-500, Screen.height-100, 500, 50));
 		
 		for(int i=0; i<weapon.bulletsLeft; i++){
 			if(weapon == manager.allWeapons[5]){
 				if(i % 8 == 0){
 					GUI.DrawTexture(new Rect(440 +(i*-2),0,20,20), shotgunShellUI);
 				}
-			} else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
+			} else if(weapon == manager.allWeapons[7]){
+				
+				if(weapon.bulletsLeft >= weapon.bulletsPerClip){
+					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[0]);
+				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/3)) && weapon.bulletsLeft < weapon.bulletsPerClip){
+					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[1]);
+				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/2)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/3))){
+					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[2]);
+				} else if(weapon.bulletsLeft > 0 && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/2))){
+					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[3]);
+				} else if(weapon.bulletsLeft <= 0){
+					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[4]);
+				}
+				
+				/*else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
 				Texture2D ammoBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 				ammoBar.SetPixel(0, 0, Color.blue);
 				ammoBar.Apply();
 				
 				float width = Mathf.Clamp(200f*Mathf.Round((weapon.bulletsLeft/150f)*100f)/100f, 0, 200);
-				GUI.DrawTexture(new Rect(440, 0, -width, 20), ammoBar, ScaleMode.StretchToFill);
+				GUI.DrawTexture(new Rect(440, 0, -width, 20), ammoBar, ScaleMode.StretchToFill);*/
+			} else if(weapon == manager.allWeapons[3]){
+				if(weapon.bulletsLeft >= weapon.bulletsPerClip){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[0]);
+				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/6)) && weapon.bulletsLeft < weapon.bulletsPerClip){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[1]);
+				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/5)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/6))){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[2]);
+				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/4)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/5))){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[3]);
+				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/3)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/4))){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[4]);
+				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/2)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/3))){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[5]);
+				} else if(weapon.bulletsLeft > 0 && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/2))){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[6]);
+				} else if(weapon.bulletsLeft <= 0){
+					GUI.DrawTexture(new Rect(440, 0, -200, 50), batteries[7]);
+				}
 			} else {
 				GUI.DrawTexture(new Rect(440 +(i*-5),0,20,20), ammoUI);
 			}

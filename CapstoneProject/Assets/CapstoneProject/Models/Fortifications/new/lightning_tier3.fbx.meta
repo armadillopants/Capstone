@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a40979fa4a063de41b1b2897c2c5ae30
+guid: d6b02d64ff0d23f46b391f8c8389ae24
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,18 +7,16 @@ ModelImporter:
     100002: head
     100004: horiz_pivot
     100006: horiz_pivot 1
-    100008: lightning_tier1
-    100010: //RootNode
-    100012: lightning_tier3
-    100014: vert_pivot
+    100008: //RootNode
+    100010: lightning_tier3
+    100012: vert_pivot
     400000: door
     400002: head
     400004: horiz_pivot
     400006: horiz_pivot 1
-    400008: lightning_tier1
-    400010: //RootNode
-    400012: lightning_tier3
-    400014: vert_pivot
+    400008: //RootNode
+    400010: lightning_tier3
+    400012: vert_pivot
     2300000: door
     2300002: head
     2300004: horiz_pivot
@@ -29,10 +27,10 @@ ModelImporter:
     3300004: horiz_pivot
     3300006: horiz_pivot 1
     3300008: vert_pivot
-    4300000: door
-    4300002: horiz_pivot
-    4300004: head
-    4300006: vert_pivot
+    4300000: horiz_pivot
+    4300002: head
+    4300004: vert_pivot
+    4300006: door
     4300008: horiz_pivot
     9500000: //RootNode
   materials:
@@ -85,5 +83,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 2
+  animationType: 0
   userData: 

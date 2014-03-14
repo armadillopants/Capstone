@@ -266,11 +266,11 @@ public class Spawner : MonoBehaviour {
 		}
 		
 		GameObject enemyToSpawn = (GameObject)Instantiate(enemy, pos, rot);
-		if(canDig && pos == digPoint.position){
+		enemyToSpawn.name = enemy.name;
+		if(canDig && pos == digPoint.position && enemyToSpawn.name != "Worm"){
 			enemyToSpawn.GetComponent<Enemy>().isUnderground = true;
 			enemyToSpawn.AddComponent<DigOutOfGround>();
 		}
-		enemyToSpawn.name = enemy.name;
 		enemiesToSpawn.Remove(enemy);
 	}
 }

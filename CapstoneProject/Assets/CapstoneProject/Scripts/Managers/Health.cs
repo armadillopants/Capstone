@@ -71,7 +71,7 @@ public class Health : MonoBehaviour {
 		}
 		
 		if(gameObject.tag == Globals.FORTIFICATION){
-			GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider, gameObject);
+			StartCoroutine(BeginFortDestruction());
 		} else if(gameObject.tag == Globals.ENEMY){
 			GameController.Instance.AddResources(Mathf.RoundToInt(gameObject.GetComponent<Enemy>().AmountToGive()));
 			gameObject.GetComponent<Collider>().enabled = false;
@@ -94,5 +94,13 @@ public class Health : MonoBehaviour {
 			Instantiate(explosion, transform.position, Quaternion.identity);
 		}
 		Destroy(gameObject);
+	}
+	
+	IEnumerator BeginFortDestruction(){
+		yield return new WaitForSeconds(waitTime);
+		if(explosion){
+			Instantiate(explosion, transform.position, Quaternion.identity);
+		}
+		GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider, gameObject);
 	}
 }

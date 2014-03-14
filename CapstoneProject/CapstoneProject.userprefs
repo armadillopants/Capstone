@@ -2,9 +2,16 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EnemyScripts\Worm.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Worm.cs" Line="120" Column="30" />
-      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Enemy.cs" Line="23" Column="11" />
-      <File FileName="Assets\CapstoneProject\Resources\WaveData.xml" Line="1104" Column="23" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="15" Column="35" />
+      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Worm.cs" Line="206" Column="16" />
+      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Resources\WaveData.xml" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\Spawner.cs" Line="270" Column="73" />
+      <File FileName="Assets\CapstoneProject\Scripts\EnemyScripts\Spikes.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\Turret.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\EnemyProjectile.cs" Line="37" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

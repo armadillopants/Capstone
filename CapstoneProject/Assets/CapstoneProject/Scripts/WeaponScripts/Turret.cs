@@ -9,19 +9,28 @@ public class Turret : MonoBehaviour {
 	public bool isTower = false;
 	private GameObject target;
 	private BaseWeapon weapon;
+	private Animation anim;
 
 	void Start(){
 		weapon = GetComponentInChildren<BaseWeapon>();
+		anim = GetComponentInChildren<Animation>();
+		anim.Play("Spawn");
 	}
 	
 	void Update(){
-		target = GameController.Instance.FindNearestTarget(Globals.ENEMY, pivot);
+		target = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform);
+		
+		if(GetComponent<Health>().curHealth <= 0){
+			anim.Play("Death");
+		} else {
+			anim.Play("Idle");
+		}
 		
 		if(target && weapon.clips >= 0){
 			if(isTower){
 				Vector3 relative = pivot.InverseTransformPoint(target.transform.position);
         		float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
-        		transform.Rotate(0, angle*Time.deltaTime, 0);
+        		pivot.Rotate(0, angle*Time.deltaTime, 0);
 				float xRot = constraint.eulerAngles.x;
 				xRot = Mathf.Clamp(xRot, -30, 30);
 				constraint.eulerAngles = new Vector3(xRot, constraint.eulerAngles.y, constraint.eulerAngles.z);
@@ -38,7 +47,7 @@ public class Turret : MonoBehaviour {
 				weapon.isFiring = false;
 			}
 		} else {
-			//pivot.eulerAngles = Vector3.Lerp(pivot.eulerAngles, new Vector3(30, transform.eulerAngles.y, transform.eulerAngles.z), turnSpeed*Time.deltaTime);
+			constraint.eulerAngles = Vector3.Lerp(constraint.eulerAngles, new Vector3(30, constraint.eulerAngles.y, constraint.eulerAngles.z), turnSpeed*Time.deltaTime);
 		}
 	}
 }

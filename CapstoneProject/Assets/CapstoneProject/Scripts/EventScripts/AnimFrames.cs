@@ -8,7 +8,9 @@ public class AnimFrames : MonoBehaviour {
 	
 	void Update(){
 		int index = (int)(Time.time * framesPerSecond);
-		index %= frames.Length;
-		renderer.material.mainTexture = frames[index];
+		if(index < frames.Length){
+			//index %= frames.Length;
+			renderer.material.mainTexture = frames[index];
+		}
 	}
 }

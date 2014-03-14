@@ -91,6 +91,7 @@ GameObject:
   - 4: {fileID: 400010}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
+  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -214,7 +215,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 42031fcaeed67e147a0014984f1163bf, type: 2}
+  - {fileID: 2100000, guid: 5ddd4d075baff2b40800214a05f305d2, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -232,7 +233,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 93b8d0ff1d8b31d4c98ec984a638e246, type: 2}
+  - {fileID: 2100000, guid: 51a113ee8aab0f24aa5aa1872b9075eb, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -529,7 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 11400006}
   fortDamage: 0
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400002}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -550,6 +551,21 @@ MonoBehaviour:
   currentUpgrade: 0
   id: 0
   upgradedItem: {fileID: 100008, guid: 03feb6fb2268074438f764bd28ad2b09, type: 2}
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a212d80bc74744ca6bd7eb6eb61b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 0}
+  constraint: {fileID: 0}
+  turnSpeed: 3
+  isTower: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -8,11 +8,20 @@ public class Worm : Enemy {
 	private float startSpeed;
 	public ParticleSystem flamethrower;
 	public ParticleEmitter dust;
+	private BaseWeapon weapon;
+	private float chargeTimer;
+	private float chargeTimerMax = 30f;
+	private Vector3 playerPos;
 	
 	protected override void OnEnable(){
 		base.OnEnable();
 		
 		startSpeed = speed;
+		weapon = flamethrower.GetComponent<BaseWeapon>();
+		weapon.damage = damageAmount;
+		weapon.bulletsLeft = 100000;
+		weapon.bulletsPerClip = 100000;
+		chargeTimer = chargeTimerMax;
 		flamethrower.Stop();
 	}
 	
@@ -23,6 +32,16 @@ public class Worm : Enemy {
 		
 		if(currentCoolDown > 0){
 			currentCoolDown -= Time.deltaTime;
+		}
+		
+		if(chargeTimer > 0){
+			chargeTimer -= Time.deltaTime;
+		} else if(chargeTimer <= 0 && state == Enemy.EnemyState.CHASING){
+			StartCoroutine(ChargePlayer());
+			speed = 4f;
+			transform.position = tr.TransformDirection(Vector3.forward*speed);
+			transform.rotation = Quaternion.Slerp(tr.rotation, 
+				Quaternion.LookRotation(playerPos - tr.position), turningSpeed*Time.deltaTime);
 		}
 		
 		if(health.IsDead){
@@ -45,21 +64,26 @@ public class Worm : Enemy {
 			}
 		}
 		
-		if(Vector3.Distance(target.position, transform.position) > distance){
-			canMove = true;
-			state = Enemy.EnemyState.CHASING;
-			rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
-			rigid.constraints &= ~RigidbodyConstraints.FreezePositionZ;
-			flamethrower.Stop();
-			dust.emit = true;
-		} else {
-			transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, attackHeight, transform.position.z), 0.5f*Time.deltaTime);
-			Vector3 lookPos = target.position;
-			lookPos.y = attackHeight;
-			Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookPos-transform.position), 1f*Time.deltaTime);
-			transform.rotation = Quaternion.Euler(attackRot, rot.eulerAngles.y, 0f);
-			rigid.constraints = RigidbodyConstraints.FreezePosition;
-			dust.emit = false;
+		if(chargeTimer > 0){
+			if(Vector3.Distance(target.position, transform.position) > distance){
+				canMove = true;
+				state = Enemy.EnemyState.CHASING;
+				rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
+				rigid.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+				flamethrower.Stop();
+				dust.emit = true;
+			} else {
+				transform.position = Vector3.Lerp(transform.position, 
+					new Vector3(transform.position.x, attackHeight, transform.position.z), 0.5f*Time.deltaTime);
+				rigid.constraints = RigidbodyConstraints.FreezePosition;
+				
+				Vector3 lookPos = target.position;
+				lookPos.y = attackHeight;
+				Vector3 dir = (lookPos-transform.position).normalized;
+				float targetRot = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+				transform.rotation = Quaternion.Euler(attackRot, targetRot, 0f);
+				dust.emit = false;
+			}
 		}
 	}
 	
@@ -103,6 +127,7 @@ public class Worm : Enemy {
 	
 	void PlayHoverAnimation(){
 		collider.isTrigger = true;
+		anim["Attack"].wrapMode = WrapMode.Once;
 		anim.CrossFade("Attack", 0.2f);
 		StartCoroutine(WaitToEnterShootMode());
 	}
@@ -113,16 +138,23 @@ public class Worm : Enemy {
 		
 		Vector3 dir = (target.position - transform.position).normalized;
 		float targetRot = Mathf.Atan2(dir.y, dir.x) * 180.0f / Mathf.PI;
-		Debug.Log(targetRot);
 		
-		if(Vector3.Distance(target.position, transform.position) < distance){
+		float val = Mathf.Abs(transform.rotation.y-targetRot);
+		
+		//Debug.Log("Dir: "+val);
+		if(currentCoolDown <= 0){
+			weapon.Fire();
+			currentCoolDown = coolDownLength;
+		}
+		
+		/*if(Vector3.Distance(target.position, transform.position) < distance){
 			if(Mathf.Abs(transform.rotation.y - targetRot) < 100f){
 				if(currentCoolDown <= 0){
 					target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
 					currentCoolDown = coolDownLength;
 				}
 			}
-		}
+		}*/
 		StartCoroutine(WaitToTakeDamage());
 	}
 	
@@ -141,13 +173,19 @@ public class Worm : Enemy {
 		collider.isTrigger = false;
 	}
 	
+	IEnumerator ChargePlayer(){
+		playerPos = target.position;
+		yield return new WaitForSeconds(3f);
+		chargeTimer = chargeTimerMax;
+	}
+	
 	public override void ChaseObject(){
-				
+		
 		Vector3 velocity = new Vector3();
 		if(canMove){
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
 			
-			if(Vector3.Distance(target.position, transform.position) < distance){
+			if(Vector3.Distance(target.position, transform.position) < distance && chargeTimer > 0){
 				speed = 0f;
 				state = Enemy.EnemyState.HOVER;
 				canMove = false;
@@ -156,7 +194,7 @@ public class Worm : Enemy {
 		
 				Instantiate(explosion, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
 				Instantiate(hole, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
-			} else {
+			} else if(Vector3.Distance(target.position, transform.position) > distance && chargeTimer > 0){
 				Vector3 adjustedTargetHeight = tr.position; // Set position to variable
 				adjustedTargetHeight.y = targetHeight; // Adjust height to a set target
 				tr.position = adjustedTargetHeight; // Commit the changes
@@ -171,7 +209,7 @@ public class Worm : Enemy {
 				
 				if(dir.sqrMagnitude > sleepVelocity*sleepVelocity){
 					// Move the enemy
-					if(rigid != null){
+					if(rigid != null && !rigid.isKinematic){
 						rigid.velocity = dir * speed;
 					}
 				} else {
