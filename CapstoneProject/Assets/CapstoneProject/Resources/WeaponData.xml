@@ -221,7 +221,7 @@
 			fortDamage= "0"
 			range= "10"
 			fireRate= "1"
-			force= "1"
+			force= "1.5"
 			bulletsPerClip= "10"
 			clips= "2"
 			reloadSpeed= "2"

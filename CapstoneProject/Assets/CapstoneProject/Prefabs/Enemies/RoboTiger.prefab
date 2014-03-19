@@ -1435,36 +1435,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 100074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b699bc3744f84e801a18731ef59e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 786c0d05fe3b7c74dbf0b795196dc160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repathRate: .300000012
+  repathRate: .5
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
-  speed: 2
-  turningSpeed: 2
+  speed: 3
+  turningSpeed: 5
   slowdownDistance: .600000024
   pickNextWaypointDist: 2
   forwardLook: 1
   endReachedDistance: .200000003
   closestOnPathCheck: 1
   state: 0
-  animationSpeed: .400000006
+  animationSpeed: .200000003
   lastTarget: {fileID: 0}
   curTarget: {fileID: 0}
   doDamage: 0
   isPathBlocked: 0
   isUnderground: 0
-  coolDownLength: 3
-  damageAmount: 30
+  coolDownLength: 1
+  damageAmount: 10
   distance: 10
-  targetHeight: 0
-  burnDamage: .100000001
-  lightningDamage: 4
+  targetHeight: 1
+  burnDamage: 0
+  lightningDamage: 0
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
   fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
   lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}
+  attackSound: {fileID: 8300000, guid: fb988602097b4034abab8d8b8a194bf0, type: 3}
+  targetPointOne: {x: 0, y: 0, z: 0}
+  targetPointTwo: {x: 0, y: 0, z: 0}
+  runToPointOne: 1
+  runToPointTwo: 0
+  cyberCat: {fileID: 100074, guid: 9342dd4f4da79134795cbdc388d8fc91, type: 2}
+  beamDown: {fileID: 100000, guid: 0dcc614d52a65fd4f843c5b6b8f2cd8d, type: 2}
+  tigerGrowl: {fileID: 8300000, guid: 7ed14cd41462b1442935f2bb56d6e609, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1535,6 +1543,8 @@ MonoBehaviour:
   projectile: {fileID: 5400000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
   muzzlePos: {fileID: 400080}
   gunPos: {fileID: 0}
+  leftHand: {fileID: 0}
+  handPos: {fileID: 0}
   muzzleFlash: {fileID: 2300000, guid: 9cc9f391e947cb540b2b27dd0a64a4fc, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
   isReloading: 0

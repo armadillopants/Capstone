@@ -13,8 +13,8 @@ public class Worm : Enemy {
 	private float chargeTimerMax = 30f;
 	private Vector3 playerPos;
 	
-	protected override void OnEnable(){
-		base.OnEnable();
+	public override void Start(){
+		base.Start();
 		
 		startSpeed = speed;
 		weapon = flamethrower.GetComponent<BaseWeapon>();
@@ -136,10 +136,10 @@ public class Worm : Enemy {
 		anim.CrossFade("Shoot", 0.2f);
 		flamethrower.Play();
 		
-		Vector3 dir = (target.position - transform.position).normalized;
-		float targetRot = Mathf.Atan2(dir.y, dir.x) * 180.0f / Mathf.PI;
+		//Vector3 dir = (target.position - transform.position).normalized;
+		//float targetRot = Mathf.Atan2(dir.y, dir.x) * 180.0f / Mathf.PI;
 		
-		float val = Mathf.Abs(transform.rotation.y-targetRot);
+		//float val = Mathf.Abs(transform.rotation.y-targetRot);
 		
 		//Debug.Log("Dir: "+val);
 		if(currentCoolDown <= 0){

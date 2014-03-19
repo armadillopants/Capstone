@@ -2594,6 +2594,9 @@ MonoBehaviour:
   id: 0
   projectile: {fileID: 5400000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
   muzzlePos: {fileID: 400002}
+  gunPos: {fileID: 0}
+  leftHand: {fileID: 0}
+  handPos: {fileID: 0}
   muzzleFlash: {fileID: 2300000, guid: 9cc9f391e947cb540b2b27dd0a64a4fc, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
   isReloading: 0
@@ -2635,6 +2638,9 @@ MonoBehaviour:
   id: 0
   projectile: {fileID: 5400000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
   muzzlePos: {fileID: 400008}
+  gunPos: {fileID: 0}
+  leftHand: {fileID: 0}
+  handPos: {fileID: 0}
   muzzleFlash: {fileID: 2300000, guid: 9cc9f391e947cb540b2b27dd0a64a4fc, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
   isReloading: 0
@@ -2661,6 +2667,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunObject: {fileID: 100156}
   distance: 10
+  loseWeapon: {fileID: 8300000, guid: c7e7edea85f1f6649a0393b2b703720e, type: 3}
+  targetAquired: {fileID: 8300000, guid: 01016e33f6581b64c9c379483794f248, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2700,9 +2708,8 @@ MonoBehaviour:
   lastTarget: {fileID: 0}
   curTarget: {fileID: 0}
   doDamage: 0
-  chasePlayer: 1
-  canAttackBoth: 0
   isPathBlocked: 0
+  isUnderground: 0
   coolDownLength: 1
   damageAmount: 15
   distance: 10
@@ -2712,6 +2719,7 @@ MonoBehaviour:
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
   fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
   lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}
+  attackSound: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2757,7 +2765,7 @@ MonoBehaviour:
   explosion: {fileID: 100004, guid: 8e988db245bca8b4f9abd996259c277d, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 1f824402f49a4b04e8305528dd67c4d6, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

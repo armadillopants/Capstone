@@ -11,8 +11,25 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400002}
+  - 114: {fileID: 11400004}
+  m_Layer: 0
+  m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +44,20 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 6.5, z: -56}
   m_LocalScale: {x: 10, y: 5, z: 5}
-  m_Children: []
+  m_Children:
+  - {fileID: 400002}
   m_Father: {fileID: 0}
+--- !u!4 &400002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.300000012, z: 1.20000005}
+  m_LocalScale: {x: .100000001, y: .200000003, z: .200000003}
+  m_Children: []
+  m_Father: {fileID: 400000}
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -128,6 +157,40 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 400975bcdf605ec42a693c8f2015b6f2, type: 3}
   - {fileID: 2800000, guid: 66fd37f41e8df1d4eb7393d6d786b22a, type: 3}
   framesPerSecond: 10
+  resetFrames: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344a91869ebfcf247b45db1ec5cfd473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderMenu: 0
+  playNormal: {fileID: 2800000, guid: c8afa7fa6541fc441b83ba75094e65f5, type: 3}
+  playHover: {fileID: 2800000, guid: dc3f0856ce6c34c4792a6482c370dfe1, type: 3}
+  playActive: {fileID: 2800000, guid: 05a6381e1129918489ac223aa4b972cc, type: 3}
+  quitNormal: {fileID: 2800000, guid: 876decd1b302d5845a42f8caec314e03, type: 3}
+  quitHover: {fileID: 2800000, guid: 689561cf7b3e9f647befebb3eb6af7e9, type: 3}
+  quitActive: {fileID: 2800000, guid: 3fd67ec85fd0e0a48b082f763c1d0671, type: 3}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e20e61adddf9cf408d6e7429ed8c66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beginGame: 0
+  startCam: {fileID: 0}
+  endCam: {fileID: 0}
+  lerpToStart: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

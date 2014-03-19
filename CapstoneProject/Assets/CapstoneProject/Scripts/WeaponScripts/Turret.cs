@@ -14,16 +14,20 @@ public class Turret : MonoBehaviour {
 	void Start(){
 		weapon = GetComponentInChildren<BaseWeapon>();
 		anim = GetComponentInChildren<Animation>();
-		anim.Play("Spawn");
+		if(anim){
+			anim.Play("Spawn");
+		}
 	}
 	
 	void Update(){
 		target = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform);
 		
-		if(GetComponent<Health>().curHealth <= 0){
-			anim.Play("Death");
-		} else {
-			anim.Play("Idle");
+		if(anim){
+			if(GetComponent<Health>().curHealth <= 0){
+				anim.Play("Death");
+			} else {
+				anim.Play("Idle");
+			}
 		}
 		
 		if(target && weapon.clips >= 0){
@@ -47,7 +51,9 @@ public class Turret : MonoBehaviour {
 				weapon.isFiring = false;
 			}
 		} else {
-			constraint.eulerAngles = Vector3.Lerp(constraint.eulerAngles, new Vector3(30, constraint.eulerAngles.y, constraint.eulerAngles.z), turnSpeed*Time.deltaTime);
+			if(constraint){
+				constraint.eulerAngles = Vector3.Lerp(constraint.eulerAngles, new Vector3(30, constraint.eulerAngles.y, constraint.eulerAngles.z), turnSpeed*Time.deltaTime);
+			}
 		}
 	}
 }

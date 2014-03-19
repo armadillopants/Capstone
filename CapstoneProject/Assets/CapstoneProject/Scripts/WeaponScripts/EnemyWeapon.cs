@@ -15,6 +15,8 @@ public class EnemyWeapon : MonoBehaviour {
 	
 	private float tempSpeed = 0f;
 	private bool dropGun = false;
+	public AudioClip loseWeapon;
+	public AudioClip targetAquired;
 
 	void Start(){
 		guns = transform.GetComponentsInChildren<BaseWeapon>();
@@ -33,6 +35,7 @@ public class EnemyWeapon : MonoBehaviour {
 					if(coolDownTimer <= 0){
 						coolDownTimer = 0;
 						cyborg.speed = 0;
+						audio.PlayOneShot(targetAquired);
 						anim.CrossFade("Shoot", 0.2f);
 						guns[0].Fire();
 						guns[1].Fire();
@@ -45,6 +48,7 @@ public class EnemyWeapon : MonoBehaviour {
 			
 			if(health.curHealth < health.GetMaxHealth()/Random.Range(2,4) && !dropGun){
 				StopCoroutine("Firing");
+				audio.PlayOneShot(loseWeapon);
 				gunObject.AddComponent<Rigidbody>().AddForce(new Vector3(transform.position.x+2,0,transform.position.z+2));
 				gunObject.AddComponent<DestroyTimer>();
 				gunObject.transform.parent = null;

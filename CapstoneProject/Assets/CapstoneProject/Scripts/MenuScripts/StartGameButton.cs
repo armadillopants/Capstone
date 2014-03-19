@@ -9,7 +9,7 @@ public class StartGameButton : MonoBehaviour {
 	public Transform endCam;
 	public bool lerpToStart = false;
 	
-	void Execute(){
+	public void Execute(){
 		MenuManager.Instance.menuState = MenuManager.MenuState.INGAME;
 	}
 	
@@ -45,7 +45,6 @@ public class StartGameButton : MonoBehaviour {
 			if(cam.position.z <= startCam.position.z+0.5f && lerpToStart){
 				cam.position = startCam.position;
 				cam.rotation = Quaternion.Euler(startCam.eulerAngles.x, 0, 0);
-				MenuManager.Instance.menuState = MenuManager.MenuState.MAINMENU;
 				StartCoroutine(RenderMenu());
 			}
 		}
@@ -53,7 +52,8 @@ public class StartGameButton : MonoBehaviour {
 	
 	private IEnumerator RenderMenu(){
 		yield return new WaitForSeconds(3f);
-		GameObject.Find("MainMenu").GetComponent<MenuContainer>().renderMenu = false;
+		GameObject.Find("MainMenu").GetComponent<MenuContainer>().UnRenderMenu();
+		MenuManager.Instance.menuState = MenuManager.MenuState.MAINMENU;
 		lerpToStart = false;
 	}
 }

@@ -22,7 +22,7 @@ public class AttachPlayerToShip : MonoBehaviour {
 				timer = 0;
 				player.position = new Vector3(player.position.x, 0, player.position.z);
 				player.rotation = Quaternion.Euler(0, -90, 0);
-				StartGameButton survival = GameObject.Find("SurvivalButton").GetComponent<StartGameButton>();
+				StartGameButton survival = GameObject.Find("PlayButton").GetComponent<StartGameButton>();
 				survival.beginGame = true;
 				Destroy(this);
 			}

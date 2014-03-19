@@ -41,11 +41,13 @@ public class Enemy : AIPath {
 	public Material fireMat;
 	public Material lightningMat;
 	
+	public AudioClip attackSound;
+	
 	public int AmountToGive(){
 		return amountToGive;
 	}
 	
-	public new void Start(){
+	public virtual void Start(){
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
 		
@@ -180,7 +182,7 @@ public class Enemy : AIPath {
 		currentCoolDown = Mathf.Clamp(currentCoolDown, 0, coolDownLength);
 	}
 	
-	void SwitchTarget(string targetName){
+	public void SwitchTarget(string targetName){
 		target = GameObject.FindWithTag(targetName).transform;
 		curTarget = target; // Store current target
 	}
@@ -207,6 +209,7 @@ public class Enemy : AIPath {
 		if(doDamage){
 			state = EnemyState.ATTACKING;
 			if(currentCoolDown <= 0){
+				audio.PlayOneShot(attackSound);
 				target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
 				currentCoolDown = coolDownLength;
 			}

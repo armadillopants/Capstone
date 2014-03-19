@@ -156,6 +156,7 @@ public class BaseWeapon : MonoBehaviour {
 		Rigidbody visibleProj = null;
 		if(projectile){
 			visibleProj = (Rigidbody)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
+			visibleProj.name = projectile.name;
 		}
 		
 		switch(state){

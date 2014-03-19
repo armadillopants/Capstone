@@ -56,7 +56,7 @@
 					damageAmount="30">
 				</Crusher>
 				<Worm
-					amountToSpawn="1"
+					amountToSpawn="0"
 					health="100"
 					moveSpeed="2"
 					turnSpeed="1"
