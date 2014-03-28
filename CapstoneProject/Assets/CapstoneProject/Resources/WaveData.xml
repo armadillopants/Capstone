@@ -57,11 +57,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="0"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave1>
@@ -112,11 +112,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="0"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave2>
@@ -167,11 +167,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="2"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave3>
@@ -222,11 +222,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="4"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave4>
@@ -277,11 +277,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="5"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave5>
@@ -332,11 +332,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="6"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave6>
@@ -387,11 +387,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="6"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave7>
@@ -442,11 +442,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="6"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave8>
@@ -497,11 +497,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="8"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave9>
@@ -552,11 +552,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="8"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave10>
@@ -607,11 +607,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="10"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave11>
@@ -662,11 +662,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="10"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave12>
@@ -717,11 +717,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="10"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave13>
@@ -772,11 +772,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="12"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave14>
@@ -827,11 +827,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="12"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave15>
@@ -882,11 +882,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave16>
@@ -937,11 +937,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave17>
@@ -992,11 +992,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave18>
@@ -1047,11 +1047,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave19>
@@ -1102,11 +1102,11 @@
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="100"
+					health="50"
 					moveSpeed="2"
 					turnSpeed="1"
 					attackSpeed="2"
-					damageAmount="20">
+					damageAmount="15">
 				</Worm>
 			</Night>
 		</Wave20>

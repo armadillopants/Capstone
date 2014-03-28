@@ -249,7 +249,7 @@ public class Spawner : MonoBehaviour {
 		
 		if(canDig && enemy.name != "Worm"){
 			digPoint = digPoints[Random.Range(0,digPoints.Length)].transform;
-			if(Random.Range(0, 100) <= 30f){
+			if(Random.Range(0, 100) <= 25){
 				pos = digPoint.position;
 				rot = Quaternion.Euler(-90f,0,0);
 			} else {

@@ -571,6 +571,7 @@ MonoBehaviour:
   waitTime: 3
   damageClip: {fileID: 0}
   deathClip: {fileID: 0}
+  displayHealthTimerMax: 1
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

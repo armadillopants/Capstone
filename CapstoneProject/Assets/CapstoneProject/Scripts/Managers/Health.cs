@@ -16,13 +16,36 @@ public class Health : MonoBehaviour {
 	public AudioClip damageClip;
 	public AudioClip deathClip;
 	
+	private float displayHealthTimer;
+	public float displayHealthTimerMax = 3f;
+	private bool displayHealth = false;
+	private Rect healthDisplayRect;
+	
 	void Update(){
+		
+		if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<Health>().IsDead){
+			displayHealth = false;
+			displayHealthTimer = 0;
+		}
 		
 		if(gameObject.tag == Globals.PLAYER){
 			if(curHealth < maxHealth){
 				curHealth = Mathf.Min(maxHealth, curHealth+regenSpeed*Time.deltaTime);
 			}
 		}
+		
+		if(gameObject.tag != Globals.SHIP){
+			Vector3 healthPos = Camera.main.WorldToScreenPoint(transform.position);
+			healthDisplayRect = new Rect(healthPos.x, Screen.height-healthPos.y, 100, 10);
+		}
+		
+		if(displayHealthTimer > 0){
+			displayHealthTimer -= Time.deltaTime;
+			displayHealth = true;
+		} else {
+			displayHealth = false;
+		}
+		
 	}
 	
 	public bool IsDead {
@@ -44,16 +67,22 @@ public class Health : MonoBehaviour {
 	}
 	
 	public void TakeDamage(float damage){
+		if(isDead){
+			return;
+		}
+		
 		if(canTakeDamage){
 			curHealth = Mathf.Max(minHealth, curHealth-damage);
 		}
+		
+		displayHealthTimer = displayHealthTimerMax;
 		
 		if(damageClip){
 			audio.PlayOneShot(damageClip);
 		}
 		
 		if(gameObject.tag == Globals.SHIP){
-			if(curHealth % 5 == 0){
+			if(curHealth % 20 == 0){
 				gameObject.GetComponent<ShipDecay>().Release();
 			}
 		}
@@ -65,6 +94,8 @@ public class Health : MonoBehaviour {
 
 	public void Die(){
 		isDead = true;
+		displayHealth = false;
+		displayHealthTimer = 0;
 		
 		if(deathClip){
 			audio.PlayOneShot(deathClip);
@@ -81,7 +112,7 @@ public class Health : MonoBehaviour {
 		} else if(gameObject.tag == Globals.PLAYER){
 			Destroy(gameObject.GetComponent<LocalInput>());
 			Destroy(gameObject.GetComponent<PlayerMovement>());
-			rigidbody.freezeRotation = true;
+			rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 			//Destroy(gameObject.GetComponent<AnimationController>());
 		} else {
 			StartCoroutine(BeginDeathSequence());
@@ -102,5 +133,28 @@ public class Health : MonoBehaviour {
 			Instantiate(explosion, transform.position, Quaternion.identity);
 		}
 		GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider, gameObject);
+	}
+	
+	void OnGUI(){
+		if(displayHealth){
+			GUI.BeginGroup(healthDisplayRect);
+			
+			Texture2D healthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+			healthBar.SetPixel(0, 0, Color.red);
+			healthBar.Apply();
+			
+			Texture2D grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+			grayBar.SetPixel(0, 0, Color.gray);
+			grayBar.Apply();
+			
+			GUI.DrawTexture(new Rect(healthDisplayRect.width, 0, 
+				-healthDisplayRect.width*maxHealth, healthDisplayRect.height), 
+				grayBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(healthDisplayRect.width, 0, 
+				-healthDisplayRect.width*curHealth/maxHealth, healthDisplayRect.height), 
+				healthBar, ScaleMode.StretchToFill);
+			
+			GUI.EndGroup();
+		}
 	}
 }

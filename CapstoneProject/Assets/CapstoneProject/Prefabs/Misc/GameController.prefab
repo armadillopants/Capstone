@@ -101,7 +101,31 @@ MonoBehaviour:
   resourceFont: {fileID: 12800000, guid: a5a5cb6ca4901d446b4ad0acb6855953, type: 3}
   ammoUI: {fileID: 2800000, guid: fe5c22d4f94031c4dae708f7ed7e9ecb, type: 3}
   shotgunShellUI: {fileID: 2800000, guid: 6561ab893851ef14ab21ff86eb1e3582, type: 3}
+  canisters:
+  - {fileID: 2800000, guid: faa6d534c7aa4b346afefcf3c6a0aaf2, type: 3}
+  - {fileID: 2800000, guid: 152b98751d2efe2448d90b8069f64caa, type: 3}
+  - {fileID: 2800000, guid: 9a24ac26d214c874cadff6b634c2ff2e, type: 3}
+  - {fileID: 2800000, guid: 50f5ddbb63d550f49886dfe8a18e551f, type: 3}
+  - {fileID: 2800000, guid: 1f3a6289873d49941ac4cfcec9b5e5e5, type: 3}
+  batteries:
+  - {fileID: 2800000, guid: 2c0c332aa75547347a4d8cc17dc650e6, type: 3}
+  - {fileID: 2800000, guid: eba2e4340d4871f448a03cd8aa58b146, type: 3}
+  - {fileID: 2800000, guid: 2da4d53869119904d824c800dd815c85, type: 3}
+  - {fileID: 2800000, guid: 5f4b86a549c28804ba919305f5492086, type: 3}
+  - {fileID: 2800000, guid: 9ea9b15b500cc98459a2a1cf31ac6de0, type: 3}
+  - {fileID: 2800000, guid: 0cbe0371ae90b054b9cac4b7c7069a6b, type: 3}
+  - {fileID: 2800000, guid: b0166ee5c488fec4f9399feff49500f4, type: 3}
+  - {fileID: 2800000, guid: cb7aa5bcece99db45bfa8c725364d49e, type: 3}
   displayUI: 1
+  resumeNormal: {fileID: 2800000, guid: 7f810e6c1c7f82744aea37a91f456bcd, type: 3}
+  resumeHover: {fileID: 2800000, guid: efe6d43b77ffe79479bb451494ef5acd, type: 3}
+  resumeActive: {fileID: 2800000, guid: 4f7d024fbcc82d0458bd886fc52dd59f, type: 3}
+  restartNormal: {fileID: 2800000, guid: 7d6beff2373cee24dadf9233135da379, type: 3}
+  restartHover: {fileID: 2800000, guid: c047b40d87f194947994490ed0557374, type: 3}
+  restartActive: {fileID: 2800000, guid: 3c07ac00aa34d2c488f3794c5633d7d5, type: 3}
+  quitNormal: {fileID: 2800000, guid: 876decd1b302d5845a42f8caec314e03, type: 3}
+  quitHover: {fileID: 2800000, guid: 689561cf7b3e9f647befebb3eb6af7e9, type: 3}
+  quitActive: {fileID: 2800000, guid: 3fd67ec85fd0e0a48b082f763c1d0671, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

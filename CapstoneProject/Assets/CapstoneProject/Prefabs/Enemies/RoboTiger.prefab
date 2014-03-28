@@ -1458,7 +1458,7 @@ MonoBehaviour:
   isUnderground: 0
   coolDownLength: 1
   damageAmount: 10
-  distance: 10
+  distance: 15
   targetHeight: 1
   burnDamage: 0
   lightningDamage: 0

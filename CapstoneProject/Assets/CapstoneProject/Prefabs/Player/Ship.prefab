@@ -1549,8 +1549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d51788935666e4d97da2e450357d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 1000
-  maxHealth: 1000
+  curHealth: 3000
+  maxHealth: 3000
   canTakeDamage: 1
   explosion: {fileID: 100006, guid: 45eb2ff886bff3d4c91840e878e2097a, type: 2}
   waitTime: 3

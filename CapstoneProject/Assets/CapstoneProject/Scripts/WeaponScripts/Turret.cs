@@ -44,7 +44,7 @@ public class Turret : MonoBehaviour {
 				pivot.rotation = Quaternion.Slerp(pivot.rotation, targetRot, turnSpeed*Time.deltaTime);
 			}
 			
-			if(Vector3.Distance(target.transform.position, transform.position) < weapon.range){
+			if(Vector3.Distance(target.transform.position, transform.position) <= weapon.range){
 				weapon.Fire();
 				weapon.isFiring = true;
 			} else {

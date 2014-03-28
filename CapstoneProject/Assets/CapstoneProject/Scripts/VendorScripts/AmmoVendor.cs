@@ -21,8 +21,8 @@ public class AmmoVendor : MonoBehaviour {
 			ammo.sellItem = ammoVendor.GetComponent<SellableItem>();
 			
 			int curResources = GameController.Instance.GetResources();
-			int purchasableClips = curWeapon.maxClips - curWeapon.clips;
-			int purchasableBullets = curWeapon.bulletsPerClip - curWeapon.bulletsLeft;
+			float purchasableClips = curWeapon.maxClips - curWeapon.clips;
+			float purchasableBullets = curWeapon.bulletsPerClip - curWeapon.bulletsLeft;
 			int bulletsToPurchase = 0;
 			int clipsToPurchase = 0;
 			

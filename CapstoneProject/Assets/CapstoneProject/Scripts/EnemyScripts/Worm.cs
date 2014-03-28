@@ -8,20 +8,11 @@ public class Worm : Enemy {
 	private float startSpeed;
 	public ParticleSystem flamethrower;
 	public ParticleEmitter dust;
-	private BaseWeapon weapon;
-	private float chargeTimer;
-	private float chargeTimerMax = 30f;
-	private Vector3 playerPos;
 	
 	public override void Start(){
 		base.Start();
 		
 		startSpeed = speed;
-		weapon = flamethrower.GetComponent<BaseWeapon>();
-		weapon.damage = damageAmount;
-		weapon.bulletsLeft = 100000;
-		weapon.bulletsPerClip = 100000;
-		chargeTimer = chargeTimerMax;
 		flamethrower.Stop();
 	}
 	
@@ -32,21 +23,6 @@ public class Worm : Enemy {
 		
 		if(currentCoolDown > 0){
 			currentCoolDown -= Time.deltaTime;
-		}
-		
-		if(chargeTimer > 0){
-			chargeTimer -= Time.deltaTime;
-		} else if(chargeTimer <= 0 && state == Enemy.EnemyState.CHASING){
-			StartCoroutine(ChargePlayer());
-			speed = 4f;
-			transform.position = tr.TransformDirection(Vector3.forward*speed);
-			transform.rotation = Quaternion.Slerp(tr.rotation, 
-				Quaternion.LookRotation(playerPos - tr.position), turningSpeed*Time.deltaTime);
-		}
-		
-		if(health.IsDead){
-			state = EnemyState.DEAD;
-			rigid.isKinematic = true;
 		}
 		
 		ClampCoolDownTime();
@@ -64,8 +40,12 @@ public class Worm : Enemy {
 			}
 		}
 		
-		if(chargeTimer > 0){
-			if(Vector3.Distance(target.position, transform.position) > distance){
+		if(health.IsDead){
+			state = EnemyState.DEAD;
+			rigid.isKinematic = true;
+			flamethrower.Stop();
+		} else {
+			if(Vector3.Distance(target.position, tr.position) > distance){
 				canMove = true;
 				state = Enemy.EnemyState.CHASING;
 				rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
@@ -73,15 +53,15 @@ public class Worm : Enemy {
 				flamethrower.Stop();
 				dust.emit = true;
 			} else {
-				transform.position = Vector3.Lerp(transform.position, 
-					new Vector3(transform.position.x, attackHeight, transform.position.z), 0.5f*Time.deltaTime);
+				tr.position = Vector3.Lerp(tr.position, 
+					new Vector3(tr.position.x, attackHeight, tr.position.z), 0.5f*Time.deltaTime);
 				rigid.constraints = RigidbodyConstraints.FreezePosition;
 				
 				Vector3 lookPos = target.position;
 				lookPos.y = attackHeight;
-				Vector3 dir = (lookPos-transform.position).normalized;
+				Vector3 dir = (lookPos-tr.position).normalized;
 				float targetRot = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-				transform.rotation = Quaternion.Euler(attackRot, targetRot, 0f);
+				tr.rotation = Quaternion.Euler(attackRot, targetRot, 0f);
 				dust.emit = false;
 			}
 		}
@@ -133,29 +113,25 @@ public class Worm : Enemy {
 	}
 	
 	void PlayShootAnimation(){
+		StartCoroutine(WaitToTakeDamage());
 		anim.CrossFade("Shoot", 0.2f);
 		flamethrower.Play();
+		audio.Play();
 		
-		//Vector3 dir = (target.position - transform.position).normalized;
-		//float targetRot = Mathf.Atan2(dir.y, dir.x) * 180.0f / Mathf.PI;
+		Vector3 dir = (target.position - tr.position).normalized;
+		float targetRot1 = Mathf.Atan2(dir.y, dir.x) * 180.0f / Mathf.PI; // On right side
+		float targetRot2 = Mathf.Atan2(dir.y, -dir.x) * 180.0f / Mathf.PI; // On left side
 		
-		//float val = Mathf.Abs(transform.rotation.y-targetRot);
-		
-		//Debug.Log("Dir: "+val);
-		if(currentCoolDown <= 0){
-			weapon.Fire();
-			currentCoolDown = coolDownLength;
-		}
-		
-		/*if(Vector3.Distance(target.position, transform.position) < distance){
-			if(Mathf.Abs(transform.rotation.y - targetRot) < 100f){
-				if(currentCoolDown <= 0){
-					target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
-					currentCoolDown = coolDownLength;
+		if(Vector3.Distance(target.position, tr.position) < distance){
+			if(Vector3.Dot(dir, -tr.up) > 0){
+				if((Mathf.Abs(tr.rotation.y - targetRot1) < 60f) || (Mathf.Abs(tr.rotation.y - targetRot2) < 60f)){
+					if(currentCoolDown <= 0){
+						target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
+						currentCoolDown = coolDownLength;
+					}
 				}
 			}
-		}*/
-		StartCoroutine(WaitToTakeDamage());
+		}
 	}
 	
 	void PlayDeathAnimation(){
@@ -169,38 +145,32 @@ public class Worm : Enemy {
 	}
 	
 	IEnumerator WaitToTakeDamage(){
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		collider.isTrigger = false;
 	}
 	
-	IEnumerator ChargePlayer(){
-		playerPos = target.position;
-		yield return new WaitForSeconds(3f);
-		chargeTimer = chargeTimerMax;
-	}
-	
 	public override void ChaseObject(){
-		
+		audio.Stop();
 		Vector3 velocity = new Vector3();
 		if(canMove){
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
 			
-			if(Vector3.Distance(target.position, transform.position) < distance && chargeTimer > 0){
+			if(Vector3.Distance(target.position, tr.position) < distance){
 				speed = 0f;
 				state = Enemy.EnemyState.HOVER;
 				canMove = false;
 				GameObject hole = (GameObject)Resources.Load("Hole", typeof(GameObject));
 				GameObject explosion = (GameObject)Resources.Load("DigExplosion", typeof(GameObject));
 		
-				Instantiate(explosion, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
-				Instantiate(hole, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
-			} else if(Vector3.Distance(target.position, transform.position) > distance && chargeTimer > 0){
+				Instantiate(explosion, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
+				Instantiate(hole, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
+			} else if(Vector3.Distance(target.position, tr.position) > distance){
 				Vector3 adjustedTargetHeight = tr.position; // Set position to variable
 				adjustedTargetHeight.y = targetHeight; // Adjust height to a set target
 				tr.position = adjustedTargetHeight; // Commit the changes
 				
-				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, 0.5f*Time.deltaTime);
-				transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, targetHeight, transform.position.z), 0.5f*Time.deltaTime);
+				tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.identity, 0.5f*Time.deltaTime);
+				tr.position = Vector3.Lerp(tr.position, new Vector3(tr.position.x, targetHeight, tr.position.z), 0.5f*Time.deltaTime);
 				speed = startSpeed;
 				
 				if(targetDirection != Vector3.zero){

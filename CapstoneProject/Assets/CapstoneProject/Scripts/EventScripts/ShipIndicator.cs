@@ -27,7 +27,7 @@ public class ShipIndicator : MonoBehaviour {
 	}
 	
 	void LateUpdate(){
-		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
+		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME && !GameObject.FindWithTag(Globals.PLAYER).GetComponent<Health>().IsDead){
 			shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
 			
 			Renderer data = transform.GetComponent<Renderer>().renderer;
@@ -84,6 +84,8 @@ public class ShipIndicator : MonoBehaviour {
 			if(data.IsVisibleFrom(Camera.main)){
 				drawTexture = false;
 			}
+		} else {
+			drawTexture = false;
 		}
 	}
 	

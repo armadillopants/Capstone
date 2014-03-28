@@ -39,8 +39,8 @@ public class XMLReader : MonoBehaviour {
 			manager.allWeapons[i].range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
 			manager.allWeapons[i].fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
 			manager.allWeapons[i].force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
-			manager.allWeapons[i].bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
-			manager.allWeapons[i].maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+			manager.allWeapons[i].bulletsPerClip = float.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
+			manager.allWeapons[i].maxClips = float.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
 			manager.allWeapons[i].reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
 			manager.allWeapons[i].damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 			manager.allWeapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
@@ -61,8 +61,8 @@ public class XMLReader : MonoBehaviour {
 				fortData.weapon.range = float.Parse(firstNode.Attributes.GetNamedItem("range").Value);
 				fortData.weapon.fireRate = float.Parse(firstNode.Attributes.GetNamedItem("fireRate").Value);
 				fortData.weapon.force = float.Parse(firstNode.Attributes.GetNamedItem("force").Value);
-				fortData.weapon.bulletsPerClip = int.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
-				fortData.weapon.maxClips = int.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
+				fortData.weapon.bulletsPerClip = float.Parse(firstNode.Attributes.GetNamedItem("bulletsPerClip").Value);
+				fortData.weapon.maxClips = float.Parse(firstNode.Attributes.GetNamedItem("clips").Value);
 				fortData.weapon.reloadSpeed = float.Parse(firstNode.Attributes.GetNamedItem("reloadSpeed").Value);
 				fortData.weapon.damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 				fortData.weapon.coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);

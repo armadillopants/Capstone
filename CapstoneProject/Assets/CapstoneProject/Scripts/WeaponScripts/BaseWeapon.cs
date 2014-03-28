@@ -11,10 +11,10 @@ public class BaseWeapon : MonoBehaviour {
 	public float fireRate = 0.09f;
 	public float range = 100f;
 	public float force = 1.0f;
-	public int bulletsLeft = 0;
-	public int bulletsPerClip = 40;
-	public int clips = 6;
-	public int maxClips;
+	public float bulletsLeft = 0;
+	public float bulletsPerClip = 40;
+	public float clips = 6;
+	public float maxClips;
 	public float reloadSpeed = 1.2f;
 	public float damage = 10.0f;
 	public float coneAngle = 1.5f;
@@ -125,6 +125,23 @@ public class BaseWeapon : MonoBehaviour {
 				muzzle.enabled = false;
 				gunFlash.enabled = false;
 				
+				// Play sound
+				if(audio){
+					audio.loop = false;
+				}
+			}
+		} else {
+			if(lastFrameShot == Time.frameCount){
+				if(audio){
+					if(!audio.isPlaying && !oneShot){
+						audio.clip = fireClip;
+						audio.Play();
+						audio.loop = true;
+					} else if(oneShot){
+						audio.PlayOneShot(fireClip);
+					}
+				}
+			} else {
 				// Play sound
 				if(audio){
 					audio.loop = false;
@@ -242,7 +259,7 @@ public class BaseWeapon : MonoBehaviour {
 		yield return new WaitForSeconds(reloadSpeed);
 		
 		// Actual bullets to reload in clip
-		int bulletsToReload = bulletsPerClip - bulletsLeft;
+		float bulletsToReload = bulletsPerClip - bulletsLeft;
 		
 		// We have a clip left to reload
 		if(clips > bulletsToReload){

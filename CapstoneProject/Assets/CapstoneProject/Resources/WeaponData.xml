@@ -26,10 +26,10 @@
 			range= "100"
 			fireRate= "0.1"
 			force= "0.1"
-			bulletsPerClip= "10"
+			bulletsPerClip= "Infinity"
 			clips= "6"
 			reloadSpeed= "1"
-			damage= "10"
+			damage= "5"
 			coneAngle= "1"
 			costPerBullet= "1"
 			cost= "50">
@@ -242,6 +242,19 @@
 			coneAngle= "2.5"
 			cost = "250">
 		</FlameTurret>
+		<LightningTurret
+			health= "20"
+			fortDamage= "0"
+			range= "10"
+			fireRate= "0.1"
+			force= "1"
+			bulletsPerClip= "100"
+			clips= "2"
+			reloadSpeed= "2.5"
+			damage= "2"
+			coneAngle= "2.5"
+			cost = "250">
+		</LightningTurret>
 		<SatelliteTower
 			health= "500"
 			fortDamage= "0"

@@ -5,7 +5,6 @@ public class RoboTiger : Enemy {
 	
 	public Vector3 targetPointOne;
 	public Vector3 targetPointTwo;
-	private Vector3 rotateDir;
 	private float spawningTime = Random.Range(30f, 60f);
 	private int amountToSpawn = Random.Range(1, 5);
 	public bool runToPointOne = true;
@@ -114,22 +113,30 @@ public class RoboTiger : Enemy {
 	public override void ChaseObject(){
 		
 		Vector3 velocity;
+		Vector3 rotateDir = new Vector3();
 		if(canMove){
 			
-			if(runToPointOne){
-				rotateDir = targetPointOne;
-				if(Vector3.Distance(targetPointOne, tr.position) < 3f){
-					targetPointTwo = new Vector3(target.position.x+Random.Range(-10, 10), tr.position.y, tr.position.z);
-					runToPointTwo = true;
-					runToPointOne = false;
+			if(Vector3.Distance(target.position, tr.position) < distance){
+				if(runToPointOne){
+					rotateDir = targetPointOne;
+					if(Vector3.Distance(targetPointOne, tr.position) < 3f){
+						targetPointTwo = new Vector3(target.position.x+Random.Range(-10, 10), tr.position.y, tr.position.z);
+						runToPointTwo = true;
+						runToPointOne = false;
+					}
 				}
-			}
-			if(runToPointTwo){
-				rotateDir = targetPointTwo;
-				if(Vector3.Distance(targetPointTwo, tr.position) < 3f){
-					targetPointOne = new Vector3(tr.position.x, tr.position.y, target.position.z+Random.Range(-10, 10));
-					runToPointOne = true;
-					runToPointTwo = false;
+				if(runToPointTwo){
+					rotateDir = targetPointTwo;
+					if(Vector3.Distance(targetPointOne, tr.position) < 3f){
+						targetPointOne = new Vector3(tr.position.x, tr.position.y, target.position.z+Random.Range(-10, 10));
+						runToPointOne = true;
+						runToPointTwo = false;
+					}
+				}
+				RotateTowards(rotateDir);
+			} else {
+				if(targetDirection != Vector3.zero){
+					RotateTowards(targetDirection);
 				}
 			}
 			
@@ -138,13 +145,6 @@ public class RoboTiger : Enemy {
 			Vector3 adjustedTargetHeight = tr.position; // Set position to variable
 			adjustedTargetHeight.y = targetHeight; // Adjust height to a set target
 			tr.position = adjustedTargetHeight; // Commit the changes
-			
-			/*if(targetDirection != Vector3.zero){
-				RotateTowards(targetDirection);
-			}*/
-			
-			tr.rotation = Quaternion.Slerp(tr.rotation, 
-				Quaternion.LookRotation(rotateDir - tr.position), turningSpeed*Time.deltaTime);
 			
 			if(dir.sqrMagnitude > sleepVelocity*sleepVelocity){
 				// Move the enemy

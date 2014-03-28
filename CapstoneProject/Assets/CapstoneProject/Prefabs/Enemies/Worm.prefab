@@ -464,21 +464,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &100060
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400060}
-  m_Layer: 0
-  m_Name: MuzzlePos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100062
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +492,6 @@ GameObject:
   - 4: {fileID: 400064}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
-  - 114: {fileID: 11400010}
   - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: EnemyFlamethrower
@@ -877,17 +861,6 @@ Transform:
   m_LocalScale: {x: .0199999996, y: .0199999996, z: .0199999996}
   m_Children: []
   m_Father: {fileID: 400056}
---- !u!4 &400060
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100060}
-  m_LocalRotation: {x: 6.70435085e-08, y: -1.26440511e-07, z: 2.25937313e-08, w: 1}
-  m_LocalPosition: {x: -7.52674012e-08, y: -1.80474288e-07, z: 1.21657026}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400064}
 --- !u!4 &400062
 Transform:
   m_ObjectHideFlags: 1
@@ -908,8 +881,7 @@ Transform:
   m_LocalRotation: {x: -.0339692123, y: -.323339134, z: .0985327289, w: .940526009}
   m_LocalPosition: {x: -.420762271, y: 2.32248592, z: .945966065}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_Children:
-  - {fileID: 400060}
+  m_Children: []
   m_Father: {fileID: 400030}
 --- !u!12 &1200000
 ParticleAnimator:
@@ -1128,11 +1100,11 @@ AudioSource:
   m_GameObject: {fileID: 100064}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4b7b64919611f3c478650f73aff0abd0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -1367,50 +1339,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9958e1afe6be74697f0586871e8568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737856c3cb8591e4a969fde0f855fe5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 1
-  weaponType: 0
-  fireRate: .100000001
-  range: 3
-  force: 1
-  bulletsLeft: 100000
-  bulletsPerClip: 100000
-  clips: 6
-  maxClips: 0
-  reloadSpeed: 1.20000005
-  damage: 10
-  coneAngle: 5
-  roundsPerBurst: 0
-  lagBetweenShots: 0
-  id: 0
-  projectile: {fileID: 5400000, guid: e95ec7e213680cc4699b8c0ba00a1470, type: 2}
-  muzzlePos: {fileID: 400060}
-  gunPos: {fileID: 0}
-  leftHand: {fileID: 0}
-  handPos: {fileID: 0}
-  muzzleFlash: {fileID: 0}
-  lightFlash: {fileID: 0}
-  isReloading: 0
-  isAutomatic: 0
-  isFiring: 0
-  hitParticles: {fileID: 0}
-  useLayerMask: 1
-  gripID: 0
-  costPerBullet: 0
-  fireClip: {fileID: 0}
-  reloadClip: {fileID: 0}
-  emptyClip: {fileID: 0}
-  oneShot: 0
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

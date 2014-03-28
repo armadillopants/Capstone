@@ -37,6 +37,21 @@ public class UIManager : MonoBehaviour {
 	public Texture2D[] canisters;
 	public Texture2D[] batteries;
 	public bool displayUI = true;
+	public Texture2D infintyUI;
+	
+	public Texture2D resumeNormal;
+	public Texture2D resumeHover;
+	public Texture2D resumeActive;
+	
+	public Texture2D restartNormal;
+	public Texture2D restartHover;
+	public Texture2D restartActive;
+	
+	public Texture2D quitNormal;
+	public Texture2D quitHover;
+	public Texture2D quitActive;
+	
+	public float heightDerp = 0;
 	
 	#region Singleton
 	
@@ -86,7 +101,7 @@ public class UIManager : MonoBehaviour {
 		Vector3 shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
 		shipHealthRect = new Rect(shipPos.x, Screen.height - shipPos.y, 400, 20);
 		
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		/*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit = new RaycastHit();
 		if(Physics.Raycast(ray, out hit)){
 			if(hit.transform.tag == Globals.FORTIFICATION && GameController.Instance.current == null){
@@ -113,7 +128,7 @@ public class UIManager : MonoBehaviour {
 			} else {
 				displayEnemyHealthData = false;
 			}
-		}
+		}*/
 	}
 	
 	public void SetFortification(GameObject fort){
@@ -157,7 +172,7 @@ public class UIManager : MonoBehaviour {
 					DrawEnemyHealthDisplay();
 				}
 				if(displayUI){
-					DrawPlayerHealth();
+					//DrawPlayerHealth();
 					DrawShipHealth();
 					if(displayFortHealthData){
 						DrawFortHealthDisplay();
@@ -171,14 +186,32 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawPauseScreen(){
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)-50, 100, 50), "Resume")){
+		GUIContent content = new GUIContent();
+		
+		GUIStyle resumeButton = new GUIStyle();
+		resumeButton.normal.background = resumeNormal;
+		resumeButton.hover.background = resumeHover;
+		resumeButton.active.background = resumeActive;
+		
+		GUIStyle restartButton = new GUIStyle();
+		restartButton.normal.background = restartNormal;
+		restartButton.hover.background = restartHover;
+		restartButton.active.background = restartActive;
+		
+		GUIStyle quitButton = new GUIStyle();
+		quitButton.normal.background = quitNormal;
+		quitButton.hover.background = quitHover;
+		quitButton.active.background = quitActive;
+		
+		
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)-50, 100, 50),content,resumeButton)){
 			isPaused = !isPaused;
 			UIManager.Instance.uiState = UIState.NONE;
 		}
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50), "Restart")){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50), "Quit")){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50),content,quitButton)){
 			Application.Quit();
 		}
 	}
@@ -229,14 +262,27 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawGameOverScreen(){
+		GUIContent content = new GUIContent();
+		
+		GUIStyle restartButton = new GUIStyle();
+		restartButton.normal.background = restartNormal;
+		restartButton.hover.background = restartHover;
+		restartButton.active.background = restartActive;
+		
+		GUIStyle quitButton = new GUIStyle();
+		quitButton.normal.background = quitNormal;
+		quitButton.hover.background = quitHover;
+		quitButton.active.background = quitActive;
+		
+		
 		if(fadeComplete){
-			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50), "Restart")){
+			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50),content,restartButton)){
 				//GameController.Instance.Reset();
 				MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
 				//uiState = UIState.NONE;
 				StartCoroutine(GameController.Instance.RestartGame());
 			}
-			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2)+50, 100, 50), "Quit")){
+			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2)+50, 100, 50),content,quitButton)){
 				Application.Quit();
 			}
 		}
@@ -379,60 +425,64 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(new Rect(Screen.width-500, Screen.height-100, 500, 100));
 		
-		for(int i=0; i<weapon.bulletsLeft; i++){
-			if(weapon == manager.allWeapons[5]){
-				if(i % 8 == 0){
-					GUI.DrawTexture(new Rect(440 +(i*-2),0,20,20), shotgunShellUI);
-				}
-			} else if(weapon == manager.allWeapons[7]){
+		if(weapon != manager.allWeapons[1]){
+			for(int i=0; i<weapon.bulletsLeft; i++){
 				
-				if(weapon.bulletsLeft >= weapon.bulletsPerClip){
-					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[0]);
-				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/3)) && weapon.bulletsLeft < weapon.bulletsPerClip){
-					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[1]);
-				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/2)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/3))){
-					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[2]);
-				} else if(weapon.bulletsLeft > 0 && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/2))){
-					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[3]);
-				} else if(weapon.bulletsLeft <= 0){
-					GUI.DrawTexture(new Rect(440, 0, -200, 30), canisters[4]);
+				if(weapon == manager.allWeapons[5]){
+					if(i % 8 == 0){
+						GUI.DrawTexture(new Rect(440 +(i*-2),50,20,20), shotgunShellUI);
+					}
+				} else if(weapon == manager.allWeapons[7]){
+					
+					if(weapon.bulletsLeft >= weapon.bulletsPerClip){
+						GUI.DrawTexture(new Rect(440, 45, -200, 30), canisters[0]);
+					} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/3)) && weapon.bulletsLeft < weapon.bulletsPerClip){
+						GUI.DrawTexture(new Rect(440, 45, -200, 30), canisters[1]);
+					} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/2)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/3))){
+						GUI.DrawTexture(new Rect(440, 45, -200, 30), canisters[2]);
+					} else if(weapon.bulletsLeft > 0 && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/2))){
+						GUI.DrawTexture(new Rect(440, 45, -200, 30), canisters[3]);
+					} else if(weapon.bulletsLeft <= 0){
+						GUI.DrawTexture(new Rect(440, 45, -200, 30), canisters[4]);
+					}
+					
+					/*else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
+					Texture2D ammoBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+					ammoBar.SetPixel(0, 0, Color.blue);
+					ammoBar.Apply();
+					
+					float width = Mathf.Clamp(200f*Mathf.Round((weapon.bulletsLeft/150f)*100f)/100f, 0, 200);
+					GUI.DrawTexture(new Rect(440, 0, -width, 20), ammoBar, ScaleMode.StretchToFill);*/
+				} else if(weapon == manager.allWeapons[3]){
+					if(weapon.bulletsLeft >= weapon.bulletsPerClip){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[0]);
+					} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/6)) && weapon.bulletsLeft < weapon.bulletsPerClip){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[1]);
+					} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/5)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/6))){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[2]);
+					} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/4)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/5))){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[3]);
+					} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/3)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/4))){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[4]);
+					} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/2)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/3))){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[5]);
+					} else if(weapon.bulletsLeft > 0 && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/2))){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[6]);
+					} else if(weapon.bulletsLeft <= 0){
+						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[7]);
+					}
+				} else {
+					GUI.DrawTexture(new Rect(440 +(i*-5),50,20,20), ammoUI);
 				}
-				
-				/*else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
-				Texture2D ammoBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-				ammoBar.SetPixel(0, 0, Color.blue);
-				ammoBar.Apply();
-				
-				float width = Mathf.Clamp(200f*Mathf.Round((weapon.bulletsLeft/150f)*100f)/100f, 0, 200);
-				GUI.DrawTexture(new Rect(440, 0, -width, 20), ammoBar, ScaleMode.StretchToFill);*/
-			} else if(weapon == manager.allWeapons[3]){
-				if(weapon.bulletsLeft >= weapon.bulletsPerClip){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[0]);
-				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/6)) && weapon.bulletsLeft < weapon.bulletsPerClip){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[1]);
-				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/5)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/6))){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[2]);
-				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/4)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/5))){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[3]);
-				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/3)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/4))){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[4]);
-				} else if(weapon.bulletsLeft >= (weapon.bulletsPerClip-(weapon.bulletsPerClip/2)) && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/3))){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[5]);
-				} else if(weapon.bulletsLeft > 0 && weapon.bulletsLeft < (weapon.bulletsPerClip-(weapon.bulletsPerClip/2))){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[6]);
-				} else if(weapon.bulletsLeft <= 0){
-					GUI.DrawTexture(new Rect(440, -30, -200, 100), batteries[7]);
-				}
-			} else {
-				GUI.DrawTexture(new Rect(440 +(i*-5),0,20,20), ammoUI);
 			}
+			GUIStyle style = new GUIStyle();
+			style.font = resourceFont;
+			style.fontSize = 15;
+			style.normal.textColor = Color.white;
+			GUI.Label(new Rect(455, 50, 20, 30), weapon.clips.ToString(), style);
+		} else {
+			GUI.DrawTexture(new Rect(350,50,100,40), infintyUI);
 		}
-		
-		GUIStyle style = new GUIStyle();
-		style.font = resourceFont;
-		style.fontSize = 15;
-		style.normal.textColor = Color.white;
-		GUI.Label(new Rect(455, 0, 20, 30), weapon.clips.ToString(), style);
 		
 		GUI.EndGroup();
 	}

@@ -14,6 +14,7 @@ public class AttachMoneyToPlayer : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 		if(other.collider.tag == Globals.PLAYER){
+			other.collider.GetComponent<Health>().AddHealth(1f);
 			Destroy(gameObject);
 		}
 	}

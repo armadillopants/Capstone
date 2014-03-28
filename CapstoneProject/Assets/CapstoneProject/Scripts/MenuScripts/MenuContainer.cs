@@ -7,6 +7,8 @@ public class MenuContainer : MonoBehaviour {
 	private float waitTime = 3f;
 	public bool renderMenu = false;
 	
+	public Texture2D[] frames;
+	
 	public Texture2D playNormal;
 	public Texture2D playHover;
 	public Texture2D playActive;
@@ -17,6 +19,10 @@ public class MenuContainer : MonoBehaviour {
 	
 	void Start(){
 		target = GameObject.Find("Ship").GetComponent<MoveToTarget>();
+		
+		transform.localScale = new Vector3(transform.localScale.y*Screen.width/Screen.height, 
+			-2.0f*Mathf.Tan(0.5f*Camera.main.fieldOfView)*0.5f);
+		
 		
 		UnRenderMenu();
 	}
@@ -53,7 +59,20 @@ public class MenuContainer : MonoBehaviour {
 		renderMenu = false;
 	}
 	
+	private IEnumerator WaitToDrawNextFrame(){
+		yield return new WaitForSeconds(5f);
+	}
+	
 	void OnGUI(){
+		/*int index = (int)(Time.time * 10);
+		if(MenuManager.Instance.menuState == MenuManager.MenuState.MAINMENU){
+			if(index < frames.Length){
+				GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), frames[index]);
+			} else {
+				GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), frames[60]);
+			}
+		}*/
+		
 		if(renderMenu && MenuManager.Instance.menuState == MenuManager.MenuState.MAINMENU){
 			GUIContent content = new GUIContent();
 			
