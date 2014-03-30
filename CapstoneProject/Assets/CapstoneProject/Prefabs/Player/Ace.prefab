@@ -5830,6 +5830,8 @@ MonoBehaviour:
   amount: 3
   maxAmount: 3
   costPerAmount: 50
+  maxCoolDown: 30
+  damage: 0
 --- !u!114 &11400060
 MonoBehaviour:
   m_ObjectHideFlags: 1

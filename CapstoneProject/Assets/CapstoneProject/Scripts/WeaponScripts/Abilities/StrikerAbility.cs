@@ -28,10 +28,19 @@ public class StrikerAbility : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(AbilitiesManager.Instance.strikerAbility.coolDown > 0){
+			AbilitiesManager.Instance.strikerAbility.coolDown -= Time.deltaTime;
+			
+			if(AbilitiesManager.Instance.strikerAbility.coolDown <= 0){
+				AbilitiesManager.Instance.beginAbility = true;
+				AbilitiesManager.Instance.strikerAbility.coolDown = 0;
+			}
+		}
+		
 		if(attachStrikerToHolder){
 			AttachStriker();
 			
-			timer -= 1f*Time.deltaTime;
+			timer -= Time.deltaTime;
 			if(timer <= 0){
 				foreach(GameObject strike in GameObject.FindGameObjectsWithTag(Globals.ABILITY)){
 					Destroy(strike);
@@ -42,6 +51,7 @@ public class StrikerAbility : MonoBehaviour {
 	}
 	
 	void BeginAbility(){
+		AbilitiesManager.Instance.strikerAbility.amount--;
 		StartCoroutine("SpawnOrbitHolders");
 	}
 	
@@ -87,7 +97,7 @@ public class StrikerAbility : MonoBehaviour {
 			}
 			
 			if(hold[0] == null && hold[1] == null && hold[2] == null){
-				player.GetComponent<AbilitiesManager>().SetCoolDown();
+				player.GetComponent<AbilitiesManager>().SetCoolDown(AbilitiesManager.Instance.strikerAbility);
 				attachStrikerToHolder = false;
 			}
 		}

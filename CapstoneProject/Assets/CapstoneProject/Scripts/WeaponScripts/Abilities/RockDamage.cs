@@ -15,7 +15,7 @@ public class RockDamage : MonoBehaviour {
 		}
 		
 		if(collision.transform.tag == Globals.ENEMY){
-			collision.collider.gameObject.SendMessageUpwards("TakeDamage", 100f, SendMessageOptions.DontRequireReceiver);
+			collision.collider.gameObject.SendMessageUpwards("TakeDamage", AbilitiesManager.Instance.rockRainAbility.damage, SendMessageOptions.DontRequireReceiver);
 		}
 		
 		if(collision.rigidbody){

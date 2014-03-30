@@ -3,17 +3,15 @@
 public class AbilityAmmoVendor : MonoBehaviour {
 
 	public GameObject ammoVendor;
-	public GameObject abilityLink;
 	public Texture2D icon;
 	private bool isDisplaying = false;
 	private DisplayItem ammo;
-	private AbilitiesManager curAbility;
+	private Ability curAbility;
 	
 	private int ammoToBuy;
 	
-	public void SetWeapon(GameObject ability){
-		abilityLink = ability;
-		curAbility = abilityLink.transform.parent.GetComponent<AbilitiesManager>();
+	public void SetWeapon(Ability ability){
+		curAbility = ability;
 	}
 	
 	public void Vendor(){
@@ -51,13 +49,9 @@ public class AbilityAmmoVendor : MonoBehaviour {
 		if(GameController.Instance.GetResources() >= sellItem.cost && !sellItem.purchased){
 			GameController.Instance.DeleteResources(sellItem.cost);
 			sellItem.cost = 0;
-			curAbility.AddAmount(ammoToBuy);
+			AbilitiesManager.Instance.AddAmount(curAbility, ammoToBuy);
 			sellItem.purchased = true;
 			Debug.Log("Purchased: " + sellItem.itemName);
-		} else if(sellItem.purchased){
-			Debug.Log("Item: " + sellItem.itemName + " was already purchased");
-		} else {
-			Debug.Log("Not enough funds to purchase: " + sellItem.itemName);
 		}
 	}
 	

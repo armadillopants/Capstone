@@ -22,12 +22,22 @@ public class OrbitAbility : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(AbilitiesManager.Instance.orbitAbility.coolDown > 0){
+			AbilitiesManager.Instance.orbitAbility.coolDown -= Time.deltaTime;
+			
+			if(AbilitiesManager.Instance.orbitAbility.coolDown <= 0){
+				AbilitiesManager.Instance.beginAbility = true;
+				AbilitiesManager.Instance.orbitAbility.coolDown = 0;
+			}
+		}
+		
 		if(attachItemsToPlayer){
 			CollectItems();
 		}
 	}
 	
 	void BeginAbility(){
+		AbilitiesManager.Instance.orbitAbility.amount--;
 		Collider[] hits = Physics.OverlapSphere(player.position, Mathf.Infinity);
 		foreach(Collider hit in hits){
 			if(hit.tag == Globals.INTERACTABLE_ITEM){
@@ -51,6 +61,7 @@ public class OrbitAbility : MonoBehaviour {
 			hold[i] = (Transform)Instantiate(holder, player.position + new Vector3(pos[i].x, pos[i].y, pos[i].z), Quaternion.identity);
 			hold[i].gameObject.AddComponent<BarrelOrbit>();
 			items[i].gameObject.AddComponent<Health>().curHealth = 100;
+			items[i].gameObject.GetComponent<Rigidbody>().useGravity = false;
 			items[i].gameObject.AddComponent<BarrelDamage>();
 		}
 		
@@ -71,7 +82,7 @@ public class OrbitAbility : MonoBehaviour {
 			}
 			
 			if(hold[0] == null && hold[1] == null && hold[2] == null && hold[3] == null){
-				player.GetComponent<AbilitiesManager>().SetCoolDown();
+				player.GetComponent<AbilitiesManager>().SetCoolDown(AbilitiesManager.Instance.orbitAbility);
 				attachItemsToPlayer = false;
 			}
 		}

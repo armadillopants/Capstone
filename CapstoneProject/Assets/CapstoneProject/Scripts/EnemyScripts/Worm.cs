@@ -124,7 +124,7 @@ public class Worm : Enemy {
 		
 		if(Vector3.Distance(target.position, tr.position) < distance){
 			if(Vector3.Dot(dir, -tr.up) > 0){
-				if((Mathf.Abs(tr.rotation.y - targetRot1) < 60f) || (Mathf.Abs(tr.rotation.y - targetRot2) < 60f)){
+				if((Mathf.Abs(tr.rotation.y - targetRot1) < 50f) || (Mathf.Abs(tr.rotation.y - targetRot2) < 50f)){
 					if(currentCoolDown <= 0){
 						target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
 						currentCoolDown = coolDownLength;

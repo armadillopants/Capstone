@@ -38,13 +38,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007799f41681ca442953bdcb97aa122b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Rock Rain Ability
+  itemName: RockRain Ability
   description: Calls a barrage of meteors that rains down upon surrounding enemies.
   cost: 400
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0
-  currentUpgrade: 1
+  currentUpgrade: 0
   id: 0
   upgradedItem: {fileID: 0}
 --- !u!1001 &100100000

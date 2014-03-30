@@ -34,16 +34,18 @@ public class Health : MonoBehaviour {
 			}
 		}
 		
-		if(gameObject.tag != Globals.SHIP){
+		if(gameObject.tag == Globals.SHIP || gameObject.tag == Globals.INTERACTABLE_ITEM){
+			// Display nothing
+		} else {
 			Vector3 healthPos = Camera.main.WorldToScreenPoint(transform.position);
 			healthDisplayRect = new Rect(healthPos.x, Screen.height-healthPos.y, 100, 10);
-		}
-		
-		if(displayHealthTimer > 0){
-			displayHealthTimer -= Time.deltaTime;
-			displayHealth = true;
-		} else {
-			displayHealth = false;
+			
+			if(displayHealthTimer > 0){
+				displayHealthTimer -= Time.deltaTime;
+				displayHealth = true;
+			} else {
+				displayHealth = false;
+			}
 		}
 		
 	}

@@ -117,6 +117,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: b0166ee5c488fec4f9399feff49500f4, type: 3}
   - {fileID: 2800000, guid: cb7aa5bcece99db45bfa8c725364d49e, type: 3}
   displayUI: 1
+  infintyUI: {fileID: 2800000, guid: f31e2b1736ab23c49ade6fc434e08609, type: 3}
   resumeNormal: {fileID: 2800000, guid: 7f810e6c1c7f82744aea37a91f456bcd, type: 3}
   resumeHover: {fileID: 2800000, guid: efe6d43b77ffe79479bb451494ef5acd, type: 3}
   resumeActive: {fileID: 2800000, guid: 4f7d024fbcc82d0458bd886fc52dd59f, type: 3}

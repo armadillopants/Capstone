@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour {
 	private bool fadeComplete = false;
 	
 	public GameObject fortification;
+	private GameObject holder;
 	
 	private Texture2D grayBar;
 	
@@ -51,8 +52,6 @@ public class UIManager : MonoBehaviour {
 	public Texture2D quitHover;
 	public Texture2D quitActive;
 	
-	public float heightDerp = 0;
-	
 	#region Singleton
 	
 	private static UIManager _instance;
@@ -85,7 +84,7 @@ public class UIManager : MonoBehaviour {
 		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
-		
+		holder = GameObject.Find("AbilityHolder");
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
 	}
 	
@@ -173,6 +172,7 @@ public class UIManager : MonoBehaviour {
 				}
 				if(displayUI){
 					//DrawPlayerHealth();
+					DrawAbilityDisplay();
 					DrawShipHealth();
 					if(displayFortHealthData){
 						DrawFortHealthDisplay();
@@ -484,6 +484,64 @@ public class UIManager : MonoBehaviour {
 			GUI.DrawTexture(new Rect(350,50,100,40), infintyUI);
 		}
 		
+		GUI.EndGroup();
+	}
+	
+	void DrawAbilityDisplay(){
+		Rect abilityRect = new Rect(Screen.width-250, Screen.height-100, 250, 30);
+		
+		GUI.BeginGroup(abilityRect);
+		
+		Texture2D abilityBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		abilityBar.SetPixel(0, 0, Color.blue);
+		abilityBar.Apply();
+		
+		GUIStyle style = new GUIStyle();
+		style.font = resourceFont;
+		style.fontSize = 15;
+		style.normal.textColor = Color.white;
+		
+		if(holder.GetComponent<OrbitAbility>() != null){
+			GUI.DrawTexture(new Rect(200, 0, 
+				-abilityRect.width*AbilitiesManager.Instance.orbitAbility.maxCoolDown, abilityRect.height), 
+				grayBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(200, 0, 
+				-abilityRect.width*AbilitiesManager.Instance.orbitAbility.coolDown/AbilitiesManager.Instance.orbitAbility.maxCoolDown, abilityRect.height), 
+				abilityBar, ScaleMode.StretchToFill);
+			if(AbilitiesManager.Instance.orbitAbility.coolDown <= 0){
+				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
+			} else {
+				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
+			}
+			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.orbitAbility.amount.ToString(), style);
+		} else if(holder.GetComponent<RockRainAbility>() != null){
+			GUI.DrawTexture(new Rect(200, 0, 
+				-abilityRect.width*AbilitiesManager.Instance.rockRainAbility.maxCoolDown, abilityRect.height), 
+				grayBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(200, 0, 
+				-abilityRect.width*AbilitiesManager.Instance.rockRainAbility.coolDown/AbilitiesManager.Instance.rockRainAbility.maxCoolDown, abilityRect.height), 
+				abilityBar, ScaleMode.StretchToFill);
+			if(AbilitiesManager.Instance.rockRainAbility.coolDown <= 0){
+				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
+			} else {
+				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
+			}
+			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.rockRainAbility.amount.ToString(), style);
+		} else if(holder.GetComponent<StrikerAbility>() != null){
+			GUI.DrawTexture(new Rect(200, 0, 
+				-abilityRect.width*AbilitiesManager.Instance.strikerAbility.maxCoolDown, abilityRect.height), 
+				grayBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(200, 0, 
+				-abilityRect.width*AbilitiesManager.Instance.strikerAbility.coolDown/AbilitiesManager.Instance.strikerAbility.maxCoolDown, abilityRect.height), 
+				abilityBar, ScaleMode.StretchToFill);
+			if(AbilitiesManager.Instance.strikerAbility.coolDown <= 0){
+				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
+			} else {
+				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
+			}
+			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.strikerAbility.amount.ToString(), style);
+		}
+
 		GUI.EndGroup();
 	}
 	

@@ -92,7 +92,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 				abilityLabelStyle.normal.background = labelLocked;
 			}
 	
-	      	GUI.Label(new Rect(labelOffset, labelOffset/*+i*labelHeight + labelHeight+labelHeight*/, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
+	      	GUI.Label(new Rect(labelOffset, labelOffset, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
 			
 			GUIStyle descriptionStyle = new GUIStyle();
 			descriptionStyle.alignment = TextAnchor.MiddleLeft;
@@ -124,8 +124,8 @@ public class AbilityPanelGUI : MonoBehaviour {
 				buttonStyle.hover.background = upgradeHover;
 				buttonStyle.active.background = upgradeActive;
 				
-				if(GameController.Instance.GetResources() > allAbilities[i].GetComponent<SellableItem>().cost){
-					if(GUI.Button(new Rect(buttonColUpgrade, labelOffset+5/*+i*labelHeight + labelHeight+labelHeight+(buttonHeight/2)*/, upgradeButtonWidth, buttonHeight), "UPGRADE: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
+				if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost && allAbilities[i].GetComponent<SellableItem>().currentUpgrade <= 2){
+					if(GUI.Button(new Rect(buttonColUpgrade, labelOffset+5, upgradeButtonWidth, buttonHeight), "UPGRADE: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Upgrade(allAbilities[i]);
 					}
 				}
@@ -133,25 +133,22 @@ public class AbilityPanelGUI : MonoBehaviour {
 				equipStyle.normal.background = equipNormal;
 				equipStyle.hover.background = equipHover;
 				equipStyle.active.background = equipActive;
-				if(GUI.Button(new Rect(buttonColEquip, labelOffset+5/*+i*labelHeight + labelHeight+labelHeight+(buttonHeight/2)*/, equipButtonWidth, buttonHeight), "EQUIP", equipStyle)){
+				if(GUI.Button(new Rect(buttonColEquip, labelOffset+5, equipButtonWidth, buttonHeight), "EQUIP", equipStyle)){
 					if(curAbility == allAbilities[0]){
 						if(abilityHolder.GetComponent(allAbilities[0].name) == null){
 							abilityHolder.AddComponent(allAbilities[0].name);
-							abilityManager.SetAbility(allAbilities[0].name);
 							Destroy(abilityHolder.GetComponent(allAbilities[1].name));
 							Destroy(abilityHolder.GetComponent(allAbilities[2].name));
 						}
 					} else if(curAbility == allAbilities[1]){
 						if(abilityHolder.GetComponent(allAbilities[1].name) == null){
 							abilityHolder.AddComponent(allAbilities[1].name);
-							abilityManager.SetAbility(allAbilities[1].name);
 							Destroy(abilityHolder.GetComponent(allAbilities[0].name));
 							Destroy(abilityHolder.GetComponent(allAbilities[2].name));
 						}
 					} else {
 						if(abilityHolder.GetComponent(allAbilities[2].name) == null){
 							abilityHolder.AddComponent(allAbilities[2].name);
-							abilityManager.SetAbility(allAbilities[2].name);
 							Destroy(abilityHolder.GetComponent(allAbilities[0].name));
 							Destroy(abilityHolder.GetComponent(allAbilities[1].name));
 						}
@@ -163,7 +160,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 					buttonStyle.hover.background = buyHover;
 					buttonStyle.active.background = buyActive;
 					
-					if(GUI.Button(new Rect(buttonColBuy, labelOffset+5/*+i*labelHeight+labelHeight+labelHeight+(buttonHeight/2)*/, buyButtonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
+					if(GUI.Button(new Rect(buttonColBuy, labelOffset+5, buyButtonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Purchase(allAbilities[i]);
 					}
 				}

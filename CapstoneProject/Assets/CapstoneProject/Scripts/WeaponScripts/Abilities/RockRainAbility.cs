@@ -18,6 +18,15 @@ public class RockRainAbility : MonoBehaviour {
 	}
 	
 	void Update(){
+		if(AbilitiesManager.Instance.rockRainAbility.coolDown > 0){
+			AbilitiesManager.Instance.rockRainAbility.coolDown -= Time.deltaTime;
+			
+			if(AbilitiesManager.Instance.rockRainAbility.coolDown <= 0){
+				AbilitiesManager.Instance.beginAbility = true;
+				AbilitiesManager.Instance.rockRainAbility.coolDown = 0;
+			}
+		}
+		
 		numRocks = GameObject.FindGameObjectsWithTag(Globals.ABILITY).Length;
 		
 		if(numRocks > 0){
@@ -27,7 +36,7 @@ public class RockRainAbility : MonoBehaviour {
 		if(rocksSpawned){
 			timer -= Time.deltaTime;
 			if(numRocks <= 0 && timer <= 0){
-				player.GetComponent<AbilitiesManager>().SetCoolDown();
+				player.GetComponent<AbilitiesManager>().SetCoolDown(AbilitiesManager.Instance.rockRainAbility);
 				rocksSpawned = false;
 				timer = maxTimer;
 			}
@@ -35,6 +44,7 @@ public class RockRainAbility : MonoBehaviour {
 	}
 	
 	void BeginAbility(){
+		AbilitiesManager.Instance.rockRainAbility.amount--;
 		for(int i=0; i<spawnAmount; i++){
 			pos = player.position + 
 				new Vector3(Mathf.Cos(Random.Range(0,360)), 

@@ -54,7 +54,7 @@ public class Fortification : MonoBehaviour {
 			UIManager.Instance.displayUI = true;
 			GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
 			selection.UpdateWeaponsSlots();
-			selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);
+			//selection.SelectWeapon(selection.weaponSlots[0].GetComponent<BaseWeapon>().id);
 			GameController.Instance.canShoot = true;
 			GameController.Instance.canChangeWeapons = true;
 			GameController.Instance.UpdateGraph();
