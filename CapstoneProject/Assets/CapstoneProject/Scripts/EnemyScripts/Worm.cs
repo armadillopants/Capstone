@@ -8,6 +8,8 @@ public class Worm : Enemy {
 	private float startSpeed;
 	public ParticleSystem flamethrower;
 	public ParticleEmitter dust;
+	private float popUpTimer = 0f;
+	private float popUpTimerMax = Random.Range(5f, 10f);
 	
 	public override void Start(){
 		base.Start();
@@ -23,6 +25,13 @@ public class Worm : Enemy {
 		
 		if(currentCoolDown > 0){
 			currentCoolDown -= Time.deltaTime;
+		}
+		
+		if(popUpTimer > 0){
+			popUpTimer -= Time.deltaTime;
+		} else {
+			popUpTimer = 0;
+			popUpTimerMax = Random.Range(5f, 10f);
 		}
 		
 		ClampCoolDownTime();
@@ -45,24 +54,26 @@ public class Worm : Enemy {
 			rigid.isKinematic = true;
 			flamethrower.Stop();
 		} else {
-			if(Vector3.Distance(target.position, tr.position) > distance){
-				canMove = true;
-				state = Enemy.EnemyState.CHASING;
-				rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
-				rigid.constraints &= ~RigidbodyConstraints.FreezePositionZ;
-				flamethrower.Stop();
-				dust.emit = true;
-			} else {
-				tr.position = Vector3.Lerp(tr.position, 
-					new Vector3(tr.position.x, attackHeight, tr.position.z), 0.5f*Time.deltaTime);
-				rigid.constraints = RigidbodyConstraints.FreezePosition;
-				
-				Vector3 lookPos = target.position;
-				lookPos.y = attackHeight;
-				Vector3 dir = (lookPos-tr.position).normalized;
-				float targetRot = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-				tr.rotation = Quaternion.Euler(attackRot, targetRot, 0f);
-				dust.emit = false;
+			if(popUpTimer <= 0){
+				if(Vector3.Distance(target.position, tr.position) > distance){
+					canMove = true;
+					state = Enemy.EnemyState.CHASING;
+					rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
+					rigid.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+					flamethrower.Stop();
+					dust.emit = true;
+				} else {
+					tr.position = Vector3.Lerp(tr.position, 
+						new Vector3(tr.position.x, attackHeight, tr.position.z), 0.5f*Time.deltaTime);
+					rigid.constraints = RigidbodyConstraints.FreezePosition;
+					
+					Vector3 lookPos = target.position;
+					lookPos.y = attackHeight;
+					Vector3 dir = (lookPos-tr.position).normalized;
+					float targetRot = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+					tr.rotation = Quaternion.Euler(attackRot, targetRot, 0f);
+					dust.emit = false;
+				}
 			}
 		}
 	}
@@ -141,6 +152,7 @@ public class Worm : Enemy {
 	
 	IEnumerator WaitToEnterShootMode(){
 		yield return new WaitForSeconds(2f);
+		popUpTimer = popUpTimerMax;
 		state = Enemy.EnemyState.SHOOTING;
 	}
 	

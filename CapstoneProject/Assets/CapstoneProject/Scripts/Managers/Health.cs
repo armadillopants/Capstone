@@ -23,7 +23,7 @@ public class Health : MonoBehaviour {
 	
 	void Update(){
 		
-		if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<Health>().IsDead){
+		if(UIManager.Instance.uiState == UIManager.UIState.GAMEOVER){
 			displayHealth = false;
 			displayHealthTimer = 0;
 		}
