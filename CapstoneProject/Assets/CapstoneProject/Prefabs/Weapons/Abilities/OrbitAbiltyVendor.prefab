@@ -41,7 +41,7 @@ MonoBehaviour:
   itemName: Orbit Ability
   description: Creates a protective belt of debrisNEWLINEaround the playerNEWLINEdealing
     damage againstNEWLINEenemies it hits.
-  cost: 400
+  cost: 0
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0

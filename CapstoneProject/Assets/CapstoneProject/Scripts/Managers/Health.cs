@@ -18,6 +18,7 @@ public class Health : MonoBehaviour {
 	
 	private float displayHealthTimer;
 	public float displayHealthTimerMax = 3f;
+	public Color healthColor;
 	private bool displayHealth = false;
 	private Rect healthDisplayRect;
 	
@@ -142,7 +143,7 @@ public class Health : MonoBehaviour {
 			GUI.BeginGroup(healthDisplayRect);
 			
 			Texture2D healthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-			healthBar.SetPixel(0, 0, Color.red);
+			healthBar.SetPixel(0, 0, healthColor);
 			healthBar.Apply();
 			
 			Texture2D grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);

@@ -1,6 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\Managers\GameController.cs">
+    <Files>
+      <File FileName="Assets\CapstoneProject\Scripts\WeaponScripts\Abilities\AbilitiesManager.cs" Line="95" Column="22" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="15" Column="35" />
+      <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
+      <File FileName="Assets\CapstoneProject\Scripts\VendorScripts\AbilityPanelGUI.cs" Line="116" Column="44" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

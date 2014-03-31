@@ -4,7 +4,7 @@ public class AbilityAmmoVendor : MonoBehaviour {
 
 	public GameObject ammoVendor;
 	public Texture2D icon;
-	private bool isDisplaying = false;
+	public bool isDisplaying = false;
 	private DisplayItem ammo;
 	private Ability curAbility;
 	
@@ -24,7 +24,7 @@ public class AbilityAmmoVendor : MonoBehaviour {
 			int purchasableAmmo = curAbility.maxAmount - curAbility.amount;
 			int ammoToPurchase = 0;
 			
-			while(ammoToPurchase < purchasableAmmo && curResources-(ammoToPurchase+curAbility.amount)*curAbility.costPerAmount >= 0)
+			while(ammoToPurchase < purchasableAmmo && curResources-(ammoToPurchase+1)*curAbility.costPerAmount >= 0)
 			{
 				ammoToPurchase++;
 			}
@@ -46,7 +46,7 @@ public class AbilityAmmoVendor : MonoBehaviour {
 	public void Purchase(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
-		if(GameController.Instance.GetResources() >= sellItem.cost && !sellItem.purchased){
+		if(!sellItem.purchased){
 			GameController.Instance.DeleteResources(sellItem.cost);
 			sellItem.cost = 0;
 			AbilitiesManager.Instance.AddAmount(curAbility, ammoToBuy);

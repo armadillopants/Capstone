@@ -13,6 +13,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 	private int buyButtonWidth = 80;
 	private int upgradeButtonWidth = 100;
 	private int equipButtonWidth = 60;
+	private int refillButtonWidth = 80;
   	private int buttonHeight = 20;//18;
 	private int buttonColRefill = 120;
   	private int buttonColBuy = 200;
@@ -52,10 +53,12 @@ public class AbilityPanelGUI : MonoBehaviour {
 	private AbilitiesManager abilityManager;
 	private List<GameObject> allAbilities = new List<GameObject>();
 	private GameObject abilityHolder;
+	private List<AbilityAmmoVendor> abilityAmmoVendorContainer;
 	
 	void Start(){
 		abilityVendor = GameObject.Find("Vendor").GetComponent<AbilityVendor>();
 		allAbilities = abilityVendor.abilityVendor;
+		abilityAmmoVendorContainer = GameObject.Find("Vendor").GetComponent<AbilityAmmoVendorContainer>().abilityAmmoVendor;
 		Reset();
 	}
 	
@@ -94,6 +97,59 @@ public class AbilityPanelGUI : MonoBehaviour {
 	
 	      	GUI.Label(new Rect(labelOffset, labelOffset, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
 			
+			GUIStyle refillStyle = new GUIStyle();
+			refillStyle.alignment = TextAnchor.MiddleCenter;
+			refillStyle.normal.background = refillNormal;
+			refillStyle.hover.background = refillHover;
+			refillStyle.active.background = refillActive;
+			refillStyle.normal.textColor = Color.white;
+			refillStyle.hover.textColor = Color.white;
+			refillStyle.active.textColor = Color.white;
+			refillStyle.font = labelFont;
+			
+			if(allAbilities[i].GetComponent<SellableItem>().purchased){
+				// Handle Refill of weapon
+				string refillType = allAbilities[i].name;
+				Rect refillRect = new Rect(buttonColRefill+labelOffset+labelOffset, labelOffset+labelOffset, refillButtonWidth*2f, buttonHeight*1.5f);
+				
+				// Dispense the ammo
+				if(refillType == allAbilities[0].name){
+					if(GameController.Instance.GetResources() < abilityAmmoVendorContainer[0].ammoVendor.GetComponent<SellableItem>().cost && abilityAmmoVendorContainer[0].isDisplaying){
+						abilityAmmoVendorContainer[0].Cancel();
+					} else {
+						abilityAmmoVendorContainer[0].SetWeapon(AbilitiesManager.Instance.orbitAbility);
+						abilityAmmoVendorContainer[0].Vendor();
+					}
+				} else if(refillType == allAbilities[1].name){
+					if(GameController.Instance.GetResources() < abilityAmmoVendorContainer[1].ammoVendor.GetComponent<SellableItem>().cost && abilityAmmoVendorContainer[1].isDisplaying){
+						abilityAmmoVendorContainer[1].Cancel();
+					} else {
+						abilityAmmoVendorContainer[1].SetWeapon(AbilitiesManager.Instance.rockRainAbility);
+						abilityAmmoVendorContainer[1].Vendor();
+					}
+				} else if(refillType == allAbilities[2].name){
+					if(GameController.Instance.GetResources() < abilityAmmoVendorContainer[2].ammoVendor.GetComponent<SellableItem>().cost && abilityAmmoVendorContainer[2].isDisplaying){
+						abilityAmmoVendorContainer[2].Cancel();
+					} else {
+						abilityAmmoVendorContainer[2].SetWeapon(AbilitiesManager.Instance.strikerAbility);
+						abilityAmmoVendorContainer[2].Vendor();
+					}
+				}
+				
+				// If so, then purchase it
+				if(GameController.Instance.GetResources() >= abilityAmmoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost){
+					if(GUI.Button(refillRect, "Refill Ammo: "+abilityAmmoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost, refillStyle)){
+						if(refillType == allAbilities[0].name){
+							abilityAmmoVendorContainer[0].Purchase(abilityAmmoVendorContainer[0].ammoVendor);
+						} else if(refillType == allAbilities[1].name){
+							abilityAmmoVendorContainer[1].Purchase(abilityAmmoVendorContainer[1].ammoVendor);
+						} else if(refillType == allAbilities[2].name){
+							abilityAmmoVendorContainer[2].Purchase(abilityAmmoVendorContainer[2].ammoVendor);
+						}
+					}
+				}
+			}
+			
 			GUIStyle descriptionStyle = new GUIStyle();
 			descriptionStyle.alignment = TextAnchor.MiddleLeft;
 			descriptionStyle.font = labelFont;
@@ -127,6 +183,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 				if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost && allAbilities[i].GetComponent<SellableItem>().currentUpgrade <= 2){
 					if(GUI.Button(new Rect(buttonColUpgrade, labelOffset+5, upgradeButtonWidth, buttonHeight), "UPGRADE: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Upgrade(allAbilities[i]);
+						abilityAmmoVendorContainer[i].Cancel();
 					}
 				}
 				

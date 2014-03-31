@@ -40,7 +40,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: RockRain Ability
   description: Call down a rain of meteorsNEWLINEthat destroys anything in itsNEWLINEradius
-  cost: 450
+  cost: 0
   preview: {fileID: 0}
   purchased: 0
   soldOut: 0

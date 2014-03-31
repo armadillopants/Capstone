@@ -9,12 +9,12 @@ public class ItemVendor : MonoBehaviour {
 	public void Purchase(GameObject item){
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
-		if(sellItem.GetComponent<Dragable>()){
-			UIManager.Instance.uiState = UIManager.UIState.NONE;
-			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
-		} else {
+		if(sellItem.itemName == "Satellite Tower"){
 			GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
 			GameController.Instance.DeleteResources(sellItem.cost);
+		} else {
+			UIManager.Instance.uiState = UIManager.UIState.NONE;
+			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
 		}
 	}
 	

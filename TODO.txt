@@ -102,3 +102,13 @@
    Only the ship ignitiates the end game....
 -- Must indicate to player early on in first part of game right as they start that the ship is what they are protecting.
 -- Easier and simpler to place barriers, buy them and then keep placing them until player wants to switch fortifications.
+
+- Things left to do...
+-- Hook up final UI for build phase
+-- Hook up new character model and final animations
+-- Hook up magazine models/have them drop on the floor when reloading.
+-- Bug fixes
+-- XML updates
+-- Hook up lightning turret
+-- Fix lightning weapon
+-- Hook up the rest of sound effects/music

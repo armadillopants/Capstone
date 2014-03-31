@@ -37,18 +37,22 @@ public class LightningBlaster : BaseWeapon {
 		base.Update();
 	}
 	
+	void OnEnable(){
+		endPos.position = new Vector3(0, endPos.position.y, -range);
+	}
+	
 	public override void Fire(){
 		
 		if(clips >= 0 && bulletsLeft > 0){
 			
-			if(targets[0] != null){
+			if(endPos != null){//targets[0] != null){
 				
 				float timex = Time.time * speed * 0.1365143f;
 				float timey = Time.time * speed * 1.21688f;
 				float timez = Time.time * speed * 2.5564f;
 				
 				for(int i=0; i<particles.Length; i++){
-					Vector3 position = Vector3.Lerp(muzzlePos.position, targets[0].position, oneOverZigs * (float)i);
+					Vector3 position = Vector3.Lerp(muzzlePos.position, endPos.position, oneOverZigs * (float)i);
 					Vector3 offset = new Vector3(noise.Noise(timex + position.x, timex + position.y, timex + position.z),
 												noise.Noise(timey + position.x, timey + position.y, timey + position.z),
 												noise.Noise(timez + position.x, timez + position.y, timez + position.z));
@@ -69,7 +73,7 @@ public class LightningBlaster : BaseWeapon {
 					if(endLight){
 						endLight.light.enabled = true;
 						endLight.transform.position = particles[particles.Length-1].position;
-						if(GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length > 1){
+						/*if(GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length > 1){
 							targets[1] = GameController.Instance.FindNearestTarget(Globals.ENEMY, targets[0]).transform;
 							
 							if(targets[1] != null && !spawnedSecondStrike){
@@ -78,17 +82,17 @@ public class LightningBlaster : BaseWeapon {
 								strike.transform.parent = endLight.transform;
 								spawnedSecondStrike = true;
 							}
-						}
+						}*/
 					}
 				}
-			} else {
+			} /*else {
 				if(GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length > 0){
 					targets[0] = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform).transform;
 					spawnedSecondStrike = false;
 				} else {
 					targets[0] = endPos;
 				}
-			}
+			}*/
 		}
 		
 		base.Fire();

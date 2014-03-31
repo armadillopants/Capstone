@@ -92,7 +92,7 @@ public class AbilitiesManager : MonoBehaviour {
 	}
 	
 	public void AddAmount(Ability ability, int howMuch){
-	 	ability.maxAmount = howMuch;
+	 	ability.maxAmount += howMuch;
 		ability.amount = ability.maxAmount;
 	}
 	

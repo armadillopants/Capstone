@@ -1,37 +1,25 @@
 fileFormatVersion: 2
-guid: d6b02d64ff0d23f46b391f8c8389ae24
+guid: 741074cc86e662143a572b83bee735c1
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: door
-    100002: head
-    100004: horiz_pivot
-    100006: horiz_pivot 1
-    100008: //RootNode
-    100010: lightning_tier3
-    100012: vert_pivot
+    100002: horiz_pivot
+    100004: //RootNode
+    100006: vert_pivot
     400000: door
-    400002: head
-    400004: horiz_pivot
-    400006: horiz_pivot 1
-    400008: //RootNode
-    400010: lightning_tier3
-    400012: vert_pivot
+    400002: horiz_pivot
+    400004: //RootNode
+    400006: vert_pivot
     2300000: door
-    2300002: head
-    2300004: horiz_pivot
-    2300006: horiz_pivot 1
-    2300008: vert_pivot
+    2300002: horiz_pivot
+    2300004: vert_pivot
     3300000: door
-    3300002: head
-    3300004: horiz_pivot
-    3300006: horiz_pivot 1
-    3300008: vert_pivot
-    4300000: horiz_pivot
-    4300002: head
-    4300004: vert_pivot
-    4300006: door
-    4300008: horiz_pivot
+    3300002: horiz_pivot
+    3300004: vert_pivot
+    4300000: door
+    4300002: vert_pivot
+    4300004: horiz_pivot
     9500000: //RootNode
   materials:
     importMaterials: 1

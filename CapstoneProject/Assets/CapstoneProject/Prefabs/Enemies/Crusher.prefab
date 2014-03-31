@@ -1600,6 +1600,8 @@ MonoBehaviour:
   waitTime: 3
   damageClip: {fileID: 0}
   deathClip: {fileID: 8300000, guid: c10e824e785818143a57ca081a09bead, type: 3}
+  displayHealthTimerMax: 3
+  healthColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

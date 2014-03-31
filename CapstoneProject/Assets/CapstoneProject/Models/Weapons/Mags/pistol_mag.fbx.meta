@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e4b295f34066754792ec33b2137ff27
+guid: 295ab3fa71110ea49b33ef9e7f6e91af
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: proj_missile
+    4300000: pistol_mag
     9500000: //RootNode
   materials:
     importMaterials: 1

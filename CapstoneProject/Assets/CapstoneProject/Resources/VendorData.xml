@@ -197,7 +197,7 @@
 			<Upgrades>
 				<Upgrade1
 					cost= "900"
-					range = "5"
+					range = "12"
 					fireRate= "0.1"
 					force= "1"
 					bulletsPerClip= "100"
@@ -208,7 +208,7 @@
 				</Upgrade1>
 				<Upgrade2
 					cost= "1000"
-					range = "5"
+					range = "14"
 					fireRate= "0.1"
 					force= "1"
 					bulletsPerClip= "150"
@@ -523,7 +523,7 @@
 					health= "50"
 					fortDamage= "0"
 					damage= "2"
-					range= "15"
+					range= "7"
 					fireRate= "0.09"
 					force= "2.2"
 					bulletsPerClip= "150"
@@ -536,7 +536,7 @@
 					health= "70"
 					fortDamage= "0"
 					damage= "3"
-					range= "20"
+					range= "10"
 					fireRate= "0.08"
 					force= "2.4"
 					bulletsPerClip= "200"

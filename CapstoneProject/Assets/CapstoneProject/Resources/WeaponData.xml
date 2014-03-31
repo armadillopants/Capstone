@@ -95,7 +95,7 @@
 			cost= "600">
 		</RayBlaster>
 		<LightningBlaster
-			range= "5"
+			range= "10"
 			fireRate= "0.1"
 			force= "1"
 			bulletsPerClip= "50"
@@ -245,7 +245,7 @@
 		<LightningTurret
 			health= "20"
 			fortDamage= "0"
-			range= "10"
+			range= "5"
 			fireRate= "0.1"
 			force= "1"
 			bulletsPerClip= "100"

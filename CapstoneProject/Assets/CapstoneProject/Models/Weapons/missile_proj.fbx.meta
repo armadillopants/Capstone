@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 60ec40da3d25a8045803af8877a4e051
+guid: b0c8780ceb60a074eaad198605608bd0
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Line01
+    4300000: missile
     9500000: //RootNode
   materials:
     importMaterials: 1

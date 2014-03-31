@@ -47,7 +47,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 222.222214, y: 222.222214, z: 222.222214}
+  m_LocalScale: {x: 199.999969, y: 199.999969, z: 199.999969}
   m_Children: []
   m_Father: {fileID: 400002}
 --- !u!4 &400002
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: .000899999985, y: .000899999985, z: .000899999985}
+  m_LocalScale: {x: .00100000005, y: .00100000005, z: .00100000005}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -131,7 +131,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: d1194323237f7924ea74e8a66ffa2156, type: 2}
+  - {fileID: 2100000, guid: 32123222c02d2384486e97c2aa9160f4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -171,7 +171,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Mesh: {fileID: 4300000, guid: 0e4b295f34066754792ec33b2137ff27, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b0c8780ceb60a074eaad198605608bd0, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -197,7 +197,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 341.890228, y: 341.890228, z: 1144.10547}
+  m_Size: {x: 341.890259, y: 341.890259, z: 1144.10559}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8200000
 AudioSource:
