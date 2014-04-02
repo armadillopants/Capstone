@@ -6,6 +6,10 @@ public class AbilityVendor : MonoBehaviour {
 	public List<GameObject> abilityVendor = new List<GameObject>();
 	
 	void Start(){
+		Reset();
+	}
+	
+	public void Reset(){
 		abilityVendor[0].GetComponent<SellableItem>().cost = AbilitiesManager.Instance.orbitAbility.cost;
 		abilityVendor[1].GetComponent<SellableItem>().cost = AbilitiesManager.Instance.rockRainAbility.cost;
 		abilityVendor[2].GetComponent<SellableItem>().cost = AbilitiesManager.Instance.strikerAbility.cost;
@@ -35,7 +39,7 @@ public class AbilityVendor : MonoBehaviour {
 				AbilitiesManager.Instance.ResetValues(AbilitiesManager.Instance.rockRainAbility, "/AbilityData/Values/RockRainAbility/Upgrades/Upgrade"+
 					abilityVendor[1].GetComponent<SellableItem>().currentUpgrade);
 				break;
-			case "StrikerAbility":
+			case "Striker Ability":
 				AbilitiesManager.Instance.ResetValues(AbilitiesManager.Instance.strikerAbility, "/AbilityData/Values/StrikerAbility/Upgrades/Upgrade"+
 					abilityVendor[2].GetComponent<SellableItem>().currentUpgrade);
 				break;

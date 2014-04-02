@@ -22,15 +22,15 @@ public class FilmCameraScript : MonoBehaviour {
 	
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.Space)){
-			EnableCamera();
+			//EnableCamera();
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Tab)){
-			displayLocations = !displayLocations;
+			//displayLocations = !displayLocations;
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Alpha4)){
-			UIManager.Instance.displayUI = !UIManager.Instance.displayUI;
+			//UIManager.Instance.displayUI = !UIManager.Instance.displayUI;
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Alpha1)){

@@ -100,6 +100,8 @@ public class UIManager : MonoBehaviour {
 		Vector3 shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
 		shipHealthRect = new Rect(shipPos.x, Screen.height - shipPos.y, 400, 20);
 		
+		holder = GameObject.Find("AbilityHolder");
+		
 		/*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit = new RaycastHit();
 		if(Physics.Raycast(ray, out hit)){
@@ -203,13 +205,30 @@ public class UIManager : MonoBehaviour {
 		quitButton.hover.background = quitHover;
 		quitButton.active.background = quitActive;
 		
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 50;
 		
+		GUI.BeginGroup(waveRect);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "GAME PAUSED", style);
+		GUI.EndGroup();
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)-50, 100, 50),content,resumeButton)){
 			isPaused = !isPaused;
 			UIManager.Instance.uiState = UIState.NONE;
 		}
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
-			Application.LoadLevel(Application.loadedLevel);
+			//Application.LoadLevel(Application.loadedLevel);
+			isPaused = false;
+			uiState = UIState.NONE;
+			GameController.Instance.canShoot = false;
+			GameController.Instance.canChangeWeapons = false;
+			Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
+			Destroy(GameController.Instance.GetWaveController().GetComponent<Fortification>());
+			GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
+			MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
+			StartCoroutine(GameController.Instance.RestartGame());
 		}
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50),content,quitButton)){
 			Application.Quit();
@@ -274,8 +293,17 @@ public class UIManager : MonoBehaviour {
 		quitButton.hover.background = quitHover;
 		quitButton.active.background = quitActive;
 		
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 50;
 		
 		if(fadeComplete){
+			GUI.BeginGroup(waveRect);
+			GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "YOU ARE DEAD", style);
+			GUI.EndGroup();
+			
 			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50),content,restartButton)){
 				//GameController.Instance.Reset();
 				MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
@@ -510,6 +538,7 @@ public class UIManager : MonoBehaviour {
 				abilityBar, ScaleMode.StretchToFill);
 			if(AbilitiesManager.Instance.orbitAbility.coolDown <= 0){
 				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
+				GUI.Label(new Rect(25, 15, 200, 20), "Press 'E' to use", style);
 			} else {
 				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
 			}
@@ -523,6 +552,7 @@ public class UIManager : MonoBehaviour {
 				abilityBar, ScaleMode.StretchToFill);
 			if(AbilitiesManager.Instance.rockRainAbility.coolDown <= 0){
 				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
+				GUI.Label(new Rect(25, 15, 200, 20), "Press 'E' to use", style);
 			} else {
 				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
 			}
@@ -536,6 +566,7 @@ public class UIManager : MonoBehaviour {
 				abilityBar, ScaleMode.StretchToFill);
 			if(AbilitiesManager.Instance.strikerAbility.coolDown <= 0){
 				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
+				GUI.Label(new Rect(25, 15, 200, 20), "Press 'E' to use", style);
 			} else {
 				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
 			}

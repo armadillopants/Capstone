@@ -38,12 +38,17 @@ public class LightningBlaster : BaseWeapon {
 	}
 	
 	void OnEnable(){
-		endPos.position = new Vector3(0, endPos.position.y, -range);
+		endPos.position = new Vector3(endPos.position.x, endPos.position.y, endPos.position.z-range);
+	}
+	
+	void OnDisable(){
+		endPos.position = new Vector3(endPos.position.x, endPos.position.y, 0);
+		hitParticles.emit = false;
 	}
 	
 	public override void Fire(){
 		
-		if(clips >= 0 && bulletsLeft > 0){
+		if(clips >= 0 && bulletsLeft > 0 && !isReloading){
 			
 			if(endPos != null){//targets[0] != null){
 				
@@ -52,7 +57,7 @@ public class LightningBlaster : BaseWeapon {
 				float timez = Time.time * speed * 2.5564f;
 				
 				for(int i=0; i<particles.Length; i++){
-					Vector3 position = Vector3.Lerp(muzzlePos.position, endPos.position, oneOverZigs * (float)i);
+					Vector3 position = Vector3.Lerp(muzzlePos.position, muzzlePos.position+muzzlePos.TransformDirection(muzzlePos.position.x,muzzlePos.position.y,range), oneOverZigs * (float)i);
 					Vector3 offset = new Vector3(noise.Noise(timex + position.x, timex + position.y, timex + position.z),
 												noise.Noise(timey + position.x, timey + position.y, timey + position.z),
 												noise.Noise(timez + position.x, timez + position.y, timez + position.z));

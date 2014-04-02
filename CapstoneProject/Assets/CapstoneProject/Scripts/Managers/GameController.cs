@@ -51,6 +51,15 @@ public class GameController : MonoBehaviour {
 	}
 
 	void OnApplicationQuit(){
+		DestroyEnemies();
+		DestroyFortifications();
+		Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
+		Destroy(GameController.Instance.GetWaveController().GetComponent<Fortification>());
+		Destroy(GameObject.FindWithTag(Globals.PLAYER));
+		Destroy(GameObject.Find("LaserLight"));
+		if(shipToSpawn){
+			Destroy(shipToSpawn);
+		}
 		_instance = null;
 	}
 	
@@ -107,11 +116,13 @@ public class GameController : MonoBehaviour {
 					StartCoroutine(UIManager.Instance.Fade());
 					StartCoroutine(UIManager.Instance.FadeComplete());
 					Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
+					Destroy(GameController.Instance.GetWaveController().GetComponent<Fortification>());
+					GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
 					beginFade = true;
 				}
 			}
 			
-			if(Input.GetKeyDown(KeyCode.Escape) && UIManager.Instance.uiState != UIManager.UIState.GAMEOVER && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
+			if((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) && UIManager.Instance.uiState != UIManager.UIState.GAMEOVER && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
 				UIManager.Instance.isPaused = true;
 				UIManager.Instance.uiState = UIManager.UIState.PAUSE;
 			}
@@ -133,6 +144,7 @@ public class GameController : MonoBehaviour {
 	public IEnumerator RestartGame(){
 		DestroyEnemies();
 		DestroyFortifications();
+		AbilitiesManager.Instance.ResetAbilities();
 		Destroy(GameObject.FindWithTag(Globals.PLAYER));
 		Destroy(GameObject.Find("LaserLight"));
 		yield return new WaitForSeconds(0.1f);

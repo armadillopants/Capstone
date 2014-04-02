@@ -13,9 +13,9 @@ public class AbilityPanelGUI : MonoBehaviour {
 	private int buyButtonWidth = 80;
 	private int upgradeButtonWidth = 100;
 	private int equipButtonWidth = 60;
-	private int refillButtonWidth = 80;
+	private int refillButtonWidth = 160;
   	private int buttonHeight = 20;//18;
-	private int buttonColRefill = 120;
+	private int buttonColRefill = 100;
   	private int buttonColBuy = 200;
 	private int buttonColUpgrade = 190;
   	private int buttonColEquip = 300;
@@ -54,6 +54,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 	private List<GameObject> allAbilities = new List<GameObject>();
 	private GameObject abilityHolder;
 	private List<AbilityAmmoVendor> abilityAmmoVendorContainer;
+	private bool useAbility;
 	
 	void Start(){
 		abilityVendor = GameObject.Find("Vendor").GetComponent<AbilityVendor>();
@@ -65,6 +66,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 	public void Reset(){
 		abilityManager = GameController.Instance.GetPlayer().GetComponent<AbilitiesManager>();
 		abilityHolder = GameObject.Find("AbilityHolder");
+		useAbility = true;
 	}
 	
 	public void Draw(Rect drawRect){
@@ -110,7 +112,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 			if(allAbilities[i].GetComponent<SellableItem>().purchased){
 				// Handle Refill of weapon
 				string refillType = allAbilities[i].name;
-				Rect refillRect = new Rect(buttonColRefill+labelOffset+labelOffset, labelOffset+labelOffset, refillButtonWidth*2f, buttonHeight*1.5f);
+				Rect refillRect = new Rect(buttonColRefill+labelOffset+labelOffset, labelOffset*10, refillButtonWidth, buttonHeight);
 				
 				// Dispense the ammo
 				if(refillType == allAbilities[0].name){
@@ -219,6 +221,10 @@ public class AbilityPanelGUI : MonoBehaviour {
 					
 					if(GUI.Button(new Rect(buttonColBuy, labelOffset+5, buyButtonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Purchase(allAbilities[i]);
+						if(useAbility){
+							GameObject.Find("Tutorial").GetComponent<Tutorial>().key = "BoughtAbility";
+							useAbility = false;
+						}
 					}
 				}
         	}

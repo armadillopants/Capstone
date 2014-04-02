@@ -38,6 +38,10 @@ public class Fortification : MonoBehaviour {
 	
 	void Update(){
 		FortifyHandling();
+		
+		if(Vector3.Distance(GameController.Instance.GetPlayer().position, GameController.Instance.GetShip().position) > 20){
+			GameController.Instance.GetPlayer().position = Vector3.Lerp(GameController.Instance.GetPlayer().position, GameController.Instance.GetShip().position, 5*Time.deltaTime);
+		}
 	}
 	
 	void FortifyHandling(){
@@ -59,6 +63,9 @@ public class Fortification : MonoBehaviour {
 			GameController.Instance.canChangeWeapons = true;
 			GameController.Instance.UpdateGraph();
 			foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
+				vendor.Cancel();
+			}
+			foreach(AbilityAmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AbilityAmmoVendorContainer>().abilityAmmoVendor){
 				vendor.Cancel();
 			}
 			Destroy(GameController.Instance.current);

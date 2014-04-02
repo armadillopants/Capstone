@@ -62,6 +62,17 @@ public class AbilitiesManager : MonoBehaviour {
 		ability.cost = int.Parse(firstNode.Attributes.GetNamedItem("cost").Value);
 	}
 	
+	public void ResetAbilities(){
+		AbilityVendor abilityVendor = GameObject.Find("Vendor").GetComponent<AbilityVendor>();
+		for(int i=0; i<abilityVendor.abilityVendor.Count; i++){
+			if(abilityVendor.abilityVendor[i].GetComponent<SellableItem>()){
+				abilityVendor.abilityVendor[i].GetComponent<SellableItem>().purchased = false;
+				abilityVendor.abilityVendor[i].GetComponent<SellableItem>().currentUpgrade = 0;
+			}
+		}
+		abilityVendor.Reset();
+	}
+	
 	public int GetCurrentAbilityCost(int cost, string itemName, int currentUpgrade){
 		string result = itemName.Replace(" " , "");
 		XmlNode firstNode = doc.SelectSingleNode("/AbilityData/Values/" + result + "/Upgrades/Upgrade" + currentUpgrade);

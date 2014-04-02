@@ -18,8 +18,8 @@ public class WeaponSelection : MonoBehaviour {
 	
 	void Awake(){
 		manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
-		weaponDisplayRect[0] = new Rect((Screen.width/2 - (buttonSize.x/2))-200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y);
-		weaponDisplayRect[1] = new Rect((Screen.width/2 - (buttonSize.x/2))+200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y);
+		weaponDisplayRect[1] = new Rect((Screen.width/2 - (buttonSize.x/2))-200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y);
+		weaponDisplayRect[0] = new Rect((Screen.width/2 - (buttonSize.x/2))+200, Screen.height/2 - (buttonSize.y/2), buttonSize.x, buttonSize.y);
 		weaponDisplayRect[2] = new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))-200, buttonSize.x, buttonSize.y);
 		weaponDisplayRect[3] = new Rect(Screen.width/2 - (buttonSize.x/2), (Screen.height/2 - (buttonSize.y/2))+200, buttonSize.x, buttonSize.y);
 	}
@@ -28,7 +28,7 @@ public class WeaponSelection : MonoBehaviour {
 		drawWeapon = true;
 		// Choose first weapon
 		UpdateWeaponsSlots();
-		SelectWeapon(weaponSlots[0].GetComponent<BaseWeapon>().id);
+		SelectWeapon(weaponSlots[1].GetComponent<BaseWeapon>().id);
 		weapon = GetComponentInChildren<BaseWeapon>();
 	}
 	

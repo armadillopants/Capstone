@@ -17,7 +17,7 @@ public class Tutorial : MonoBehaviour {
 	private string curKey = "";
 	
 	void Update(){
-		if(GameController.Instance.GetPlayer()){
+		if(GameController.Instance.GetPlayer() && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
 			Transform playerTrans = GameController.Instance.GetPlayer();
 			playerPos = playerTrans.position+new Vector3(0,1,0);
 			
@@ -52,12 +52,16 @@ public class Tutorial : MonoBehaviour {
 				WaitForWeaponScreen();
 			} else if(curKey == "AbilityScreen"){
 				WaitForAbilityScreen();
+			} else if(curKey == "BoughtAbility"){
+				DisplayAbilityUsage();
 			}
 		}
 	}
 	
 	public void ResetTutorial(){
 		beginTutorial = false;
+		StopAllCoroutines();
+		Destroy(link);
 	}
 	
 	GameObject Spawn(GameObject g, Vector3 pos, bool spawned){
@@ -192,14 +196,26 @@ public class Tutorial : MonoBehaviour {
 			} else if(waitTime >=0f && waitTime < 5f){
 				key = "";
 				curKey = "";
+				waitTime = 5f;
 			}
 		} else {
 			key = "AbilityScreen";
 		}
 	}
 	
+	void DisplayAbilityUsage(){
+		waitTime -= Time.deltaTime;
+		if(waitTime > 0){
+			key = "BoughtAbility";
+		} else {
+			key = "";
+			curKey = "";
+			waitTime = 5f;
+		}
+	}
+	
 	void DrawScreen(string text, int fontSize){
-		Rect shipRect = new Rect((Screen.width/2) - (900/2), /*(Screen.height/2) - (80/2) - 250*/(Screen.height-Screen.height)+80, 900, 80);
+		Rect shipRect = new Rect((Screen.width/2) - (900/2),(Screen.height-Screen.height)+80, 900, 80);
 		
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
@@ -248,6 +264,9 @@ public class Tutorial : MonoBehaviour {
 			DrawScreen("BUY weapons, UPGRADE, and EQUIP them", 30);
 		} else if(key == "PurchaseAbility"){
 			DrawScreen("BUY abilities for help in tight situations", 30);
+		} else if(key == "BoughtAbility"){
+			DrawScreen("Press 'E' to use current ability", 30);
+			curKey = key;
 		}
 	}
 }

@@ -32,8 +32,8 @@ public class WeaponManager : MonoBehaviour {
 		pistolWeapons.Clear();
 		launcherWeapons.Clear();
 		specialWeapons.Clear();
-		equippedWeapons[0] = GameObject.Find(rifleTypes[0]);
-		equippedWeapons[1] = GameObject.Find(pistolTypes[0]);
+		equippedWeapons[1] = GameObject.Find(rifleTypes[0]);
+		equippedWeapons[0] = GameObject.Find(pistolTypes[0]);
 		rifleWeapons.Add(GameObject.Find(rifleTypes[0]));
 		pistolWeapons.Add(GameObject.Find(pistolTypes[0]));
 	}

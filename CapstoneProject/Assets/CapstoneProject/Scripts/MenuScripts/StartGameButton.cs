@@ -37,6 +37,13 @@ public class StartGameButton : MonoBehaviour {
 			}
 			
 			if(MenuManager.Instance.menuState == MenuManager.MenuState.ENDGAME){
+				if(GameController.Instance.GetWaveController().GetComponent<Wave>()){
+					Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
+				}
+				if(GameController.Instance.GetWaveController().GetComponent<Fortification>()){
+					Destroy(GameController.Instance.GetWaveController().GetComponent<Fortification>());
+				}
+				beginGame = false;
 				lerpToStart = true;
 				cam.position = Vector3.Lerp(cam.position, startCam.position, 0.5f*Time.deltaTime);
 				cam.rotation = Quaternion.Lerp(cam.rotation, Quaternion.Euler(new Vector3(startCam.eulerAngles.x, 0, 0)), 0.5f*Time.deltaTime);

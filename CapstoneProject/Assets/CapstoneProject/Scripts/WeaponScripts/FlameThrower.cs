@@ -26,4 +26,8 @@ public class FlameThrower : BaseWeapon {
 		
 		base.Fire();
 	}
+	
+	void OnDisable(){
+		hitParticles.emit = false;
+	}
 }
