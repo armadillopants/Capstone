@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public Transform GetShip(){
-		return GameObject.FindWithTag(Globals.SHIP).transform;
+		return GameObject.Find(Globals.SHIP).transform;
 	}
 	
 	public Health GetPlayerHealth(){
@@ -144,7 +144,14 @@ public class GameController : MonoBehaviour {
 	public IEnumerator RestartGame(){
 		DestroyEnemies();
 		DestroyFortifications();
+		Destroy(GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>());
 		AbilitiesManager.Instance.ResetAbilities();
+		GetShip().parent = null;
+		GetShip().position = new Vector3(9.382379f, 1.982083f, 8.945202f);
+		GetShip().rotation = Quaternion.Euler(0, 90f, 0);
+		if(shipToSpawn){
+			Destroy(shipToSpawn);
+		}
 		Destroy(GameObject.FindWithTag(Globals.PLAYER));
 		Destroy(GameObject.Find("LaserLight"));
 		yield return new WaitForSeconds(0.1f);
@@ -156,17 +163,15 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public void Reset(){
-		if(shipToSpawn){
-			Destroy(shipToSpawn);
-		}
 		foreach(ParticleEmitter light in GameObject.FindWithTag(Globals.SHIP).GetComponentsInChildren<ParticleEmitter>()){
 			light.emit = false;
 		}
-		GameObject.Find("Ship").AddComponent<AttachPlayerToShip>();
+		GameObject.Find(Globals.SHIP).AddComponent<AttachPlayerToShip>();
 		GetShipHealth().ModifyHealth(GetShipHealth().GetMaxHealth());
 		GetShipHealth().IsDead = false;
 		GameObject.Find("Tutorial").GetComponent<Tutorial>().ResetTutorial();
 		GameObject.Find("Vendor").GetComponent<WeaponPanelGUI>().Reset();
+		GameObject.Find("Vendor").GetComponent<BuildPanelGUI>().Reset();
 		GameObject.Find("Vendor").GetComponent<MainPanelGUI>().Reset();
 		GameObject.Find("Vendor").GetComponent<AbilityPanelGUI>().Reset();
 		beginFade = false;
@@ -397,6 +402,7 @@ public class GameController : MonoBehaviour {
 	
 	public void SpawnRescueShip(){
 		shipToSpawn = (GameObject)Instantiate(rescueShip, new Vector3(-100,60,30), Quaternion.identity);
+		shipToSpawn.name = rescueShip.name;
 	}
 	
 	public GameObject FindNearestTarget(string nearestTarget, Transform other){

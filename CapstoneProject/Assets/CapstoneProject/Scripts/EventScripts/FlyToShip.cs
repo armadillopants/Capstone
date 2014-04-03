@@ -9,7 +9,7 @@ public class FlyToShip : MonoBehaviour {
 	private float offset;
 	private Vector3 shipPos;
 	
-	private float timer = 120.0f;
+	private float timer = 120.00f;
 	
 	void Start(){
 		ship = GameController.Instance.GetShip();
@@ -65,7 +65,7 @@ public class FlyToShip : MonoBehaviour {
 		transform.position = pos;
 	}
 	
-	void OnGUI(){
-		GUILayout.Box("Timer: " + timer);
+	public float GetTimer(){
+		return timer;
 	}
 }

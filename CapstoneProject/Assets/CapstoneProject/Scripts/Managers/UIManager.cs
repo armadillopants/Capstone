@@ -185,6 +185,50 @@ public class UIManager : MonoBehaviour {
 				}
 			}
 		}
+		
+		if(GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>() != null){
+			if(GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>().GetWavesLeft() > 0){
+				DrawFinalWaveCountdown();
+			}
+		}
+		
+		if(GameObject.Find("RescueShip") && uiState != UIState.GAMEWON){
+			DrawFinalWaveTimer();
+			Debug.Log("Draw Timer");
+		}
+	}
+	
+	void DrawFinalWaveCountdown(){
+		Rect finalWaveRect = new Rect((Screen.width/2)-(500/2), (Screen.height-Screen.height)+50, 500, 50);
+		GUI.BeginGroup(finalWaveRect);
+		
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 20;
+		
+		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Waves until Rescue Ship's arrival: "
+			+GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>().GetWavesLeft(), style);
+		
+		GUI.EndGroup();
+	
+	}
+	
+	void DrawFinalWaveTimer(){
+		Rect finalWaveRect = new Rect((Screen.width/2)-(500/2), (Screen.height-Screen.height)+50, 500, 50);
+		GUI.BeginGroup(finalWaveRect);
+		
+		GUIStyle style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 20;
+		
+		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Timer: "
+			+GuiTime(GameObject.Find("RescueShip").GetComponent<FlyToShip>().GetTimer()), style);
+		
+		GUI.EndGroup();
 	}
 	
 	void DrawPauseScreen(){
@@ -322,13 +366,41 @@ public class UIManager : MonoBehaviour {
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
 		style.font = resourceFont;
-		style.fontSize = 100;
+		style.fontSize = 50;
 		
 		GUI.BeginGroup(waveRect);
 		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "GAME WON!", style);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "YOU HAVE ESCAPED!", style);
 		
 		GUI.EndGroup();
+		
+		GUIContent content = new GUIContent();
+		
+		GUIStyle restartButton = new GUIStyle();
+		restartButton.normal.background = restartNormal;
+		restartButton.hover.background = restartHover;
+		restartButton.active.background = restartActive;
+		
+		GUIStyle quitButton = new GUIStyle();
+		quitButton.normal.background = quitNormal;
+		quitButton.hover.background = quitHover;
+		quitButton.active.background = quitActive;
+		
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
+			//Application.LoadLevel(Application.loadedLevel);
+			isPaused = false;
+			uiState = UIState.NONE;
+			GameController.Instance.canShoot = false;
+			GameController.Instance.canChangeWeapons = false;
+			Destroy(GameController.Instance.GetWaveController().GetComponent<Wave>());
+			Destroy(GameController.Instance.GetWaveController().GetComponent<Fortification>());
+			GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
+			MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
+			StartCoroutine(GameController.Instance.RestartGame());
+		}
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50),content,quitButton)){
+			Application.Quit();
+		}
 	}
 	
 	void DrawCurWaveScreen(){
@@ -609,5 +681,16 @@ public class UIManager : MonoBehaviour {
 	    	yield return new WaitForSeconds(Time.deltaTime);
   		}
 		Destroy(fade);
+	}
+	
+	public string GuiTime(float time){
+		float guiTime = time;
+		int minutes = (int)(guiTime / 60); // Creates 00 for minutes
+		int seconds = (int)(guiTime % 60); // Creates 00 for seconds
+		int fraction = (int)(time * 100); // Creates 000 for fractions
+		fraction = fraction % 100;
+		string text = ""; // For displaying the the timer in min, sec, frac
+	    text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+	    return text;
 	}
 }

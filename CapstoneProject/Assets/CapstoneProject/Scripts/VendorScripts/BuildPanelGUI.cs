@@ -6,7 +6,7 @@ public class BuildPanelGUI : MonoBehaviour {
   	private int labelOffset = 10;
 	
 	// Label Placement
-  	private int labelHeight = 30;//48;
+  	private int labelHeight = 30;
 	private int labelWidth = 340;
   	
 	// Button Placement
@@ -31,8 +31,17 @@ public class BuildPanelGUI : MonoBehaviour {
 	public Texture2D buyActive;
 	
 	void Start(){
+		Reset();
+	}
+	
+	public void Reset(){
 		itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
 		allForts = itemVendor.itemVendor;
+		for(int i=0; i<allForts.Count; i++){
+			if(allForts[i].name == "SatelliteTower"){
+				allForts[i].GetComponent<SellableItem>().soldOut = false;
+			}
+		}
 	}
 	
 	public void Draw(Rect drawRect){
@@ -79,7 +88,7 @@ public class BuildPanelGUI : MonoBehaviour {
 			buttonStyle.active.textColor = Color.white;
 			
 			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut){
-				if(GUI.Button(new Rect(buttonPosX, labelOffset/2/*4*/, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
+				if(GUI.Button(new Rect(buttonPosX, labelOffset/2, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
 					itemVendor.Purchase(allForts[i]);
 					if(allForts[i].name == "SatelliteTower"){
 						allForts[i].GetComponent<SellableItem>().soldOut = true;

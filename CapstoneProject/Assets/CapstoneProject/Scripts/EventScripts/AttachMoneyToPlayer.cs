@@ -6,10 +6,14 @@ public class AttachMoneyToPlayer : MonoBehaviour {
 	private float moveSpeed = 15f;
 	
 	void Update(){
-		Transform target = GameController.Instance.GetPlayer();
-		transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-		Quaternion rotate = Quaternion.LookRotation(target.transform.position - transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * moveSpeed);
+		if(GameController.Instance.GetPlayer()){
+			Transform target = GameController.Instance.GetPlayer();
+			transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+			Quaternion rotate = Quaternion.LookRotation(target.transform.position - transform.position);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rotate, Time.deltaTime * moveSpeed);
+		} else {
+			Destroy(gameObject);
+		}
 	}
 	
 	void OnTriggerEnter(Collider other){

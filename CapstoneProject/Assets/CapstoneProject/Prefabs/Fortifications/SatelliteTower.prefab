@@ -44,7 +44,7 @@ MonoBehaviour:
   cost: 1000
   preview: {fileID: 0}
   purchased: 0
-  soldOut: 0
+  soldOut: 1
   currentUpgrade: 1
   id: 0
   upgradedItem: {fileID: 0}

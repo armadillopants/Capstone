@@ -27,7 +27,10 @@ public class ShipIndicator : MonoBehaviour {
 	}
 	
 	void LateUpdate(){
-		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME && !GameObject.FindWithTag(Globals.PLAYER).GetComponent<Health>().IsDead){
+		if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME 
+			&& !GameObject.FindWithTag(Globals.PLAYER).GetComponent<Health>().IsDead 
+			&& UIManager.Instance.uiState != UIManager.UIState.GAMEWON){
+			
 			shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
 			
 			Renderer data = transform.GetComponent<Renderer>().renderer;

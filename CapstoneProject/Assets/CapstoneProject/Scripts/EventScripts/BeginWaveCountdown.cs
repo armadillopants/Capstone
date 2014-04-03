@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BeginWaveCountdown : MonoBehaviour {
 	
-	private int amountOfWavesLeft = 10;
+	private int amountOfWavesLeft = 1;
 
 	void Start(){
 		GameController.Instance.SetCurWave(GameController.Instance.GetWaveController().GetWaveNumber());
@@ -18,7 +18,7 @@ public class BeginWaveCountdown : MonoBehaviour {
 		}
 	}
 	
-	void OnGUI(){
-		GUI.Box(new Rect(0, 350, 250, 22), "Waves until Rescue Ship's arrival: " + amountOfWavesLeft);
+	public int GetWavesLeft(){
+		return amountOfWavesLeft;
 	}
 }
