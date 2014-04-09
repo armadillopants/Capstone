@@ -86,6 +86,7 @@ public class UIManager : MonoBehaviour {
 		grayBar.Apply();
 		holder = GameObject.Find("AbilityHolder");
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
+		Screen.showCursor = false;
 	}
 	
 	void Update(){
@@ -166,22 +167,22 @@ public class UIManager : MonoBehaviour {
 		
 		if(GameObject.FindWithTag(Globals.PLAYER)){
 			if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>() != null){
-				DrawResources();
+				//DrawResources();
 				DrawCurWaveScreen();
-				DrawAmmoDisplay();
-				if(displayEnemyHealthData){
+				/*if(displayEnemyHealthData){
 					DrawEnemyHealthDisplay();
-				}
+				}*/
 				if(displayUI){
+					DrawAmmoDisplay();
 					//DrawPlayerHealth();
 					DrawAbilityDisplay();
 					DrawShipHealth();
-					if(displayFortHealthData){
+					/*if(displayFortHealthData){
 						DrawFortHealthDisplay();
 					}
 					if(displayFortWeaponData){
 						DrawFortWeaponDisplay();
-					}
+					}*/
 				}
 			}
 		}
@@ -194,7 +195,6 @@ public class UIManager : MonoBehaviour {
 		
 		if(GameObject.Find("RescueShip") && uiState != UIState.GAMEWON){
 			DrawFinalWaveTimer();
-			Debug.Log("Draw Timer");
 		}
 	}
 	
@@ -343,6 +343,8 @@ public class UIManager : MonoBehaviour {
 		style.font = resourceFont;
 		style.fontSize = 50;
 		
+		displayUI = false;
+		
 		if(fadeComplete){
 			GUI.BeginGroup(waveRect);
 			GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "YOU ARE DEAD", style);
@@ -385,6 +387,8 @@ public class UIManager : MonoBehaviour {
 		quitButton.normal.background = quitNormal;
 		quitButton.hover.background = quitHover;
 		quitButton.active.background = quitActive;
+		
+		displayUI = false;
 		
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
 			//Application.LoadLevel(Application.loadedLevel);
@@ -514,6 +518,7 @@ public class UIManager : MonoBehaviour {
 		style.normal.background = resourceBackground;
 		style.font = resourceFont;
 		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.cyan;
 		GUI.Label(new Rect(0, 0, resourceRect.width, resourceRect.height), "RESOURCES: " + GameController.Instance.GetResources(), style);
 		
 		GUI.EndGroup();
@@ -546,13 +551,6 @@ public class UIManager : MonoBehaviour {
 						GUI.DrawTexture(new Rect(440, 45, -200, 30), canisters[4]);
 					}
 					
-					/*else if(weapon == manager.allWeapons[3] || weapon == manager.allWeapons[7]){
-					Texture2D ammoBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-					ammoBar.SetPixel(0, 0, Color.blue);
-					ammoBar.Apply();
-					
-					float width = Mathf.Clamp(200f*Mathf.Round((weapon.bulletsLeft/150f)*100f)/100f, 0, 200);
-					GUI.DrawTexture(new Rect(440, 0, -width, 20), ammoBar, ScaleMode.StretchToFill);*/
 				} else if(weapon == manager.allWeapons[3]){
 					if(weapon.bulletsLeft >= weapon.bulletsPerClip){
 						GUI.DrawTexture(new Rect(440, 10, -200, 100), batteries[0]);

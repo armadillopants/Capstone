@@ -50,21 +50,19 @@ public class AbilityPanelGUI : MonoBehaviour {
 	public Texture2D refillActive;
 	
 	private AbilityVendor abilityVendor;
-	private AbilitiesManager abilityManager;
 	private List<GameObject> allAbilities = new List<GameObject>();
 	private GameObject abilityHolder;
 	private List<AbilityAmmoVendor> abilityAmmoVendorContainer;
 	private bool useAbility;
 	
 	void Start(){
-		abilityVendor = GameObject.Find("Vendor").GetComponent<AbilityVendor>();
-		allAbilities = abilityVendor.abilityVendor;
-		abilityAmmoVendorContainer = GameObject.Find("Vendor").GetComponent<AbilityAmmoVendorContainer>().abilityAmmoVendor;
 		Reset();
 	}
 	
 	public void Reset(){
-		abilityManager = GameController.Instance.GetPlayer().GetComponent<AbilitiesManager>();
+		abilityVendor = GameObject.Find("Vendor").GetComponent<AbilityVendor>();
+		allAbilities = abilityVendor.abilityVendor;
+		abilityAmmoVendorContainer = GameObject.Find("Vendor").GetComponent<AbilityAmmoVendorContainer>().abilityAmmoVendor;
 		abilityHolder = GameObject.Find("AbilityHolder");
 		useAbility = true;
 	}
@@ -214,7 +212,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 					}
 				}
         	} else {
-				if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost){
+				if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost && GameController.Instance.GetWaveController().GetWaveNumber() >= 3){
 					buttonStyle.normal.background = buyNormal;
 					buttonStyle.hover.background = buyHover;
 					buttonStyle.active.background = buyActive;

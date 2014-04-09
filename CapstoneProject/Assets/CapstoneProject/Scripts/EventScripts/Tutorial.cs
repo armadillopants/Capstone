@@ -29,7 +29,7 @@ public class Tutorial : MonoBehaviour {
 			if(link != null){
 				if(key == "Player"){
 					link.transform.position = new Vector3(playerPos.x, 1, playerPos.z);
-				} else if(key == "LeftClick" || key == "LeftShift"){
+				} else if(key == "LeftClick" || key == "LeftShift" || key == "RightClickToReload"){
 					link.transform.position = new Vector3(playerPos.x, 1, playerPos.z) - new Vector3(3,0,0);
 				} else if(key == "RightClick"){
 					link.transform.position = new Vector3(link.transform.position.x, 1, link.transform.position.z);
@@ -62,6 +62,10 @@ public class Tutorial : MonoBehaviour {
 		beginTutorial = false;
 		StopAllCoroutines();
 		Destroy(link);
+		link = null;
+		key = "";
+		curKey = "";
+		spawnRightMouse = false;
 	}
 	
 	GameObject Spawn(GameObject g, Vector3 pos, bool spawned){
@@ -76,8 +80,9 @@ public class Tutorial : MonoBehaviour {
 	IEnumerator BeginWASDLink(){
 		key = "ProtectShip";
 		yield return new WaitForSeconds(waitTime);
-		key = "Player";
+		key = "";
 		yield return new WaitForSeconds(waitTime);
+		key = "Player";
 		link = Spawn(WASD, playerPos, false);
 		yield return new WaitForSeconds(waitTime);
 		Destroy(GameObject.Find(link.name));
@@ -99,6 +104,16 @@ public class Tutorial : MonoBehaviour {
 		link = Spawn(leftShift, playerPos, false);
 		yield return new WaitForSeconds(waitTime);
 		Destroy(GameObject.Find(link.name));
+		link = null;
+		StartCoroutine(BeginMouseRightLink());
+	}
+	
+	IEnumerator BeginMouseRightLink(){
+		key = "RightClickToReload";
+		link = Spawn(mouseRight, playerPos, false);
+		yield return new WaitForSeconds(waitTime);
+		Destroy(GameObject.Find(link.name));
+		key = "";
 		link = null;
 	}
 	
@@ -127,13 +142,18 @@ public class Tutorial : MonoBehaviour {
 	
 	void ClickLeft(){
 		if(Input.GetKey(KeyCode.Mouse0)){
-			key = "ClickRight";
+			StartCoroutine(IHateHacks());
 			ClickRight();
 		}
 		
 		if(Input.GetKey(KeyCode.Mouse1)){
 			key = "BuildScreen";
 		}
+	}
+	
+	IEnumerator IHateHacks(){
+		yield return new WaitForSeconds(0.1f);
+		key = "ClickRight";
 	}
 	
 	void ClickRight(){
@@ -197,6 +217,7 @@ public class Tutorial : MonoBehaviour {
 				key = "";
 				curKey = "";
 				waitTime = 5f;
+				UIManager.Instance.uiState = UIManager.UIState.NONE;
 			}
 		} else {
 			key = "AbilityScreen";
@@ -215,18 +236,18 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	void DrawScreen(string text, int fontSize){
-		Rect shipRect = new Rect((Screen.width/2) - (900/2),(Screen.height-Screen.height)+80, 900, 80);
+		Rect rect = new Rect((Screen.width/2) - (900/2),(Screen.height-Screen.height)+80, 900, 80);
 		
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
 		style.font = UIManager.Instance.resourceFont;
 		style.fontSize = fontSize;
-		style.normal.background = UIManager.Instance.resourceBackground;
+		//style.normal.background = UIManager.Instance.resourceBackground;
 		
-		GUI.BeginGroup(shipRect);
+		GUI.BeginGroup(rect);
 		
-		GUI.Label(new Rect(0, 0, shipRect.width, shipRect.height), text, style);
+		GUI.Label(new Rect(0, 0, rect.width, rect.height), text, style);
 		
 		GUI.EndGroup();
 	}
@@ -267,6 +288,14 @@ public class Tutorial : MonoBehaviour {
 		} else if(key == "BoughtAbility"){
 			DrawScreen("Press 'E' to use current ability", 30);
 			curKey = key;
+		} else if(key == "Player"){
+			DrawScreen("WASD to move Player", 30);
+		} else if(key == "LeftClick"){
+			DrawScreen("LEFT CLICK to shoot", 30);
+		} else if(key == "LeftShift"){
+			DrawScreen("Hold LEFT SHIFT to switch weapons", 30);
+		} else if(key == "RightClickToReload"){
+			DrawScreen("RIGHT CLICK to reload weapon", 30);
 		}
 	}
 }

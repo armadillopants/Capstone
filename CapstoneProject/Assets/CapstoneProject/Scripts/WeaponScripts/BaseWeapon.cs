@@ -83,14 +83,16 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	public virtual void Update(){
-		if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < bulletsPerClip && clips > 0){
-			StartCoroutine("Reload");
-			return;
-		}
+		if(UIManager.Instance.displayUI){
+			if(Input.GetMouseButtonDown(1) && bulletsLeft < bulletsPerClip && clips > 0){
+				StartCoroutine("Reload");
+				return;
+			}
 		
-		if(Input.GetMouseButtonDown(0) && bulletsLeft <= 0 && clips <= 0){
-			if(audio){
-				audio.PlayOneShot(emptyClip);
+			if(Input.GetMouseButtonDown(0) && bulletsLeft <= 0 && clips <= 0){
+				if(audio){
+					audio.PlayOneShot(emptyClip);
+				}
 			}
 		}
 		

@@ -9,7 +9,8 @@ public class Worm : Enemy {
 	public ParticleSystem flamethrower;
 	public ParticleEmitter dust;
 	private float popUpTimer = 0f;
-	private float popUpTimerMax = Random.Range(5f, 10f);
+	public AudioClip acidSpit;
+	public AudioClip groundCrawl;
 	
 	public override void Start(){
 		base.Start();
@@ -19,39 +20,15 @@ public class Worm : Enemy {
 	}
 	
 	public override void Update(){
-		if(isUnderground){
-			return;
-		}
-		
-		if(currentCoolDown > 0){
-			currentCoolDown -= Time.deltaTime;
-		}
+		base.Update();
 		
 		if(popUpTimer > 0){
 			popUpTimer -= Time.deltaTime;
 		} else {
 			popUpTimer = 0;
-			popUpTimerMax = Random.Range(5f, 10f);
-		}
-		
-		ClampCoolDownTime();
-		
-		if(!isTakingExtraDamage){
-			emitter.emit = false;
-		} else {
-			emitter.emit = true;
-			if(curDamageMat == fireMat){
-				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(burnDamage/Time.time), SendMessageOptions.DontRequireReceiver);
-			} else if(curDamageMat == lightningMat){
-				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(lightningDamage/Time.time), SendMessageOptions.DontRequireReceiver);
-			} else {
-				// No extra damage taken
-			}
 		}
 		
 		if(health.IsDead){
-			state = EnemyState.DEAD;
-			rigid.isKinematic = true;
 			flamethrower.Stop();
 		} else {
 			if(popUpTimer <= 0){
@@ -127,21 +104,23 @@ public class Worm : Enemy {
 		StartCoroutine(WaitToTakeDamage());
 		anim.CrossFade("Shoot", 0.2f);
 		flamethrower.Play();
+		audio.clip = acidSpit;
+		audio.loop = true;
 		audio.Play();
 		
-		Vector3 dir = (target.position - tr.position).normalized;
-		float targetRot1 = Mathf.Atan2(dir.y, dir.x) * 180.0f / Mathf.PI; // On right side
-		float targetRot2 = Mathf.Atan2(dir.y, -dir.x) * 180.0f / Mathf.PI; // On left side
-		
-		if(Vector3.Distance(target.position, tr.position) < distance){
-			if(Vector3.Dot(dir, -tr.up) > 0){
-				if((Mathf.Abs(tr.rotation.y - targetRot1) < 50f) || (Mathf.Abs(tr.rotation.y - targetRot2) < 50f)){
+		if(target != null){
+			Vector3 dir = (target.position - tr.position).normalized;
+			
+			if(Vector3.Distance(target.position, tr.position) < 10f){
+				if(Vector3.Dot(dir, -tr.up) > 0){
 					if(currentCoolDown <= 0){
 						target.gameObject.SendMessageUpwards("TakeDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
 						currentCoolDown = coolDownLength;
 					}
 				}
 			}
+		} else {
+			target = lastTarget;
 		}
 	}
 	
@@ -152,7 +131,7 @@ public class Worm : Enemy {
 	
 	IEnumerator WaitToEnterShootMode(){
 		yield return new WaitForSeconds(2f);
-		popUpTimer = popUpTimerMax;
+		popUpTimer = Random.Range(5f, 10f);
 		state = Enemy.EnemyState.SHOOTING;
 	}
 	
@@ -162,7 +141,6 @@ public class Worm : Enemy {
 	}
 	
 	public override void ChaseObject(){
-		audio.Stop();
 		Vector3 velocity = new Vector3();
 		if(canMove){
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
@@ -173,13 +151,17 @@ public class Worm : Enemy {
 				canMove = false;
 				GameObject hole = (GameObject)Resources.Load("Hole", typeof(GameObject));
 				GameObject explosion = (GameObject)Resources.Load("DigExplosion", typeof(GameObject));
-		
+				audio.Stop();
 				Instantiate(explosion, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
 				Instantiate(hole, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
 			} else if(Vector3.Distance(target.position, tr.position) > distance){
 				Vector3 adjustedTargetHeight = tr.position; // Set position to variable
 				adjustedTargetHeight.y = targetHeight; // Adjust height to a set target
 				tr.position = adjustedTargetHeight; // Commit the changes
+				
+				audio.clip = groundCrawl;
+				audio.loop = true;
+				audio.Play();
 				
 				tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.identity, 0.5f*Time.deltaTime);
 				tr.position = Vector3.Lerp(tr.position, new Vector3(tr.position.x, targetHeight, tr.position.z), 0.5f*Time.deltaTime);

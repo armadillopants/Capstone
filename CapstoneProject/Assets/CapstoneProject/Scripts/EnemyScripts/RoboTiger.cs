@@ -20,58 +20,7 @@ public class RoboTiger : Enemy {
 	}
 	
 	public override void Update(){
-		
-		if(isUnderground){
-			return;
-		}
-		
-		if(curTarget != null){
-			lastTarget = curTarget;
-			isPathBlocked = CheckIfPathIsPossible(tr.position, lastTarget.position);
-		}
-		
-		if(isPathBlocked){
-			target = GameController.Instance.FindNearestTarget(Globals.FORTIFICATION, tr).transform;
-			
-			if(target == null){
-				target = lastTarget;
-				if(!doDamage){
-					state = EnemyState.CHASING;
-				}
-			}
-		} else {
-			if(target == null){
-				target = lastTarget;
-				if(!doDamage){
-					state = EnemyState.CHASING;
-				}
-			} else {
-				target = lastTarget;
-				if(!doDamage){
-					state = EnemyState.CHASING;
-				}
-			}
-			
-			if(GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION) != null){
-				GameObject[] nearestFort = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
-				for(int i=0; i<nearestFort.Length; i++){
-					if(Vector3.Distance(nearestFort[i].transform.position, tr.position) <= 10f && 
-						Vector3.Distance(lastTarget.position, tr.position) >= 5f){
-						target = GameController.Instance.FindNearestTarget(Globals.FORTIFICATION, tr).transform;
-					} else {
-						SwitchTarget(lastTarget.tag);
-					}
-				}
-			}
-		}
-		
-		if(GameController.Instance.GetShipHealth().IsDead){
-			SwitchTarget(Globals.PLAYER);
-		}
-		
-		if(currentCoolDown > 0){
-			currentCoolDown -= Time.deltaTime;
-		}
+		base.Update();
 		
 		if(spawningTime > 0){
 			spawningTime -= Time.deltaTime;
@@ -88,33 +37,13 @@ public class RoboTiger : Enemy {
 			amountToSpawn = Random.Range(1, 5);
 			audio.PlayOneShot(tigerGrowl);
 		}
-		
-		if(health.IsDead){
-			state = EnemyState.DEAD;
-			rigid.isKinematic = true;
-		}
-		
-		ClampCoolDownTime();
-		
-		if(!isTakingExtraDamage){
-			emitter.emit = false;
-		} else {
-			emitter.emit = true;
-			if(curDamageMat == fireMat){
-				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(burnDamage/Time.time), SendMessageOptions.DontRequireReceiver);
-			} else if(curDamageMat == lightningMat){
-				SendMessage("TakeDamage", 1.0f-Mathf.Clamp01(lightningDamage/Time.time), SendMessageOptions.DontRequireReceiver);
-			} else {
-				// No extra damage taken
-			}
-		}
 	}
 	
 	public override void ChaseObject(){
 		
 		Vector3 velocity;
 		Vector3 rotateDir = new Vector3();
-		if(canMove){
+		if(canMove && target != null){
 			
 			if(Vector3.Distance(target.position, tr.position) < distance){
 				if(runToPointOne){

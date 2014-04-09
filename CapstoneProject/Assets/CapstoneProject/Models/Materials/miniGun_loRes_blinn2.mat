@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: miniGun_loRes_blinn2
-  m_Shader: {fileID: 4800000, guid: 85014f3c561e20c43a70af9799e48ac9, type: 3}
+  m_Shader: {fileID: 4800000, guid: f663de46da989fd41b75fb79d2f045e7, type: 3}
   m_ShaderKeywords: []
   m_SavedProperties:
     serializedVersion: 2

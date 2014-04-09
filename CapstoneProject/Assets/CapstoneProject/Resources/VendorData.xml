@@ -376,7 +376,7 @@
 					range= "20"
 					fireRate= "0.09"
 					force= "1.7"
-					bulletsPerClip= "150"
+					bulletsPerClip= "Infinity"
 					clips= "4"
 					reloadSpeed= "1.8"
 					coneAngle= "1.5">
@@ -389,7 +389,7 @@
 					range= "25"
 					fireRate= "0.08"
 					force= "1.9"
-					bulletsPerClip= "200"
+					bulletsPerClip= "Infinity"
 					clips= "5"
 					reloadSpeed= "1.5"
 					coneAngle= "1.3">
@@ -405,7 +405,7 @@
 					range= "20"
 					fireRate= "0.8"
 					force= "2.2"
-					bulletsPerClip= "12"
+					bulletsPerClip= "Infinity"
 					clips= "5"
 					reloadSpeed= "2.3"
 					damage= "8"
@@ -418,7 +418,7 @@
 					range= "25"
 					fireRate= "0.5"
 					force= "2.4"
-					bulletsPerClip= "14"
+					bulletsPerClip= "Infinity"
 					clips= "5"
 					reloadSpeed= "2.0"
 					damage= "10"
@@ -436,7 +436,7 @@
 					range= "15"
 					fireRate= "0.09"
 					force= "1.2"
-					bulletsPerClip= "150"
+					bulletsPerClip= "Infinity"
 					clips= "3"
 					reloadSpeed= "1.3"
 					coneAngle= "1.5">
@@ -449,7 +449,7 @@
 					range= "20"
 					fireRate= "0.08"
 					force= "1.4"
-					bulletsPerClip= "200"
+					bulletsPerClip= "Infinity"
 					clips= "4"
 					reloadSpeed= "1.1"
 					coneAngle= "1.3">
@@ -466,7 +466,7 @@
 					range= "15"
 					fireRate= "0.9"
 					force= "1.7"
-					bulletsPerClip= "15"
+					bulletsPerClip= "Infinity"
 					clips= "3"
 					reloadSpeed= "1.8"
 					coneAngle= "1.8">
@@ -479,7 +479,7 @@
 					range= "20"
 					fireRate= "0.8"
 					force= "1.9"
-					bulletsPerClip= "20"
+					bulletsPerClip= "Infinity"
 					clips= "4"
 					reloadSpeed= "1.6"
 					coneAngle= "1.6">
@@ -496,7 +496,7 @@
 					range= "15"
 					fireRate= "0.09"
 					force= "2.2"
-					bulletsPerClip= "150"
+					bulletsPerClip= "Infinity"
 					clips= "3"
 					reloadSpeed= "2.3"
 					coneAngle= "1.5">
@@ -509,7 +509,7 @@
 					range= "20"
 					fireRate= "0.08"
 					force= "2.4"
-					bulletsPerClip= "200"
+					bulletsPerClip= "Infinity"
 					clips= "4"
 					reloadSpeed= "2.0"
 					coneAngle= "1.3">
@@ -526,7 +526,7 @@
 					range= "7"
 					fireRate= "0.09"
 					force= "2.2"
-					bulletsPerClip= "150"
+					bulletsPerClip= "Infinity"
 					clips= "3"
 					reloadSpeed= "2.3"
 					coneAngle= "1.5">
@@ -539,7 +539,7 @@
 					range= "10"
 					fireRate= "0.08"
 					force= "2.4"
-					bulletsPerClip= "200"
+					bulletsPerClip= "Infinity"
 					clips= "4"
 					reloadSpeed= "2.0"
 					coneAngle= "1.3">

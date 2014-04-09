@@ -130,7 +130,7 @@ public class Enemy : AIPath {
 				GameObject[] nearestFort = GameObject.FindGameObjectsWithTag(Globals.FORTIFICATION);
 				for(int i=0; i<nearestFort.Length; i++){
 					if(Vector3.Distance(nearestFort[i].transform.position, tr.position) <= 10f && 
-						Vector3.Distance(lastTarget.position, tr.position) >= 5f){
+						Vector3.Distance(lastTarget.position, tr.position) >= 3f){
 						target = GameController.Instance.FindNearestTarget(Globals.FORTIFICATION, tr).transform;
 					} else {
 						SwitchTarget(lastTarget.tag);

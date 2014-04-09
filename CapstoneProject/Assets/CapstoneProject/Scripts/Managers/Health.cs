@@ -21,6 +21,7 @@ public class Health : MonoBehaviour {
 	public Color healthColor;
 	private bool displayHealth = false;
 	private Rect healthDisplayRect;
+	public Texture2D damageTex;
 	
 	void Update(){
 		
@@ -46,6 +47,7 @@ public class Health : MonoBehaviour {
 				displayHealth = true;
 			} else {
 				displayHealth = false;
+				displayHealthTimer = 0;
 			}
 		}
 		
@@ -158,6 +160,11 @@ public class Health : MonoBehaviour {
 				healthBar, ScaleMode.StretchToFill);
 			
 			GUI.EndGroup();
+			
+			if(gameObject.tag == Globals.PLAYER){
+				GUI.color = new Color(1.0f,1.0f,1.0f,displayHealthTimer);
+				GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), damageTex);
+			}
 		}
 	}
 }

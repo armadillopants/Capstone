@@ -12,7 +12,7 @@ public class Flashlight : MonoBehaviour {
 		batteryLife = Random.Range(maxBatteryLife*0.5f, maxBatteryLife);
 		
 		flashLight = GetComponent<Light>();
-		flashLight.range = 20f;
+		flashLight.range = 25f;
 		flashLight.intensity = 1f;
 		flashLight.spotAngle = 100f;
 		
@@ -20,7 +20,7 @@ public class Flashlight : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(switchOn){
+		/*if(switchOn){
 			batteryLife -= Time.deltaTime;
 			if(batteryLife <= 0){
 				batteryLife = 0;
@@ -29,7 +29,7 @@ public class Flashlight : MonoBehaviour {
 			
 			float batteryCurveEval = batteryCurve.Evaluate(1.0f-batteryLife/maxBatteryLife);
 			flashLight.intensity -= (batteryCurveEval/maxBatteryLife*0.5f) * Time.deltaTime;
-		}
+		}*/
 	}
 	
 	public void TurnOn(){

@@ -65,13 +65,13 @@ public class WeaponPanelGUI : MonoBehaviour {
 	
 	void Start(){
 		Reset();
-		weaponVendor = GameObject.Find("Vendor").GetComponent<WeaponVendor>();
-		ammoVendorContainer = GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors;
 	}
 	
 	public void Reset(){
 	    weaponManager = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponManager>();
 	    weapons = weaponManager.allWeapons;
+		weaponVendor = GameObject.Find("Vendor").GetComponent<WeaponVendor>();
+		ammoVendorContainer = GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors;
 	}
 	
 	public void Draw(Rect drawRect){
@@ -108,79 +108,21 @@ public class WeaponPanelGUI : MonoBehaviour {
 			
 			if(weaponManager.equippedWeapons[i]){
 				// Handle Refill of weapon
-				//string refillType = types[i];
 				Rect refillRect = new Rect(buttonColRefill+labelOffset+labelOffset, labelOffset+labelOffset, refillButtonWidth*2f, buttonHeight*1.5f);
 				
 				// Dispense the ammo
-				/*if(refillType == types[0]){
-					if(weaponManager.equippedWeapons[1]){
-						if(GameController.Instance.GetResources() < ammoVendorContainer[0].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[0].isDisplaying){
-							ammoVendorContainer[0].Cancel();
-						} else {
-							ammoVendorContainer[0].SetWeapon(weaponManager.equippedWeapons[1]);
-							ammoVendorContainer[0].Vendor();
-						}
+				if(weaponManager.equippedWeapons[i]){
+					if(GameController.Instance.GetResources() < ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[i].isDisplaying){
+						ammoVendorContainer[i].Cancel();
+					} else {
+						ammoVendorContainer[i].SetWeapon(weaponManager.equippedWeapons[i]);
+						ammoVendorContainer[i].Vendor();
 					}
-				} else if(refillType == types[1]){
-					if(weaponManager.equippedWeapons[0]){
-						if(GameController.Instance.GetResources() < ammoVendorContainer[1].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[1].isDisplaying){
-							ammoVendorContainer[1].Cancel();
-						} else {
-							ammoVendorContainer[1].SetWeapon(weaponManager.equippedWeapons[0]);
-							ammoVendorContainer[1].Vendor();
-						}
-					}
-				} else if(refillType == types[2]){
-					if(weaponManager.equippedWeapons[2]){
-						if(GameController.Instance.GetResources() < ammoVendorContainer[2].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[2].isDisplaying){
-							ammoVendorContainer[2].Cancel();
-						} else {
-							ammoVendorContainer[2].SetWeapon(weaponManager.equippedWeapons[2]);
-							ammoVendorContainer[2].Vendor();
-						}
-					}
-				} else {
-					if(weaponManager.equippedWeapons[3]){
-						if(GameController.Instance.GetResources() < ammoVendorContainer[0].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[3].isDisplaying){
-							ammoVendorContainer[3].Cancel();
-						} else {
-							ammoVendorContainer[3].SetWeapon(weaponManager.equippedWeapons[3]);
-							ammoVendorContainer[3].Vendor();
-						}
-					}
-				}*/
-				
-				//if(types[i]){
-					if(weaponManager.equippedWeapons[i]){
-						if(GameController.Instance.GetResources() < ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost && ammoVendorContainer[i].isDisplaying){
-							ammoVendorContainer[i].Cancel();
-						} else {
-							ammoVendorContainer[i].SetWeapon(weaponManager.equippedWeapons[i]);
-							ammoVendorContainer[i].Vendor();
-						}
-					}
-				//}
+				}
 				
 				// If so, then purchase it
 				if(GameController.Instance.GetResources() >= ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost){
 					if(GUI.Button(refillRect, "Refill Ammo: "+ammoVendorContainer[i].ammoVendor.GetComponent<SellableItem>().cost, refillStyle)){
-						/*if(refillType == types[0]){
-							if(weaponManager.equippedWeapons[1]){
-								ammoVendorContainer[0].Purchase(ammoVendorContainer[0].ammoVendor);
-							}
-						} else if(refillType == types[1]){
-							if(weaponManager.equippedWeapons[0]){
-								ammoVendorContainer[1].Purchase(ammoVendorContainer[1].ammoVendor);
-							}
-						} else if(refillType == types[2]){
-							if(weaponManager.equippedWeapons[2]){
-								ammoVendorContainer[2].Purchase(ammoVendorContainer[2].ammoVendor);
-							}
-						} else {
-							if(weaponManager.equippedWeapons[3]){
-								ammoVendorContainer[3].Purchase(ammoVendorContainer[3].ammoVendor);
-							}
-						}*/
 						if(weaponManager.equippedWeapons[i]){
 							ammoVendorContainer[i].Purchase(ammoVendorContainer[i].ammoVendor);
 						}

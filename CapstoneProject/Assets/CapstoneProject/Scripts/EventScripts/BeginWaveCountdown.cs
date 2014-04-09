@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BeginWaveCountdown : MonoBehaviour {
 	
-	private int amountOfWavesLeft = 1;
+	private int amountOfWavesLeft = 10;
 
 	void Start(){
 		GameController.Instance.SetCurWave(GameController.Instance.GetWaveController().GetWaveNumber());

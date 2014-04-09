@@ -178,6 +178,7 @@ public class GameController : MonoBehaviour {
 		UIManager.Instance.FadeCompleted();
 		GetWaveController().ResetWave(1);
 		amountOfResources = 0;
+		UIManager.Instance.displayUI = true;
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 	}
 	
@@ -324,7 +325,7 @@ public class GameController : MonoBehaviour {
 		}
 		
 		// Place current fortification
-		if(Input.GetMouseButtonDown(0) && canPlace){
+		if(Input.GetMouseButtonDown(0) && canPlace && GameObject.Find("Tutorial").GetComponent<Tutorial>().key != "QandE" && GameObject.Find("Tutorial").GetComponent<Tutorial>().key != "ClickRight"){
 			current.transform.position = SnapToGrid(current.transform.position, gridX, gridZ, current);
 			float rot = Mathf.FloorToInt(current.transform.eulerAngles.y);
 			if(current.GetComponent<MeshRenderer>()){

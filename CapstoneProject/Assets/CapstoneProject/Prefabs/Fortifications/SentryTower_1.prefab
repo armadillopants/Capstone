@@ -325,10 +325,10 @@ MonoBehaviour:
   fireRate: .100000001
   range: 15
   force: 1.5
-  bulletsLeft: 100
-  bulletsPerClip: 100
-  clips: 300
-  maxClips: 300
+  bulletsLeft: Infinity
+  bulletsPerClip: Infinity
+  clips: Infinity
+  maxClips: Infinity
   reloadSpeed: 2
   damage: 1
   coneAngle: 2
@@ -408,6 +408,7 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   displayHealthTimerMax: 1
   healthColor: {r: 0, g: 1, b: 0, a: 0}
+  damageTex: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1

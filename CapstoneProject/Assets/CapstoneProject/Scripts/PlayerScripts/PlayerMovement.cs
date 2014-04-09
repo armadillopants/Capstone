@@ -13,11 +13,6 @@ public class PlayerMovement : PlayerMotor {
 	}
 	
 	void Update(){
-		//PlayerLookDirection();
-		//moveDirection *= moveSpeed;
-		//moveDirection.y -= 50f * Time.deltaTime;
-		//controller.Move(moveDirection * Time.deltaTime);
-		
 		/*if(Input.GetKey(KeyCode.Space)){
 			RaycastHit hit = new RaycastHit();
 			Vector3 pos = trans.position;
