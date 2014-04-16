@@ -1,11 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 public class MenuManager : MonoBehaviour {
 	
 	public enum MenuState { INGAME, SETTINGS, MAINMENU, ENDGAME };
 	public MenuState menuState = MenuState.MAINMENU;
-	public bool drawMainMenu = false;
 	
 	#region Singleton
 	
@@ -28,24 +26,4 @@ public class MenuManager : MonoBehaviour {
 	}
 	
 	#endregion
-	
-	void OnGUI(){
-		switch(menuState){
-		case MenuState.MAINMENU:
-			if(drawMainMenu){
-				DrawMainMenu();
-			}
-			break;
-		case MenuState.SETTINGS:
-			DrawSettings();
-			break;
-		}
-	}
-	
-	void DrawMainMenu(){
-		
-	}
-	
-	void DrawSettings(){
-	}
 }

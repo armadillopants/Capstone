@@ -6,8 +6,7 @@ public class CreateShock : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider hit){
 		if(hit.tag == "Ground"){
-			GameObject shock = (GameObject)Instantiate(shockwave, transform.position, Quaternion.identity);
-			shock.AddComponent<DestroyTimer>();
+			Instantiate(shockwave, transform.position, Quaternion.identity);
 		}
 	}
 }

@@ -53,15 +53,13 @@ public class Enemy : AIPath {
 		
 		anim = GetComponent<Animation>();
 		
-		Spawner spawner = GameObject.Find("WaveController").GetComponentInChildren<Spawner>();
-		
 		health = GetComponent<Health>();
 		
-		health.ModifyHealth(spawner.SetEnemyHealth(gameObject.name));
-		speed = spawner.SetEnemyMoveSpeed(gameObject.name);
-		turningSpeed = spawner.SetEnemyTurnSpeed(gameObject.name);
-		coolDownLength = spawner.SetEnemyAttackSpeed(gameObject.name);
-		damageAmount = spawner.SetEnemyDamageAmount(gameObject.name);
+		health.ModifyHealth(Spawner.spawner.SetEnemyHealth(gameObject.name));
+		speed = Spawner.spawner.SetEnemyMoveSpeed(gameObject.name);
+		turningSpeed = Spawner.spawner.SetEnemyTurnSpeed(gameObject.name);
+		coolDownLength = Spawner.spawner.SetEnemyAttackSpeed(gameObject.name);
+		damageAmount = Spawner.spawner.SetEnemyDamageAmount(gameObject.name);
 		
 		for(int i=0; i<health.curHealth; i++){
 			if(health.curHealth % i == 0){
@@ -304,9 +302,6 @@ public class Enemy : AIPath {
 				anim.Blend("Walk", 0, 0.2f);
 			} else {
 				// Fade in walking animation
-				//string curAnim = anim.clip.name;
-				//anim.Blend(curAnim, 0, 0.2f);
-				//anim.Blend("Walk", 1, 0.2f);
 				anim.CrossFade("Walk", 0.2f);
 				
 				AnimationState state = anim["Walk"];

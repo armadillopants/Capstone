@@ -9,10 +9,9 @@ public class Projectile : MonoBehaviour {
 	public bool isHoming = false;
 	public float damp = 6.0f;
 	
-	void Start(){
-		Transform player = GameController.Instance.GetPlayer();
-		weapon = player.GetComponentInChildren<BaseWeapon>();
+	void OnEnable(){
 		trans = transform;
+		weapon = GameController.Instance.GetPlayer().GetComponentInChildren<BaseWeapon>();
 		Invoke("Kill", weapon.range);
 	}
 	
@@ -20,14 +19,14 @@ public class Projectile : MonoBehaviour {
 		if(isHoming){
 			GameObject target = GameController.Instance.FindNearestTarget(Globals.ENEMY, this.trans);
 			if(target){
-				rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
+				trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 				Quaternion rotate = Quaternion.LookRotation(target.transform.position - trans.position);
 				trans.rotation = Quaternion.Slerp(trans.rotation, rotate, Time.deltaTime * damp);
 			} else {
-				rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
+				trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 			}
 		} else {
-			rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
+			trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 		}
 	}
 	
@@ -56,15 +55,16 @@ public class Projectile : MonoBehaviour {
 	
 	void Kill(){
 		// Stop emitting particles in any children
-		ParticleEmitter emitter = GetComponentInChildren<ParticleEmitter>();
-		if(emitter){
+		//ParticleEmitter emitter = GetComponentInChildren<ParticleEmitter>();
+		/*if(emitter){
 			emitter.emit = false;
-		}
+		}*/
 
 		// Detach children
 		//trans.DetachChildren();
 		
 		// Destroy the projectile
-		Destroy(gameObject);
+		//Destroy(gameObject);
+		ObjectPool.spawner.DestroyCachedObject(gameObject);
 	}
 }

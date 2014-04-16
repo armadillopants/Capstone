@@ -16,7 +16,7 @@ public class CombineChildren : MonoBehaviour {
 	public bool generateTriangleStrips = true;
 	
 	/// This option has a far longer preprocessing time at startup but leads to better runtime performance.
-	public void Combine () {
+	void Start () {
 		
 		Component[] filters  = GetComponentsInChildren(typeof(MeshFilter));
 		Matrix4x4 myTransform = transform.worldToLocalMatrix;
@@ -74,7 +74,7 @@ public class CombineChildren : MonoBehaviour {
 			{
 				GameObject go = new GameObject("Combined mesh");
 				go.transform.parent = transform;
-				go.tag = "CombinedMesh";
+				//go.tag = "CombinedMesh";
 				go.transform.localScale = Vector3.one;
 				go.transform.localRotation = Quaternion.identity;
 				go.transform.localPosition = Vector3.zero;

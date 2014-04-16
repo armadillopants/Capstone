@@ -6,7 +6,7 @@ public class Crosshair : MonoBehaviour {
 	
 	void OnGUI(){
 		if(MenuManager.Instance.menuState == MenuManager.MenuState.MAINMENU || MenuManager.Instance.menuState == MenuManager.MenuState.ENDGAME || 
-			!UIManager.Instance.displayUI || UIManager.Instance.uiState == UIManager.UIState.PAUSE || 
+			!UIManager.Instance.displayUI || UIManager.Instance.isPaused || 
 			GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponSelection>().changingWeapons){
 			
 			// Sets the cross hair position to the mouse position

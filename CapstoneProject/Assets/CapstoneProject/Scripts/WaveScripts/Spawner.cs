@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 	
+	public static Spawner spawner;
+	
 	public class EnemyData {
 		public XmlNode firstNode;
 		public int amountToSpawn;
@@ -38,8 +40,12 @@ public class Spawner : MonoBehaviour {
 	private EnemyData scavengerData = new EnemyData();
 	private EnemyData crusherData = new EnemyData();
 	private EnemyData wormData = new EnemyData();
+	
+	public GameObject hole;
+	public GameObject explosion;
 
 	void Start(){
+		spawner = this;
 		spawnPoints = GameObject.FindGameObjectsWithTag(Globals.SPAWN_POINT);
 		digPoints = GameObject.FindGameObjectsWithTag(Globals.DIG_POINT);
 		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();

@@ -39,7 +39,7 @@ public class RoboTiger : Enemy {
 		}
 	}
 	
-	public override void ChaseObject(){
+	/*public override void ChaseObject(){
 		
 		Vector3 velocity;
 		Vector3 rotateDir = new Vector3();
@@ -107,5 +107,5 @@ public class RoboTiger : Enemy {
 				state.speed = relSpeed*animationSpeed;
 			}
 		}
-	}
+	}*/
 }

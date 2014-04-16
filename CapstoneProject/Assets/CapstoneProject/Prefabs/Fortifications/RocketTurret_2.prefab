@@ -740,7 +740,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400090}
-  - 54: {fileID: 5400000}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
@@ -1980,21 +1979,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100088}
   m_Mesh: {fileID: 4300000, guid: 260ad82296208774580e8240e2db94ed, type: 3}
---- !u!54 &5400000
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100090}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2111,7 +2095,7 @@ MonoBehaviour:
   roundsPerBurst: 0
   lagBetweenShots: 0
   id: 0
-  projectile: {fileID: 5400000, guid: f264e17109caebf4280186e8762281d3, type: 2}
+  projectile: {fileID: 100000, guid: f264e17109caebf4280186e8762281d3, type: 2}
   muzzlePos: {fileID: 400000}
   gunPos: {fileID: 0}
   leftHand: {fileID: 0}
@@ -2198,6 +2182,7 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   displayHealthTimerMax: 1
   healthColor: {r: 0, g: 1, b: 0, a: 0}
+  damageTex: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

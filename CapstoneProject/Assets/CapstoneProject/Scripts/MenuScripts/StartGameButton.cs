@@ -26,7 +26,7 @@ public class StartGameButton : MonoBehaviour {
 			}
 			
 			if(cam.position.z >= player.position.z-0.5f && beginGame){
-				cam.position = new Vector3(player.position.x, player.position.y+15, player.position.z);
+				cam.position = new Vector3(player.position.x, player.position.y+17, player.position.z);
 				cam.rotation = Quaternion.Euler(endCam.eulerAngles.x, 0, 0);
 				player.gameObject.AddComponent<PlayerMovement>();
 				player.gameObject.AddComponent<LocalInput>();

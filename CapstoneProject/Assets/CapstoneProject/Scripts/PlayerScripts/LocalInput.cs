@@ -22,8 +22,6 @@ public class LocalInput : MonoBehaviour {
 	private float cursorPlaneHeight = 0;
 	private float cursorFacingCam = 0;
 	private float cursorSmallerWithDistance = 0;
-	private float cursorSmallerWhenClose = 1;
-	private Vector3 cursorScreenPos = Vector3.zero;
 	private Plane playerMovementPlane;
 	
 	private Texture2D pistolCursor;
@@ -47,9 +45,8 @@ public class LocalInput : MonoBehaviour {
 		specialCursor = (Texture2D)Resources.Load("specials_blue", typeof(Texture2D));
 		
 		cursorObject = ((GameObject)Instantiate(cursorPrefab)).transform;
+		cursorObject.name = cursorPrefab.name;
 		cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = rifleCursor;
-		
-		cursorScreenPos = new Vector3(0.5f * Screen.width, 0.5f * Screen.height, 0);
 		
 		playerMovementPlane = new Plane(trans.up, trans.position+trans.up*cursorPlaneHeight);
 	}
@@ -123,7 +120,7 @@ public class LocalInput : MonoBehaviour {
 		// Apply the direction to PlayerMovement
 		controller.moveDirection = moveDir;
 		
-		if(UIManager.Instance.displayUI && UIManager.Instance.uiState != UIManager.UIState.PAUSE && !selection.changingWeapons){
+		if(UIManager.Instance.displayUI && !UIManager.Instance.isPaused && !selection.changingWeapons){
 			cursorObject.GetComponentInChildren<MeshRenderer>().enabled = true;
 		} else {
 			cursorObject.GetComponentInChildren<MeshRenderer>().enabled = false;
@@ -140,7 +137,6 @@ public class LocalInput : MonoBehaviour {
 		}
 	}
 	
-		
 	void PlayerLookDirection(){
 		// Generate a plane that intersects the transform's position with an upwards normal.
 		Plane playerPlane = new Plane(Vector3.up, trans.position);
@@ -188,8 +184,9 @@ public class LocalInput : MonoBehaviour {
 		
 		// HANDLE CURSOR ROTATION
 		Quaternion cursorWorldRotation = cursorObject.rotation;
-		if(controller.faceDirection != Vector3.zero)
+		if(controller.faceDirection != Vector3.zero){
 			cursorWorldRotation = Quaternion.LookRotation(controller.faceDirection);
+		}
 		
 		// Calculate cursor billboard rotation
 		Vector3 cursorScreenspaceDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position + trans.up * cursorPlaneHeight);

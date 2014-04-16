@@ -1296,12 +1296,14 @@ MonoBehaviour:
   curHealth: 75
   maxHealth: 75
   canTakeDamage: 1
-  explosion: {fileID: 0}
+  explosion: {fileID: 100002, guid: 7fb876ca4b374314f9997ec647025060, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}
   deathClip: {fileID: 8300000, guid: c10e824e785818143a57ca081a09bead, type: 3}
   displayHealthTimerMax: 3
   healthColor: {r: 1, g: 0, b: 0, a: 0}
+  damageTex: {fileID: 0}
+  healthBarFrame: {fileID: 2800000, guid: 32ff7161735413d4aa3ecb8dcd4cdc44, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

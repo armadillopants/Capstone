@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour {
 	
-	public enum UIState { PAUSE, 
-		WAVEWON, WAVELOST, NEXTWAVE, 
+	public enum UIState { WAVEWON, NEXTWAVE, 
 		GAMEOVER, NONE, CURWAVE, FORT_BUILD_SCREEN,
 		FORT_WEAPON_SCREEN, FORT_UPGRADE_SCREEN, 
 		FORT_ABILITY_SCREEN, GAMEWON };
@@ -21,23 +20,14 @@ public class UIManager : MonoBehaviour {
 	
 	private Rect waveRect;
 	private Rect shipHealthRect;
-	private Rect fortHealthDisplayRect;
-	private Rect fortWeaponDisplayRect;
-	private Rect enemyHealthDisplayRect;
-	private bool displayFortHealthData = false;
-	private bool displayFortWeaponData = false;
-	private bool displayEnemyHealthData = false;
-	private Health fortHealth;
-	private BaseWeapon fortWeapon;
-	private Health enemyHealth;
 	
-	public Texture2D resourceBackground;
+	public Texture2D resourceFrame;
 	public Font resourceFont;
 	public Texture2D ammoUI;
 	public Texture2D shotgunShellUI;
 	public Texture2D[] canisters;
 	public Texture2D[] batteries;
-	public bool displayUI = true;
+	public bool displayUI = false;
 	public Texture2D infintyUI;
 	
 	public Texture2D resumeNormal;
@@ -51,6 +41,12 @@ public class UIManager : MonoBehaviour {
 	public Texture2D quitNormal;
 	public Texture2D quitHover;
 	public Texture2D quitActive;
+	
+	private GUIStyle style;
+	private GUIStyle resumeButton;
+	private GUIStyle restartButton;
+	private GUIStyle quitButton;
+	private GUIContent content;
 	
 	#region Singleton
 	
@@ -66,8 +62,6 @@ public class UIManager : MonoBehaviour {
 			return;
 		}
 		_instance = this;
-		
-		selection = GameObject.Find("WeaponSelection").GetComponent<WeaponSelection>();
 	}
 
 	void OnApplicationQuit(){
@@ -81,12 +75,40 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void Start(){
+		Reset();
 		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
-		holder = GameObject.Find("AbilityHolder");
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
 		Screen.showCursor = false;
+		
+		resumeButton = new GUIStyle();
+		resumeButton.normal.background = resumeNormal;
+		resumeButton.hover.background = resumeHover;
+		resumeButton.active.background = resumeActive;
+		
+		restartButton = new GUIStyle();
+		restartButton.normal.background = restartNormal;
+		restartButton.hover.background = restartHover;
+		restartButton.active.background = restartActive;
+		
+		quitButton = new GUIStyle();
+		quitButton.normal.background = quitNormal;
+		quitButton.hover.background = quitHover;
+		quitButton.active.background = quitActive;
+		
+		style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = resourceFont;
+		style.fontSize = 50;
+		
+		content = new GUIContent();
+	}
+	
+	public void Reset(){
+		selection = GameObject.Find("WeaponSelection").GetComponent<WeaponSelection>();
+		holder = GameObject.Find("AbilityHolder");
 	}
 	
 	void Update(){
@@ -101,36 +123,6 @@ public class UIManager : MonoBehaviour {
 		Vector3 shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
 		shipHealthRect = new Rect(shipPos.x, Screen.height - shipPos.y, 400, 20);
 		
-		holder = GameObject.Find("AbilityHolder");
-		
-		/*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		RaycastHit hit = new RaycastHit();
-		if(Physics.Raycast(ray, out hit)){
-			if(hit.transform.tag == Globals.FORTIFICATION && GameController.Instance.current == null){
-				Vector3 fortPos = Camera.main.WorldToScreenPoint(hit.point);
-				fortHealth = hit.transform.GetComponent<Health>();
-				if(hit.transform.GetComponentInChildren<BaseWeapon>() != null){
-					fortWeapon = hit.transform.GetComponentInChildren<BaseWeapon>();
-					displayFortWeaponData = true;
-				}
-				fortHealthDisplayRect = new Rect(fortPos.x, Screen.height-fortPos.y, 100, 10);
-				fortWeaponDisplayRect = new Rect(fortPos.x, (Screen.height-fortPos.y)+10, 100, 50);
-				displayFortHealthData = true;
-			} else {
-				fortWeapon = null;
-				displayFortHealthData = false;
-				displayFortWeaponData = false;
-			}
-			
-			if(hit.transform.tag == Globals.ENEMY){
-				Vector3 enemyPos = Camera.main.WorldToScreenPoint(hit.point);
-				enemyHealth = hit.transform.GetComponent<Health>();
-				enemyHealthDisplayRect = new Rect(enemyPos.x, Screen.height-enemyPos.y, 100, 10);
-				displayEnemyHealthData = true;
-			} else {
-				displayEnemyHealthData = false;
-			}
-		}*/
 	}
 	
 	public void SetFortification(GameObject fort){
@@ -142,9 +134,6 @@ public class UIManager : MonoBehaviour {
 	
 	void OnGUI(){
 		switch(uiState){
-		case UIState.PAUSE:
-			DrawPauseScreen();
-			break;
 		case UIState.WAVEWON:
 			DrawWaveWonScreen();
 			break;
@@ -154,9 +143,6 @@ public class UIManager : MonoBehaviour {
 		case UIState.CURWAVE:
 			DrawCurWaveScreen();
 			break;
-		case UIState.WAVELOST:
-			DrawWaveLostScreen();
-			break;
 		case UIState.GAMEOVER:
 			DrawGameOverScreen();
 			break;
@@ -165,30 +151,23 @@ public class UIManager : MonoBehaviour {
 			break;
 		}
 		
-		if(GameObject.FindWithTag(Globals.PLAYER)){
-			if(GameObject.FindWithTag(Globals.PLAYER).GetComponent<PlayerMovement>() != null){
-				//DrawResources();
-				DrawCurWaveScreen();
-				/*if(displayEnemyHealthData){
-					DrawEnemyHealthDisplay();
-				}*/
-				if(displayUI){
-					DrawAmmoDisplay();
-					//DrawPlayerHealth();
-					DrawAbilityDisplay();
-					DrawShipHealth();
-					/*if(displayFortHealthData){
-						DrawFortHealthDisplay();
-					}
-					if(displayFortWeaponData){
-						DrawFortWeaponDisplay();
-					}*/
-				}
-			}
+		if(isPaused){
+			DrawPauseScreen();
 		}
 		
-		if(GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>() != null){
-			if(GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>().GetWavesLeft() > 0){
+		if(displayUI){
+			DrawAmmoDisplay();
+			DrawAbilityDisplay();
+			DrawShipHealth();
+		}
+		
+		if(GameController.Instance.GetWaveController().canBeginWave){
+			DrawResources();
+			DrawCurWaveScreen();
+		}
+		
+		if(GameController.Instance.EndWave() > 0){
+			if(GameController.Instance.amountOfWavesLeft > 0){
 				DrawFinalWaveCountdown();
 			}
 		}
@@ -202,14 +181,8 @@ public class UIManager : MonoBehaviour {
 		Rect finalWaveRect = new Rect((Screen.width/2)-(500/2), (Screen.height-Screen.height)+50, 500, 50);
 		GUI.BeginGroup(finalWaveRect);
 		
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 20;
-		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Waves until Rescue Ship's arrival: "
-			+GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>().GetWavesLeft(), style);
+			+GameController.Instance.amountOfWavesLeft, style);
 		
 		GUI.EndGroup();
 	
@@ -219,12 +192,6 @@ public class UIManager : MonoBehaviour {
 		Rect finalWaveRect = new Rect((Screen.width/2)-(500/2), (Screen.height-Screen.height)+50, 500, 50);
 		GUI.BeginGroup(finalWaveRect);
 		
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 20;
-		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Timer: "
 			+GuiTime(GameObject.Find("RescueShip").GetComponent<FlyToShip>().GetTimer()), style);
 		
@@ -232,38 +199,13 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawPauseScreen(){
-		GUIContent content = new GUIContent();
-		
-		GUIStyle resumeButton = new GUIStyle();
-		resumeButton.normal.background = resumeNormal;
-		resumeButton.hover.background = resumeHover;
-		resumeButton.active.background = resumeActive;
-		
-		GUIStyle restartButton = new GUIStyle();
-		restartButton.normal.background = restartNormal;
-		restartButton.hover.background = restartHover;
-		restartButton.active.background = restartActive;
-		
-		GUIStyle quitButton = new GUIStyle();
-		quitButton.normal.background = quitNormal;
-		quitButton.hover.background = quitHover;
-		quitButton.active.background = quitActive;
-		
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 50;
-		
 		GUI.BeginGroup(waveRect);
 		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "GAME PAUSED", style);
 		GUI.EndGroup();
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)-50, 100, 50),content,resumeButton)){
 			isPaused = !isPaused;
-			UIManager.Instance.uiState = UIState.NONE;
 		}
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
-			//Application.LoadLevel(Application.loadedLevel);
 			isPaused = false;
 			uiState = UIState.NONE;
 			GameController.Instance.canShoot = false;
@@ -293,21 +235,6 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.EndGroup();
 	}
-	
-	void DrawWaveLostScreen(){
-				
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 100;
-		
-		GUI.BeginGroup(waveRect);
-		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE LOST", style);
-		
-		GUI.EndGroup();
-	}
 
 	void DrawNextWaveScreen(){
 		
@@ -325,24 +252,6 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawGameOverScreen(){
-		GUIContent content = new GUIContent();
-		
-		GUIStyle restartButton = new GUIStyle();
-		restartButton.normal.background = restartNormal;
-		restartButton.hover.background = restartHover;
-		restartButton.active.background = restartActive;
-		
-		GUIStyle quitButton = new GUIStyle();
-		quitButton.normal.background = quitNormal;
-		quitButton.hover.background = quitHover;
-		quitButton.active.background = quitActive;
-		
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 50;
-		
 		displayUI = false;
 		
 		if(fadeComplete){
@@ -351,9 +260,7 @@ public class UIManager : MonoBehaviour {
 			GUI.EndGroup();
 			
 			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50),content,restartButton)){
-				//GameController.Instance.Reset();
 				MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
-				//uiState = UIState.NONE;
 				StartCoroutine(GameController.Instance.RestartGame());
 			}
 			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2)+50, 100, 50),content,quitButton)){
@@ -363,12 +270,6 @@ public class UIManager : MonoBehaviour {
 	}
 
 	void DrawGameWonScreen(){
-				
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 50;
 		
 		GUI.BeginGroup(waveRect);
 		
@@ -376,22 +277,9 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.EndGroup();
 		
-		GUIContent content = new GUIContent();
-		
-		GUIStyle restartButton = new GUIStyle();
-		restartButton.normal.background = restartNormal;
-		restartButton.hover.background = restartHover;
-		restartButton.active.background = restartActive;
-		
-		GUIStyle quitButton = new GUIStyle();
-		quitButton.normal.background = quitNormal;
-		quitButton.hover.background = quitHover;
-		quitButton.active.background = quitActive;
-		
 		displayUI = false;
 		
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
-			//Application.LoadLevel(Application.loadedLevel);
 			isPaused = false;
 			uiState = UIState.NONE;
 			GameController.Instance.canShoot = false;
@@ -408,12 +296,6 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawCurWaveScreen(){
-				
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 50;
 		
 		Rect waveNumberRect = new Rect(50, Screen.height-50, 150, 50);
 		
@@ -421,25 +303,6 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.Label(new Rect(0, 0, waveNumberRect.width, waveNumberRect.height), GameController.Instance.GetWaveController().GetWaveNumber().ToString(), style);
 		
-		GUI.EndGroup();
-	}
-	
-	void DrawPlayerHealth(){
-		Rect playerHealthRect = new Rect(Screen.width-250, Screen.height-50, 200, 30);
-		
-		GUI.BeginGroup(playerHealthRect);
-		
-		Texture2D playerHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		playerHealthBar.SetPixel(0, 0, Color.red);
-		playerHealthBar.Apply();
-		
-		GUI.DrawTexture(new Rect(playerHealthRect.width, 0, 
-			-playerHealthRect.width*GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
-			grayBar, ScaleMode.StretchToFill);
-		GUI.DrawTexture(new Rect(playerHealthRect.width, 0, 
-			-playerHealthRect.width*GameController.Instance.GetPlayerHealth().curHealth/GameController.Instance.GetPlayerHealth().GetMaxHealth(), playerHealthRect.height), 
-			playerHealthBar, ScaleMode.StretchToFill);
-
 		GUI.EndGroup();
 	}
 	
@@ -460,68 +323,16 @@ public class UIManager : MonoBehaviour {
 		GUI.EndGroup();
 	}
 	
-	void DrawFortHealthDisplay(){
-		GUI.BeginGroup(fortHealthDisplayRect);
-		
-		Texture2D fortHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		fortHealthBar.SetPixel(0, 0, Color.red);
-		fortHealthBar.Apply();
-		
-		GUI.DrawTexture(new Rect(fortHealthDisplayRect.width, 0, 
-			-fortHealthDisplayRect.width*fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
-			grayBar, ScaleMode.StretchToFill);
-		GUI.DrawTexture(new Rect(fortHealthDisplayRect.width, 0, 
-			-fortHealthDisplayRect.width*fortHealth.curHealth/fortHealth.GetMaxHealth(), fortHealthDisplayRect.height), 
-			fortHealthBar, ScaleMode.StretchToFill);
-		
-		GUI.EndGroup();
-	}
-	
-	void DrawFortWeaponDisplay(){
-		GUI.BeginGroup(fortWeaponDisplayRect);
-		
-		GUIStyle style = new GUIStyle();
-		style.normal.background = resourceBackground;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 8;
-		style.alignment = TextAnchor.MiddleCenter;
-		
-		GUI.Label(new Rect(0, 0, fortWeaponDisplayRect.width, fortWeaponDisplayRect.height), 
-							"Ammo: "+fortWeapon.bulletsLeft+"/"+fortWeapon.clips, style);
-		
-		GUI.EndGroup();
-	}
-	
-	void DrawEnemyHealthDisplay(){
-		GUI.BeginGroup(enemyHealthDisplayRect);
-		
-		Texture2D enemyHealthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-		enemyHealthBar.SetPixel(0, 0, Color.red);
-		enemyHealthBar.Apply();
-		
-		GUI.DrawTexture(new Rect(enemyHealthDisplayRect.width, 0, 
-			-enemyHealthDisplayRect.width*enemyHealth.GetMaxHealth(), enemyHealthDisplayRect.height), 
-			grayBar, ScaleMode.StretchToFill);
-		GUI.DrawTexture(new Rect(enemyHealthDisplayRect.width, 0, 
-			-enemyHealthDisplayRect.width*enemyHealth.curHealth/enemyHealth.GetMaxHealth(), enemyHealthDisplayRect.height), 
-			enemyHealthBar, ScaleMode.StretchToFill);
-		
-		GUI.EndGroup();
-	}
-	
 	void DrawResources(){
-		Rect resourceRect = new Rect((Screen.width/2)-(300/2), (Screen.height-Screen.height)+20, 300, 50);
-		GUI.BeginGroup(resourceRect);
+		GUI.DrawTexture(new Rect(Screen.width-365, Screen.height-(Screen.height-1), 256, 128), resourceFrame);
 		
 		GUIStyle style = new GUIStyle();
-		style.normal.background = resourceBackground;
 		style.font = resourceFont;
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.cyan;
-		GUI.Label(new Rect(0, 0, resourceRect.width, resourceRect.height), "RESOURCES: " + GameController.Instance.GetResources(), style);
-		
-		GUI.EndGroup();
+		style.fontSize = 25;
+		GUI.Label(new Rect(Screen.width-260, Screen.height-(Screen.height-28), 0, 0), "RESOURCES", style);
+		GUI.Label(new Rect(Screen.width-245, Screen.height-(Screen.height-75), 0, 0), GameController.Instance.GetResources().ToString(), style);
 	}
 	
 	void DrawAmmoDisplay(){

@@ -21,7 +21,7 @@ public class BaseWeapon : MonoBehaviour {
 	public float roundsPerBurst = 0f;
 	public float lagBetweenShots = 0f;
 	public int id;
-	public Rigidbody projectile;
+	public GameObject projectile;
 	public Transform muzzlePos;
 	public Transform gunPos;
 	public Transform leftHand;
@@ -172,10 +172,10 @@ public class BaseWeapon : MonoBehaviour {
 		// Spawn visual bullet
 		Quaternion coneRandomRotation = 
 			Quaternion.Euler(Random.Range(-coneAngle, coneAngle), Random.Range(-coneAngle, coneAngle), 0);
-		Rigidbody visibleProj = null;
+		GameObject visibleProj = null;
 		if(projectile){
-			visibleProj = (Rigidbody)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
-			visibleProj.name = projectile.name;
+			visibleProj = ObjectPool.spawner.Spawn(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);//(GameObject)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
+			//visibleProj.name = projectile.name;
 		}
 		
 		switch(state){
@@ -207,19 +207,6 @@ public class BaseWeapon : MonoBehaviour {
 				if(bullet){
 					bullet.distance = hit.distance;
 				}
-				
-				if(!useLayerMask){
-					if(hit.collider.tag == "Shield"){
-						hit.collider.gameObject.renderer.enabled = true;
-					}
-				}
-				// Place the particle system for spawing out of place where we hit the surface!
-				// And spawn a couple of particles
-				/*if(hitParticles){
-					hitParticles.transform.position = hit.point;
-					hitParticles.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-					hitParticles.Emit();
-				}*/
 				Debug.DrawRay(startPos, direction * hit.distance, Color.blue);
 				// Send a damage message to the hit object
 				if(!hit.collider.isTrigger){
@@ -254,6 +241,8 @@ public class BaseWeapon : MonoBehaviour {
 		// Wait for reload time first and then add more bullets!
 		isReloading = true;
 		
+		GameController.Instance.canShoot = false;
+		
 		if(audio){
 			audio.PlayOneShot(reloadClip);
 		}
@@ -272,5 +261,6 @@ public class BaseWeapon : MonoBehaviour {
 			clips = 0;
 		}
 		isReloading = false;
+		GameController.Instance.canShoot = true;
 	}
 }

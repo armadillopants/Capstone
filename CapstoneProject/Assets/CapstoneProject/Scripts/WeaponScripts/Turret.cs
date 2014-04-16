@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Turret : MonoBehaviour {
 	
@@ -51,9 +50,7 @@ public class Turret : MonoBehaviour {
 				weapon.isFiring = false;
 			}
 		} else {
-			if(constraint){
-				constraint.eulerAngles = Vector3.Lerp(constraint.eulerAngles, new Vector3(30, constraint.eulerAngles.y, constraint.eulerAngles.z), turnSpeed*Time.deltaTime);
-			}
+			weapon.isFiring = false;
 		}
 	}
 }

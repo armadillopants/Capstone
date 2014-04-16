@@ -24,6 +24,7 @@ public class Tutorial : MonoBehaviour {
 			if(GameController.Instance.GetPlayer().GetComponent<LocalInput>() != null && GameController.Instance.GetWaveController().GetWaveNumber() == 1 && !beginTutorial){
 				StartCoroutine(BeginWASDLink());
 				beginTutorial = true;
+				UIManager.Instance.displayUI = true;
 			}
 			
 			if(link != null){

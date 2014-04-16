@@ -2592,7 +2592,7 @@ MonoBehaviour:
   roundsPerBurst: 0
   lagBetweenShots: 0
   id: 0
-  projectile: {fileID: 5400000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
+  projectile: {fileID: 100000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
   muzzlePos: {fileID: 400002}
   gunPos: {fileID: 0}
   leftHand: {fileID: 0}
@@ -2636,7 +2636,7 @@ MonoBehaviour:
   roundsPerBurst: 0
   lagBetweenShots: 0
   id: 0
-  projectile: {fileID: 5400000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
+  projectile: {fileID: 100000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
   muzzlePos: {fileID: 400008}
   gunPos: {fileID: 0}
   leftHand: {fileID: 0}
@@ -2768,6 +2768,8 @@ MonoBehaviour:
   deathClip: {fileID: 8300000, guid: 1f824402f49a4b04e8305528dd67c4d6, type: 3}
   displayHealthTimerMax: 3
   healthColor: {r: 1, g: 0, b: 0, a: 0}
+  damageTex: {fileID: 0}
+  healthBarFrame: {fileID: 2800000, guid: 32ff7161735413d4aa3ecb8dcd4cdc44, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

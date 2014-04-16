@@ -27,8 +27,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400000}
-  - 54: {fileID: 5400000}
   - 65: {fileID: 6500000}
+  - 54: {fileID: 5400000}
   m_Layer: 10
   m_Name: Ray
   m_TagString: Untagged
@@ -146,7 +146,7 @@ ParticleRenderer:
     cycles: 1
 --- !u!54 &5400000
 Rigidbody:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
@@ -184,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 100004, guid: ad4753e0650a5304d8e1639b57b5008a, type: 2}
   bulletSpeed: 20
-  target: {fileID: 0}
   isHoming: 0
   damp: 6
 --- !u!1001 &100100000

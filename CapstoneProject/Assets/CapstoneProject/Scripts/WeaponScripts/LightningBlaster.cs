@@ -9,14 +9,12 @@ public class LightningBlaster : BaseWeapon {
 	public Light startLight;
 	public Light endLight;
 	
-	public GameObject secondStrike;
 	public Transform endPos;
 
 	private Perlin noise;
 	private float oneOverZigs;
 	
 	private Particle[] particles;
-	private bool spawnedSecondStrike = false;
 	
 	void Start(){
 		oneOverZigs = 1f / (float)zigs;
@@ -50,7 +48,7 @@ public class LightningBlaster : BaseWeapon {
 		
 		if(clips >= 0 && bulletsLeft > 0 && !isReloading){
 			
-			if(endPos != null){//targets[0] != null){
+			if(endPos != null){
 				
 				float timex = Time.time * speed * 0.1365143f;
 				float timey = Time.time * speed * 1.21688f;
@@ -78,26 +76,9 @@ public class LightningBlaster : BaseWeapon {
 					if(endLight){
 						endLight.light.enabled = true;
 						endLight.transform.position = particles[particles.Length-1].position;
-						/*if(GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length > 1){
-							targets[1] = GameController.Instance.FindNearestTarget(Globals.ENEMY, targets[0]).transform;
-							
-							if(targets[1] != null && !spawnedSecondStrike){
-								GameObject strike = (GameObject)Instantiate(secondStrike, endLight.transform.position, Quaternion.identity);
-								strike.GetComponent<LightningBolt>().target = targets[1];
-								strike.transform.parent = endLight.transform;
-								spawnedSecondStrike = true;
-							}
-						}*/
 					}
 				}
-			} /*else {
-				if(GameObject.FindGameObjectsWithTag(Globals.ENEMY).Length > 0){
-					targets[0] = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform).transform;
-					spawnedSecondStrike = false;
-				} else {
-					targets[0] = endPos;
-				}
-			}*/
+			}
 		}
 		
 		base.Fire();

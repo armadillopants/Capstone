@@ -29,7 +29,6 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
-  - 54: {fileID: 5400000}
   - 82: {fileID: 8200000}
   - 65: {fileID: 6500000}
   m_Layer: 10
@@ -91,7 +90,7 @@ ParticleAnimator:
   force: {x: 0, y: 0, z: 0}
   damping: 1
   stopSimulation: 0
-  autodestruct: 1
+  autodestruct: 0
 --- !u!15 &1500000
 EllipsoidParticleEmitter:
   m_ObjectHideFlags: 1
@@ -172,21 +171,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Mesh: {fileID: 4300000, guid: b0c8780ceb60a074eaad198605608bd0, type: 3}
---- !u!54 &5400000
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -269,9 +253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100004, guid: 130470eb6dcdb214b90252938a74369b, type: 2}
-  bulletSpeed: 15
-  isHoming: 0
-  damp: 6
+  bulletSpeed: 10
+  isHoming: 1
+  damp: 3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

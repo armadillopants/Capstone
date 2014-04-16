@@ -553,7 +553,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400068}
-  - 54: {fileID: 5400000}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
@@ -1585,21 +1584,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100066}
   m_Mesh: {fileID: 4300000, guid: 0cc3c34ff4b322040bda88fd1bc2ab8e, type: 3}
---- !u!54 &5400000
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100068}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1821,7 +1805,6 @@ MonoBehaviour:
   speed: 1
   startLight: {fileID: 10800002}
   endLight: {fileID: 10800000}
-  secondStrike: {fileID: 0}
   endPos: {fileID: 400070}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1893,6 +1876,7 @@ MonoBehaviour:
   deathClip: {fileID: 0}
   displayHealthTimerMax: 1
   healthColor: {r: 0, g: 1, b: 0, a: 0}
+  damageTex: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

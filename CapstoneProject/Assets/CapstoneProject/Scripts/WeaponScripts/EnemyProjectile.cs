@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class EnemyProjectile : MonoBehaviour {
 	
@@ -16,13 +15,12 @@ public class EnemyProjectile : MonoBehaviour {
 	void Update(){
 		GameObject target = GameController.Instance.FindNearestTarget(Globals.PLAYER, this.trans);
 		if(target){
-			rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
+			trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 			Quaternion rotate = Quaternion.LookRotation(target.transform.position - trans.position);
 			trans.rotation = Quaternion.Slerp(trans.rotation, rotate, Time.deltaTime * 6f);
 		} else {
-			rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
+			trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 		}
-		//rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
 	}
 	
 	void OnCollisionEnter(Collision collision){

@@ -15,8 +15,8 @@ public class WaveController : MonoBehaviour {
 		}
 	}
 	
-	public void ResetWave(int wave){
-		waveNumber = wave;
+	public void ResetWave(){
+		waveNumber = 1;
 		isWaiting = false;
 		canBeginWave = false;
 	}

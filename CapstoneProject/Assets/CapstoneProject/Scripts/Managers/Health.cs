@@ -22,6 +22,19 @@ public class Health : MonoBehaviour {
 	private bool displayHealth = false;
 	private Rect healthDisplayRect;
 	public Texture2D damageTex;
+	public Texture2D healthBarFrame;
+	private Texture2D healthBar;
+	private Texture2D grayBar;
+	
+	void Start(){
+		healthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		healthBar.SetPixel(0, 0, healthColor);
+		healthBar.Apply();
+		
+		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
+		grayBar.SetPixel(0, 0, Color.gray);
+		grayBar.Apply();
+	}
 	
 	void Update(){
 		
@@ -40,7 +53,7 @@ public class Health : MonoBehaviour {
 			// Display nothing
 		} else {
 			Vector3 healthPos = Camera.main.WorldToScreenPoint(transform.position);
-			healthDisplayRect = new Rect(healthPos.x, Screen.height-healthPos.y, 100, 10);
+			healthDisplayRect = new Rect(healthPos.x, Screen.height-healthPos.y, 120, 20);
 			
 			if(displayHealthTimer > 0){
 				displayHealthTimer -= Time.deltaTime;
@@ -50,7 +63,6 @@ public class Health : MonoBehaviour {
 				displayHealthTimer = 0;
 			}
 		}
-		
 	}
 	
 	public bool IsDead {
@@ -144,25 +156,18 @@ public class Health : MonoBehaviour {
 		if(displayHealth){
 			GUI.BeginGroup(healthDisplayRect);
 			
-			Texture2D healthBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-			healthBar.SetPixel(0, 0, healthColor);
-			healthBar.Apply();
-			
-			Texture2D grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
-			grayBar.SetPixel(0, 0, Color.gray);
-			grayBar.Apply();
-			
-			GUI.DrawTexture(new Rect(healthDisplayRect.width, 0, 
-				-healthDisplayRect.width*maxHealth, healthDisplayRect.height), 
-				grayBar, ScaleMode.StretchToFill);
-			GUI.DrawTexture(new Rect(healthDisplayRect.width, 0, 
-				-healthDisplayRect.width*curHealth/maxHealth, healthDisplayRect.height), 
-				healthBar, ScaleMode.StretchToFill);
+			GUI.DrawTexture(new Rect(100, 5, -100*maxHealth, 10), grayBar);
+			GUI.DrawTexture(new Rect(100, 5, -100*curHealth/maxHealth, 10), healthBar);
+			GUI.DrawTexture(new Rect(0, 0, healthDisplayRect.width, healthDisplayRect.height), healthBarFrame);
 			
 			GUI.EndGroup();
 			
 			if(gameObject.tag == Globals.PLAYER){
-				GUI.color = new Color(1.0f,1.0f,1.0f,displayHealthTimer);
+				float alpha = (1f-(curHealth/maxHealth))*displayHealthTimer;
+				if(alpha > 1f){
+					alpha = 1f;
+				}
+				GUI.color = new Color(1.0f,1.0f,1.0f, alpha);
 				GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), damageTex);
 			}
 		}

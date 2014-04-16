@@ -10,8 +10,10 @@ public class FlyToShip : MonoBehaviour {
 	private Vector3 shipPos;
 	
 	private float timer = 120.00f;
+	private Transform trans;
 	
 	void Start(){
+		trans = transform;
 		ship = GameController.Instance.GetShip();
 		player = GameController.Instance.GetPlayer();
 		
@@ -21,9 +23,9 @@ public class FlyToShip : MonoBehaviour {
 	}
 	
 	void Update(){
-		transform.position = Vector3.Lerp(transform.position, shipPos, 1*Time.deltaTime);
-		Quaternion rotateShip = Quaternion.LookRotation(ship.forward, transform.up);
-		transform.rotation = Quaternion.Slerp(transform.rotation, rotateShip, 1*Time.deltaTime);
+		trans.position = Vector3.Lerp(trans.position, shipPos, 1*Time.deltaTime);
+		Quaternion rotateShip = Quaternion.LookRotation(ship.forward, trans.up);
+		trans.rotation = Quaternion.Slerp(trans.rotation, rotateShip, 1*Time.deltaTime);
 		
 		step += 0.01f;
 	
@@ -34,7 +36,7 @@ public class FlyToShip : MonoBehaviour {
 		Hover();
 		
 		if(GameController.Instance.GetWaveController().GetComponent<Wave>() != null){
-			if(GameController.Instance.GetWaveController().GetComponent<Wave>().beginWave){
+			if(GameController.Instance.GetWaveController().GetComponent<Wave>().beginWave && !GameController.Instance.GetPlayerHealth().IsDead){
 				timer -= Time.deltaTime;
 			}
 		}
@@ -49,20 +51,20 @@ public class FlyToShip : MonoBehaviour {
 			Quaternion rotatePlayer = Quaternion.LookRotation(ship.forward, player.up);
 			player.rotation = Quaternion.Slerp(player.rotation, rotatePlayer, 1*Time.deltaTime);
 			player.parent = ship;
-			ship.transform.parent = transform;
+			ship.transform.parent = trans;
 			StartCoroutine(BlastOff());
 		}
 	}
 	
 	private IEnumerator BlastOff(){
 		yield return new WaitForSeconds(5f);
-		transform.position = Vector3.Lerp(transform.position, new Vector3(50, 60, 80), 1*Time.deltaTime);
+		trans.position = Vector3.Lerp(trans.position, new Vector3(50, 60, 80), 1*Time.deltaTime);
 	}
 	
 	void Hover(){
-		Vector3 pos = transform.position;
+		Vector3 pos = trans.position;
 		pos.y = Mathf.Sin(step)+offset;
-		transform.position = pos;
+		trans.position = pos;
 	}
 	
 	public float GetTimer(){

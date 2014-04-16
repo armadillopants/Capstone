@@ -58,6 +58,7 @@ public class Fortification : MonoBehaviour {
 			UIManager.Instance.displayUI = true;
 			GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
 			selection.UpdateWeaponsSlots();
+			selection.ChangeToNewWeapon();
 			GameController.Instance.canShoot = true;
 			GameController.Instance.canChangeWeapons = true;
 			GameController.Instance.UpdateGraph();
@@ -76,7 +77,7 @@ public class Fortification : MonoBehaviour {
 	
 	void OnGUI(){
 		if(GameController.Instance.current == null){
-			mainPanel.Draw(new Rect(Screen.width-512, Screen.height-(Screen.height-16), 512, 512), buildWave);
+			mainPanel.Draw(buildWave);
 		}
 		
 		Rect timerRect = new Rect(100,50,100,50);

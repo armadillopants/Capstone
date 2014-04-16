@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour {
 	private bool beginFade = false;
 	private int curWave;
 	private int endWave;
+	public int amountOfWavesLeft = 5;
 	
 	// Fortification data
 	public GameObject current;
@@ -124,7 +125,6 @@ public class GameController : MonoBehaviour {
 			
 			if((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) && UIManager.Instance.uiState != UIManager.UIState.GAMEOVER && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
 				UIManager.Instance.isPaused = true;
-				UIManager.Instance.uiState = UIManager.UIState.PAUSE;
 			}
 			
 			if(current){
@@ -144,7 +144,9 @@ public class GameController : MonoBehaviour {
 	public IEnumerator RestartGame(){
 		DestroyEnemies();
 		DestroyFortifications();
-		Destroy(GameObject.FindWithTag(Globals.SHIP).GetComponent<BeginWaveCountdown>());
+		amountOfWavesLeft = 5;
+		curWave = 0;
+		endWave = 0;
 		AbilitiesManager.Instance.ResetAbilities();
 		GetShip().parent = null;
 		GetShip().position = new Vector3(9.382379f, 1.982083f, 8.945202f);
@@ -176,9 +178,9 @@ public class GameController : MonoBehaviour {
 		GameObject.Find("Vendor").GetComponent<AbilityPanelGUI>().Reset();
 		beginFade = false;
 		UIManager.Instance.FadeCompleted();
-		GetWaveController().ResetWave(1);
+		GetWaveController().ResetWave();
 		amountOfResources = 0;
-		UIManager.Instance.displayUI = true;
+		UIManager.Instance.Reset();
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 	}
 	

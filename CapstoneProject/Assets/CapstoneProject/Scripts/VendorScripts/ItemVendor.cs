@@ -10,7 +10,8 @@ public class ItemVendor : MonoBehaviour {
 		SellableItem sellItem = item.GetComponent<SellableItem>();
 		
 		if(sellItem.itemName == "Satellite Tower"){
-			GameObject.FindWithTag(Globals.SHIP).AddComponent<BeginWaveCountdown>();
+			GameController.Instance.SetCurWave(GameController.Instance.GetWaveController().GetWaveNumber());
+			GameController.Instance.SetEndWave(GameController.Instance.amountOfWavesLeft);
 			GameController.Instance.DeleteResources(sellItem.cost);
 		} else {
 			UIManager.Instance.uiState = UIManager.UIState.NONE;

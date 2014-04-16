@@ -87,11 +87,17 @@ public class BuildPanelGUI : MonoBehaviour {
 			buttonStyle.hover.textColor = Color.white;
 			buttonStyle.active.textColor = Color.white;
 			
-			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut){
+			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut && GameController.Instance.GetWaveController().GetWaveNumber() >= 3){
 				if(GUI.Button(new Rect(buttonPosX, labelOffset/2, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
 					itemVendor.Purchase(allForts[i]);
 					if(allForts[i].name == "SatelliteTower"){
 						allForts[i].GetComponent<SellableItem>().soldOut = true;
+					}
+				}
+			} else if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut && GameController.Instance.GetWaveController().GetWaveNumber() < 3){
+				if(allForts[i].name.Contains("Barrier")){
+					if(GUI.Button(new Rect(buttonPosX, labelOffset/2, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
+						itemVendor.Purchase(allForts[i]);
 					}
 				}
 			}

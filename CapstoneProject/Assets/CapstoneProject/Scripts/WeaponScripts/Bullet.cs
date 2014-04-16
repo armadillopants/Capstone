@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class Bullet : MonoBehaviour {
 	
@@ -9,16 +8,17 @@ public class Bullet : MonoBehaviour {
 	public float distance = 0f;
 	private float spawnTime = 0f;
 
-	void Start(){
+	void OnEnable(){
 		trans = transform;
 		spawnTime = Time.time;
 	}
 	
 	void Update(){
-		rigidbody.velocity = trans.TransformDirection(Vector3.forward*bulletSpeed);
+		trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 		distance -= bulletSpeed * Time.deltaTime;
 		if(Time.time > spawnTime + lifeTime || distance < 0){
-			Destroy(gameObject);
+			//Destroy(gameObject);
+			ObjectPool.spawner.DestroyCachedObject(gameObject);
 		}
 	}
 }

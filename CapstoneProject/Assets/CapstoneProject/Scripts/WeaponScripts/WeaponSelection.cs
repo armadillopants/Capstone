@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WeaponSelection : MonoBehaviour {
 	
@@ -15,6 +16,7 @@ public class WeaponSelection : MonoBehaviour {
 	public Texture2D weaponEquipped;
 	public Texture2D weaponUnEquipped;
 	private Rect[] weaponDisplayRect = new Rect[4];
+	private GUIStyle selectedWeaponStyle;
 	
 	void Awake(){
 		manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
@@ -30,37 +32,47 @@ public class WeaponSelection : MonoBehaviour {
 		UpdateWeaponsSlots();
 		SelectWeapon(weaponSlots[1].GetComponent<BaseWeapon>().id);
 		weapon = GetComponentInChildren<BaseWeapon>();
+		
+		selectedWeaponStyle = new GUIStyle();
+		selectedWeaponStyle.font = UIManager.Instance.resourceFont;
+		selectedWeaponStyle.fontSize = 12;
+		selectedWeaponStyle.alignment = TextAnchor.MiddleCenter;
+		selectedWeaponStyle.normal.textColor = Color.white;
 	}
 	
 	void Update(){
 		if(weapon.isAutomatic){
 			if(Input.GetButton("Fire1") && GameController.Instance.canShoot){
 				weapon.isFiring = true;
-				BroadcastMessage("Fire");
+				weapon.Fire();
+				//BroadcastMessage("Fire");
 			} else {
 				weapon.isFiring = false;
 			}
 		} else {
 			if(Input.GetButtonDown("Fire1") && GameController.Instance.canShoot){
 				weapon.isFiring = true;
-				BroadcastMessage("Fire");
+				weapon.Fire();
+				//BroadcastMessage("Fire");
 			} else {
 				weapon.isFiring = false;
 			}
 		}
 		
 		if(GameController.Instance.canChangeWeapons){
-			if(!changingWeapons && Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
+			if(!changingWeapons && Input.GetKey(KeyCode.LeftShift) && !UIManager.Instance.isPaused){
 				changingWeapons = true;
 				StartCoroutine("SlowMotion");
 			}
 			
-			if(Input.GetKey(KeyCode.LeftShift) && UIManager.Instance.uiState != UIManager.UIState.PAUSE){
+			if(Input.GetKey(KeyCode.LeftShift) && !UIManager.Instance.isPaused){
 				changingWeapons = true;
 				GameController.Instance.canShoot = false;
 			} else {
 				changingWeapons = false;
-				GameController.Instance.canShoot = true;
+				if(!weapon.isReloading){
+					GameController.Instance.canShoot = true;
+				}
 			}
 			
 			if(drawWeapon){
@@ -93,11 +105,6 @@ public class WeaponSelection : MonoBehaviour {
 	void OnGUI(){
 		if(changingWeapons){
 			for(int i=0; i<weaponSlots.Count; i++){
-				GUIStyle selectedWeaponStyle = new GUIStyle();
-				selectedWeaponStyle.font = UIManager.Instance.resourceFont;
-				selectedWeaponStyle.fontSize = 12;
-				selectedWeaponStyle.alignment = TextAnchor.MiddleCenter;
-				selectedWeaponStyle.normal.textColor = Color.white;
 				if(weaponSlots[i] != null){
 					if(weaponSlots[i].gameObject.activeSelf){
 						selectedWeaponStyle.normal.background = weaponEquipped;
@@ -127,6 +134,21 @@ public class WeaponSelection : MonoBehaviour {
 					manager.allWeapons[i].isReloading = false;
 				}
 				manager.allWeapons[i].gameObject.SetActive(false);
+			}
+		}
+	}
+	
+	public void ChangeToNewWeapon(){
+		// Update current weapon if it differs from the last one equipped
+		for(int i=0; i<weaponSlots.Count; i++){
+			if(weaponSlots[i] != null){
+				if(weapon.weaponType == weaponSlots[i].GetComponent<BaseWeapon>().weaponType){
+					if(weapon.id != weaponSlots[i].GetComponent<BaseWeapon>().id){
+						SelectWeapon(weaponSlots[i].GetComponent<BaseWeapon>().id);
+					} else {
+						Debug.Log("This is the current weapon");
+					}
+				}
 			}
 		}
 	}

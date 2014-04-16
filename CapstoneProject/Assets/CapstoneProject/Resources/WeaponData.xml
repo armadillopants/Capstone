@@ -36,7 +36,7 @@
 		</Pistol>
 		<RocketLauncher
 			range= "2"
-			fireRate= "0.5"
+			fireRate= "1"
 			force= "1"
 			bulletsPerClip= "5"
 			clips= "6"
@@ -181,20 +181,20 @@
 			health= "100"
 			fortDamage= "0"
 			range= "15"
-			fireRate= "0.1"
+			fireRate= "0.3"
 			force= "1.5"
 			bulletsPerClip= "Infinity"
 			clips= "3"
 			reloadSpeed= "2.0"
-			damage= "1"
+			damage= "2"
 			coneAngle= "2"
 			cost= "500">
 		</SentryTower>
 		<RocketTower
-			health= "150"
+			health= "120"
 			fortDamage= "0"
 			range= "15"
-			fireRate= "1"
+			fireRate= "1.5"
 			force= "2"
 			bulletsPerClip= "Infinity"
 			clips= "5"
@@ -220,7 +220,7 @@
 			health= "20"
 			fortDamage= "0"
 			range= "10"
-			fireRate= "1"
+			fireRate= "1.2"
 			force= "1.5"
 			bulletsPerClip= "Infinity"
 			clips= "2"

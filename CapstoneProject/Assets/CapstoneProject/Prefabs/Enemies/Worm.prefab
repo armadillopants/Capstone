@@ -1089,8 +1089,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 17}
-  m_Center: {x: 0, y: 4.5, z: -1}
+  m_Size: {x: 2, y: 2, z: 17}
+  m_Center: {x: 0, y: 5, z: -1}
 --- !u!82 &8200002
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1267,12 +1267,14 @@ MonoBehaviour:
   curHealth: 150
   maxHealth: 150
   canTakeDamage: 1
-  explosion: {fileID: 0}
+  explosion: {fileID: 100002, guid: 7fb876ca4b374314f9997ec647025060, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}
   deathClip: {fileID: 8300000, guid: f16398e08f0811647be2e9105acd791f, type: 3}
   displayHealthTimerMax: 3
   healthColor: {r: 1, g: 0, b: 0, a: 0}
+  damageTex: {fileID: 0}
+  healthBarFrame: {fileID: 2800000, guid: 32ff7161735413d4aa3ecb8dcd4cdc44, type: 3}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
