@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ObjectPool : MonoBehaviour {
 	
@@ -25,14 +25,13 @@ public class ObjectPool : MonoBehaviour {
 		activeCachedObjects = new Hashtable(amount);
 	}
 	
-	public GameObject Spawn(GameObject prefab, Vector3 pos, Quaternion rot){
+	public static GameObject Spawn(GameObject prefab, Vector3 pos, Quaternion rot){
 		PooledObjects cache = null;
 		
 		// Find the cache for the specified prefab
 		if(spawner){
 			for(int i=0; i<spawner.caches.Length; i++){
-				if(prefab == spawner.caches[i].prefab){
-					Debug.Log("Prefab "+ prefab.name);
+				if(spawner.caches[i].prefab == prefab){
 					cache = spawner.caches[i];
 				}
 			}
@@ -57,13 +56,27 @@ public class ObjectPool : MonoBehaviour {
 		return obj;
 	}
 	
-	public void DestroyCachedObject(GameObject obj){
+	public static void DestroyCachedObject(GameObject obj){
 		if(spawner && spawner.activeCachedObjects.ContainsKey(obj)){
 			obj.SetActive(false);
 			spawner.activeCachedObjects[obj] = false;
 		} else {
-			GameObject.Destroy(obj);
+			Destroy(obj);
 		}
+	}
+	
+	public static GameObject GetCachedObject(GameObject prefab){
+		PooledObjects cache = null;
+		
+		if(spawner){
+			for(int i=0; i<spawner.caches.Length; i++){
+				if(spawner.caches[i].prefab == prefab){
+					cache = spawner.caches[i];
+				}
+			}
+		}
+		
+		return cache.GetActiveObject();
 	}
 }
 
@@ -83,7 +96,32 @@ public class PooledObjects {
 			objects[i] = MonoBehaviour.Instantiate(prefab) as GameObject;
 			objects[i].SetActive(false);
 			objects[i].name = objects[i].name + i;
+			objects[i].transform.parent = GameObject.Find("PooledObjects").transform;
 		}
+	}
+	
+	public GameObject GetActiveObject(){
+		GameObject obj = null;
+		
+		for(int i=0; i<cacheSize; i++){
+			obj = objects[cacheIndex];
+			
+			// If we found an active object in the cache, use that
+			if(obj.activeSelf){
+				Debug.Log(obj.name);
+				break;
+			}
+			
+			// If not, increment the index and make it loop around
+			// if it exceeds the size of the cache
+			cacheIndex = (cacheIndex + 1) % cacheSize;
+		}
+		
+		// Increment index and make it loop around
+		// if it exceeds the size of the cache
+		cacheIndex = (cacheIndex + 1) % cacheSize;
+
+		return obj;
 	}
 	
 	public GameObject GetNextObjectInCache(){
@@ -107,11 +145,11 @@ public class PooledObjects {
 		
 		// The object should be inactive. If it's not, log a warning and use
 		// the object created the longest ago even though it's still active.
-		if(obj.activeInHierarchy){
+		if(obj.activeSelf){
 			Debug.LogWarning("Spawn of " + prefab.name + 
 				" exceeds cache size of " + cacheSize + 
 				"! Reusing already active object.", obj);
-			ObjectPool.spawner.DestroyCachedObject(obj);
+			ObjectPool.DestroyCachedObject(obj);
 		}
 		
 		// Increment index and make it loop around

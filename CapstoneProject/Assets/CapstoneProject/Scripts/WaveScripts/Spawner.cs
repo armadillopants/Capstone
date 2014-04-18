@@ -271,7 +271,7 @@ public class Spawner : MonoBehaviour {
 			rot = Quaternion.identity;
 		}
 		
-		GameObject enemyToSpawn = (GameObject)Instantiate(enemy, pos, rot);
+		GameObject enemyToSpawn = ObjectPool.Spawn(enemy, pos, rot);
 		enemyToSpawn.name = enemy.name;
 		if(canDig && pos == digPoint.position && enemyToSpawn.name != "Worm"){
 			enemyToSpawn.GetComponent<Enemy>().isUnderground = true;

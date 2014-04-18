@@ -3,8 +3,8 @@
 public class DigOutOfGround : MonoBehaviour {
 	
 	void Start(){
-		Instantiate(Spawner.spawner.explosion, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
-		Instantiate(Spawner.spawner.hole, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
+		ObjectPool.Spawn(Spawner.spawner.explosion, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
+		ObjectPool.Spawn(Spawner.spawner.hole, new Vector3(transform.position.x, 0.1f, transform.position.z), Quaternion.identity);
 	}
 	
 	void Update(){

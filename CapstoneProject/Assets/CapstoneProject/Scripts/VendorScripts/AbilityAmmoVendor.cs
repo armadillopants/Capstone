@@ -3,7 +3,6 @@
 public class AbilityAmmoVendor : MonoBehaviour {
 
 	public GameObject ammoVendor;
-	public Texture2D icon;
 	public bool isDisplaying = false;
 	private DisplayItem ammo;
 	private Ability curAbility;

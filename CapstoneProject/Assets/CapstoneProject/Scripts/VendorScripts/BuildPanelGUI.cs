@@ -30,8 +30,36 @@ public class BuildPanelGUI : MonoBehaviour {
 	public Texture2D buyHover;
 	public Texture2D buyActive;
 	
+	private GUIStyle itemLabelStyle;
+	private GUIStyle descriptionStyle;
+	private GUIStyle buttonStyle;
+	
 	void Start(){
 		Reset();
+		
+		itemLabelStyle = new GUIStyle();
+      	itemLabelStyle.alignment = TextAnchor.MiddleLeft;
+		itemLabelStyle.normal.textColor = Color.white;
+		itemLabelStyle.font = labelFont;
+		itemLabelStyle.contentOffset = new Vector2(labelOffset, 0);
+		
+		descriptionStyle = new GUIStyle();
+		descriptionStyle.alignment = TextAnchor.MiddleLeft;
+		descriptionStyle.font = labelFont;
+		descriptionStyle.fontSize = 15;
+		descriptionStyle.wordWrap = true;
+		descriptionStyle.normal.textColor = Color.white;
+		
+		buttonStyle = new GUIStyle();
+		buttonStyle.font = labelFont;
+		buttonStyle.fontSize = 10;
+		buttonStyle.alignment = TextAnchor.MiddleCenter;
+		buttonStyle.normal.background = buyNormal;
+		buttonStyle.hover.background = buyHover;
+		buttonStyle.active.background = buyActive;
+		buttonStyle.normal.textColor = Color.white;
+		buttonStyle.hover.textColor = Color.white;
+		buttonStyle.active.textColor = Color.white;
 	}
 	
 	public void Reset(){
@@ -53,39 +81,16 @@ public class BuildPanelGUI : MonoBehaviour {
 	    for(int i=0; i<allForts.Count; i++){
 			
 			GUI.BeginGroup(new Rect(labelOffset*2, i*regionHeight+labelOffset, drawArea.width, regionHeight*labelOffset));
-			
-	      	GUIStyle itemLabelStyle = new GUIStyle();
-	      	itemLabelStyle.alignment = TextAnchor.MiddleLeft;
+
 			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost){
 				itemLabelStyle.normal.background = labelCanBuy;
 			} else {
 				itemLabelStyle.normal.background = labelCantBuy;
 			}
-			itemLabelStyle.normal.textColor = Color.white;
-			itemLabelStyle.font = labelFont;
-			itemLabelStyle.contentOffset = new Vector2(labelOffset, 0);
 			
 			GUI.Label(new Rect(labelOffset, 0, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().itemName, itemLabelStyle);
 			
-			GUIStyle descriptionStyle = new GUIStyle();
-			descriptionStyle.alignment = TextAnchor.MiddleLeft;
-			descriptionStyle.font = labelFont;
-			descriptionStyle.fontSize = 15;
-			descriptionStyle.wordWrap = true;
-			descriptionStyle.normal.textColor = Color.white;
-			
 			GUI.Label(new Rect(labelOffset, buttonHeight+labelOffset, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().description, descriptionStyle);
-			
-			GUIStyle buttonStyle = new GUIStyle();
-			buttonStyle.font = labelFont;
-			buttonStyle.fontSize = 10;
-			buttonStyle.alignment = TextAnchor.MiddleCenter;
-			buttonStyle.normal.background = buyNormal;
-			buttonStyle.hover.background = buyHover;
-			buttonStyle.active.background = buyActive;
-			buttonStyle.normal.textColor = Color.white;
-			buttonStyle.hover.textColor = Color.white;
-			buttonStyle.active.textColor = Color.white;
 			
 			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut && GameController.Instance.GetWaveController().GetWaveNumber() >= 3){
 				if(GUI.Button(new Rect(buttonPosX, labelOffset/2, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){

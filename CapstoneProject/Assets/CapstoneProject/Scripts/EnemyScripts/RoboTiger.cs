@@ -29,8 +29,8 @@ public class RoboTiger : Enemy {
 				Vector3 pos = tr.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
 											1, 
 											Mathf.Sin(Random.Range(0,360)))*(Random.Range(5,5));
-				Instantiate(beamDown, pos, Quaternion.identity);
-				GameObject cat = (GameObject)Instantiate(cyberCat, pos, Quaternion.identity);
+				ObjectPool.Spawn(beamDown, pos, Quaternion.identity);
+				GameObject cat = ObjectPool.Spawn(cyberCat, pos, Quaternion.identity);
 				cat.name = cyberCat.name;
 			}
 			spawningTime = Random.Range(30f, 60f);

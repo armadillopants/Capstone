@@ -12,7 +12,7 @@ public class RayBlaster : BaseWeapon {
 	private float extraDamage;
 	
 	private bool createBullet = false;
-	private Rigidbody visibleProj = null;
+	private GameObject visibleProj = null;
 	private float bulletsToSubtract;
 	
 	void Start(){
@@ -85,7 +85,7 @@ public class RayBlaster : BaseWeapon {
 				Quaternion coneRandomRotation = 
 					Quaternion.Euler(Random.Range(-coneAngle, coneAngle), Random.Range(-coneAngle, coneAngle), 0);
 				if(projectile){
-					visibleProj = (Rigidbody)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
+					visibleProj = ObjectPool.Spawn(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
 				}
 				createBullet = true;
 			}

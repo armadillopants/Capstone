@@ -8,7 +8,7 @@ public class GridSpawner : MonoBehaviour {
 	public GameObject grid;
 
 	void Awake(){
-		GameObject p = (GameObject)Instantiate(grid, new Vector3(12, 0.01f, 9), Quaternion.identity);
+		GameObject p = ObjectPool.Spawn(grid, new Vector3(12, 0.01f, 9), Quaternion.identity);
 		p.name = grid.name;
 		p.transform.parent = transform;
 		//GetComponent<CombineChildren>().Combine();

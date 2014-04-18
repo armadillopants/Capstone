@@ -12,24 +12,6 @@ public class PlayerMovement : PlayerMotor {
 		trans = transform;
 	}
 	
-	void Update(){
-		/*if(Input.GetKey(KeyCode.Space)){
-			RaycastHit hit = new RaycastHit();
-			Vector3 pos = trans.position;
-			pos.y = 0.5f;
-			if(Physics.Raycast(pos, trans.forward, out hit, 1f)){
-				if(hit.collider.tag == Globals.FORTIFICATION){
-					Vector3 axis = Vector3.Cross(trans.up+trans.right, hit.normal);
-					if(axis != Vector3.zero){
-						float angle = Mathf.Atan2(Vector3.Magnitude(axis), Vector3.Dot(trans.up+trans.right, hit.normal));
-						trans.RotateAround(axis, angle);
-						trans.position += trans.forward * 4f * Time.deltaTime;
-					}
-				}
-			}
-		}*/
-	}
-	
 	void FixedUpdate(){
 		// Handle movement of player
 		Vector3 targetVel = moveDirection * moveSpeed;

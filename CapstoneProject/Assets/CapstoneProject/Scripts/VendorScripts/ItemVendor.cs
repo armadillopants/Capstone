@@ -26,7 +26,7 @@ public class ItemVendor : MonoBehaviour {
 		if(sellItem.currentUpgrade < 2){
 			
 			if(sellItem.upgradedItem){
-				GameObject upgradedItem = (GameObject)Instantiate(sellItem.upgradedItem, sellItem.gameObject.transform.position, sellItem.gameObject.transform.rotation);
+				GameObject upgradedItem = ObjectPool.Spawn(sellItem.upgradedItem, sellItem.gameObject.transform.position, sellItem.gameObject.transform.rotation);
 				upgradedItem.name = sellItem.upgradedItem.name;
 				upgradedItem.GetComponent<Dragable>().enabled = true;
 				upgradedItem.GetComponent<Dragable>().canUpdate = true;

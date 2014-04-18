@@ -26,6 +26,7 @@ GameObject:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400002}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -153,11 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fd946ae513f8c479e3f27575fdbedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiState: 5
+  uiState: 3
   isPaused: 0
   fortification: {fileID: 0}
-  resourceBackground: {fileID: 2800000, guid: 729c8fe5a95ddd04684b8c1c905d1b4e, type: 3}
-  resourceFont: {fileID: 12800000, guid: a5a5cb6ca4901d446b4ad0acb6855953, type: 3}
+  resourceFrame: {fileID: 2800000, guid: 815b6571b45124d40a4faaadbe7f868c, type: 3}
+  resourceFont: {fileID: 12800000, guid: 9f69163100dbda545a188cd6ecd4d81f, type: 3}
   ammoUI: {fileID: 2800000, guid: fe5c22d4f94031c4dae708f7ed7e9ecb, type: 3}
   shotgunShellUI: {fileID: 2800000, guid: 6561ab893851ef14ab21ff86eb1e3582, type: 3}
   canisters:
@@ -175,7 +176,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0cbe0371ae90b054b9cac4b7c7069a6b, type: 3}
   - {fileID: 2800000, guid: b0166ee5c488fec4f9399feff49500f4, type: 3}
   - {fileID: 2800000, guid: cb7aa5bcece99db45bfa8c725364d49e, type: 3}
-  displayUI: 1
+  displayUI: 0
   infintyUI: {fileID: 2800000, guid: d9de4438f6f295c44a5d5093eca1fa20, type: 3}
   resumeNormal: {fileID: 2800000, guid: 7f810e6c1c7f82744aea37a91f456bcd, type: 3}
   resumeHover: {fileID: 2800000, guid: efe6d43b77ffe79479bb451494ef5acd, type: 3}
@@ -201,6 +202,7 @@ MonoBehaviour:
   rescueShip: {fileID: 100000, guid: 6a80255e2d57e204599968fb3ea1b986, type: 2}
   canShoot: 0
   canChangeWeapons: 0
+  amountOfWavesLeft: 5
   current: {fileID: 0}
   validGreen: {fileID: 2100000, guid: 25f6fdae1c340e74eac651c8b2350040, type: 2}
   invalidRed: {fileID: 2100000, guid: 88fbe8e595060fa4ebc2572ffbb6627a, type: 2}
@@ -217,7 +219,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuState: 2
-  drawMainMenu: 0
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bf0dfc0e2d36f44acf9808c2ac725f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caches:
+  - prefab: {fileID: 100000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
+    cacheSize: 10
+  - prefab: {fileID: 100002, guid: 9dcda0fa8d67f5547b99525aa58b6962, type: 2}
+    cacheSize: 6
+  - prefab: {fileID: 100000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
+    cacheSize: 10
+  - prefab: {fileID: 100000, guid: d949c63cdee55584a825422c0696f66e, type: 2}
+    cacheSize: 10
+  - prefab: {fileID: 100000, guid: b0801bfedd1d03f4fb36765208572cb8, type: 2}
+    cacheSize: 10
+  - prefab: {fileID: 100000, guid: f264e17109caebf4280186e8762281d3, type: 2}
+    cacheSize: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -253,9 +253,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 100004, guid: 130470eb6dcdb214b90252938a74369b, type: 2}
+  weapon: {fileID: 0}
   bulletSpeed: 15
   isHoming: 0
   damp: 6
+  isPlayers: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

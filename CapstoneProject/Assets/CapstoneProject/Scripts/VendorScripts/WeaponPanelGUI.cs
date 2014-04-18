@@ -63,8 +63,52 @@ public class WeaponPanelGUI : MonoBehaviour {
 	public Texture2D refillHover;
 	public Texture2D refillActive;
 	
+	private GUIStyle headerStyle;
+	private GUIStyle refillStyle;
+	private GUIStyle weaponLabelStyle;
+	private GUIStyle buttonStyle;
+	private GUIStyle equipStyle;
+	
 	void Start(){
 		Reset();
+		
+		headerStyle = new GUIStyle();
+      	headerStyle.alignment = TextAnchor.MiddleLeft;
+		headerStyle.normal.background = header;
+		headerStyle.normal.textColor = Color.white;
+		headerStyle.font = headerFont;
+		headerStyle.contentOffset = new Vector2(labelOffset, 0);
+		
+		refillStyle = new GUIStyle();
+		refillStyle.alignment = TextAnchor.MiddleCenter;
+		refillStyle.normal.background = refillNormal;
+		refillStyle.hover.background = refillHover;
+		refillStyle.active.background = refillActive;
+		refillStyle.normal.textColor = Color.white;
+		refillStyle.hover.textColor = Color.white;
+		refillStyle.active.textColor = Color.white;
+		refillStyle.font = labelFont;
+			
+      	weaponLabelStyle = new GUIStyle();
+		weaponLabelStyle.font = labelFont;
+		weaponLabelStyle.normal.textColor = Color.white;
+		weaponLabelStyle.contentOffset = new Vector2(labelOffset, 0);
+		
+		buttonStyle = new GUIStyle();
+		buttonStyle.font = labelFont;
+		buttonStyle.fontSize = 10;
+		buttonStyle.alignment = TextAnchor.MiddleCenter;
+		buttonStyle.normal.textColor = Color.white;
+		buttonStyle.hover.textColor = Color.white;
+		buttonStyle.active.textColor = Color.white;
+		
+		equipStyle = new GUIStyle();
+		equipStyle.font = labelFont;
+		equipStyle.fontSize = 10;
+		equipStyle.alignment = TextAnchor.MiddleCenter;
+		equipStyle.normal.textColor = Color.white;
+		equipStyle.hover.textColor = Color.white;
+		equipStyle.active.textColor = Color.white;
 	}
 	
 	public void Reset(){
@@ -86,23 +130,6 @@ public class WeaponPanelGUI : MonoBehaviour {
 	      	type = weapons.FindAll(x => (int)x.weaponType == i);
 			
 			GUI.BeginGroup(new Rect(labelOffset, i * weaponRegionHeight, drawArea.width, weaponRegionHeight+labelOffset));
-			
-	      	GUIStyle headerStyle = new GUIStyle();
-	      	headerStyle.alignment = TextAnchor.MiddleLeft;
-			headerStyle.normal.background = header;
-			headerStyle.normal.textColor = Color.white;
-			headerStyle.font = headerFont;
-			headerStyle.contentOffset = new Vector2(labelOffset, 0);
-			
-			GUIStyle refillStyle = new GUIStyle();
-			refillStyle.alignment = TextAnchor.MiddleCenter;
-			refillStyle.normal.background = refillNormal;
-			refillStyle.hover.background = refillHover;
-			refillStyle.active.background = refillActive;
-			refillStyle.normal.textColor = Color.white;
-			refillStyle.hover.textColor = Color.white;
-			refillStyle.active.textColor = Color.white;
-			refillStyle.font = labelFont;
 	
 	      	GUI.Label(new Rect(labelOffset, labelOffset, headerWidth, headerHeight), types[i], headerStyle);
 			
@@ -129,27 +156,6 @@ public class WeaponPanelGUI : MonoBehaviour {
 					}
 				}
 			}
-			
-	      	GUIStyle weaponLabelStyle = new GUIStyle();
-			weaponLabelStyle.font = labelFont;
-			weaponLabelStyle.normal.textColor = Color.white;
-			weaponLabelStyle.contentOffset = new Vector2(labelOffset, 0);
-			
-			GUIStyle buttonStyle = new GUIStyle();
-			buttonStyle.font = labelFont;
-			buttonStyle.fontSize = 10;
-			buttonStyle.alignment = TextAnchor.MiddleCenter;
-			buttonStyle.normal.textColor = Color.white;
-			buttonStyle.hover.textColor = Color.white;
-			buttonStyle.active.textColor = Color.white;
-			
-			GUIStyle equipStyle = new GUIStyle();
-			equipStyle.font = labelFont;
-			equipStyle.fontSize = 10;
-			equipStyle.alignment = TextAnchor.MiddleCenter;
-			equipStyle.normal.textColor = Color.white;
-			equipStyle.hover.textColor = Color.white;
-			equipStyle.active.textColor = Color.white;
 			
 	      	for(int j=0; j<3; j++){
 				if(weaponManager.equippedWeapons.Contains(type[j].gameObject) && type[j].GetComponent<SellableItem>().purchased){

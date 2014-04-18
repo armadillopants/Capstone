@@ -103,10 +103,6 @@ public class ShipIndicator : MonoBehaviour {
 				GUI.DrawTexture(new Rect(0, 80, 
 					indicatorRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), 10), 
 					shipHealthBar, ScaleMode.StretchToFill);
-				/*Matrix4x4 matrixBackup = GUI.matrix;
-				GUIUtility.RotateAroundPivot(angle, pivot);
-				GUI.DrawTexture(new Rect(0, 0, 50, 50), arrow);
-				GUI.matrix = matrixBackup;*/
 			}
 			
 			GUI.EndGroup();

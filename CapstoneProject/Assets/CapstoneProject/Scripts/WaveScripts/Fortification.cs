@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Fortification : MonoBehaviour {
@@ -13,6 +12,8 @@ public class Fortification : MonoBehaviour {
 	private BuildUpgradeGUI buildUpgradePanel;
 	
 	private WeaponSelection selection;
+	
+	private GUIStyle style;
 
 	void Awake(){
 		GameController.Instance.canShoot = false;
@@ -30,6 +31,12 @@ public class Fortification : MonoBehaviour {
 		selection = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponSelection>();
 		selection.changingWeapons = false;
 		selection.drawWeapon = false;
+		
+		style = new GUIStyle();
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = Color.white;
+		style.font = UIManager.Instance.resourceFont;
+		style.fontSize = 50;
 	}
 	
 	public void StartFortifying(Wave wave){
@@ -83,11 +90,6 @@ public class Fortification : MonoBehaviour {
 		Rect timerRect = new Rect(100,50,100,50);
 		GUI.BeginGroup(timerRect);
 		
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = UIManager.Instance.resourceFont;
-		style.fontSize = 50;
 		GUI.Label(new Rect(0, 0, timerRect.width, timerRect.height), GuiTime(timer), style);
 		
 		GUI.EndGroup();

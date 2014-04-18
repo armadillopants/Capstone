@@ -17,8 +17,27 @@ public class BuildUpgradeGUI : MonoBehaviour {
 	private ItemVendor itemVendor;
 	private GameObject curItem;
 	
+	private GUIStyle style;
+	private GUIStyle descriptionStyle;
+	
 	void Start(){
 		itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
+		
+		style = new GUIStyle();
+		style.normal.background = buttonNormal;
+		style.hover.background = buttonHover;
+		style.active.background = buttonActive;
+		style.normal.textColor = Color.white;
+		style.hover.textColor = Color.white;
+		style.active.textColor = Color.white;
+		style.alignment = TextAnchor.MiddleCenter;
+		style.font = font;
+		
+		descriptionStyle = new GUIStyle();
+		descriptionStyle.alignment = TextAnchor.MiddleCenter;
+		descriptionStyle.font = font;
+		descriptionStyle.wordWrap = true;
+		descriptionStyle.normal.textColor = Color.white;
 	}
 	
 	public void Reset(){
@@ -28,16 +47,6 @@ public class BuildUpgradeGUI : MonoBehaviour {
 	
 	public void Draw(Rect drawRect){
 		Rect drawArea = drawRect;
-		
-		GUIStyle style = new GUIStyle();
-		style.normal.background = buttonNormal;
-		style.hover.background = buttonHover;
-		style.active.background = buttonActive;
-		style.normal.textColor = Color.white;
-		style.hover.textColor = Color.white;
-		style.active.textColor = Color.white;
-		style.alignment = TextAnchor.MiddleCenter;
-		style.font = font;
 		
 		switch(state){
 		case State.FORTINFO:
@@ -96,14 +105,10 @@ public class BuildUpgradeGUI : MonoBehaviour {
 					itemVendor.Upgrade(curItem);
 				}
 				
-				GUIStyle descriptionStyle = new GUIStyle();
-				descriptionStyle.alignment = TextAnchor.MiddleCenter;
-				descriptionStyle.font = font;
-				descriptionStyle.wordWrap = true;
-				descriptionStyle.normal.textColor = Color.white;
-				
 				GUI.Label(new Rect(drawRect.width-200, drawRect.height-200, 200, 100), 
 					sellItem.GetComponent<SellableItem>().description, descriptionStyle);
+			} else {
+				GUI.Label(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "NOT ENOUGH RESOURCES", style);
 			}
 		} else {
 			GUI.Label(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "FULLY UPGRADED", style);

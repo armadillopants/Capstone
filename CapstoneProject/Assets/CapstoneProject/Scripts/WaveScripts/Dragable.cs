@@ -55,7 +55,7 @@ public class Dragable : MonoBehaviour {
 	
 	void OnMouseEnter(){
 		if(GameController.Instance.current == null && curObj == null && canUpdate){
-			curObj = (GameObject)Instantiate(GameController.Instance.haloEffectObject, transform.position, Quaternion.identity);
+			curObj = ObjectPool.Spawn(GameController.Instance.haloEffectObject, transform.position, Quaternion.identity);
 		}
 	}
 	

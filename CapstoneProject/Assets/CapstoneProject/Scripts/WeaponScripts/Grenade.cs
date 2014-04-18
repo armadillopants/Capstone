@@ -22,7 +22,7 @@ public class Grenade : MonoBehaviour {
 		Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
 		Vector3 pos = contact.point;
 		if(explosion){
-			Instantiate(explosion, pos, rotation);
+			ObjectPool.Spawn(explosion, pos, rotation);
 		}
 		
 		collision.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);

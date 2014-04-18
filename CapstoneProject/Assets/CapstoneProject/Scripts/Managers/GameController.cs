@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour {
 	#endregion
 	
 	void SpawnPlayer(){
-		Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+		ObjectPool.Spawn(playerPrefab, Vector3.zero, Quaternion.identity);
 		player = GameObject.FindWithTag(Globals.PLAYER).transform;
 	}
 	
@@ -156,6 +156,7 @@ public class GameController : MonoBehaviour {
 		}
 		Destroy(GameObject.FindWithTag(Globals.PLAYER));
 		Destroy(GameObject.Find("LaserLight"));
+		Destroy(GameObject.Find("Cursor"));
 		yield return new WaitForSeconds(0.1f);
 		SpawnPlayer();
 		GameObject.Find("XMLReader").GetComponent<XMLReader>().Reset();
@@ -223,7 +224,7 @@ public class GameController : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		
 		if(Physics.Raycast(ray, out hit)){
-			GameObject fort = (GameObject)Instantiate(fortToSpawn, hit.point, Quaternion.identity);
+			GameObject fort = ObjectPool.Spawn(fortToSpawn, hit.point, Quaternion.identity);
 			fort.transform.eulerAngles = new Vector3(0,rot,0);
 			fort.name = fortToSpawn.name;
 			
@@ -404,7 +405,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public void SpawnRescueShip(){
-		shipToSpawn = (GameObject)Instantiate(rescueShip, new Vector3(-100,60,30), Quaternion.identity);
+		shipToSpawn = ObjectPool.Spawn(rescueShip, new Vector3(-100,60,30), Quaternion.identity);
 		shipToSpawn.name = rescueShip.name;
 	}
 	

@@ -17,8 +17,7 @@ public class Bullet : MonoBehaviour {
 		trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 		distance -= bulletSpeed * Time.deltaTime;
 		if(Time.time > spawnTime + lifeTime || distance < 0){
-			//Destroy(gameObject);
-			ObjectPool.spawner.DestroyCachedObject(gameObject);
+			ObjectPool.DestroyCachedObject(gameObject);
 		}
 	}
 }

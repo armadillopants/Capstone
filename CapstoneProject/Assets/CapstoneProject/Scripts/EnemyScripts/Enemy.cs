@@ -259,7 +259,7 @@ public class Enemy : AIPath {
 					Vector3 pos = tr.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
 												1, 
 												Mathf.Sin(Random.Range(0,360)))*(Random.Range(3,3));
-					Instantiate(money, pos, Quaternion.identity);
+					ObjectPool.Spawn(money, pos, Quaternion.identity);
 				}
 				isDead = true;
 			}

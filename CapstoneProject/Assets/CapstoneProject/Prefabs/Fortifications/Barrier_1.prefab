@@ -126,6 +126,7 @@ MonoBehaviour:
   displayHealthTimerMax: 1
   healthColor: {r: 0, g: 1, b: 0, a: 0}
   damageTex: {fileID: 0}
+  healthBarFrame: {fileID: 2800000, guid: 32ff7161735413d4aa3ecb8dcd4cdc44, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

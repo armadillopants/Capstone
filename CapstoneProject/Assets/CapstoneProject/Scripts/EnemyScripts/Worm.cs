@@ -124,7 +124,7 @@ public class Worm : Enemy {
 					Vector3 pos = tr.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
 												1, 
 												Mathf.Sin(Random.Range(0,360)))*(Random.Range(3,3));
-					Instantiate(money, pos, Quaternion.identity);
+					ObjectPool.Spawn(money, pos, Quaternion.identity);
 				}
 				isDead = true;
 			}
@@ -196,8 +196,8 @@ public class Worm : Enemy {
 					state = Enemy.EnemyState.HOVER;
 					canMove = false;
 					audio.Stop();
-					Instantiate(Spawner.spawner.explosion, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
-					Instantiate(Spawner.spawner.hole, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
+					ObjectPool.Spawn(Spawner.spawner.explosion, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
+					ObjectPool.Spawn(Spawner.spawner.hole, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
 				}
 			} else {
 				Vector3 adjustedTargetHeight = tr.position; // Set position to variable

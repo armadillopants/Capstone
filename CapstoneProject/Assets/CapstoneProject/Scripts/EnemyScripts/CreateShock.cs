@@ -6,7 +6,7 @@ public class CreateShock : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider hit){
 		if(hit.tag == "Ground"){
-			Instantiate(shockwave, transform.position, Quaternion.identity);
+			ObjectPool.Spawn(shockwave, transform.position, Quaternion.identity);
 		}
 	}
 }

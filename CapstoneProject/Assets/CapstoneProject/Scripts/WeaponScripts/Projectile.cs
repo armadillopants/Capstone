@@ -4,15 +4,27 @@ public class Projectile : MonoBehaviour {
 	
 	private Transform trans;
 	public GameObject explosion;
-	private BaseWeapon weapon;
+	public BaseWeapon weapon;
 	public float bulletSpeed = 0.0f;
 	public bool isHoming = false;
 	public float damp = 6.0f;
+	public bool isPlayers = true;
+	
+	private float lifeTime = 0f;
+	private float distance = 1000f;
+	private float spawnTime = 0f;
 	
 	void OnEnable(){
 		trans = transform;
-		weapon = GameController.Instance.GetPlayer().GetComponentInChildren<BaseWeapon>();
-		Invoke("Kill", weapon.range);
+		spawnTime = Time.time;
+		if(isPlayers){
+			weapon = GameController.Instance.GetPlayer().GetComponentInChildren<BaseWeapon>();
+			lifeTime = weapon.range;
+			distance = 1000f;
+		} else {
+			lifeTime = 3f;
+			distance = 1000f;
+		}
 	}
 	
 	void Update(){
@@ -28,15 +40,22 @@ public class Projectile : MonoBehaviour {
 		} else {
 			trans.position += trans.forward * bulletSpeed * Time.deltaTime;
 		}
+		
+		distance -= bulletSpeed * Time.deltaTime;
+		if(Time.time > spawnTime + lifeTime || distance < 0){
+			ObjectPool.DestroyCachedObject(gameObject);
+		}
 	}
 	
 	void OnCollisionEnter(Collision collision){
 		
-		collision.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);
+		if(weapon){
+			collision.collider.gameObject.SendMessageUpwards("TakeDamage", weapon.damage, SendMessageOptions.DontRequireReceiver);
 		
-		if(collision.rigidbody){
-			Vector3 force = trans.forward * weapon.force;
-			collision.rigidbody.AddForce(force, ForceMode.Impulse);
+			if(collision.rigidbody){
+				Vector3 force = trans.forward * weapon.force;
+				collision.rigidbody.AddForce(force, ForceMode.Impulse);
+			}
 		}
 		
 		if(explosion){
@@ -46,7 +65,7 @@ public class Projectile : MonoBehaviour {
 			Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
 			Vector3 pos = contact.point;
 			
-			Instantiate(explosion, pos, rotation);
+			ObjectPool.Spawn(explosion, pos, rotation);
 		
 			// Call function to destroy the rocket
 			Kill();
@@ -65,6 +84,6 @@ public class Projectile : MonoBehaviour {
 		
 		// Destroy the projectile
 		//Destroy(gameObject);
-		ObjectPool.spawner.DestroyCachedObject(gameObject);
+		ObjectPool.DestroyCachedObject(gameObject);
 	}
 }

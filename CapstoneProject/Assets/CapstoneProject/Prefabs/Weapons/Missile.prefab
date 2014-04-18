@@ -256,6 +256,9 @@ MonoBehaviour:
   bulletSpeed: 10
   isHoming: 1
   damp: 3
+  isPlayers: 1
+  damage: 0
+  force: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

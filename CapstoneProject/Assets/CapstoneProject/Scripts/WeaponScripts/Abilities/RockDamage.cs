@@ -11,7 +11,7 @@ public class RockDamage : MonoBehaviour {
 		Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
 		Vector3 pos = contact.point;
 		if(explosion){
-			Instantiate(explosion, pos, rotation);
+			ObjectPool.Spawn(explosion, pos, rotation);
 		}
 		
 		if(collision.transform.tag == Globals.ENEMY){

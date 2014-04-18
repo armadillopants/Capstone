@@ -6,23 +6,28 @@ public class Turret : MonoBehaviour {
 	public Transform constraint;
 	public float turnSpeed = 3f;
 	public bool isTower = false;
-	private GameObject target;
 	private BaseWeapon weapon;
 	private Animation anim;
+	private Health health;
 
 	void Start(){
+		if(transform.FindChild("Combined mesh")){
+			pivot = transform.FindChild("Combined mesh");
+			constraint = transform.FindChild("Combined mesh");
+		}
 		weapon = GetComponentInChildren<BaseWeapon>();
 		anim = GetComponentInChildren<Animation>();
+		health = GetComponent<Health>();
 		if(anim){
 			anim.Play("Spawn");
 		}
 	}
 	
 	void Update(){
-		target = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform);
+		GameObject target = GameController.Instance.FindNearestTarget(Globals.ENEMY, transform);
 		
 		if(anim){
-			if(GetComponent<Health>().curHealth <= 0){
+			if(health.curHealth <= 0){
 				anim.Play("Death");
 			} else {
 				anim.Play("Idle");
@@ -46,6 +51,10 @@ public class Turret : MonoBehaviour {
 			if(Vector3.Distance(target.transform.position, transform.position) <= weapon.range){
 				weapon.Fire();
 				weapon.isFiring = true;
+				GameObject projectile = ObjectPool.GetCachedObject(weapon.projectile);
+				projectile.GetComponent<Projectile>().weapon = weapon;
+				projectile.GetComponent<Projectile>().weapon.damage = weapon.damage;
+				projectile.GetComponent<Projectile>().weapon.force = weapon.force;
 			} else {
 				weapon.isFiring = false;
 			}

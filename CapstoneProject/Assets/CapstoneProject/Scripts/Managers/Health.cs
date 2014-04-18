@@ -139,7 +139,7 @@ public class Health : MonoBehaviour {
 	IEnumerator BeginDeathSequence(){
 		yield return new WaitForSeconds(waitTime);
 		if(explosion){
-			Instantiate(explosion, transform.position, Quaternion.identity);
+			ObjectPool.Spawn(explosion, transform.position, Quaternion.identity);
 		}
 		Destroy(gameObject);
 	}
@@ -147,7 +147,7 @@ public class Health : MonoBehaviour {
 	IEnumerator BeginFortDestruction(){
 		yield return new WaitForSeconds(waitTime);
 		if(explosion){
-			Instantiate(explosion, transform.position, Quaternion.identity);
+			ObjectPool.Spawn(explosion, transform.position, Quaternion.identity);
 		}
 		GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider, gameObject);
 	}
@@ -163,11 +163,11 @@ public class Health : MonoBehaviour {
 			GUI.EndGroup();
 			
 			if(gameObject.tag == Globals.PLAYER){
-				float alpha = (1f-(curHealth/maxHealth))*displayHealthTimer;
+				float alpha = displayHealthTimer;
 				if(alpha > 1f){
 					alpha = 1f;
 				}
-				GUI.color = new Color(1.0f,1.0f,1.0f, alpha);
+				GUI.color = new Color(1.0f,1.0f,1.0f, (1f-(curHealth/maxHealth))*alpha);
 				GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), damageTex);
 			}
 		}

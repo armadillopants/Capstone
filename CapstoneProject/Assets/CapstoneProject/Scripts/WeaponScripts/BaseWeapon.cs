@@ -84,7 +84,7 @@ public class BaseWeapon : MonoBehaviour {
 	
 	public virtual void Update(){
 		if(UIManager.Instance.displayUI){
-			if(Input.GetMouseButtonDown(1) && bulletsLeft < bulletsPerClip && clips > 0){
+			if(Input.GetMouseButtonDown(1) && bulletsLeft < bulletsPerClip && clips > 0 && !isReloading){
 				StartCoroutine("Reload");
 				return;
 			}
@@ -106,48 +106,33 @@ public class BaseWeapon : MonoBehaviour {
 	}
 	
 	void LateUpdate(){
-		if(muzzleFlash && lightFlash){
-			// We shot this frame, enable the muzzle flash
-			if(lastFrameShot == Time.frameCount){
+		// We shot this frame, enable the muzzle flash
+		if(lastFrameShot == Time.frameCount){
+			if(muzzleFlash && lightFlash){
 				muzzle.transform.localRotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
 				muzzle.enabled = true;
 				gunFlash.enabled = true;
-				
-				if(audio){
-					if(!audio.isPlaying && !oneShot){
-						audio.clip = fireClip;
-						audio.Play();
-						audio.loop = true;
-					} else if(oneShot){
-						audio.PlayOneShot(fireClip);
-					}
-				}
-			} else {
-				// We didn't disable the muzzle flash
-				muzzle.enabled = false;
-				gunFlash.enabled = false;
-				
-				// Play sound
-				if(audio){
-					audio.loop = false;
+			}
+			
+			if(audio){
+				if(!audio.isPlaying && !oneShot){
+					audio.clip = fireClip;
+					audio.Play();
+					audio.loop = true;
+				} else if(oneShot){
+					audio.PlayOneShot(fireClip);
 				}
 			}
 		} else {
-			if(lastFrameShot == Time.frameCount){
-				if(audio){
-					if(!audio.isPlaying && !oneShot){
-						audio.clip = fireClip;
-						audio.Play();
-						audio.loop = true;
-					} else if(oneShot){
-						audio.PlayOneShot(fireClip);
-					}
-				}
-			} else {
-				// Play sound
-				if(audio){
-					audio.loop = false;
-				}
+			if(muzzleFlash && lightFlash){
+				// We didn't disable the muzzle flash
+				muzzle.enabled = false;
+				gunFlash.enabled = false;
+			}
+			
+			// Play sound
+			if(audio){
+				audio.loop = false;
 			}
 		}
 	}
@@ -174,8 +159,7 @@ public class BaseWeapon : MonoBehaviour {
 			Quaternion.Euler(Random.Range(-coneAngle, coneAngle), Random.Range(-coneAngle, coneAngle), 0);
 		GameObject visibleProj = null;
 		if(projectile){
-			visibleProj = ObjectPool.spawner.Spawn(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);//(GameObject)Instantiate(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
-			//visibleProj.name = projectile.name;
+			visibleProj = ObjectPool.Spawn(projectile, muzzlePos.position, muzzlePos.rotation * coneRandomRotation);
 		}
 		
 		switch(state){

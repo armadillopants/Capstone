@@ -55,8 +55,53 @@ public class AbilityPanelGUI : MonoBehaviour {
 	private List<AbilityAmmoVendor> abilityAmmoVendorContainer;
 	private bool useAbility;
 	
+	private GUIStyle abilityLabelStyle;
+	private GUIStyle refillStyle;
+	private GUIStyle descriptionStyle;
+	private GUIStyle buttonStyle;
+	private GUIStyle equipStyle;
+	
 	void Start(){
 		Reset();
+		
+		abilityLabelStyle = new GUIStyle();
+	  	abilityLabelStyle.alignment = TextAnchor.MiddleLeft;
+		abilityLabelStyle.normal.textColor = Color.white;
+		abilityLabelStyle.font = labelFont;
+		abilityLabelStyle.contentOffset = new Vector2(labelOffset, 0);
+		
+		refillStyle = new GUIStyle();
+		refillStyle.alignment = TextAnchor.MiddleCenter;
+		refillStyle.normal.background = refillNormal;
+		refillStyle.hover.background = refillHover;
+		refillStyle.active.background = refillActive;
+		refillStyle.normal.textColor = Color.white;
+		refillStyle.hover.textColor = Color.white;
+		refillStyle.active.textColor = Color.white;
+		refillStyle.font = labelFont;
+		
+		descriptionStyle = new GUIStyle();
+		descriptionStyle.alignment = TextAnchor.MiddleLeft;
+		descriptionStyle.font = labelFont;
+		descriptionStyle.fontSize = 15;
+		descriptionStyle.wordWrap = true;
+		descriptionStyle.normal.textColor = Color.white;
+		
+		buttonStyle = new GUIStyle();
+		buttonStyle.font = labelFont;
+		buttonStyle.fontSize = 10;
+		buttonStyle.alignment = TextAnchor.MiddleCenter;
+		buttonStyle.normal.textColor = Color.white;
+		buttonStyle.hover.textColor = Color.white;
+		buttonStyle.active.textColor = Color.white;
+			
+		equipStyle = new GUIStyle();
+		equipStyle.font = labelFont;
+		equipStyle.fontSize = 10;
+		equipStyle.alignment = TextAnchor.MiddleCenter;
+		equipStyle.normal.textColor = Color.white;
+		equipStyle.hover.textColor = Color.white;
+		equipStyle.active.textColor = Color.white;
 	}
 	
 	public void Reset(){
@@ -81,12 +126,6 @@ public class AbilityPanelGUI : MonoBehaviour {
 			
 			GameObject curAbility = allAbilities[i];
 			
-	      	GUIStyle abilityLabelStyle = new GUIStyle();
-	      	abilityLabelStyle.alignment = TextAnchor.MiddleLeft;
-			abilityLabelStyle.normal.textColor = Color.white;
-			abilityLabelStyle.font = labelFont;
-			abilityLabelStyle.contentOffset = new Vector2(labelOffset, 0);
-			
 			if(allAbilities[i].GetComponent<SellableItem>().purchased && abilityHolder.GetComponent(allAbilities[i].name) != null){
 				abilityLabelStyle.normal.background = labelEquipped;
 			} else if(allAbilities[i].GetComponent<SellableItem>().purchased && abilityHolder.GetComponent(allAbilities[i].name) == null){
@@ -96,16 +135,6 @@ public class AbilityPanelGUI : MonoBehaviour {
 			}
 	
 	      	GUI.Label(new Rect(labelOffset, labelOffset, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
-			
-			GUIStyle refillStyle = new GUIStyle();
-			refillStyle.alignment = TextAnchor.MiddleCenter;
-			refillStyle.normal.background = refillNormal;
-			refillStyle.hover.background = refillHover;
-			refillStyle.active.background = refillActive;
-			refillStyle.normal.textColor = Color.white;
-			refillStyle.hover.textColor = Color.white;
-			refillStyle.active.textColor = Color.white;
-			refillStyle.font = labelFont;
 			
 			if(allAbilities[i].GetComponent<SellableItem>().purchased){
 				// Handle Refill of weapon
@@ -150,30 +179,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 				}
 			}
 			
-			GUIStyle descriptionStyle = new GUIStyle();
-			descriptionStyle.alignment = TextAnchor.MiddleLeft;
-			descriptionStyle.font = labelFont;
-			descriptionStyle.fontSize = 15;
-			descriptionStyle.wordWrap = true;
-			descriptionStyle.normal.textColor = Color.white;
-			
 			GUI.Label(new Rect(labelOffset, labelHeight+buttonHeight, labelWidth, labelHeight), allAbilities[i].GetComponent<SellableItem>().description, descriptionStyle);
-			
-			GUIStyle buttonStyle = new GUIStyle();
-			buttonStyle.font = labelFont;
-			buttonStyle.fontSize = 10;
-			buttonStyle.alignment = TextAnchor.MiddleCenter;
-			buttonStyle.normal.textColor = Color.white;
-			buttonStyle.hover.textColor = Color.white;
-			buttonStyle.active.textColor = Color.white;
-			
-			GUIStyle equipStyle = new GUIStyle();
-			equipStyle.font = labelFont;
-			equipStyle.fontSize = 10;
-			equipStyle.alignment = TextAnchor.MiddleCenter;
-			equipStyle.normal.textColor = Color.white;
-			equipStyle.hover.textColor = Color.white;
-			equipStyle.active.textColor = Color.white;
 			
 			if(allAbilities[i].GetComponent<SellableItem>().purchased){
 				buttonStyle.normal.background = upgradeNormal;
