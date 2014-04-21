@@ -8,7 +8,7 @@ public class BarrelOrbit : MonoBehaviour {
 	private Vector3 distance = Vector3.zero;
 
 	void Start(){
-		player = GameObject.FindWithTag("Player").transform;
+		player = GameController.Instance.GetPlayer();
 		
 		if(player != null){
 			distance = transform.position - player.position;

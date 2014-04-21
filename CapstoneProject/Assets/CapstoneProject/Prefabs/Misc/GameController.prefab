@@ -158,6 +158,7 @@ MonoBehaviour:
   isPaused: 0
   fortification: {fileID: 0}
   resourceFrame: {fileID: 2800000, guid: 815b6571b45124d40a4faaadbe7f868c, type: 3}
+  healthBarFrame: {fileID: 2800000, guid: 32ff7161735413d4aa3ecb8dcd4cdc44, type: 3}
   resourceFont: {fileID: 12800000, guid: 9f69163100dbda545a188cd6ecd4d81f, type: 3}
   ammoUI: {fileID: 2800000, guid: fe5c22d4f94031c4dae708f7ed7e9ecb, type: 3}
   shotgunShellUI: {fileID: 2800000, guid: 6561ab893851ef14ab21ff86eb1e3582, type: 3}

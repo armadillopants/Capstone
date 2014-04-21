@@ -1268,7 +1268,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: -4.05626075e-08, y: -4.55905314e-10, z: 1.41068629e-10, w: 1}
-  m_LocalPosition: {x: -.00202225056, y: -.0262470916, z: .115316451}
+  m_LocalPosition: {x: -.00202555954, y: -.026247818, z: .626546562}
   m_LocalScale: {x: 1, y: 1, z: .800000012}
   m_Children: []
   m_Father: {fileID: 400004}
@@ -1303,7 +1303,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: -4.05626075e-08, y: -4.55905314e-10, z: 1.41068629e-10, w: 1}
-  m_LocalPosition: {x: -.00202225056, y: -.0262470916, z: .115316451}
+  m_LocalPosition: {x: -.00201763213, y: -.026244957, z: .626551747}
   m_LocalScale: {x: 1, y: 1, z: .800000012}
   m_Children: []
   m_Father: {fileID: 400006}
@@ -2583,7 +2583,7 @@ MonoBehaviour:
   range: 100
   force: 1
   bulletsLeft: 0
-  bulletsPerClip: 300
+  bulletsPerClip: Infinity
   clips: 1
   maxClips: 0
   reloadSpeed: 1.5
@@ -2627,7 +2627,7 @@ MonoBehaviour:
   range: 100
   force: 1
   bulletsLeft: 0
-  bulletsPerClip: 300
+  bulletsPerClip: Infinity
   clips: 1
   maxClips: 0
   reloadSpeed: 1.5

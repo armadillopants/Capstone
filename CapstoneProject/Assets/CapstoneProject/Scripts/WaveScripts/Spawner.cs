@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour {
 	public GameObject hole;
 	public GameObject explosion;
 
-	void Start(){
+	void Awake(){
 		spawner = this;
 		spawnPoints = GameObject.FindGameObjectsWithTag(Globals.SPAWN_POINT);
 		digPoints = GameObject.FindGameObjectsWithTag(Globals.DIG_POINT);
@@ -273,9 +273,11 @@ public class Spawner : MonoBehaviour {
 		
 		GameObject enemyToSpawn = ObjectPool.Spawn(enemy, pos, rot);
 		enemyToSpawn.name = enemy.name;
-		if(canDig && pos == digPoint.position && enemyToSpawn.name != "Worm"){
-			enemyToSpawn.GetComponent<Enemy>().isUnderground = true;
-			enemyToSpawn.AddComponent<DigOutOfGround>();
+		if(enemy.name != "Worm"){
+			if(canDig && pos == digPoint.position){
+				enemyToSpawn.GetComponent<Enemy>().isUnderground = true;
+				enemyToSpawn.AddComponent<DigOutOfGround>();
+			}
 		}
 		enemiesToSpawn.Remove(enemy);
 	}

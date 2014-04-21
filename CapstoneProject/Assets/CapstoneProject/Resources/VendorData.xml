@@ -47,7 +47,7 @@
 					bulletsPerClip= "Infinity"
 					clips= "6"
 					reloadSpeed= "0.4"
-					damage= "7"
+					damage= "5"
 					coneAngle= "0.9">
 				</Upgrade1>
 				<Upgrade2
@@ -58,7 +58,7 @@
 					bulletsPerClip= "Infinity"
 					clips= "6"
 					reloadSpeed= "0.3"
-					damage= "9"
+					damage= "7"
 					coneAngle= "0.8">
 				</Upgrade2>
 			</Upgrades>

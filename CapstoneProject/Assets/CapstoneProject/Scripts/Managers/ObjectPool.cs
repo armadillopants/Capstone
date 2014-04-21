@@ -108,7 +108,6 @@ public class PooledObjects {
 			
 			// If we found an active object in the cache, use that
 			if(obj.activeSelf){
-				Debug.Log(obj.name);
 				break;
 			}
 			

@@ -11,10 +11,6 @@ public class Turret : MonoBehaviour {
 	private Health health;
 
 	void Start(){
-		if(transform.FindChild("Combined mesh")){
-			pivot = transform.FindChild("Combined mesh");
-			constraint = transform.FindChild("Combined mesh");
-		}
 		weapon = GetComponentInChildren<BaseWeapon>();
 		anim = GetComponentInChildren<Animation>();
 		health = GetComponent<Health>();
@@ -34,7 +30,7 @@ public class Turret : MonoBehaviour {
 			}
 		}
 		
-		if(target && weapon.clips >= 0){
+		if(target){
 			if(isTower){
 				Vector3 relative = pivot.InverseTransformPoint(target.transform.position);
         		float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
@@ -51,10 +47,12 @@ public class Turret : MonoBehaviour {
 			if(Vector3.Distance(target.transform.position, transform.position) <= weapon.range){
 				weapon.Fire();
 				weapon.isFiring = true;
-				GameObject projectile = ObjectPool.GetCachedObject(weapon.projectile);
-				projectile.GetComponent<Projectile>().weapon = weapon;
-				projectile.GetComponent<Projectile>().weapon.damage = weapon.damage;
-				projectile.GetComponent<Projectile>().weapon.force = weapon.force;
+				if(weapon.projectile.name == "Rocket"){
+					GameObject projectile = ObjectPool.GetCachedObject(weapon.projectile);
+					projectile.GetComponent<Projectile>().weapon = weapon;
+					projectile.GetComponent<Projectile>().weapon.damage = weapon.damage;
+					projectile.GetComponent<Projectile>().weapon.force = weapon.force;
+				}
 			} else {
 				weapon.isFiring = false;
 			}

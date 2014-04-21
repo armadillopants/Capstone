@@ -13,7 +13,7 @@ public class RockRainAbility : MonoBehaviour {
 
 	void Start(){
 		rock = (Rigidbody)Resources.Load("Rock", typeof(Rigidbody));
-		player = GameObject.FindWithTag(Globals.PLAYER).transform;
+		player = GameController.Instance.GetPlayer();
 		timer = maxTimer;
 	}
 	

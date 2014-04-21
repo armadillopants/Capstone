@@ -31,7 +31,7 @@ public class Laser : MonoBehaviour {
 
 	private IEnumerator ChoseNewAnimationTargetCoroutine(){
 		while(true){
-			aniDir = aniDir * 0.9f + Random.Range (0.5f, 1.5f) * 0.1f;
+			aniDir = aniDir * 0.9f + Random.Range(0.5f, 1.5f) * 0.1f;
 			yield return null;
 			minWidth = minWidth * 0.8f + Random.Range (0.1f, 1.0f) * 0.2f;
 			yield return new WaitForSeconds(1.0f + Random.value * 2.0f - 1.0f);	
@@ -39,7 +39,7 @@ public class Laser : MonoBehaviour {
 	}
 	
 	void Update(){
-		laser.transform.position = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<BaseWeapon>().muzzlePos.position;
+		laser.transform.position = GameController.Instance.GetPlayer().GetComponentInChildren<BaseWeapon>().muzzlePos.position;
 		if(!GameController.Instance.canShoot){
 			laser.enabled = false;
 			lightObj.light.enabled = false;

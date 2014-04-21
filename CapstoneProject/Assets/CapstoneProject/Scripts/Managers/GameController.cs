@@ -349,9 +349,11 @@ public class GameController : MonoBehaviour {
 			// Keep respawning fortifications until we've run out of money
 			if(amountOfResources < current.GetComponent<SellableItem>().cost){
 				current = null;
+				originalMats.Clear();
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
 			} else {
 				current = null;
+				originalMats.Clear();
 				SpawnFortification(originalObject, rot);
 			}
 		}

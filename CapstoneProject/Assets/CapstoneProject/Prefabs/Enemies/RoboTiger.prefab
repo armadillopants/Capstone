@@ -1119,7 +1119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100080}
   m_LocalRotation: {x: -4.05626075e-08, y: -4.55905314e-10, z: 1.41068629e-10, w: 1}
-  m_LocalPosition: {x: -.00202225056, y: -.0262470916, z: .115316451}
+  m_LocalPosition: {x: -.00202224939, y: -.0262470171, z: .565110981}
   m_LocalScale: {x: 1, y: 1, z: .800000012}
   m_Children: []
   m_Father: {fileID: 400078}
@@ -1535,7 +1535,7 @@ MonoBehaviour:
   range: 100
   force: 1
   bulletsLeft: 0
-  bulletsPerClip: 300
+  bulletsPerClip: Infinity
   clips: 1
   maxClips: 0
   reloadSpeed: 1.5

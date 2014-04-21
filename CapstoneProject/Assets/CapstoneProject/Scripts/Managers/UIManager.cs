@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
 	
 	public bool isPaused = false;
 	private WeaponSelection selection;
+	private WeaponManager manager;
 	private bool fadeComplete = false;
 	
 	public GameObject fortification;
@@ -19,9 +20,11 @@ public class UIManager : MonoBehaviour {
 	private Texture2D grayBar;
 	
 	private Rect waveRect;
+	private Rect finalWaveRect;
 	private Rect shipHealthRect;
 	
 	public Texture2D resourceFrame;
+	public Texture2D healthBarFrame;
 	public Font resourceFont;
 	public Texture2D ammoUI;
 	public Texture2D shotgunShellUI;
@@ -43,9 +46,11 @@ public class UIManager : MonoBehaviour {
 	public Texture2D quitActive;
 	
 	private GUIStyle style;
+	private GUIStyle waveStyle;
 	private GUIStyle resumeButton;
 	private GUIStyle restartButton;
 	private GUIStyle quitButton;
+	private GUIStyle resourceStyle;
 	private GUIContent content;
 	
 	#region Singleton
@@ -80,6 +85,7 @@ public class UIManager : MonoBehaviour {
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
+		finalWaveRect = new Rect((Screen.width/2)-(600/2), (Screen.height-Screen.height)+60, 600, 60);
 		Screen.showCursor = false;
 		
 		resumeButton = new GUIStyle();
@@ -103,12 +109,25 @@ public class UIManager : MonoBehaviour {
 		style.font = resourceFont;
 		style.fontSize = 50;
 		
+		waveStyle = new GUIStyle();
+		waveStyle.alignment = TextAnchor.MiddleCenter;
+		waveStyle.normal.textColor = Color.white;
+		waveStyle.font = resourceFont;
+		waveStyle.fontSize = 100;
+		
+		resourceStyle = new GUIStyle();
+		resourceStyle.font = resourceFont;
+		resourceStyle.alignment = TextAnchor.MiddleCenter;
+		resourceStyle.normal.textColor = Color.cyan;
+		resourceStyle.fontSize = 25;
+		
 		content = new GUIContent();
 	}
 	
 	public void Reset(){
 		selection = GameObject.Find("WeaponSelection").GetComponent<WeaponSelection>();
 		holder = GameObject.Find("AbilityHolder");
+		manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
 	}
 	
 	void Update(){
@@ -121,7 +140,7 @@ public class UIManager : MonoBehaviour {
 		}
 		
 		Vector3 shipPos = Camera.main.WorldToScreenPoint(GameController.Instance.GetShip().position);
-		shipHealthRect = new Rect(shipPos.x, Screen.height - shipPos.y, 400, 20);
+		shipHealthRect = new Rect(shipPos.x, Screen.height - shipPos.y, 420, 30);
 		
 	}
 	
@@ -161,7 +180,7 @@ public class UIManager : MonoBehaviour {
 			DrawShipHealth();
 		}
 		
-		if(GameController.Instance.GetWaveController().canBeginWave){
+		if(GameController.Instance.GetWaveController().canBeginWave && uiState != UIState.GAMEOVER){
 			DrawResources();
 			DrawCurWaveScreen();
 		}
@@ -178,7 +197,7 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawFinalWaveCountdown(){
-		Rect finalWaveRect = new Rect((Screen.width/2)-(500/2), (Screen.height-Screen.height)+50, 500, 50);
+		
 		GUI.BeginGroup(finalWaveRect);
 		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Waves until Rescue Ship's arrival: "
@@ -189,7 +208,6 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawFinalWaveTimer(){
-		Rect finalWaveRect = new Rect((Screen.width/2)-(500/2), (Screen.height-Screen.height)+50, 500, 50);
 		GUI.BeginGroup(finalWaveRect);
 		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Timer: "
@@ -222,31 +240,19 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void DrawWaveWonScreen(){
-				
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 100;
 		
 		GUI.BeginGroup(waveRect);
 		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE WON", style);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE WON", waveStyle);
 		
 		GUI.EndGroup();
 	}
 
 	void DrawNextWaveScreen(){
 		
-		GUIStyle style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 100;
-		
 		GUI.BeginGroup(waveRect);
 		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE "+GameController.Instance.GetWaveController().GetWaveNumber().ToString(), style);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE "+GameController.Instance.GetWaveController().GetWaveNumber().ToString(), waveStyle);
 		
 		GUI.EndGroup();
 	}
@@ -313,31 +319,23 @@ public class UIManager : MonoBehaviour {
 		shipHealthBar.SetPixel(0, 0, Color.green);
 		shipHealthBar.Apply();
 		
-		GUI.DrawTexture(new Rect(shipHealthRect.width, 0, 
-			-shipHealthRect.width*GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
-			grayBar, ScaleMode.StretchToFill);
-		GUI.DrawTexture(new Rect(shipHealthRect.width, 0, 
-			-shipHealthRect.width*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), shipHealthRect.height), 
-			shipHealthBar, ScaleMode.StretchToFill);
+		GUI.DrawTexture(new Rect(320, 3, 
+			-320*GameController.Instance.GetShipHealth().GetMaxHealth(), 20), grayBar);
+		GUI.DrawTexture(new Rect(320, 3, 
+			-320*GameController.Instance.GetShipHealth().curHealth/GameController.Instance.GetShipHealth().GetMaxHealth(), 20), shipHealthBar);
+		GUI.DrawTexture(new Rect(0, 0, shipHealthRect.width, shipHealthRect.height), healthBarFrame);
 		
 		GUI.EndGroup();
 	}
 	
 	void DrawResources(){
 		GUI.DrawTexture(new Rect(Screen.width-365, Screen.height-(Screen.height-1), 256, 128), resourceFrame);
-		
-		GUIStyle style = new GUIStyle();
-		style.font = resourceFont;
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.cyan;
-		style.fontSize = 25;
-		GUI.Label(new Rect(Screen.width-260, Screen.height-(Screen.height-28), 0, 0), "RESOURCES", style);
-		GUI.Label(new Rect(Screen.width-245, Screen.height-(Screen.height-75), 0, 0), GameController.Instance.GetResources().ToString(), style);
+		GUI.Label(new Rect(Screen.width-260, Screen.height-(Screen.height-28), 0, 0), "RESOURCES", resourceStyle);
+		GUI.Label(new Rect(Screen.width-245, Screen.height-(Screen.height-75), 0, 0), GameController.Instance.GetResources().ToString(), resourceStyle);
 	}
 	
 	void DrawAmmoDisplay(){
 		BaseWeapon weapon = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<BaseWeapon>();
-		WeaponManager manager = GameObject.FindWithTag(Globals.PLAYER).GetComponentInChildren<WeaponManager>();
 		
 		GUI.BeginGroup(new Rect(Screen.width-500, Screen.height-100, 500, 100));
 		

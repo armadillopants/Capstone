@@ -1,6 +1,5 @@
-using UnityEngine;
-using System.Collections;
 using System.Xml;
+using UnityEngine;
 
 public class AbilitiesManager : MonoBehaviour {
 	
@@ -87,14 +86,14 @@ public class AbilitiesManager : MonoBehaviour {
 	
 	void Update(){
 		if(GameController.Instance.canShoot){
-			if(Input.GetKeyDown(KeyCode.E) && beginAbility && rockRainAbility.amount > 0){
-				if(holder.transform.GetComponent<OrbitAbility>() != null){
+			if(Input.GetKeyDown(KeyCode.E) && beginAbility){
+				if(holder.transform.GetComponent<OrbitAbility>() != null && orbitAbility.amount > 0){
 					holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
 					beginAbility = false;
-				} else if(holder.transform.GetComponent<RockRainAbility>() != null){
+				} else if(holder.transform.GetComponent<RockRainAbility>() != null && rockRainAbility.amount > 0){
 					holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
 					beginAbility = false;
-				} else if(holder.transform.GetComponent<StrikerAbility>() != null){
+				} else if(holder.transform.GetComponent<StrikerAbility>() != null && strikerAbility.amount > 0){
 					holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
 					beginAbility = false;
 				}
