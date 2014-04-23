@@ -49,9 +49,7 @@ public class Health : MonoBehaviour {
 			}
 		}
 		
-		if(gameObject.tag == Globals.SHIP || gameObject.tag == Globals.INTERACTABLE_ITEM){
-			// Display nothing
-		} else {
+		if(gameObject.tag != Globals.SHIP && gameObject.tag != Globals.INTERACTABLE_ITEM){
 			Vector3 healthPos = Camera.main.WorldToScreenPoint(transform.position);
 			healthDisplayRect = new Rect(healthPos.x, Screen.height-healthPos.y, 120, 20);
 			
@@ -141,7 +139,7 @@ public class Health : MonoBehaviour {
 		if(explosion){
 			ObjectPool.Spawn(explosion, transform.position, Quaternion.identity);
 		}
-		Destroy(gameObject);
+		gameObject.SetActive(false);
 	}
 	
 	IEnumerator BeginFortDestruction(){

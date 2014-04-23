@@ -130,7 +130,7 @@ MonoBehaviour:
   - Player
   - Ship
   - Fortification
-  dealShieldDamage: 1
+  - Shield
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

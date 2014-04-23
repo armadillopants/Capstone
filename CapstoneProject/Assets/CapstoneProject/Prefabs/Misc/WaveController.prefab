@@ -85,6 +85,8 @@ MonoBehaviour:
   scavenger: {fileID: 100076, guid: aa3ee0965b91f144881c14a07c53621f, type: 2}
   crusher: {fileID: 100094, guid: 12e17776242371244885845aa26e8fde, type: 2}
   worm: {fileID: 100056, guid: 16ab311f859a875488b32e4524fa741e, type: 2}
+  hole: {fileID: 100000, guid: f6a4927d3b8218842934ad8b256225a3, type: 2}
+  explosion: {fileID: 100000, guid: 72ba4d7b51077a74dbd8eaf5847d6ac2, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

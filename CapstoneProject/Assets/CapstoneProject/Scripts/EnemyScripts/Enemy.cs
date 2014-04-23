@@ -47,25 +47,15 @@ public class Enemy : AIPath {
 		return amountToGive;
 	}
 	
-	public virtual void Start(){
+	protected override void Start(){
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
 		
-		anim = GetComponent<Animation>();
-		
 		health = GetComponent<Health>();
 		
-		health.ModifyHealth(Spawner.spawner.SetEnemyHealth(gameObject.name));
-		speed = Spawner.spawner.SetEnemyMoveSpeed(gameObject.name);
-		turningSpeed = Spawner.spawner.SetEnemyTurnSpeed(gameObject.name);
-		coolDownLength = Spawner.spawner.SetEnemyAttackSpeed(gameObject.name);
-		damageAmount = Spawner.spawner.SetEnemyDamageAmount(gameObject.name);
+		anim = GetComponent<Animation>();
 		
-		for(int i=0; i<health.curHealth; i++){
-			if(health.curHealth % i == 0){
-				amountToGive += 10;
-			}
-		}
+		Reset();
 		
 		SwitchTarget(Globals.PLAYER);
 		lastTarget = target;
@@ -78,9 +68,29 @@ public class Enemy : AIPath {
 			anim.Play("Walk");
 		}
 		
-		currentCoolDown = coolDownLength;
 		emitter = GetComponentInChildren<ParticleEmitter>();
 		base.Start();
+	}
+	
+	public void Reset(){
+		health.IsDead = false;
+		state = EnemyState.CHASING;
+		isDead = false;
+		rigid.isKinematic = false;
+		GetComponent<Collider>().enabled = true;
+		health.ModifyHealth(Spawner.spawner.SetEnemyHealth(gameObject.name));
+		speed = Spawner.spawner.SetEnemyMoveSpeed(gameObject.name);
+		turningSpeed = Spawner.spawner.SetEnemyTurnSpeed(gameObject.name);
+		coolDownLength = Spawner.spawner.SetEnemyAttackSpeed(gameObject.name);
+		damageAmount = Spawner.spawner.SetEnemyDamageAmount(gameObject.name);
+		
+		for(int i=0; i<health.curHealth; i++){
+			if(health.curHealth % i == 0){
+				amountToGive += 10;
+			}
+		}
+		
+		currentCoolDown = coolDownLength;
 	}
 	
 	public Animation GetAnim(){

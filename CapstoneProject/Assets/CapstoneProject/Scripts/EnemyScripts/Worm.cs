@@ -14,8 +14,7 @@ public class Worm : Enemy {
 	public AudioClip groundCrawl;
 	private bool popUp = false;
 	
-	public override void Start(){
-		base.Start();
+	public new void OnEnable(){
 		
 		startSpeed = speed;
 		flamethrower.Stop();
@@ -75,6 +74,9 @@ public class Worm : Enemy {
 				tr.rotation = Quaternion.Euler(attackRot, targetRot, 0f);
 				dust.emit = false;
 			} else {
+				audio.clip = groundCrawl;
+				audio.loop = true;
+				audio.Play();
 				canMove = true;
 				state = Enemy.EnemyState.CHASING;
 				rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
@@ -127,6 +129,7 @@ public class Worm : Enemy {
 					ObjectPool.Spawn(money, pos, Quaternion.identity);
 				}
 				isDead = true;
+				popUp = false;
 			}
 			break;
 		}
@@ -203,10 +206,6 @@ public class Worm : Enemy {
 				Vector3 adjustedTargetHeight = tr.position; // Set position to variable
 				adjustedTargetHeight.y = targetHeight; // Adjust height to a set target
 				tr.position = adjustedTargetHeight; // Commit the changes
-				
-				audio.clip = groundCrawl;
-				audio.loop = true;
-				audio.Play();
 				
 				tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.identity, 0.5f*Time.deltaTime);
 				tr.position = Vector3.Lerp(tr.position, new Vector3(tr.position.x, targetHeight, tr.position.z), 0.5f*Time.deltaTime);

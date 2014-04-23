@@ -20,6 +20,8 @@ public class RoboTiger : Enemy {
 											Mathf.Sin(Random.Range(0,360)))*(Random.Range(5,5));
 				ObjectPool.Spawn(beamDown, pos, Quaternion.identity);
 				GameObject cat = ObjectPool.Spawn(cyberCat, pos, Quaternion.identity);
+				// Don't want any more objects than needed, these are temps
+				cat.AddComponent<DestroyWhenDead>();
 				cat.name = cyberCat.name;
 			}
 			spawningTime = Random.Range(30f, 60f);

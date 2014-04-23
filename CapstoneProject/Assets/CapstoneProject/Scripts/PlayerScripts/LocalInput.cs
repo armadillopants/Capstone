@@ -126,14 +126,25 @@ public class LocalInput : MonoBehaviour {
 			cursorObject.GetComponentInChildren<MeshRenderer>().enabled = false;
 		}
 		
-		if(selection.weaponSlots[0].gameObject.activeSelf){
-			cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = pistolCursor;
-		} else if(selection.weaponSlots[1].gameObject.activeSelf){
-			cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = rifleCursor;
-		} else if(selection.weaponSlots[2].gameObject.activeSelf){
-			cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = launcherCursor;
-		} else if(selection.weaponSlots[3].gameObject.activeSelf){
-			cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = specialCursor;
+		for(int i=0; i<selection.weaponSlots.Count; i++){
+			if(selection.weaponSlots[i] != null){
+				if(selection.weaponSlots[i].gameObject.activeSelf){
+					switch(i){
+					case 0:
+						cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = pistolCursor;
+						break;
+					case 1:
+						cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = rifleCursor;
+						break;
+					case 2:
+						cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = launcherCursor;
+						break;
+					case 3:
+						cursorObject.GetComponentInChildren<MeshRenderer>().material.mainTexture = specialCursor;
+						break;
+					}
+				}
+			}
 		}
 	}
 	

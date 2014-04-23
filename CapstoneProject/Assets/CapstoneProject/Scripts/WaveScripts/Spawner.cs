@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour {
 		public float damageAmount;
 	}
 	
-	private List<GameObject> enemiesToSpawn = new List<GameObject>();
+	public List<GameObject> enemiesToSpawn = new List<GameObject>();
 	public GameObject cyborg;
 	public GameObject cat;
 	public GameObject tiger;
@@ -43,6 +43,8 @@ public class Spawner : MonoBehaviour {
 	
 	public GameObject hole;
 	public GameObject explosion;
+	private Dictionary<string, GameObject> baseInstantiator = new Dictionary<string, GameObject>();
+	private MultiDictionary<string, GameObject> activeInstances = new MultiDictionary<string, GameObject>();
 
 	void Awake(){
 		spawner = this;
@@ -124,26 +126,32 @@ public class Spawner : MonoBehaviour {
 	public void CalculateEnemiesToSpawn(bool isDayTime){
 		if(isDayTime){
 			for(int i=0; i<cyborgData.amountToSpawn; i++){
+				AddEnemyType(cyborg.name, cyborg);
 				enemiesToSpawn.Add(cyborg);
 			}
 			
 			for(int i=0; i<catData.amountToSpawn; i++){
+				AddEnemyType(cat.name, cat);
 				enemiesToSpawn.Add(cat);
 			}
 			
 			for(int i=0; i<tigerData.amountToSpawn; i++){
+				AddEnemyType(tiger.name, tiger);
 				enemiesToSpawn.Add(tiger);
 			}
 		} else {
 			for(int i=0; i<scavengerData.amountToSpawn; i++){
+				AddEnemyType(scavenger.name, scavenger);
 				enemiesToSpawn.Add(scavenger);
 			}
 			
 			for(int i=0; i<crusherData.amountToSpawn; i++){
+				AddEnemyType(crusher.name, crusher);
 				enemiesToSpawn.Add(crusher);
 			}
 			
 			for(int i=0; i<wormData.amountToSpawn; i++){
+				AddEnemyType(worm.name, worm);
 				enemiesToSpawn.Add(worm);
 			}
 		}
@@ -271,7 +279,7 @@ public class Spawner : MonoBehaviour {
 			rot = Quaternion.identity;
 		}
 		
-		GameObject enemyToSpawn = ObjectPool.Spawn(enemy, pos, rot);
+		GameObject enemyToSpawn = SpawnEnemy(enemy.name, pos, rot);//ObjectPool.Spawn(enemy, pos, rot);
 		enemyToSpawn.name = enemy.name;
 		if(enemy.name != "Worm"){
 			if(canDig && pos == digPoint.position){
@@ -280,5 +288,46 @@ public class Spawner : MonoBehaviour {
 			}
 		}
 		enemiesToSpawn.Remove(enemy);
+	}
+	
+	public void AddEnemyType(string enemyName, GameObject baseObject){
+		if(!baseInstantiator.ContainsKey(enemyName)){
+			baseInstantiator.Add(enemyName, baseObject);
+		}
+	}
+	
+	public GameObject SpawnEnemy(string enemyName, Vector3 pos, Quaternion rot){
+		if(!baseInstantiator.ContainsKey(enemyName)){
+			Debug.LogError("No definition for enemy type " + enemyName + " in Spawner.");
+			return null;
+		}
+		
+		GameObject instance = FindUnused(enemyName);
+		if(instance != null){
+			instance.SetActive(true);
+			instance.GetComponent<Enemy>().Reset();
+			instance.transform.position = pos;
+			instance.transform.rotation = rot;
+			return instance;
+		}
+			
+		instance = (GameObject)Instantiate(baseInstantiator[enemyName], pos, rot);
+		activeInstances.Add(enemyName, instance);
+		return instance;
+	}
+	
+	private GameObject FindUnused(string enemyName){
+		
+		GameObject[] instances = activeInstances.GetValues(enemyName);
+		
+		if(instances != null){
+			for(int i=0; i<instances.Length; i++){
+				if(!instances[i].activeSelf){
+					return instances[i];
+				}
+			}
+		}
+
+		return null;
 	}
 }
