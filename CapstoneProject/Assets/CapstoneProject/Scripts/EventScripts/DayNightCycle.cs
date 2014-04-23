@@ -80,7 +80,7 @@ public class DayNightCycle : MonoBehaviour {
     void SetNight(){
         RenderSettings.ambientLight = fullDark;
         if(light != null){ 
-			light.enabled = false; 
+			light.enabled = false;
 		}
         currentPhase = DayPhase.NIGHT;
     }

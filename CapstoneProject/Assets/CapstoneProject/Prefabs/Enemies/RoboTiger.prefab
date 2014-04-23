@@ -534,10 +534,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400070}
-  - 33: {fileID: 3300000}
-  - 23: {fileID: 2300000}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,38 +593,6 @@ GameObject:
   - 26: {fileID: 2600000}
   m_Layer: 0
   m_Name: HitParticles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100078
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400078}
-  - 114: {fileID: 11400010}
-  - 82: {fileID: 8200002}
-  m_Layer: 0
-  m_Name: Barrel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &100080
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 400080}
-  m_Layer: 0
-  m_Name: MuzzlePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,8 +1025,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
   m_LocalPosition: {x: .230428696, y: 12.2184124, z: -6.15694046}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400078}
+  m_Children: []
   m_Father: {fileID: 400074}
 --- !u!4 &400072
 Transform:
@@ -1085,8 +1050,8 @@ Transform:
   m_LocalScale: {x: .150000006, y: .150000006, z: .150000006}
   m_Children:
   - {fileID: 400072}
-  - {fileID: 400070}
   - {fileID: 400076}
+  - {fileID: 400070}
   - {fileID: 400068}
   m_Father: {fileID: 0}
 --- !u!4 &400076
@@ -1100,29 +1065,6 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 400074}
---- !u!4 &400078
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100078}
-  m_LocalRotation: {x: 7.11429049e-09, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0464598089, y: .31916523, z: 4.74640369}
-  m_LocalScale: {x: 6.66666651, y: 6.66666651, z: 6.66666651}
-  m_Children:
-  - {fileID: 400080}
-  m_Father: {fileID: 400070}
---- !u!4 &400080
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100080}
-  m_LocalRotation: {x: -4.05626075e-08, y: -4.55905314e-10, z: 1.41068629e-10, w: 1}
-  m_LocalPosition: {x: -.00202224939, y: -.0262470171, z: .565110981}
-  m_LocalScale: {x: 1, y: 1, z: .800000012}
-  m_Children: []
-  m_Father: {fileID: 400078}
 --- !u!12 &1200000
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -1180,24 +1122,6 @@ EllipsoidParticleEmitter:
   m_OneShot: 0
   m_Ellipsoid: {x: 0, y: 0, z: 0}
   m_MinEmitterRange: 0
---- !u!23 &2300000
-Renderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100070}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 6e2e03ae490663b4fa8a9285b9de7a49, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
 --- !u!26 &2600000
 ParticleRenderer:
   m_ObjectHideFlags: 1
@@ -1226,13 +1150,6 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
---- !u!33 &3300000
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100070}
-  m_Mesh: {fileID: 4300002, guid: 1a761bb84d6ff624891fa44f8e17f7fc, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1278,64 +1195,6 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
---- !u!82 &8200002
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100078}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c26b4bcf3cdd8db409a44157bdfe3c64, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: .800000012
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1470,10 +1329,6 @@ MonoBehaviour:
   fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
   lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}
   attackSound: {fileID: 8300000, guid: fb988602097b4034abab8d8b8a194bf0, type: 3}
-  targetPointOne: {x: 0, y: 0, z: 0}
-  targetPointTwo: {x: 0, y: 0, z: 0}
-  runToPointOne: 1
-  runToPointTwo: 0
   cyberCat: {fileID: 100074, guid: 9342dd4f4da79134795cbdc388d8fc91, type: 2}
   beamDown: {fileID: 100000, guid: 0dcc614d52a65fd4f843c5b6b8f2cd8d, type: 2}
   tigerGrowl: {fileID: 8300000, guid: 7ed14cd41462b1442935f2bb56d6e609, type: 3}
@@ -1516,52 +1371,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da0936d2c1c76c41b12c6344c45b9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunObject: {fileID: 100070}
+  gunPrefab: {fileID: 100004, guid: 30160cbe6a263fe43acf1948b01a86b4, type: 2}
+  spawnPoint: {fileID: 400070}
   distance: 10
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737856c3cb8591e4a969fde0f855fe5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  weaponType: 0
-  fireRate: .100000001
-  range: 100
-  force: 1
-  bulletsLeft: 0
-  bulletsPerClip: Infinity
-  clips: 1
-  maxClips: 0
-  reloadSpeed: 1.5
-  damage: 1
-  coneAngle: 1.5
-  roundsPerBurst: 0
-  lagBetweenShots: 0
-  id: 0
-  projectile: {fileID: 100000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
-  muzzlePos: {fileID: 400080}
-  gunPos: {fileID: 0}
-  leftHand: {fileID: 0}
-  handPos: {fileID: 0}
-  muzzleFlash: {fileID: 2300000, guid: 9cc9f391e947cb540b2b27dd0a64a4fc, type: 2}
-  lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  isReloading: 0
-  isAutomatic: 0
-  isFiring: 0
-  hitParticles: {fileID: 0}
-  useLayerMask: 0
-  gripID: 0
-  costPerBullet: 0
-  fireClip: {fileID: 8300000, guid: c26b4bcf3cdd8db409a44157bdfe3c64, type: 3}
-  reloadClip: {fileID: 0}
-  emptyClip: {fileID: 0}
-  oneShot: 0
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

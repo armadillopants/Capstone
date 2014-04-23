@@ -40,8 +40,10 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		descriptionStyle.normal.textColor = Color.white;
 	}
 	
-	public void Reset(){
-		state = State.FORTINFO;
+	public void Reset(bool reset){
+		if(reset){
+			state = State.FORTINFO;
+		}
 		curItem = itemVendor.upgradeItemVendor;
 	}
 	
@@ -75,7 +77,8 @@ public class BuildUpgradeGUI : MonoBehaviour {
 				if(curFortInfo == fortInfo[0]){
 					state = State.UPGRADE;
 				} else if(curFortInfo == fortInfo[1]){
-					state = State.YESORNO;
+					//state = State.YESORNO;
+					DestroyFortification();
 				} else if(curFortInfo == fortInfo[2]){
 					UIManager.Instance.uiState = UIManager.UIState.NONE;
 				}
@@ -108,7 +111,7 @@ public class BuildUpgradeGUI : MonoBehaviour {
 				GUI.Label(new Rect(drawRect.width-200, drawRect.height-200, 200, 100), 
 					sellItem.GetComponent<SellableItem>().description, descriptionStyle);
 			} else {
-				GUI.Label(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "NOT ENOUGH RESOURCES", style);
+				GUI.Label(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "NOT ENOUGH FUNDS", style);
 			}
 		} else {
 			GUI.Label(new Rect(drawRect.width-180, drawRect.height-250, 150, 50), "FULLY UPGRADED", style);
@@ -119,6 +122,19 @@ public class BuildUpgradeGUI : MonoBehaviour {
 		}
 		
 		GUI.EndGroup();
+	}
+	
+	void DestroyFortification(){
+		// Destory the object and update graph
+		Health fortHealth = UIManager.Instance.fortification.GetComponent<Health>();
+		if(fortHealth.curHealth == fortHealth.GetMaxHealth() && UIManager.Instance.fortification.GetComponent<Dragable>() != null){
+			GameController.Instance.AddResources(UIManager.Instance.fortification.GetComponent<SellableItem>().cost);
+		} else {
+			GameController.Instance.AddResources(Mathf.RoundToInt(fortHealth.curHealth / 2));
+		}
+		GameController.Instance.UpdateGraphOnDestroyedObject(UIManager.Instance.fortification.collider,UIManager.Instance.fortification.gameObject);
+		UIManager.Instance.fortification = null;
+		UIManager.Instance.uiState = UIManager.UIState.NONE;
 	}
 
 	void DrawYesOrNoScreen(Rect drawRect, GUIStyle style){

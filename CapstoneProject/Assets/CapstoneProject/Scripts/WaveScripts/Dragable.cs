@@ -19,8 +19,8 @@ public class Dragable : MonoBehaviour {
 		if(canUpdate){
 			// If we right click on a gameobject, display upgrade item screen
 			if(Input.GetMouseButton(1) && GameObject.Find("Tutorial").GetComponent<Tutorial>().key != "LeftClick"){
-				ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
-				itemVendor.upgradeItemVendor = gameObject;
+				BuildUpgradeGUI build = GameObject.Find("Vendor").GetComponent<BuildUpgradeGUI>();
+				build.Reset(true);
 				UIManager.Instance.SetFortification(gameObject);
 			}
 		}

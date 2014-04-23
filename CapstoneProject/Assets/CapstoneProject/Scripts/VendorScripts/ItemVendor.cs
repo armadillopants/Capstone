@@ -13,6 +13,7 @@ public class ItemVendor : MonoBehaviour {
 			GameController.Instance.SetCurWave(GameController.Instance.GetWaveController().GetWaveNumber());
 			GameController.Instance.SetEndWave(GameController.Instance.amountOfWavesLeft);
 			GameController.Instance.DeleteResources(sellItem.cost);
+			GameController.Instance.SpawnSatelliteTower();
 		} else {
 			UIManager.Instance.uiState = UIManager.UIState.NONE;
 			GameController.Instance.SetFortificationToSpawn(sellItem.gameObject, 0);
@@ -35,7 +36,8 @@ public class ItemVendor : MonoBehaviour {
 				vendorReader.SetFortData(itemToUpgrade.gameObject);
 				vendorReader.UpgradeFortificationData(itemToUpgrade.itemName, itemToUpgrade.currentUpgrade);
 				GameController.Instance.DeleteResources(itemToUpgrade.cost);
-				UIManager.Instance.uiState = UIManager.UIState.NONE;
+				UIManager.Instance.SetFortification(upgradedItem);
+				//UIManager.Instance.uiState = UIManager.UIState.NONE;
 				Destroy(sellItem.gameObject);
 			} else {
 				GameController.Instance.DeleteResources(sellItem.cost);

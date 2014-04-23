@@ -5,17 +5,24 @@ public class RoboTigerWeapon : MonoBehaviour {
 	
 	private BaseWeapon gun;
 	private Health health;
-	public GameObject gunObject;
+	public GameObject gunPrefab;
+	public Transform spawnPoint;
+	private GameObject gunObject;
 	public float distance = 15f;
 	
 	private float coolDownTimer;
 	private float coolDownLength = 5f;
 	
 	private bool dropGun = false;
-
+	
 	void Start(){
-		gun = transform.GetComponentInChildren<BaseWeapon>();
 		health = GetComponent<Health>();
+	}
+
+	void OnEnable(){
+		gunObject = (GameObject)Instantiate(gunPrefab, spawnPoint.position, spawnPoint.rotation);
+		gunObject.transform.parent = spawnPoint;
+		gun = GetComponentInChildren<BaseWeapon>();
 	}
 	
 	void Update(){

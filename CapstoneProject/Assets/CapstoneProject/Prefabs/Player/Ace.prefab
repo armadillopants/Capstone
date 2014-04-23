@@ -5756,7 +5756,6 @@ MonoBehaviour:
   speed: 1
   startLight: {fileID: 10800000}
   endLight: {fileID: 10800002}
-  endPos: {fileID: 400020}
 --- !u!114 &11400036
 MonoBehaviour:
   m_ObjectHideFlags: 1

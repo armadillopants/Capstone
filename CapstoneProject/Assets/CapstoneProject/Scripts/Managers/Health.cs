@@ -125,10 +125,10 @@ public class Health : MonoBehaviour {
 		} else if(gameObject.tag == Globals.SHIP){
 			Debug.Log("Ship is dead");
 		} else if(gameObject.tag == Globals.PLAYER){
+			Destroy(GameObject.Find("Cursor"));
 			Destroy(gameObject.GetComponent<LocalInput>());
 			Destroy(gameObject.GetComponent<PlayerMovement>());
 			rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-			//Destroy(gameObject.GetComponent<AnimationController>());
 		} else {
 			StartCoroutine(BeginDeathSequence());
 		}

@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour {
 		public float damageAmount;
 	}
 	
-	public List<GameObject> enemiesToSpawn = new List<GameObject>();
+	private List<GameObject> enemiesToSpawn = new List<GameObject>();
 	public GameObject cyborg;
 	public GameObject cat;
 	public GameObject tiger;
@@ -304,8 +304,8 @@ public class Spawner : MonoBehaviour {
 		
 		GameObject instance = FindUnused(enemyName);
 		if(instance != null){
-			instance.SetActive(true);
 			instance.GetComponent<Enemy>().Reset();
+			instance.SetActive(true);
 			instance.transform.position = pos;
 			instance.transform.rotation = rot;
 			return instance;
@@ -322,8 +322,10 @@ public class Spawner : MonoBehaviour {
 		
 		if(instances != null){
 			for(int i=0; i<instances.Length; i++){
-				if(!instances[i].activeSelf){
-					return instances[i];
+				if(instances[i] != null){
+					if(!instances[i].activeSelf){
+						return instances[i];
+					}
 				}
 			}
 		}

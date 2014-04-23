@@ -25,8 +25,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400002}
-  - 82: {fileID: 8200000}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -93,11 +94,11 @@ AudioSource:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 8bb9f9d3d5d334f409f99621f2bad1e1, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: .400000006
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -201,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 100204, guid: 5a78ccff81cb88e42ad669482a8aac18, type: 2}
   rescueShip: {fileID: 100000, guid: 6a80255e2d57e204599968fb3ea1b986, type: 2}
+  satelliteTower: {fileID: 100004, guid: 9e4477ae50f0d0b48b6200231b8183dc, type: 2}
   canShoot: 0
   canChangeWeapons: 0
   amountOfWavesLeft: 5
@@ -233,17 +235,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caches:
   - prefab: {fileID: 100000, guid: cf6a06d7d3d38bf4abf93cf37bb0b670, type: 2}
-    cacheSize: 10
+    cacheSize: 15
   - prefab: {fileID: 100002, guid: 9dcda0fa8d67f5547b99525aa58b6962, type: 2}
     cacheSize: 6
   - prefab: {fileID: 100000, guid: d76250635c9ad4944ac942e9c64a04ce, type: 2}
-    cacheSize: 10
+    cacheSize: 15
   - prefab: {fileID: 100000, guid: d949c63cdee55584a825422c0696f66e, type: 2}
-    cacheSize: 10
+    cacheSize: 15
   - prefab: {fileID: 100000, guid: b0801bfedd1d03f4fb36765208572cb8, type: 2}
-    cacheSize: 10
+    cacheSize: 15
   - prefab: {fileID: 100000, guid: f264e17109caebf4280186e8762281d3, type: 2}
-    cacheSize: 10
+    cacheSize: 15
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a21714d07743d543adec3c7d61762f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayTime: {fileID: 8300000, guid: 0b5e9da8437f7424a902e37a2fe1adbd, type: 3}
+  nightTime: {fileID: 8300000, guid: 8bb9f9d3d5d334f409f99621f2bad1e1, type: 3}
+  buildPhase: {fileID: 8300000, guid: 4a32344e25d540c43b579e532ad172f9, type: 3}
+  mainMenu: {fileID: 8300000, guid: 01ca07618c2e0b14ea002bfd3a83c5ad, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

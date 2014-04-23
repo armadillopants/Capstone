@@ -10,7 +10,11 @@ public class GameController : MonoBehaviour {
 	public GameObject rescueShip;
 	private GameObject shipToSpawn;
 	
+	public GameObject satelliteTower;
+	private GameObject towerToSpawn;
+	
 	private Transform player;
+	private Transform ship;
 	
 	private int amountOfResources = 0;
 	public bool canShoot = false;
@@ -30,6 +34,7 @@ public class GameController : MonoBehaviour {
 	public GameObject haloEffectObject;
 	
 	private DayNightCycle cycle;
+	private WaveController waveController;
 	
 	#region Singleton
 	
@@ -49,6 +54,8 @@ public class GameController : MonoBehaviour {
 		SpawnPlayer();
 		
 		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
+		waveController = GameObject.Find("WaveController").GetComponent<WaveController>();
+		ship = GameObject.FindWithTag(Globals.SHIP).transform;
 	}
 
 	void OnApplicationQuit(){
@@ -72,7 +79,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public WaveController GetWaveController(){
-		return GameObject.Find("WaveController").GetComponent<WaveController>();
+		return waveController;
 	}
 	
 	public Transform GetPlayer(){
@@ -80,7 +87,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public Transform GetShip(){
-		return GameObject.Find(Globals.SHIP).transform;
+		return ship;
 	}
 	
 	public Health GetPlayerHealth(){
@@ -88,7 +95,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public Health GetShipHealth(){
-		return GameObject.FindWithTag(Globals.SHIP).GetComponent<Health>();
+		return ship.GetComponent<Health>();
 	}
 	
 	public int EndWave(){
@@ -153,6 +160,9 @@ public class GameController : MonoBehaviour {
 		GetShip().rotation = Quaternion.Euler(0, 90f, 0);
 		if(shipToSpawn){
 			Destroy(shipToSpawn);
+		}
+		if(towerToSpawn){
+			Destroy(towerToSpawn);
 		}
 		Destroy(GameObject.FindWithTag(Globals.PLAYER));
 		Destroy(GameObject.Find("LaserLight"));
@@ -409,6 +419,11 @@ public class GameController : MonoBehaviour {
 	public void SpawnRescueShip(){
 		shipToSpawn = ObjectPool.Spawn(rescueShip, new Vector3(-100,60,30), Quaternion.identity);
 		shipToSpawn.name = rescueShip.name;
+	}
+	
+	public void SpawnSatelliteTower(){
+		towerToSpawn = ObjectPool.Spawn(satelliteTower, GameObject.Find("SatelliteSpawn").transform.position, Quaternion.identity);
+		towerToSpawn.name = satelliteTower.name;
 	}
 	
 	public GameObject FindNearestTarget(string nearestTarget, Transform other){

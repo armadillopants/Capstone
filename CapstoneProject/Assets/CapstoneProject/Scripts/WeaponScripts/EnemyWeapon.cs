@@ -7,7 +7,9 @@ public class EnemyWeapon : MonoBehaviour {
 	private Animation anim;
 	private Enemy cyborg;
 	private Health health;
-	public GameObject gunObject;
+	public GameObject gunPrefab;
+	public Transform spawnPoint;
+	private GameObject gunObject;
 	public float distance = 15f;
 	
 	private float coolDownTimer;
@@ -16,14 +18,18 @@ public class EnemyWeapon : MonoBehaviour {
 	private float tempSpeed = 0f;
 	private bool dropGun = false;
 	public AudioClip loseWeapon;
-	public AudioClip targetAquired;
-
+	
 	void Start(){
-		guns = transform.GetComponentsInChildren<BaseWeapon>();
 		health = GetComponent<Health>();
 		cyborg = GetComponent<Enemy>();
-		tempSpeed = cyborg.speed;
 		anim = cyborg.GetAnim();
+		tempSpeed = cyborg.speed;
+	}
+
+	void OnEnable(){
+		gunObject = (GameObject)Instantiate(gunPrefab, spawnPoint.position, spawnPoint.rotation);
+		gunObject.transform.parent = spawnPoint;
+		guns = GetComponentsInChildren<BaseWeapon>();
 	}
 	
 	void Update(){
@@ -35,7 +41,6 @@ public class EnemyWeapon : MonoBehaviour {
 					if(coolDownTimer <= 0){
 						coolDownTimer = 0;
 						cyborg.speed = 0;
-						audio.PlayOneShot(targetAquired);
 						anim.CrossFade("Shoot", 0.2f);
 						guns[0].Fire();
 						guns[1].Fire();

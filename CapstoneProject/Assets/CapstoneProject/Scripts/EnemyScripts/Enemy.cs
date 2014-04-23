@@ -48,17 +48,12 @@ public class Enemy : AIPath {
 	}
 	
 	protected override void Start(){
-		playerTarget = GameController.Instance.GetPlayer();
-		shipTarget = GameController.Instance.GetShip();
 		
 		health = GetComponent<Health>();
 		
 		anim = GetComponent<Animation>();
 		
 		Reset();
-		
-		SwitchTarget(Globals.PLAYER);
-		lastTarget = target;
 		
 		if(anim){
 			// Set all animations to loop for now
@@ -73,6 +68,10 @@ public class Enemy : AIPath {
 	}
 	
 	public void Reset(){
+		playerTarget = GameController.Instance.GetPlayer();
+		shipTarget = GameController.Instance.GetShip();
+		SwitchTarget(Globals.PLAYER);
+		lastTarget = target;
 		health.IsDead = false;
 		state = EnemyState.CHASING;
 		isDead = false;

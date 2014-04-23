@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour {
 	public Texture2D quitActive;
 	
 	private GUIStyle style;
+	private GUIStyle satStyle;
 	private GUIStyle waveStyle;
 	private GUIStyle resumeButton;
 	private GUIStyle restartButton;
@@ -109,6 +110,12 @@ public class UIManager : MonoBehaviour {
 		style.font = resourceFont;
 		style.fontSize = 50;
 		
+		satStyle = new GUIStyle();
+		satStyle.alignment = TextAnchor.MiddleCenter;
+		satStyle.normal.textColor = Color.white;
+		satStyle.font = resourceFont;
+		satStyle.fontSize = 25;
+		
 		waveStyle = new GUIStyle();
 		waveStyle.alignment = TextAnchor.MiddleCenter;
 		waveStyle.normal.textColor = Color.white;
@@ -145,10 +152,12 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	public void SetFortification(GameObject fort){
+		ItemVendor itemVendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
+		itemVendor.upgradeItemVendor = fort;
 		fortification = fort;
 		uiState = UIState.FORT_UPGRADE_SCREEN;
 		BuildUpgradeGUI build = GameObject.Find("Vendor").GetComponent<BuildUpgradeGUI>();
-		build.Reset();
+		build.Reset(false);
 	}
 	
 	void OnGUI(){
@@ -201,7 +210,7 @@ public class UIManager : MonoBehaviour {
 		GUI.BeginGroup(finalWaveRect);
 		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Waves until Rescue Ship's arrival: "
-			+GameController.Instance.amountOfWavesLeft, style);
+			+GameController.Instance.amountOfWavesLeft, satStyle);
 		
 		GUI.EndGroup();
 	
@@ -211,7 +220,7 @@ public class UIManager : MonoBehaviour {
 		GUI.BeginGroup(finalWaveRect);
 		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Timer: "
-			+GuiTime(GameObject.Find("RescueShip").GetComponent<FlyToShip>().GetTimer()), style);
+			+GuiTime(GameObject.Find("RescueShip").GetComponent<FlyToShip>().GetTimer()), satStyle);
 		
 		GUI.EndGroup();
 	}
