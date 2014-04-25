@@ -5,22 +5,13 @@ public class Worm : Enemy {
 	
 	private float attackRot = -90f;
 	private float attackHeight = 5f;
-	private float startSpeed;
 	public ParticleSystem flamethrower;
 	public ParticleEmitter dust;
-	private float popUpTimer;
-	private float shootTimer;
+	private float popUpTimer = Random.Range(5f, 20f);
+	private float shootTimer = Random.Range(5f, 10f);
 	public AudioClip acidSpit;
 	public AudioClip groundCrawl;
 	private bool popUp = false;
-	
-	public new void OnEnable(){
-		
-		startSpeed = speed;
-		flamethrower.Stop();
-		popUpTimer = Random.Range(5f, 20f);
-		shootTimer = Random.Range(5f, 10f);
-	}
 	
 	public override void Update(){
 		if(popUpTimer > 0){
@@ -35,8 +26,10 @@ public class Worm : Enemy {
 			shootTimer = 0;
 		}
 		
-		if(target == null){
-			target = lastTarget;
+		if(curTarget != null){
+			lastTarget = curTarget;
+		} else {
+			SwitchTarget(lastTarget.tag);
 		}
 		
 		if(currentCoolDown > 0){
@@ -59,8 +52,12 @@ public class Worm : Enemy {
 		
 		if(health.IsDead){
 			state = EnemyState.DEAD;
+			rigid.constraints = RigidbodyConstraints.FreezeAll;
 			rigid.isKinematic = true;
 			flamethrower.Stop();
+			audio.clip = groundCrawl;
+			audio.loop = true;
+			audio.Stop();
 		} else {
 			if(popUp){
 				tr.position = Vector3.Lerp(tr.position, 
@@ -74,15 +71,12 @@ public class Worm : Enemy {
 				tr.rotation = Quaternion.Euler(attackRot, targetRot, 0f);
 				dust.emit = false;
 			} else {
-				audio.clip = groundCrawl;
-				audio.loop = true;
-				audio.Play();
-				canMove = true;
-				state = Enemy.EnemyState.CHASING;
 				rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
 				rigid.constraints &= ~RigidbodyConstraints.FreezePositionZ;
 				flamethrower.Stop();
 				dust.emit = true;
+				canMove = true;
+				state = Enemy.EnemyState.CHASING;
 			}
 		}
 		
@@ -128,8 +122,9 @@ public class Worm : Enemy {
 												Mathf.Sin(Random.Range(0,360)))*(Random.Range(3,3));
 					ObjectPool.Spawn(money, pos, Quaternion.identity);
 				}
-				isDead = true;
 				popUp = false;
+				popUpTimer = Random.Range(5f, 20f);
+				isDead = true;
 			}
 			break;
 		}
@@ -146,12 +141,13 @@ public class Worm : Enemy {
 		StartCoroutine(WaitToTakeDamage());
 		anim.CrossFade("Shoot", 0.2f);
 		flamethrower.Play();
-		audio.clip = acidSpit;
-		audio.loop = true;
-		audio.Play();
 		
 		if(shootTimer <= 0){
 			popUp = false;
+			popUpTimer = Random.Range(5f, 20f);
+			audio.clip = groundCrawl;
+			audio.loop = true;
+			audio.Play();
 		}
 		
 		if(target != null){
@@ -177,8 +173,10 @@ public class Worm : Enemy {
 	
 	IEnumerator WaitToEnterShootMode(){
 		yield return new WaitForSeconds(2f);
-		popUpTimer = Random.Range(5f, 20f);
 		shootTimer = Random.Range(5f, 10f);
+		audio.clip = acidSpit;
+		audio.loop = true;
+		audio.Play();
 		state = Enemy.EnemyState.SHOOTING;
 	}
 	
@@ -195,7 +193,6 @@ public class Worm : Enemy {
 			if(popUpTimer <= 0){
 				if(Vector3.Distance(target.position, tr.position) < distance){
 					popUp = true;
-					speed = 0f;
 					state = Enemy.EnemyState.HOVER;
 					canMove = false;
 					audio.Stop();
@@ -209,7 +206,10 @@ public class Worm : Enemy {
 				
 				tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.identity, 0.5f*Time.deltaTime);
 				tr.position = Vector3.Lerp(tr.position, new Vector3(tr.position.x, targetHeight, tr.position.z), 0.5f*Time.deltaTime);
-				speed = startSpeed;
+				
+				if(tr.position.y < targetHeight){
+					tr.position = new Vector3(tr.position.x, targetHeight, tr.position.z);
+				}
 				
 				if(targetDirection != Vector3.zero){
 					RotateTowards(targetDirection);

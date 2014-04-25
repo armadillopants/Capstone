@@ -47,13 +47,13 @@ public class Enemy : AIPath {
 		return amountToGive;
 	}
 	
-	protected override void Start(){
-		
+	protected override void Awake(){
 		health = GetComponent<Health>();
-		
+		base.Awake();
+	}
+	
+	protected override void Start(){
 		anim = GetComponent<Animation>();
-		
-		Reset();
 		
 		if(anim){
 			// Set all animations to loop for now
@@ -67,7 +67,12 @@ public class Enemy : AIPath {
 		base.Start();
 	}
 	
-	public void Reset(){
+	protected override void OnEnable(){
+		Reset();
+		base.OnEnable();
+	}
+	
+	void Reset(){
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
 		SwitchTarget(Globals.PLAYER);
@@ -82,6 +87,8 @@ public class Enemy : AIPath {
 		turningSpeed = Spawner.spawner.SetEnemyTurnSpeed(gameObject.name);
 		coolDownLength = Spawner.spawner.SetEnemyAttackSpeed(gameObject.name);
 		damageAmount = Spawner.spawner.SetEnemyDamageAmount(gameObject.name);
+		
+		amountToGive = 0;
 		
 		for(int i=0; i<health.curHealth; i++){
 			if(health.curHealth % i == 0){

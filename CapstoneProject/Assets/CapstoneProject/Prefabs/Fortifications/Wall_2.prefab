@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Wall
-  description: Upgrade to Metal Wall. Deflects bullets back at enemies
+  description: Upgrade to Metal Wall. Increased resistance against attack.
   cost: 75
   preview: {fileID: 0}
   purchased: 0

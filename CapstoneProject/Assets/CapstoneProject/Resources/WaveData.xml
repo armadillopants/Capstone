@@ -235,53 +235,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="6"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="60"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="0.8"
+					damageAmount="20">
 				</Cyborg>
 				<Cat
 					amountToSpawn="5"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="110"
+					moveSpeed="2.5"
+					turnSpeed="1.7"
+					attackSpeed="1.8"
+					damageAmount="25">
 				</Cat>
 				<Tiger
 					amountToSpawn="5"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="130"
+					moveSpeed="2.2"
+					turnSpeed="2.2"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="6"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="85"
+					moveSpeed="2.7"
+					turnSpeed="2.2"
+					attackSpeed="0.8"
+					damageAmount="15">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="5"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Crusher>
 				<Worm
 					amountToSpawn="5"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="60"
+					moveSpeed="2.2"
+					turnSpeed="1.2"
+					attackSpeed="1.8"
+					damageAmount="20">
 				</Worm>
 			</Night>
 		</Wave5>
@@ -290,53 +290,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="6"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="60"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="0.8"
+					damageAmount="20">
 				</Cyborg>
 				<Cat
 					amountToSpawn="6"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="110"
+					moveSpeed="2.5"
+					turnSpeed="1.7"
+					attackSpeed="1.8"
+					damageAmount="25">
 				</Cat>
 				<Tiger
 					amountToSpawn="6"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="130"
+					moveSpeed="2.2"
+					turnSpeed="2.2"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="6"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="85"
+					moveSpeed="2.7"
+					turnSpeed="2.2"
+					attackSpeed="0.8"
+					damageAmount="15">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="6"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Crusher>
 				<Worm
 					amountToSpawn="6"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="60"
+					moveSpeed="2.2"
+					turnSpeed="1.2"
+					attackSpeed="1.8"
+					damageAmount="20">
 				</Worm>
 			</Night>
 		</Wave6>
@@ -345,53 +345,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="6"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="60"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="0.8"
+					damageAmount="20">
 				</Cyborg>
 				<Cat
 					amountToSpawn="8"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="110"
+					moveSpeed="2.5"
+					turnSpeed="1.7"
+					attackSpeed="1.8"
+					damageAmount="25">
 				</Cat>
 				<Tiger
 					amountToSpawn="6"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="130"
+					moveSpeed="2.2"
+					turnSpeed="2.2"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="6"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="85"
+					moveSpeed="2.7"
+					turnSpeed="2.2"
+					attackSpeed="0.8"
+					damageAmount="15">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="8"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Crusher>
 				<Worm
 					amountToSpawn="6"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="60"
+					moveSpeed="2.2"
+					turnSpeed="1.2"
+					attackSpeed="1.8"
+					damageAmount="20">
 				</Worm>
 			</Night>
 		</Wave7>
@@ -400,53 +400,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="8"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="60"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="0.8"
+					damageAmount="20">
 				</Cyborg>
 				<Cat
 					amountToSpawn="8"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="110"
+					moveSpeed="2.5"
+					turnSpeed="1.7"
+					attackSpeed="1.8"
+					damageAmount="25">
 				</Cat>
 				<Tiger
 					amountToSpawn="6"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="130"
+					moveSpeed="2.2"
+					turnSpeed="2.2"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="8"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="85"
+					moveSpeed="2.7"
+					turnSpeed="2.2"
+					attackSpeed="0.8"
+					damageAmount="15">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="8"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Crusher>
 				<Worm
 					amountToSpawn="6"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="60"
+					moveSpeed="2.2"
+					turnSpeed="1.2"
+					attackSpeed="1.8"
+					damageAmount="20">
 				</Worm>
 			</Night>
 		</Wave8>
@@ -455,53 +455,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="6"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="60"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="0.8"
+					damageAmount="20">
 				</Cyborg>
 				<Cat
 					amountToSpawn="10"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="110"
+					moveSpeed="2.5"
+					turnSpeed="1.7"
+					attackSpeed="1.8"
+					damageAmount="25">
 				</Cat>
 				<Tiger
 					amountToSpawn="8"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="130"
+					moveSpeed="2.2"
+					turnSpeed="2.2"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="6"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="85"
+					moveSpeed="2.7"
+					turnSpeed="2.2"
+					attackSpeed="0.8"
+					damageAmount="15">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="10"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="1.2"
+					turnSpeed="1.7"
+					attackSpeed="2.8"
+					damageAmount="35">
 				</Crusher>
 				<Worm
 					amountToSpawn="8"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="60"
+					moveSpeed="2.2"
+					turnSpeed="1.2"
+					attackSpeed="1.8"
+					damageAmount="20">
 				</Worm>
 			</Night>
 		</Wave9>
@@ -510,53 +510,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="8"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="70"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="0.6"
+					damageAmount="25">
 				</Cyborg>
 				<Cat
 					amountToSpawn="10"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="120"
+					moveSpeed="2.7"
+					turnSpeed="1.9"
+					attackSpeed="1.6"
+					damageAmount="30">
 				</Cat>
 				<Tiger
 					amountToSpawn="8"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="140"
+					moveSpeed="2.4"
+					turnSpeed="2.4"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="8"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="95"
+					moveSpeed="2.9"
+					turnSpeed="2.4"
+					attackSpeed="0.6"
+					damageAmount="20">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="10"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="170"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Crusher>
 				<Worm
 					amountToSpawn="8"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="70"
+					moveSpeed="2.4"
+					turnSpeed="1.4"
+					attackSpeed="1.6"
+					damageAmount="25">
 				</Worm>
 			</Night>
 		</Wave10>
@@ -565,53 +565,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="8"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="70"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="0.6"
+					damageAmount="25">
 				</Cyborg>
 				<Cat
 					amountToSpawn="10"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="120"
+					moveSpeed="2.7"
+					turnSpeed="1.9"
+					attackSpeed="1.6"
+					damageAmount="30">
 				</Cat>
 				<Tiger
 					amountToSpawn="10"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="140"
+					moveSpeed="2.4"
+					turnSpeed="2.4"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="8"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="95"
+					moveSpeed="2.9"
+					turnSpeed="2.4"
+					attackSpeed="0.6"
+					damageAmount="20">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="10"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="170"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Crusher>
 				<Worm
 					amountToSpawn="10"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="70"
+					moveSpeed="2.4"
+					turnSpeed="1.4"
+					attackSpeed="1.6"
+					damageAmount="25">
 				</Worm>
 			</Night>
 		</Wave11>
@@ -620,53 +620,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="8"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="70"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="0.6"
+					damageAmount="25">
 				</Cyborg>
 				<Cat
 					amountToSpawn="12"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="120"
+					moveSpeed="2.7"
+					turnSpeed="1.9"
+					attackSpeed="1.6"
+					damageAmount="30">
 				</Cat>
 				<Tiger
 					amountToSpawn="10"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="140"
+					moveSpeed="2.4"
+					turnSpeed="2.4"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="8"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="95"
+					moveSpeed="2.9"
+					turnSpeed="2.4"
+					attackSpeed="0.6"
+					damageAmount="20">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="12"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="170"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Crusher>
 				<Worm
 					amountToSpawn="10"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="70"
+					moveSpeed="2.4"
+					turnSpeed="1.4"
+					attackSpeed="1.6"
+					damageAmount="25">
 				</Worm>
 			</Night>
 		</Wave12>
@@ -675,53 +675,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="10"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="70"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="0.6"
+					damageAmount="25">
 				</Cyborg>
 				<Cat
 					amountToSpawn="12"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="120"
+					moveSpeed="2.7"
+					turnSpeed="1.9"
+					attackSpeed="1.6"
+					damageAmount="30">
 				</Cat>
 				<Tiger
 					amountToSpawn="10"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="140"
+					moveSpeed="2.4"
+					turnSpeed="2.4"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="10"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="95"
+					moveSpeed="2.9"
+					turnSpeed="2.4"
+					attackSpeed="0.6"
+					damageAmount="20">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="12"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="170"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Crusher>
 				<Worm
 					amountToSpawn="10"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="70"
+					moveSpeed="2.4"
+					turnSpeed="1.4"
+					attackSpeed="1.6"
+					damageAmount="25">
 				</Worm>
 			</Night>
 		</Wave13>
@@ -730,53 +730,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="10"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="70"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="0.6"
+					damageAmount="25">
 				</Cyborg>
 				<Cat
 					amountToSpawn="12"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="120"
+					moveSpeed="2.7"
+					turnSpeed="1.9"
+					attackSpeed="1.6"
+					damageAmount="30">
 				</Cat>
 				<Tiger
 					amountToSpawn="12"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="140"
+					moveSpeed="2.4"
+					turnSpeed="2.4"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="10"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="95"
+					moveSpeed="2.9"
+					turnSpeed="2.4"
+					attackSpeed="0.6"
+					damageAmount="20">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="12"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="170"
+					moveSpeed="1.4"
+					turnSpeed="1.9"
+					attackSpeed="2.6"
+					damageAmount="40">
 				</Crusher>
 				<Worm
 					amountToSpawn="12"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="70"
+					moveSpeed="2.4"
+					turnSpeed="1.4"
+					attackSpeed="1.6"
+					damageAmount="25">
 				</Worm>
 			</Night>
 		</Wave14>
@@ -785,53 +785,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="10"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="80"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="0.4"
+					damageAmount="30">
 				</Cyborg>
 				<Cat
 					amountToSpawn="14"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="130"
+					moveSpeed="2.9"
+					turnSpeed="2.1"
+					attackSpeed="1.8"
+					damageAmount="35">
 				</Cat>
 				<Tiger
 					amountToSpawn="12"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="150"
+					moveSpeed="2.6"
+					turnSpeed="2.6"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="10"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="105"
+					moveSpeed="3.1"
+					turnSpeed="2.6"
+					attackSpeed="0.4"
+					damageAmount="25">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="14"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="180"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Crusher>
 				<Worm
 					amountToSpawn="12"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="80"
+					moveSpeed="2.6"
+					turnSpeed="1.6"
+					attackSpeed="1.4"
+					damageAmount="30">
 				</Worm>
 			</Night>
 		</Wave15>
@@ -840,53 +840,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="10"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="80"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="0.4"
+					damageAmount="30">
 				</Cyborg>
 				<Cat
 					amountToSpawn="14"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="130"
+					moveSpeed="2.9"
+					turnSpeed="2.1"
+					attackSpeed="1.8"
+					damageAmount="35">
 				</Cat>
 				<Tiger
 					amountToSpawn="14"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="150"
+					moveSpeed="2.6"
+					turnSpeed="2.6"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="10"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="105"
+					moveSpeed="3.1"
+					turnSpeed="2.6"
+					attackSpeed="0.4"
+					damageAmount="25">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="14"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="180"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="80"
+					moveSpeed="2.6"
+					turnSpeed="1.6"
+					attackSpeed="1.4"
+					damageAmount="30">
 				</Worm>
 			</Night>
 		</Wave16>
@@ -895,53 +895,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="12"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="80"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="0.4"
+					damageAmount="30">
 				</Cyborg>
 				<Cat
 					amountToSpawn="14"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="130"
+					moveSpeed="2.9"
+					turnSpeed="2.1"
+					attackSpeed="1.8"
+					damageAmount="35">
 				</Cat>
 				<Tiger
 					amountToSpawn="14"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="150"
+					moveSpeed="2.6"
+					turnSpeed="2.6"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="12"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="105"
+					moveSpeed="3.1"
+					turnSpeed="2.6"
+					attackSpeed="0.4"
+					damageAmount="25">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="14"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="180"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="80"
+					moveSpeed="2.6"
+					turnSpeed="1.6"
+					attackSpeed="1.4"
+					damageAmount="30">
 				</Worm>
 			</Night>
 		</Wave17>
@@ -950,53 +950,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="12"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="80"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="0.4"
+					damageAmount="30">
 				</Cyborg>
 				<Cat
 					amountToSpawn="16"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="130"
+					moveSpeed="2.9"
+					turnSpeed="2.1"
+					attackSpeed="1.8"
+					damageAmount="35">
 				</Cat>
 				<Tiger
 					amountToSpawn="14"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="150"
+					moveSpeed="2.6"
+					turnSpeed="2.6"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="12"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="105"
+					moveSpeed="3.1"
+					turnSpeed="2.6"
+					attackSpeed="0.4"
+					damageAmount="25">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="16"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="180"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="80"
+					moveSpeed="2.6"
+					turnSpeed="1.6"
+					attackSpeed="1.4"
+					damageAmount="30">
 				</Worm>
 			</Night>
 		</Wave18>
@@ -1005,53 +1005,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="80"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="0.4"
+					damageAmount="30">
 				</Cyborg>
 				<Cat
 					amountToSpawn="16"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="130"
+					moveSpeed="2.9"
+					turnSpeed="2.1"
+					attackSpeed="1.8"
+					damageAmount="35">
 				</Cat>
 				<Tiger
 					amountToSpawn="14"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="150"
+					moveSpeed="2.6"
+					turnSpeed="2.6"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="14"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="105"
+					moveSpeed="3.1"
+					turnSpeed="2.6"
+					attackSpeed="0.4"
+					damageAmount="25">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="16"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="180"
+					moveSpeed="1.6"
+					turnSpeed="2.1"
+					attackSpeed="2.8"
+					damageAmount="45">
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="80"
+					moveSpeed="2.6"
+					turnSpeed="1.6"
+					attackSpeed="1.4"
+					damageAmount="30">
 				</Worm>
 			</Night>
 		</Wave19>
@@ -1060,53 +1060,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="90"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="0.2"
+					damageAmount="35">
 				</Cyborg>
 				<Cat
 					amountToSpawn="18"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="140"
+					moveSpeed="3.1"
+					turnSpeed="2.3"
+					attackSpeed="1.6"
+					damageAmount="40">
 				</Cat>
 				<Tiger
 					amountToSpawn="14"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="2.8"
+					turnSpeed="2.8"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="14"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="115"
+					moveSpeed="3.3"
+					turnSpeed="2.8"
+					attackSpeed="0.2"
+					damageAmount="30">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="18"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="190"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="90"
+					moveSpeed="2.8"
+					turnSpeed="1.8"
+					attackSpeed="1.2"
+					damageAmount="35">
 				</Worm>
 			</Night>
 		</Wave20>
@@ -1115,53 +1115,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="90"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="0.2"
+					damageAmount="35">
 				</Cyborg>
 				<Cat
 					amountToSpawn="18"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="140"
+					moveSpeed="3.1"
+					turnSpeed="2.3"
+					attackSpeed="1.6"
+					damageAmount="40">
 				</Cat>
 				<Tiger
 					amountToSpawn="16"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="2.8"
+					turnSpeed="2.8"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="16"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="115"
+					moveSpeed="3.3"
+					turnSpeed="2.8"
+					attackSpeed="0.2"
+					damageAmount="30">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="18"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="190"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="90"
+					moveSpeed="2.8"
+					turnSpeed="1.8"
+					attackSpeed="1.2"
+					damageAmount="35">
 				</Worm>
 			</Night>
 		</Wave21>
@@ -1170,53 +1170,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="90"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="0.2"
+					damageAmount="35">
 				</Cyborg>
 				<Cat
 					amountToSpawn="18"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="140"
+					moveSpeed="3.1"
+					turnSpeed="2.3"
+					attackSpeed="1.6"
+					damageAmount="40">
 				</Cat>
 				<Tiger
 					amountToSpawn="18"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="2.8"
+					turnSpeed="2.8"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="18"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="115"
+					moveSpeed="3.3"
+					turnSpeed="2.8"
+					attackSpeed="0.2"
+					damageAmount="30">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="18"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="190"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Crusher>
 				<Worm
 					amountToSpawn="14"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="90"
+					moveSpeed="2.8"
+					turnSpeed="1.8"
+					attackSpeed="1.2"
+					damageAmount="35">
 				</Worm>
 			</Night>
 		</Wave22>
@@ -1225,53 +1225,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="16"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="90"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="0.2"
+					damageAmount="35">
 				</Cyborg>
 				<Cat
 					amountToSpawn="18"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="140"
+					moveSpeed="3.1"
+					turnSpeed="2.3"
+					attackSpeed="1.6"
+					damageAmount="40">
 				</Cat>
 				<Tiger
 					amountToSpawn="18"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="2.8"
+					turnSpeed="2.8"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="18"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="115"
+					moveSpeed="3.3"
+					turnSpeed="2.8"
+					attackSpeed="0.2"
+					damageAmount="30">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="18"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="190"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Crusher>
 				<Worm
 					amountToSpawn="16"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="90"
+					moveSpeed="2.8"
+					turnSpeed="1.8"
+					attackSpeed="1.2"
+					damageAmount="35">
 				</Worm>
 			</Night>
 		</Wave23>
@@ -1280,53 +1280,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="16"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="90"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="0.2"
+					damageAmount="35">
 				</Cyborg>
 				<Cat
 					amountToSpawn="20"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="140"
+					moveSpeed="3.1"
+					turnSpeed="2.3"
+					attackSpeed="1.6"
+					damageAmount="40">
 				</Cat>
 				<Tiger
 					amountToSpawn="18"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="2.8"
+					turnSpeed="2.8"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="18"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="115"
+					moveSpeed="3.3"
+					turnSpeed="2.8"
+					attackSpeed="0.2"
+					damageAmount="30">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="20"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="190"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Crusher>
 				<Worm
 					amountToSpawn="16"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="90"
+					moveSpeed="2.8"
+					turnSpeed="1.8"
+					attackSpeed="1.2"
+					damageAmount="35">
 				</Worm>
 			</Night>
 		</Wave24>
@@ -1335,53 +1335,53 @@
 			<Day>
 				<Cyborg
 					amountToSpawn="16"
-					health="50"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="1"
-					damageAmount="15">
+					health="90"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="0.2"
+					damageAmount="35">
 				</Cyborg>
 				<Cat
 					amountToSpawn="20"
-					health="100"
-					moveSpeed="2.3"
-					turnSpeed="1.5"
-					attackSpeed="2"
-					damageAmount="20">
+					health="140"
+					moveSpeed="3.1"
+					turnSpeed="2.3"
+					attackSpeed="1.6"
+					damageAmount="40">
 				</Cat>
 				<Tiger
 					amountToSpawn="20"
-					health="120"
-					moveSpeed="2"
-					turnSpeed="2"
-					attackSpeed="3"
-					damageAmount="30">
+					health="160"
+					moveSpeed="2.8"
+					turnSpeed="2.8"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Tiger>
 			</Day>
 			<Night>
 				<Scavenger
 					amountToSpawn="20"
-					health="75"
-					moveSpeed="2.5"
-					turnSpeed="2"
-					attackSpeed="1"
-					damageAmount="10">
+					health="115"
+					moveSpeed="3.3"
+					turnSpeed="2.8"
+					attackSpeed="0.2"
+					damageAmount="30">
 				</Scavenger>
 				<Crusher
 					amountToSpawn="20"
-					health="150"
-					moveSpeed="1"
-					turnSpeed="1.5"
-					attackSpeed="3"
-					damageAmount="30">
+					health="190"
+					moveSpeed="1.8"
+					turnSpeed="2.3"
+					attackSpeed="2.6"
+					damageAmount="50">
 				</Crusher>
 				<Worm
 					amountToSpawn="16"
-					health="50"
-					moveSpeed="2"
-					turnSpeed="1"
-					attackSpeed="2"
-					damageAmount="15">
+					health="90"
+					moveSpeed="2.8"
+					turnSpeed="1.8"
+					attackSpeed="1.2"
+					damageAmount="35">
 				</Worm>
 			</Night>
 		</Wave25>

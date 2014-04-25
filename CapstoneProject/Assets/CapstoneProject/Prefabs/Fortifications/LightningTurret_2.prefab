@@ -1806,7 +1806,6 @@ MonoBehaviour:
   speed: 1
   startLight: {fileID: 10800002}
   endLight: {fileID: 10800000}
-  endPos: {fileID: 400070}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1834,7 +1833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Lightning Turret
-  description: Short ranged, lightning blaster. High damage towards CYBORGS.
+  description: Increased range and damage.
   cost: 300
   preview: {fileID: 0}
   purchased: 0

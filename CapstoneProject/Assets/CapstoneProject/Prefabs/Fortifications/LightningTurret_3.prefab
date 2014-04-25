@@ -1833,7 +1833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Lightning Turret
-  description: Short ranged, lightning blaster. High damage towards CYBORGS.
+  description: Increased range and damage.
   cost: 350
   preview: {fileID: 0}
   purchased: 0

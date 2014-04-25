@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Rocket Tower
-  description: Strong, stone tower that fires rockets.
+  description: Deals 3x damage. Increased fire rate.
   cost: 650
   preview: {fileID: 0}
   purchased: 0

@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Rocket Tower
-  description: Deals 3x damage. High fire rate.
+  description: Deals 2x damage. Increased range.
   cost: 600
   preview: {fileID: 0}
   purchased: 0

@@ -304,7 +304,6 @@ public class Spawner : MonoBehaviour {
 		
 		GameObject instance = FindUnused(enemyName);
 		if(instance != null){
-			instance.GetComponent<Enemy>().Reset();
 			instance.SetActive(true);
 			instance.transform.position = pos;
 			instance.transform.rotation = rot;

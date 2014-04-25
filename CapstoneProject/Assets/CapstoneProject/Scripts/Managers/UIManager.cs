@@ -82,6 +82,7 @@ public class UIManager : MonoBehaviour {
 	
 	void Start(){
 		Reset();
+		iTween.CameraFadeAdd();
 		grayBar = new Texture2D(1, 1, TextureFormat.RGB24, false);
 		grayBar.SetPixel(0, 0, Color.gray);
 		grayBar.Apply();
@@ -470,7 +471,7 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	public IEnumerator Fade(){
-		float duration = 1f;
+		/*float duration = 1f;
 		GameObject fade = new GameObject();
 		fade.AddComponent(typeof(GUITexture));
 		fade.guiTexture.pixelInset = new Rect(0, 0, Screen.width, Screen.height);
@@ -496,7 +497,21 @@ public class UIManager : MonoBehaviour {
 			fade.guiTexture.color = temp;
 	    	yield return new WaitForSeconds(Time.deltaTime);
   		}
-		Destroy(fade);
+		Destroy(fade);*/
+		
+		while(uiState == UIState.GAMEOVER){
+			iTween.CameraFadeTo(1f, 5f);
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
+		
+		while(uiState == UIState.GAMEOVER){
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
+		
+		while(uiState != UIState.GAMEOVER){
+			iTween.CameraFadeTo(0f, 1f);
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
 	}
 	
 	public string GuiTime(float time){

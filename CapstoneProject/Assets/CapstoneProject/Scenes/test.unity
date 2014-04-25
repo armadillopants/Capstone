@@ -1516,7 +1516,7 @@ MonoBehaviour:
   mouseLeft: {fileID: 100000, guid: 207fbaae95780e84aa9d2221772505c9, type: 2}
   mouseRight: {fileID: 100000, guid: 7ac7c64fdfdf86748bd34e3701d8cf49, type: 2}
   leftShift: {fileID: 100000, guid: 4b4c3aa256fcc894587b85a41d2ee195, type: 2}
-  beginTutorial: 0
+  background: {fileID: 2800000, guid: 84a6bf6dd90d02c44a33ca3ece5213fb, type: 3}
   key: 
 --- !u!1001 &272990066
 Prefab:

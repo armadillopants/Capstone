@@ -21,7 +21,7 @@ public class Spikes : MonoBehaviour {
 		
 		if(hitTimer <= 0){
 			if(hit.tag == Globals.PLAYER){
-				hit.collider.gameObject.SendMessageUpwards("TakeDamage", 5f, SendMessageOptions.DontRequireReceiver);
+				hit.GetComponent<Health>().TakeDamage(5f);
 			}
 			hitTimer = hitTimerMax;
 		}

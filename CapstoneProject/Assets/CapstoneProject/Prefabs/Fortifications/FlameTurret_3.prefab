@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Flame Turret
-  description: Increased ammo capacity.
+  description: Increased range and damage.
   cost: 300
   preview: {fileID: 0}
   purchased: 0

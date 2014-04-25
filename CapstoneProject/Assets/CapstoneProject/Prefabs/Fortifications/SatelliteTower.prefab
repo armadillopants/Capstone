@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Satellite Tower
-  description: Sends a Call Sign Mayday which begins the final ten waves.
+  description: Sends a Call Sign Mayday which begins the final five waves.
   cost: 1000
   preview: {fileID: 0}
   purchased: 0
