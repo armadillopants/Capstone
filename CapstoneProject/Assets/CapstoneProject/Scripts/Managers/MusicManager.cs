@@ -8,9 +8,6 @@ public class MusicManager : MonoBehaviour {
 	public AudioClip mainMenu;
 	
 	private DayNightCycle cycle;
-	private bool switchingClips = false;
-	
-	private int secondsToFade = 5;
 	
 	void Start(){
 		audio.clip = mainMenu;
@@ -26,11 +23,11 @@ public class MusicManager : MonoBehaviour {
 			if(cycle.currentPhase == DayNightCycle.DayPhase.DAY || cycle.currentPhase == DayNightCycle.DayPhase.DAWN){
 				if(GameController.Instance.GetWaveController().GetComponent<Fortification>() == null){
 					if(audio.clip != dayTime){
-						CrossFadeInto(dayTime);
+						iTween.AudioTo(gameObject, iTween.Hash("volume", 0f, "time", 5f, "oncomplete", "SwitchClips", "oncompleteparams", dayTime));
 					}
 				} else {
 					if(audio.clip == dayTime){
-						CrossFadeInto(buildPhase);
+						iTween.AudioTo(gameObject, iTween.Hash("volume", 0f, "time", 5f, "oncomplete", "SwitchClips", "oncompleteparams", buildPhase));
 					}
 				}
 			}
@@ -38,31 +35,23 @@ public class MusicManager : MonoBehaviour {
 			if(cycle.currentPhase == DayNightCycle.DayPhase.NIGHT || cycle.currentPhase == DayNightCycle.DayPhase.DUSK){
 				if(GameController.Instance.GetWaveController().GetComponent<Fortification>() == null){
 					if(audio.clip != nightTime){
-						CrossFadeInto(nightTime);
+						iTween.AudioTo(gameObject, iTween.Hash("volume", 0f, "time", 5f, "oncomplete", "SwitchClips", "oncompleteparams", nightTime));
 					}
 				} else {
 					if(audio.clip == nightTime){
-						CrossFadeInto(buildPhase);
+						iTween.AudioTo(gameObject, iTween.Hash("volume", 0f, "time", 5f, "oncomplete", "SwitchClips", "oncompleteparams", buildPhase));
 					}
 				}
 			}
 			
-			if(!switchingClips){
-				if(audio.volume < 1){
-					audio.volume += (Time.deltaTime / (secondsToFade + 1));
-				}
+			if(audio.volume <= 0){
+				iTween.AudioTo(gameObject, iTween.Hash("volume", 0.3f, "time", 5f));
 			}
 		}
 	}
 	
-	void CrossFadeInto(AudioClip clip){
-		if(audio.volume > 0){
-			switchingClips = true;
-			audio.volume -= (Time.deltaTime / (secondsToFade + 1));
-		} else {
-			switchingClips = false;
-			audio.clip = clip;
-			audio.Play();
-		}
+	void SwitchClips(AudioClip clip){
+		audio.clip = clip;
+		audio.Play();
 	}
 }

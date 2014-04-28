@@ -5,8 +5,7 @@ public class Health : MonoBehaviour {
 	
 	public float curHealth;
 	private float minHealth = 0f;
-	public float maxHealth = 100f;
-	public bool canTakeDamage = true;
+	private float maxHealth = 100f;
 	private bool isDead = false;
 	public GameObject explosion;
 	public float waitTime = 3f;
@@ -86,19 +85,32 @@ public class Health : MonoBehaviour {
 			return;
 		}
 		
-		if(canTakeDamage){
-			curHealth = Mathf.Max(minHealth, curHealth-damage);
-		}
+		curHealth = Mathf.Max(minHealth, curHealth-damage);
 		
 		displayHealthTimer = displayHealthTimerMax;
 		
-		if(damageClip){
-			audio.PlayOneShot(damageClip);
-		}
-		
 		if(gameObject.tag == Globals.SHIP){
-			if(curHealth % 20 == 0){
+			if(Mathf.RoundToInt(curHealth) % 50 == 0){
+			if(damageClip){
+				if(!audio.isPlaying){
+					audio.clip = damageClip;
+					audio.loop = true;
+					audio.Play();
+					StartCoroutine(TurnOffClip());
+				}
+			}
+			Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+			tut.SetKey("ShipAttacked");
 				gameObject.GetComponent<ShipDecay>().Release();
+			}
+		} else {
+			if(damageClip){
+				if(!audio.isPlaying){
+					audio.clip = damageClip;
+					audio.loop = true;
+					audio.Play();
+					StartCoroutine(TurnOffClip());
+				}
 			}
 		}
 		
@@ -148,6 +160,11 @@ public class Health : MonoBehaviour {
 			ObjectPool.Spawn(explosion, transform.position, Quaternion.identity);
 		}
 		GameController.Instance.UpdateGraphOnDestroyedObject(gameObject.collider, gameObject);
+	}
+	
+	IEnumerator TurnOffClip(){
+		yield return new WaitForSeconds(waitTime);
+		audio.Stop();
 	}
 	
 	void OnGUI(){

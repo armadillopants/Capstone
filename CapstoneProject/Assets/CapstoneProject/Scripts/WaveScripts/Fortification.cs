@@ -37,6 +37,9 @@ public class Fortification : MonoBehaviour {
 		style.normal.textColor = Color.white;
 		style.font = UIManager.Instance.resourceFont;
 		style.fontSize = 50;
+		
+		Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+		tut.displaySatelliteInfo = true;
 	}
 	
 	public void StartFortifying(Wave wave){
@@ -77,6 +80,9 @@ public class Fortification : MonoBehaviour {
 			}
 			Destroy(GameController.Instance.current);
 			GameController.Instance.current = null;
+			Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+			tut.key = "";
+			tut.SetKey("");
 			buildWave.BeginWave();
 			Destroy(this);
 		}

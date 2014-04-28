@@ -172,9 +172,9 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 31102bfdfc57a574f817d269c6acd517, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ee134ca9dcdab6d47a0bb33a0374864c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .200000003
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -239,9 +239,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 0}
+  weapon: {fileID: 0}
   bulletSpeed: 30
   isHoming: 0
   damp: 6
+  isPlayers: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

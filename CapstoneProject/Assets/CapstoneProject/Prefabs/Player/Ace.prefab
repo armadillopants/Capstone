@@ -138,6 +138,7 @@ GameObject:
   - 4: {fileID: 400016}
   - 114: {fileID: 11400042}
   - 114: {fileID: 11400040}
+  - 82: {fileID: 8200014}
   m_Layer: 0
   m_Name: ThunderGun
   m_TagString: Weapon
@@ -4919,6 +4920,64 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8200014
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!82 &8200016
 AudioSource:
   m_ObjectHideFlags: 1
@@ -5705,7 +5764,7 @@ MonoBehaviour:
   gripID: 3
   costPerBullet: 1
   fireClip: {fileID: 8300000, guid: 9999e03498c9c3344a952420aaa499c6, type: 3}
-  reloadClip: {fileID: 8300000, guid: 906f8328f177a79489efaec62f3d5250, type: 3}
+  reloadClip: {fileID: 8300000, guid: 6cdef5b3b4f0ede43b0169adbff710a4, type: 3}
   emptyClip: {fileID: 8300000, guid: e66711501bbd2eb4ebb6b6b3041df8aa, type: 3}
   oneShot: 0
 --- !u!114 &11400034
@@ -5749,7 +5808,7 @@ MonoBehaviour:
   gripID: 3
   costPerBullet: 1
   fireClip: {fileID: 8300000, guid: eeaaba84bb2e52646987aef1c2447f07, type: 3}
-  reloadClip: {fileID: 8300000, guid: 906f8328f177a79489efaec62f3d5250, type: 3}
+  reloadClip: {fileID: 8300000, guid: fdcd970e6e615c944a7cc643a76ccb40, type: 3}
   emptyClip: {fileID: 8300000, guid: e66711501bbd2eb4ebb6b6b3041df8aa, type: 3}
   oneShot: 0
   zigs: 150
@@ -5905,8 +5964,8 @@ MonoBehaviour:
   useLayerMask: 1
   gripID: 3
   costPerBullet: 3
-  fireClip: {fileID: 0}
-  reloadClip: {fileID: 8300000, guid: 906f8328f177a79489efaec62f3d5250, type: 3}
+  fireClip: {fileID: 8300000, guid: 31102bfdfc57a574f817d269c6acd517, type: 3}
+  reloadClip: {fileID: 8300000, guid: aaa763faa8f91f841b93f3c86f407579, type: 3}
   emptyClip: {fileID: 8300000, guid: e66711501bbd2eb4ebb6b6b3041df8aa, type: 3}
   oneShot: 0
 --- !u!114 &11400052

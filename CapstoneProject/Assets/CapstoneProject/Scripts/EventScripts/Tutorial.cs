@@ -11,12 +11,13 @@ public class Tutorial : MonoBehaviour {
 	
 	private Vector3 playerPos;
 	private bool beginTutorial = false;
-	private bool displaySatelliteInfo = true;
+	public bool displaySatelliteInfo = true;
 	private bool spawnRightMouse = false;
 	private GameObject link = null;
 	private float waitTime = 5f;
 	public string key = "";
 	private string curKey = "";
+	public bool tutorialFinished = false;
 	
 	void Update(){
 		if(GameController.Instance.GetPlayer() && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
@@ -43,10 +44,17 @@ public class Tutorial : MonoBehaviour {
 			
 			if(displaySatelliteInfo){
 				if(GameController.Instance.GetResources() >= 1000 
-					&& GameController.Instance.GetWaveController().GetComponent<Fortification>() != null){
+					&& GameController.Instance.GetWaveController().GetComponent<Fortification>() != null 
+					&& !GameObject.Find("SatelliteTower")){
 					
+					waitTime = 10f;
 					curKey = "DisplaySatelliteInfo";
+					displaySatelliteInfo = false;
 				}
+			}
+			
+			if(GameController.Instance.GetShipHealth().curHealth <= 0 && !GameController.Instance.GetShipHealth().IsDead){
+				curKey = "ShipDead";
 			}
 			
 			if(UIManager.Instance.uiState == UIManager.UIState.GAMEOVER){
@@ -77,12 +85,17 @@ public class Tutorial : MonoBehaviour {
 				DisplayEnemyIncrease();
 			} else if(curKey == "DisplaySatelliteInfo"){
 				DisplaySatelliteInfo();
+			} else if(curKey == "ShipAttacked"){
+				ShipAttacked();
+			} else if(curKey == "ShipDead"){
+				ShipDead();
 			}
 		}
 	}
 	
 	public void SetKey(string cur){
 		curKey = cur;
+		waitTime = 10f;
 	}
 	
 	public void ResetTutorial(){
@@ -93,6 +106,8 @@ public class Tutorial : MonoBehaviour {
 		key = "";
 		curKey = "";
 		spawnRightMouse = false;
+		displaySatelliteInfo = true;
+		tutorialFinished = false;
 	}
 	
 	GameObject Spawn(GameObject g, Vector3 pos, bool spawned){
@@ -203,6 +218,7 @@ public class Tutorial : MonoBehaviour {
 		if(GameObject.FindWithTag(Globals.FORTIFICATION)){
 			key = "RightClick";
 			link = Spawn(mouseRight, GameObject.FindWithTag(Globals.FORTIFICATION).transform.position-new Vector3(2,0,0), false);
+			waitTime = 5f;
 			curKey = "DestroyMouseRightLink";
 		}
 	}
@@ -244,6 +260,7 @@ public class Tutorial : MonoBehaviour {
 				key = "";
 				curKey = "";
 				waitTime = 10f;
+				tutorialFinished = true;
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
 			}
 		} else {
@@ -272,18 +289,33 @@ public class Tutorial : MonoBehaviour {
 	}
 	
 	void DisplaySatelliteInfo(){
-		if(UIManager.Instance.uiState == UIManager.UIState.FORT_BUILD_SCREEN){
-			waitTime -= Time.deltaTime;
-			if(waitTime <= 10f && waitTime >= 5f){
-				key = "DisplaySatelliteInfo";
-			} else if(waitTime >= 0f && waitTime < 5f){
-				key = "DisplaySatelliteInfo2";
-			} else {
-				key = "";
-				curKey = "";
-				waitTime = 10f;
-				displaySatelliteInfo = false;
-			}
+		waitTime -= Time.deltaTime;
+		if(waitTime <= 10f && waitTime >= 5f){
+			key = "DisplaySatelliteInfo";
+		} else if(waitTime >= 0f && waitTime < 5f){
+			key = "DisplaySatelliteInfo2";
+		} else {
+			key = "";
+			curKey = "";
+			waitTime = 10f;
+		}
+	}
+	
+	void ShipAttacked(){
+		waitTime -= Time.deltaTime;
+		if(waitTime < 0){
+			key = "";
+			curKey = "";
+			waitTime = 10f;
+		}
+	}
+	
+	void ShipDead(){
+		waitTime -= Time.deltaTime;
+		if(waitTime < 0){
+			key = "";
+			curKey = "";
+			waitTime = 10f;
 		}
 	}
 	
@@ -337,9 +369,8 @@ public class Tutorial : MonoBehaviour {
 			DrawScreen("BUY weapons, UPGRADE, and EQUIP them");
 		} else if(key == "PurchaseAbility"){
 			DrawScreen("BUY abilities for help in tight situations");
-		} else if(key == "BoughtAbility"){
+		} else if(curKey == "BoughtAbility"){
 			DrawScreen("Press 'E' to use current ability");
-			curKey = key;
 		} else if(key == "Player"){
 			DrawScreen("WASD to move Player");
 		} else if(key == "LeftClick"){
@@ -354,6 +385,10 @@ public class Tutorial : MonoBehaviour {
 			DrawScreen("You can now purchase the Satellite Tower!");
 		} else if(key == "DisplaySatelliteInfo2"){
 			DrawScreen("Buy the Satellite Tower to call for rescue!");
+		} else if(curKey == "ShipAttacked"){
+			DrawScreen("Mayday, mayday, ship under attack!");
+		} else if(curKey == "ShipDead"){
+			DrawScreen("The Ship has been destroyed! No more build phases");
 		}
 	}
 }

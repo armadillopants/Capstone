@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
 	private Transform ship;
 	
 	private int amountOfResources = 0;
+	private int curResources = 0;
 	public bool canShoot = false;
 	public bool canChangeWeapons = false;
 	private bool beginFade = false;
@@ -191,6 +192,7 @@ public class GameController : MonoBehaviour {
 		UIManager.Instance.FadeCompleted();
 		GetWaveController().ResetWave();
 		amountOfResources = 0;
+		curResources = 0;
 		UIManager.Instance.Reset();
 		UIManager.Instance.uiState = UIManager.UIState.NONE;
 	}
@@ -208,15 +210,26 @@ public class GameController : MonoBehaviour {
 	}
 	
 	public int GetResources(){
-		return amountOfResources;
+		return curResources;
 	}
 	
 	public void AddResources(int amount){
 		amountOfResources += amount;
+		UpdateResources();	
+	}
+	
+	void ChangeScoreTo(int amount){
+		curResources = amount;
+	}
+	
+	void UpdateResources(){
+		iTween.ValueTo(gameObject, 
+				iTween.Hash("from", curResources,"to",amountOfResources,"time", 1f,"onupdate", "ChangeScoreTo"));
 	}
 	
 	public void DeleteResources(int amount){
 		amountOfResources -= amount;
+		UpdateResources();
 	}
 	
 	public void SetFortificationToSpawn(GameObject fort, float rot){

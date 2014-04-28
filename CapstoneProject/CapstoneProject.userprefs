@@ -1,11 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\iTween\Plugins\iTween.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CapstoneProject\Scripts\EventScripts\ShipIndicator.cs">
     <Files>
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\Health.cs" Line="103" Column="31" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\GameController.cs" Line="14" Column="34" />
       <File FileName="Assets\CapstoneProject\Scripts\WaveScripts\WaveController.cs" Line="7" Column="28" />
-      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="502" Column="38" />
-      <File FileName="Assets\iTween\Plugins\iTween.cs" Line="3643" Column="1" />
+      <File FileName="Assets\CapstoneProject\Scripts\Managers\UIManager.cs" Line="194" Column="114" />
+      <File FileName="Assets\iTween\Plugins\iTween.cs" Line="975" Column="32" />
+      <File FileName="Assets\CapstoneProject\Scripts\EventScripts\ShipIndicator.cs" Line="13" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

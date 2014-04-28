@@ -226,7 +226,7 @@ public class AbilityPanelGUI : MonoBehaviour {
 					if(GUI.Button(new Rect(buttonColBuy, labelOffset+5, buyButtonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						abilityVendor.Purchase(allAbilities[i]);
 						if(useAbility){
-							GameObject.Find("Tutorial").GetComponent<Tutorial>().key = "BoughtAbility";
+							GameObject.Find("Tutorial").GetComponent<Tutorial>().SetKey("BoughtAbility");
 							useAbility = false;
 						}
 					}

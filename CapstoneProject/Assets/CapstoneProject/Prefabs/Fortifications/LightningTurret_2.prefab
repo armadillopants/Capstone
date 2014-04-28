@@ -1618,11 +1618,11 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 4cd19aec58e32d340b710257d1da834b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 546eb1a391a6c994a8259d6f51233c1e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .800000012
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -1798,7 +1798,7 @@ MonoBehaviour:
   useLayerMask: 1
   gripID: 0
   costPerBullet: 0
-  fireClip: {fileID: 8300000, guid: eeaaba84bb2e52646987aef1c2447f07, type: 3}
+  fireClip: {fileID: 8300000, guid: 546eb1a391a6c994a8259d6f51233c1e, type: 3}
   reloadClip: {fileID: 0}
   emptyClip: {fileID: 0}
   oneShot: 0

@@ -31,6 +31,7 @@ public class FilmCameraScript : MonoBehaviour {
 		
 		if(Input.GetKeyDown(KeyCode.Alpha4)){
 			UIManager.Instance.displayUI = !UIManager.Instance.displayUI;
+			UIManager.Instance.displayOtherStoof = !UIManager.Instance.displayOtherStoof;
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Alpha1)){

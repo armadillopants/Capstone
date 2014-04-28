@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour {
 	public Texture2D[] canisters;
 	public Texture2D[] batteries;
 	public bool displayUI = false;
+	public bool displayOtherStoof = true; // Delete this, for filming only
 	public Texture2D infintyUI;
 	
 	public Texture2D resumeNormal;
@@ -190,7 +191,7 @@ public class UIManager : MonoBehaviour {
 			DrawShipHealth();
 		}
 		
-		if(GameController.Instance.GetWaveController().canBeginWave && uiState != UIState.GAMEOVER){
+		if(GameController.Instance.GetWaveController().canBeginWave && uiState != UIState.GAMEOVER && displayOtherStoof){
 			DrawResources();
 			DrawCurWaveScreen();
 		}

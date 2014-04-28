@@ -98,7 +98,7 @@ public class MainPanelGUI : MonoBehaviour {
 		GUI.DrawTexture(new Rect(Screen.width-128, Screen.height-(Screen.height-65), 128, 365), frameRight);
 		GUI.DrawTexture(new Rect(Screen.width-256, Screen.height-64, 256, 64), frameBottom);
 
-		if(tut.key == "BuildScreen" || tut.key == ""){
+		if(tut.key == "BuildScreen" || tut.tutorialFinished){
 			if(GUI.Button(buildRect, content, buildButtonstyle)){
 				if(UIManager.Instance.uiState != UIManager.UIState.FORT_BUILD_SCREEN){
 					UIManager.Instance.uiState = UIManager.UIState.FORT_BUILD_SCREEN;
@@ -115,7 +115,7 @@ public class MainPanelGUI : MonoBehaviour {
 				GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-125), 256, 64), buildTextActive);
 			}
 		}
-		if(tut.key == "WeaponScreen" || tut.key == ""){
+		if(tut.key == "WeaponScreen" || tut.tutorialFinished){
 			if(GUI.Button(weaponRect, content, weaponButtonstyle)){
 				if(UIManager.Instance.uiState != UIManager.UIState.FORT_WEAPON_SCREEN){
 					UIManager.Instance.uiState = UIManager.UIState.FORT_WEAPON_SCREEN;
@@ -132,7 +132,7 @@ public class MainPanelGUI : MonoBehaviour {
 				GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-205), 256, 64), weaponsTextActive);
 			}
 		}
-		if(tut.key == "AbilityScreen" || tut.key == ""){
+		if(tut.key == "AbilityScreen" || tut.tutorialFinished){
 			if(GUI.Button(abilitiesRect, content, abilitiesButtonstyle)){
 				if(UIManager.Instance.uiState != UIManager.UIState.FORT_ABILITY_SCREEN){
 					UIManager.Instance.uiState = UIManager.UIState.FORT_ABILITY_SCREEN;
@@ -149,7 +149,7 @@ public class MainPanelGUI : MonoBehaviour {
 				GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-285), 256, 64), abilitiesTextActive);
 			}
 		}
-		if(tut.key == ""){
+		if(tut.tutorialFinished){
 			if(GUI.Button(beginRect, content, beginButtonstyle)){
 				UIManager.Instance.uiState = UIManager.UIState.NONE;
 				UIManager.Instance.displayUI = true;
@@ -164,6 +164,8 @@ public class MainPanelGUI : MonoBehaviour {
 				}
 				Destroy(GameController.Instance.current);
 				GameController.Instance.current = null;
+				tut.key = "";
+				tut.SetKey("");
 				buildWave.BeginWave();
 				Destroy(GameObject.Find("WaveController").GetComponent<Fortification>());
 			}
