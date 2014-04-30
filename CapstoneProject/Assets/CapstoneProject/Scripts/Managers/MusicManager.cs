@@ -43,10 +43,14 @@ public class MusicManager : MonoBehaviour {
 					}
 				}
 			}
-			
-			if(audio.volume <= 0){
-				iTween.AudioTo(gameObject, iTween.Hash("volume", 0.3f, "time", 5f));
+		} else {
+			if(audio.clip != mainMenu){
+				iTween.AudioTo(gameObject, iTween.Hash("volume", 0f, "time", 5f, "oncomplete", "SwitchClips", "oncompleteparams", mainMenu));
 			}
+		}
+		
+		if(audio.volume <= 0){
+			iTween.AudioTo(gameObject, iTween.Hash("volume", 0.3f, "time", 5f));
 		}
 	}
 	

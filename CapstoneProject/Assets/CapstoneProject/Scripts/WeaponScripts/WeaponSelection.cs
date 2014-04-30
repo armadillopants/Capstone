@@ -34,7 +34,7 @@ public class WeaponSelection : MonoBehaviour {
 		weapon = GetComponentInChildren<BaseWeapon>();
 		
 		selectedWeaponStyle = new GUIStyle();
-		selectedWeaponStyle.font = UIManager.Instance.resourceFont;
+		selectedWeaponStyle.font = UIManager.Instance.skin.font;
 		selectedWeaponStyle.fontSize = 12;
 		selectedWeaponStyle.alignment = TextAnchor.MiddleCenter;
 		selectedWeaponStyle.normal.textColor = Color.white;

@@ -8,9 +8,11 @@ public class Tutorial : MonoBehaviour {
 	public GameObject mouseRight;
 	public GameObject leftShift;
 	public Texture2D background;
+	public Font tutFont;
 	
 	private Vector3 playerPos;
 	private bool beginTutorial = false;
+	private bool shipDead = false;
 	public bool displaySatelliteInfo = true;
 	private bool spawnRightMouse = false;
 	private GameObject link = null;
@@ -53,8 +55,9 @@ public class Tutorial : MonoBehaviour {
 				}
 			}
 			
-			if(GameController.Instance.GetShipHealth().curHealth <= 0 && !GameController.Instance.GetShipHealth().IsDead){
+			if(GameController.Instance.GetShipHealth().curHealth <= 0 && !shipDead){
 				curKey = "ShipDead";
+				shipDead = true;
 			}
 			
 			if(UIManager.Instance.uiState == UIManager.UIState.GAMEOVER){
@@ -105,9 +108,11 @@ public class Tutorial : MonoBehaviour {
 		link = null;
 		key = "";
 		curKey = "";
+		waitTime = 5f;
 		spawnRightMouse = false;
 		displaySatelliteInfo = true;
 		tutorialFinished = false;
+		shipDead = false;
 	}
 	
 	GameObject Spawn(GameObject g, Vector3 pos, bool spawned){
@@ -325,7 +330,7 @@ public class Tutorial : MonoBehaviour {
 		GUIStyle style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.yellow;
-		style.font = UIManager.Instance.resourceFont;
+		style.font = tutFont;
 		style.fontSize = 30;
 		style.normal.background = background;
 		

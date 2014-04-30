@@ -5,7 +5,7 @@ public class Health : MonoBehaviour {
 	
 	public float curHealth;
 	private float minHealth = 0f;
-	private float maxHealth = 100f;
+	public float maxHealth = 100f;
 	private bool isDead = false;
 	public GameObject explosion;
 	public float waitTime = 3f;
@@ -90,7 +90,7 @@ public class Health : MonoBehaviour {
 		displayHealthTimer = displayHealthTimerMax;
 		
 		if(gameObject.tag == Globals.SHIP){
-			if(Mathf.RoundToInt(curHealth) % 50 == 0){
+			if(Mathf.RoundToInt(curHealth) % 100 == 0){
 			if(damageClip){
 				if(!audio.isPlaying){
 					audio.clip = damageClip;
@@ -141,8 +141,16 @@ public class Health : MonoBehaviour {
 			Destroy(gameObject.GetComponent<LocalInput>());
 			Destroy(gameObject.GetComponent<PlayerMovement>());
 			rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+		} else if(gameObject.tag == Globals.INTERACTABLE_ITEM){
+			int i = Random.Range(0, GameObject.Find("InteractableItems").GetComponent<InteractableItems>().itemsPos.Count);
+			GameObject temp = (GameObject)Instantiate(gameObject, GameObject.Find("InteractableItems").GetComponent<InteractableItems>().itemsPos[i], Quaternion.identity);
+			temp.transform.parent = GameObject.Find("InteractableItems").transform;
+			temp.GetComponent<Rigidbody>().useGravity = true;
+			Destroy(temp.GetComponent<BarrelDamage>());
+			Destroy(temp.GetComponent<Health>());
+			Destroy(gameObject);
 		} else {
-			StartCoroutine(BeginDeathSequence());
+			Destroy(gameObject);
 		}
 	}
 	

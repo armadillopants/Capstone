@@ -13,6 +13,7 @@ public class AnimationController : MonoBehaviour {
 	public static int Dead = Animator.StringToHash("Dead");
 	public static int HolsterWeapon = Animator.StringToHash("HolsterWeapon");
 	public static int DrawWeapon = Animator.StringToHash("DrawWeapon");
+	public static int ReloadWeapon = Animator.StringToHash("Reloading");
 
 	void Start(){
 		animator = GetComponent<Animator>();
@@ -32,10 +33,11 @@ public class AnimationController : MonoBehaviour {
 				animator.SetInteger(Grip, weapon.gripID);
 				animator.SetBool(HolsterWeapon, selection.changingWeapons);
 				animator.SetBool(DrawWeapon, selection.drawWeapon);
+				animator.SetBool(ReloadWeapon, weapon.isReloading);
 			}
 			
 			if(GameController.Instance.GetPlayerHealth().IsDead){
-				animator.SetBool(Dead, GameController.Instance.GetPlayerHealth().IsDead);
+				//animator.SetBool(Dead, GameController.Instance.GetPlayerHealth().IsDead);
 			} else {
 				animator.SetFloat(VelZ, input.controller.moveDirection.z);
 				animator.SetFloat(VelX, input.controller.moveDirection.x);

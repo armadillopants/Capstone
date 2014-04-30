@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 864b12834fb15e04097f346e3a6307d2
+guid: 5cce964dd411f154c8dfd8e0ddd7d6d2
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -236,6 +236,7 @@ ModelImporter:
     400228: torsoCntrl
     400230: torsoCntrl_group
     4300000: AceSkinUV
+    7400000: SpecialReload
     9500000: //RootNode
     13700000: AceSkinUV
   materials:
@@ -244,13 +245,34 @@ ModelImporter:
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
-    bakeSimulation: 0
+    bakeSimulation: 1
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
-    clipAnimations: []
+    clipAnimations:
+    - name: SpecialReload
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -273,7 +295,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 1
   importAnimation: 1
-  copyAvatar: 0
+  copyAvatar: 1
   humanDescription:
     human:
     - boneName: Hips
@@ -1131,7 +1153,8 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 864b12834fb15e04097f346e3a6307d2,
+    type: 3}
   additionalBone: 1
   animationType: 3
   userData: 

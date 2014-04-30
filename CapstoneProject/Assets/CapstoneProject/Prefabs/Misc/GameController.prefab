@@ -96,7 +96,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .300000012
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -160,7 +160,6 @@ MonoBehaviour:
   fortification: {fileID: 0}
   resourceFrame: {fileID: 2800000, guid: 815b6571b45124d40a4faaadbe7f868c, type: 3}
   healthBarFrame: {fileID: 2800000, guid: 32ff7161735413d4aa3ecb8dcd4cdc44, type: 3}
-  resourceFont: {fileID: 12800000, guid: 9f69163100dbda545a188cd6ecd4d81f, type: 3}
   ammoUI: {fileID: 2800000, guid: fe5c22d4f94031c4dae708f7ed7e9ecb, type: 3}
   shotgunShellUI: {fileID: 2800000, guid: 6561ab893851ef14ab21ff86eb1e3582, type: 3}
   canisters:
@@ -181,15 +180,7 @@ MonoBehaviour:
   displayUI: 0
   displayOtherStoof: 1
   infintyUI: {fileID: 2800000, guid: d9de4438f6f295c44a5d5093eca1fa20, type: 3}
-  resumeNormal: {fileID: 2800000, guid: 7f810e6c1c7f82744aea37a91f456bcd, type: 3}
-  resumeHover: {fileID: 2800000, guid: efe6d43b77ffe79479bb451494ef5acd, type: 3}
-  resumeActive: {fileID: 2800000, guid: 4f7d024fbcc82d0458bd886fc52dd59f, type: 3}
-  restartNormal: {fileID: 2800000, guid: 7d6beff2373cee24dadf9233135da379, type: 3}
-  restartHover: {fileID: 2800000, guid: c047b40d87f194947994490ed0557374, type: 3}
-  restartActive: {fileID: 2800000, guid: 3c07ac00aa34d2c488f3794c5633d7d5, type: 3}
-  quitNormal: {fileID: 2800000, guid: 876decd1b302d5845a42f8caec314e03, type: 3}
-  quitHover: {fileID: 2800000, guid: 689561cf7b3e9f647befebb3eb6af7e9, type: 3}
-  quitActive: {fileID: 2800000, guid: 3fd67ec85fd0e0a48b082f763c1d0671, type: 3}
+  skin: {fileID: 11400000, guid: a88d684989330794babe7ed480de0ab0, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

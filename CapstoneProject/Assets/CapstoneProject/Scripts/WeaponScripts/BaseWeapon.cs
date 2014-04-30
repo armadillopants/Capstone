@@ -24,13 +24,12 @@ public class BaseWeapon : MonoBehaviour {
 	public GameObject projectile;
 	public Transform muzzlePos;
 	public Transform gunPos;
-	public Transform leftHand;
-	public Transform handPos;
 	
 	private Renderer muzzle;
 	private Light gunFlash;
 	public Renderer muzzleFlash;
 	public Light lightFlash;
+	public GameObject magazine;
 	
 	public bool isReloading = false;
 	public bool isAutomatic = false;
@@ -99,9 +98,6 @@ public class BaseWeapon : MonoBehaviour {
 		if(gunPos){
 			transform.position = gunPos.position;
 			transform.rotation = GameObject.FindWithTag(Globals.PLAYER).transform.rotation;
-		}
-		if(leftHand){
-			leftHand.position = handPos.position;
 		}
 	}
 	
@@ -224,6 +220,9 @@ public class BaseWeapon : MonoBehaviour {
 	private IEnumerator Reload(){
 		// Wait for reload time first and then add more bullets!
 		isReloading = true;
+		if(magazine){
+			Instantiate(magazine, transform.position, Quaternion.identity);
+		}
 		
 		GameController.Instance.canShoot = false;
 		

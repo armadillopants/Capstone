@@ -127,7 +127,7 @@ public class BuildUpgradeGUI : MonoBehaviour {
 	void DestroyFortification(){
 		// Destory the object and update graph
 		Health fortHealth = UIManager.Instance.fortification.GetComponent<Health>();
-		if(fortHealth.curHealth == fortHealth.GetMaxHealth() && UIManager.Instance.fortification.GetComponent<Dragable>() != null){
+		if(fortHealth.curHealth == fortHealth.GetMaxHealth()){
 			GameController.Instance.AddResources(UIManager.Instance.fortification.GetComponent<SellableItem>().cost);
 		} else {
 			GameController.Instance.AddResources(Mathf.RoundToInt(fortHealth.curHealth / 2));

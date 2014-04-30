@@ -35,7 +35,7 @@ public class Fortification : MonoBehaviour {
 		style = new GUIStyle();
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
-		style.font = UIManager.Instance.resourceFont;
+		style.font = UIManager.Instance.skin.font;
 		style.fontSize = 50;
 		
 		Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();

@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour {
 	
 	public Texture2D resourceFrame;
 	public Texture2D healthBarFrame;
-	public Font resourceFont;
 	public Texture2D ammoUI;
 	public Texture2D shotgunShellUI;
 	public Texture2D[] canisters;
@@ -33,27 +32,9 @@ public class UIManager : MonoBehaviour {
 	public bool displayUI = false;
 	public bool displayOtherStoof = true; // Delete this, for filming only
 	public Texture2D infintyUI;
-	
-	public Texture2D resumeNormal;
-	public Texture2D resumeHover;
-	public Texture2D resumeActive;
-	
-	public Texture2D restartNormal;
-	public Texture2D restartHover;
-	public Texture2D restartActive;
-	
-	public Texture2D quitNormal;
-	public Texture2D quitHover;
-	public Texture2D quitActive;
-	
-	private GUIStyle style;
-	private GUIStyle satStyle;
-	private GUIStyle waveStyle;
-	private GUIStyle resumeButton;
-	private GUIStyle restartButton;
-	private GUIStyle quitButton;
-	private GUIStyle resourceStyle;
+
 	private GUIContent content;
+	public GUISkin skin;
 	
 	#region Singleton
 	
@@ -90,45 +71,6 @@ public class UIManager : MonoBehaviour {
 		waveRect = new Rect((Screen.width/2) - (750/2), (Screen.height/2) - (600/2) - 100, 750, 600);
 		finalWaveRect = new Rect((Screen.width/2)-(600/2), (Screen.height-Screen.height)+60, 600, 60);
 		Screen.showCursor = false;
-		
-		resumeButton = new GUIStyle();
-		resumeButton.normal.background = resumeNormal;
-		resumeButton.hover.background = resumeHover;
-		resumeButton.active.background = resumeActive;
-		
-		restartButton = new GUIStyle();
-		restartButton.normal.background = restartNormal;
-		restartButton.hover.background = restartHover;
-		restartButton.active.background = restartActive;
-		
-		quitButton = new GUIStyle();
-		quitButton.normal.background = quitNormal;
-		quitButton.hover.background = quitHover;
-		quitButton.active.background = quitActive;
-		
-		style = new GUIStyle();
-		style.alignment = TextAnchor.MiddleCenter;
-		style.normal.textColor = Color.white;
-		style.font = resourceFont;
-		style.fontSize = 50;
-		
-		satStyle = new GUIStyle();
-		satStyle.alignment = TextAnchor.MiddleCenter;
-		satStyle.normal.textColor = Color.white;
-		satStyle.font = resourceFont;
-		satStyle.fontSize = 25;
-		
-		waveStyle = new GUIStyle();
-		waveStyle.alignment = TextAnchor.MiddleCenter;
-		waveStyle.normal.textColor = Color.white;
-		waveStyle.font = resourceFont;
-		waveStyle.fontSize = 100;
-		
-		resourceStyle = new GUIStyle();
-		resourceStyle.font = resourceFont;
-		resourceStyle.alignment = TextAnchor.MiddleCenter;
-		resourceStyle.normal.textColor = Color.cyan;
-		resourceStyle.fontSize = 25;
 		
 		content = new GUIContent();
 	}
@@ -212,7 +154,7 @@ public class UIManager : MonoBehaviour {
 		GUI.BeginGroup(finalWaveRect);
 		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Waves until Rescue Ship's arrival: "
-			+GameController.Instance.amountOfWavesLeft, satStyle);
+			+GameController.Instance.amountOfWavesLeft, skin.customStyles[6]);
 		
 		GUI.EndGroup();
 	
@@ -222,19 +164,20 @@ public class UIManager : MonoBehaviour {
 		GUI.BeginGroup(finalWaveRect);
 		
 		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Timer: "
-			+GuiTime(GameObject.Find("RescueShip").GetComponent<FlyToShip>().GetTimer()), satStyle);
+			+GuiTime(GameObject.Find("RescueShip").GetComponent<FlyToShip>().GetTimer()), skin.customStyles[6]);
 		
 		GUI.EndGroup();
 	}
 	
 	void DrawPauseScreen(){
 		GUI.BeginGroup(waveRect);
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "GAME PAUSED", style);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "GAME PAUSED", skin.customStyles[1]);
 		GUI.EndGroup();
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)-50, 100, 50),content,resumeButton)){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)-50, 100, 50),content,skin.customStyles[2])){
 			isPaused = !isPaused;
 		}
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,skin.customStyles[3])){
+			displayUI = false;
 			isPaused = false;
 			uiState = UIState.NONE;
 			GameController.Instance.canShoot = false;
@@ -245,7 +188,7 @@ public class UIManager : MonoBehaviour {
 			MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
 			StartCoroutine(GameController.Instance.RestartGame());
 		}
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50),content,quitButton)){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50),content,skin.customStyles[4])){
 			Application.Quit();
 		}
 	}
@@ -254,7 +197,7 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(waveRect);
 		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE WON", waveStyle);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE WON", skin.customStyles[0]);
 		
 		GUI.EndGroup();
 	}
@@ -263,7 +206,7 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(waveRect);
 		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE "+GameController.Instance.GetWaveController().GetWaveNumber().ToString(), waveStyle);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "WAVE "+GameController.Instance.GetWaveController().GetWaveNumber().ToString(), skin.customStyles[0]);
 		
 		GUI.EndGroup();
 	}
@@ -273,14 +216,14 @@ public class UIManager : MonoBehaviour {
 		
 		if(fadeComplete){
 			GUI.BeginGroup(waveRect);
-			GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "YOU ARE DEAD", style);
+			GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "YOU ARE DEAD", skin.customStyles[1]);
 			GUI.EndGroup();
 			
-			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50),content,restartButton)){
+			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2), 100, 50),content,skin.customStyles[3])){
 				MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
 				StartCoroutine(GameController.Instance.RestartGame());
 			}
-			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2)+50, 100, 50),content,quitButton)){
+			if(GUI.Button(new Rect((Screen.width/2f)-(100/2), (Screen.height/2)-(50/2)+50, 100, 50),content,skin.customStyles[4])){
 				Application.Quit();
 			}
 		}
@@ -290,13 +233,13 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(waveRect);
 		
-		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "YOU HAVE ESCAPED!", style);
+		GUI.Label(new Rect(0, 0, waveRect.width, waveRect.height), "YOU HAVE ESCAPED!", skin.customStyles[1]);
 		
 		GUI.EndGroup();
 		
 		displayUI = false;
 		
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,restartButton)){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,skin.customStyles[3])){
 			isPaused = false;
 			uiState = UIState.NONE;
 			GameController.Instance.canShoot = false;
@@ -307,7 +250,7 @@ public class UIManager : MonoBehaviour {
 			MenuManager.Instance.menuState = MenuManager.MenuState.ENDGAME;
 			StartCoroutine(GameController.Instance.RestartGame());
 		}
-		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50),content,quitButton)){
+		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2)+50, 100, 50),content,skin.customStyles[4])){
 			Application.Quit();
 		}
 	}
@@ -318,7 +261,7 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(waveNumberRect);
 		
-		GUI.Label(new Rect(0, 0, waveNumberRect.width, waveNumberRect.height), GameController.Instance.GetWaveController().GetWaveNumber().ToString(), style);
+		GUI.Label(new Rect(0, 0, waveNumberRect.width, waveNumberRect.height), GameController.Instance.GetWaveController().GetWaveNumber().ToString(), skin.customStyles[1]);
 		
 		GUI.EndGroup();
 	}
@@ -341,8 +284,8 @@ public class UIManager : MonoBehaviour {
 	
 	void DrawResources(){
 		GUI.DrawTexture(new Rect(Screen.width-365, Screen.height-(Screen.height-1), 256, 128), resourceFrame);
-		GUI.Label(new Rect(Screen.width-260, Screen.height-(Screen.height-28), 0, 0), "RESOURCES", resourceStyle);
-		GUI.Label(new Rect(Screen.width-245, Screen.height-(Screen.height-75), 0, 0), GameController.Instance.GetResources().ToString(), resourceStyle);
+		GUI.Label(new Rect(Screen.width-260, Screen.height-(Screen.height-28), 0, 0), "RESOURCES", skin.customStyles[5]);
+		GUI.Label(new Rect(Screen.width-245, Screen.height-(Screen.height-75), 0, 0), GameController.Instance.GetResources().ToString(), skin.customStyles[5]);
 	}
 	
 	void DrawAmmoDisplay(){
@@ -393,11 +336,7 @@ public class UIManager : MonoBehaviour {
 					GUI.DrawTexture(new Rect(440 +(i*-5),50,20,20), ammoUI);
 				}
 			}
-			GUIStyle style = new GUIStyle();
-			style.font = resourceFont;
-			style.fontSize = 15;
-			style.normal.textColor = Color.white;
-			GUI.Label(new Rect(455, 50, 20, 30), weapon.clips.ToString(), style);
+			GUI.Label(new Rect(455, 50, 20, 30), weapon.clips.ToString(), skin.customStyles[7]);
 		} else {
 			GUI.DrawTexture(new Rect(350,50,100,40), infintyUI);
 		}
@@ -414,11 +353,6 @@ public class UIManager : MonoBehaviour {
 		abilityBar.SetPixel(0, 0, Color.blue);
 		abilityBar.Apply();
 		
-		GUIStyle style = new GUIStyle();
-		style.font = resourceFont;
-		style.fontSize = 15;
-		style.normal.textColor = Color.white;
-		
 		if(holder.GetComponent<OrbitAbility>() != null){
 			GUI.DrawTexture(new Rect(200, 0, 
 				-abilityRect.width*AbilitiesManager.Instance.orbitAbility.maxCoolDown, abilityRect.height), 
@@ -427,12 +361,12 @@ public class UIManager : MonoBehaviour {
 				-abilityRect.width*AbilitiesManager.Instance.orbitAbility.coolDown/AbilitiesManager.Instance.orbitAbility.maxCoolDown, abilityRect.height), 
 				abilityBar, ScaleMode.StretchToFill);
 			if(AbilitiesManager.Instance.orbitAbility.coolDown <= 0){
-				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
-				GUI.Label(new Rect(25, 15, 200, 20), "Press 'E' to use", style);
+				GUI.Label(new Rect(0, 0, 200, 25), "Ability Available", skin.customStyles[7]);
+				GUI.Label(new Rect(0, 15, 200, 20), "Press 'E' to use", skin.customStyles[7]);
 			} else {
-				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
+				GUI.Label(new Rect(0, 0, 200, 25), "Ability Unavailable", skin.customStyles[7]);
 			}
-			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.orbitAbility.amount.ToString(), style);
+			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.orbitAbility.amount.ToString(), skin.customStyles[7]);
 		} else if(holder.GetComponent<RockRainAbility>() != null){
 			GUI.DrawTexture(new Rect(200, 0, 
 				-abilityRect.width*AbilitiesManager.Instance.rockRainAbility.maxCoolDown, abilityRect.height), 
@@ -441,12 +375,12 @@ public class UIManager : MonoBehaviour {
 				-abilityRect.width*AbilitiesManager.Instance.rockRainAbility.coolDown/AbilitiesManager.Instance.rockRainAbility.maxCoolDown, abilityRect.height), 
 				abilityBar, ScaleMode.StretchToFill);
 			if(AbilitiesManager.Instance.rockRainAbility.coolDown <= 0){
-				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
-				GUI.Label(new Rect(25, 15, 200, 20), "Press 'E' to use", style);
+				GUI.Label(new Rect(0, 0, 200, 25), "Ability Available", skin.customStyles[7]);
+				GUI.Label(new Rect(0, 15, 200, 20), "Press 'E' to use", skin.customStyles[7]);
 			} else {
-				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
+				GUI.Label(new Rect(0, 0, 200, 25), "Ability Unavailable", skin.customStyles[7]);
 			}
-			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.rockRainAbility.amount.ToString(), style);
+			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.rockRainAbility.amount.ToString(), skin.customStyles[7]);
 		} else if(holder.GetComponent<StrikerAbility>() != null){
 			GUI.DrawTexture(new Rect(200, 0, 
 				-abilityRect.width*AbilitiesManager.Instance.strikerAbility.maxCoolDown, abilityRect.height), 
@@ -455,12 +389,12 @@ public class UIManager : MonoBehaviour {
 				-abilityRect.width*AbilitiesManager.Instance.strikerAbility.coolDown/AbilitiesManager.Instance.strikerAbility.maxCoolDown, abilityRect.height), 
 				abilityBar, ScaleMode.StretchToFill);
 			if(AbilitiesManager.Instance.strikerAbility.coolDown <= 0){
-				GUI.Label(new Rect(25, 0, 200, 25), "Ability Available", style);
-				GUI.Label(new Rect(25, 15, 200, 20), "Press 'E' to use", style);
+				GUI.Label(new Rect(0, 0, 200, 25), "Ability Available", skin.customStyles[7]);
+				GUI.Label(new Rect(0, 15, 200, 20), "Press 'E' to use", skin.customStyles[7]);
 			} else {
-				GUI.Label(new Rect(25, 0, 200, 25), "Ability Unavailable", style);
+				GUI.Label(new Rect(0, 0, 200, 25), "Ability Unavailable", skin.customStyles[7]);
 			}
-			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.strikerAbility.amount.ToString(), style);
+			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.strikerAbility.amount.ToString(), skin.customStyles[7]);
 		}
 
 		GUI.EndGroup();

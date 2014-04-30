@@ -69,6 +69,7 @@ public class AbilitiesManager : MonoBehaviour {
 				abilityVendor.abilityVendor[i].GetComponent<SellableItem>().currentUpgrade = 0;
 			}
 		}
+		Initialize();
 		abilityVendor.Reset();
 	}
 	

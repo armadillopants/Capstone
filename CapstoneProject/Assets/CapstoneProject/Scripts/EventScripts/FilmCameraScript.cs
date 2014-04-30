@@ -10,6 +10,7 @@ public class FilmCameraScript : MonoBehaviour {
 	
 	private float maxFOV = 20f;
 	private float minFOV = 60f;
+	private DayNightCycle cycle;
 
 	void Start(){
 		cam = GetComponent<Camera>().camera;
@@ -18,6 +19,8 @@ public class FilmCameraScript : MonoBehaviour {
 		foreach(GameObject loc in GameObject.FindGameObjectsWithTag("Film")){
 			filmLocations.Add(loc);
 		}
+		
+		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 	}
 	
 	void Update(){
@@ -27,6 +30,10 @@ public class FilmCameraScript : MonoBehaviour {
 		
 		if(Input.GetKeyDown(KeyCode.Tab)){
 			displayLocations = !displayLocations;
+		}
+		
+		if(Input.GetKey(KeyCode.C)){
+			cycle.curTime += 50f*Time.deltaTime;
 		}
 		
 		if(Input.GetKeyDown(KeyCode.Alpha4)){
