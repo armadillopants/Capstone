@@ -224,7 +224,7 @@ public class GameController : MonoBehaviour {
 	
 	void UpdateResources(){
 		iTween.ValueTo(gameObject, 
-				iTween.Hash("from", curResources,"to",amountOfResources,"time", 1f,"onupdate", "ChangeScoreTo"));
+				iTween.Hash("from", curResources,"to",amountOfResources,"time", 0.1f,"onupdate", "ChangeScoreTo"));
 	}
 	
 	public void DeleteResources(int amount){

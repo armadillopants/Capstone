@@ -290,7 +290,7 @@ Transition:
   - m_ConditionMode: 2
     m_ConditionEvent: Reloading
     m_EventTreshold: 0
-    m_ExitTime: .872340441
+    m_ExitTime: .870000005
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -854,7 +854,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: a980c02f3014eff4fbc9fcbc186ab61f, type: 3}
   m_ParentStateMachine: {fileID: 110767336}
-  m_Position: {x: 588, y: 84, z: 0}
+  m_Position: {x: 576, y: 84, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 

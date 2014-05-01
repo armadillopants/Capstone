@@ -366,7 +366,6 @@ public class UIManager : MonoBehaviour {
 			} else {
 				GUI.Label(new Rect(0, 0, 200, 25), "Ability Unavailable", skin.customStyles[7]);
 			}
-			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.orbitAbility.amount.ToString(), skin.customStyles[7]);
 		} else if(holder.GetComponent<RockRainAbility>() != null){
 			GUI.DrawTexture(new Rect(200, 0, 
 				-abilityRect.width*AbilitiesManager.Instance.rockRainAbility.maxCoolDown, abilityRect.height), 
@@ -380,7 +379,6 @@ public class UIManager : MonoBehaviour {
 			} else {
 				GUI.Label(new Rect(0, 0, 200, 25), "Ability Unavailable", skin.customStyles[7]);
 			}
-			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.rockRainAbility.amount.ToString(), skin.customStyles[7]);
 		} else if(holder.GetComponent<StrikerAbility>() != null){
 			GUI.DrawTexture(new Rect(200, 0, 
 				-abilityRect.width*AbilitiesManager.Instance.strikerAbility.maxCoolDown, abilityRect.height), 
@@ -394,7 +392,6 @@ public class UIManager : MonoBehaviour {
 			} else {
 				GUI.Label(new Rect(0, 0, 200, 25), "Ability Unavailable", skin.customStyles[7]);
 			}
-			GUI.Label(new Rect(230, 0, 20, 30), AbilitiesManager.Instance.strikerAbility.amount.ToString(), skin.customStyles[7]);
 		}
 
 		GUI.EndGroup();

@@ -12,8 +12,8 @@ public class XMLReader : MonoBehaviour {
 	void Awake(){
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("WeaponData", typeof(TextAsset));
-		doc.LoadXml(asset.text);
-		//doc.Load(Application.dataPath + "/WeaponData.xml");
+		//doc.LoadXml(asset.text);
+		doc.Load(Application.dataPath + "/WeaponData.xml");
 		
 		Reset();
 		
@@ -31,6 +31,12 @@ public class XMLReader : MonoBehaviour {
 		for(int i=0; i<manager.allWeapons.Count; i++){
 			SetWeapon(manager.allWeapons[i].id, "/BaseValueData/WeaponData/"+manager.allWeapons[i].name);
 		}
+		ItemVendor vendor = GameObject.Find("Vendor").GetComponent<ItemVendor>();
+		for(int i=0; i<vendor.itemVendor.Count; i++){
+			if(vendor.itemVendor[i].name == "SatelliteTower"){
+				vendor.itemVendor[i].GetComponent<SellableItem>().soldOut = false;
+			}
+		}
 	}
 	
 	void SetWeapon(int i, string path){
@@ -46,6 +52,11 @@ public class XMLReader : MonoBehaviour {
 			manager.allWeapons[i].coneAngle = float.Parse(firstNode.Attributes.GetNamedItem("coneAngle").Value);
 			manager.allWeapons[i].costPerBullet = int.Parse(firstNode.Attributes.GetNamedItem("costPerBullet").Value);
 			manager.allWeapons[i].GetComponent<SellableItem>().cost = int.Parse(firstNode.Attributes.GetNamedItem("cost").Value);
+			if(manager.allWeapons[i].name == "RocketLauncher"){
+				manager.allWeapons[i].projectile.GetComponent<Projectile>().isHoming = false;
+				manager.allWeapons[i].projectile.GetComponent<Projectile>().bulletSpeed = 15;
+				manager.allWeapons[i].projectile.GetComponent<Projectile>().damp = 6f;
+			}
 			manager.allWeapons[i].Replenish();
 		}
 	}

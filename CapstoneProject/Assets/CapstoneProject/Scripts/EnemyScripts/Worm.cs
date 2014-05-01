@@ -51,6 +51,7 @@ public class Worm : Enemy {
 		}
 		
 		if(health.IsDead){
+			StopAllCoroutines();
 			state = EnemyState.DEAD;
 			rigid.constraints = RigidbodyConstraints.FreezeAll;
 			rigid.isKinematic = true;

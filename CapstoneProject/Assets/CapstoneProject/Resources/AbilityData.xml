@@ -7,24 +7,18 @@
 		<OrbitAbility>
 			<Upgrades>
 				<Upgrade0
-					amount="3"
 					damage="10"
-					cooldown="15"
-					costPerAmount="50"
+					cooldown="20"
 					cost="300">
 				</Upgrade0>
 				<Upgrade1
-					amount="4"
 					damage="15"
-					cooldown="12"
-					costPerAmount="50"
+					cooldown="15"
 					cost="350">
 				</Upgrade1>
 				<Upgrade2
-					amount="5"
 					damage="20"
 					cooldown="10"
-					costPerAmount="50"
 					cost="400">
 				</Upgrade2>
 			</Upgrades>
@@ -32,24 +26,18 @@
 		<RockRainAbility>
 			<Upgrades>
 				<Upgrade0
-					amount="3"
 					damage="50"
 					cooldown="30"
-					costPerAmount="75"
 					cost="400">
 				</Upgrade0>
 				<Upgrade1
-					amount="4"
 					damage="55"
 					cooldown="25"
-					costPerAmount="75"
 					cost="450">
 				</Upgrade1>
 				<Upgrade2
-					amount="5"
 					damage="60"
 					cooldown="20"
-					costPerAmount="75"
 					cost="500">
 				</Upgrade2>
 			</Upgrades>
@@ -57,24 +45,18 @@
 		<StrikerAbility>
 			<Upgrades>
 				<Upgrade0
-					amount="3"
 					damage="5"
 					cooldown="45"
-					costPerAmount="100"
 					cost="500">
 				</Upgrade0>
 				<Upgrade1
-					amount="4"
 					damage="10"
 					cooldown="40"
-					costPerAmount="100"
 					cost="550">
 				</Upgrade1>
 				<Upgrade2
-					amount="5"
 					damage="15"
 					cooldown="35"
-					costPerAmount="100"
 					cost="600">
 				</Upgrade2>
 			</Upgrades>

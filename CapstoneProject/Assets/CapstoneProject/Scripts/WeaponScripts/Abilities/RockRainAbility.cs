@@ -44,7 +44,6 @@ public class RockRainAbility : MonoBehaviour {
 	}
 	
 	void BeginAbility(){
-		AbilitiesManager.Instance.rockRainAbility.amount--;
 		for(int i=0; i<spawnAmount; i++){
 			pos = player.position + 
 				new Vector3(Mathf.Cos(Random.Range(0,360)), 

@@ -75,9 +75,6 @@ public class Fortification : MonoBehaviour {
 			foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
 				vendor.Cancel();
 			}
-			foreach(AbilityAmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AbilityAmmoVendorContainer>().abilityAmmoVendor){
-				vendor.Cancel();
-			}
 			Destroy(GameController.Instance.current);
 			GameController.Instance.current = null;
 			Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();

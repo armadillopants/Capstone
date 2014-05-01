@@ -15,8 +15,8 @@ public class XMLVendorReader : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("VendorData", typeof(TextAsset));
-		doc.LoadXml(asset.text);
-		//doc.Load(Application.dataPath + "/VendorData.xml");
+		//doc.LoadXml(asset.text);
+		doc.Load(Application.dataPath + "/VendorData.xml");
 	}
 	
 	public int GetCurrentWeaponCost(int cost, int i, string itemName, int currentUpgrade){

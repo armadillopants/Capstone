@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class Tutorial : MonoBehaviour {
 	
@@ -295,7 +295,7 @@ public class Tutorial : MonoBehaviour {
 	
 	void DisplaySatelliteInfo(){
 		waitTime -= Time.deltaTime;
-		if(waitTime <= 10f && waitTime >= 5f){
+		if(waitTime >= 5f && waitTime <= 10f){
 			key = "DisplaySatelliteInfo";
 		} else if(waitTime >= 0f && waitTime < 5f){
 			key = "DisplaySatelliteInfo2";
@@ -393,7 +393,7 @@ public class Tutorial : MonoBehaviour {
 		} else if(curKey == "ShipAttacked"){
 			DrawScreen("Mayday, mayday, ship under attack!");
 		} else if(curKey == "ShipDead"){
-			DrawScreen("The Ship has been destroyed! No more build phases");
+			DrawScreen("The Ship was destroyed! No more build phases");
 		}
 	}
 }

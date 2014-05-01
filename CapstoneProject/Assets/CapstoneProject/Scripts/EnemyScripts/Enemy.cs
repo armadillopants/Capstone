@@ -190,6 +190,10 @@ public class Enemy : AIPath {
 				// No extra damage taken
 			}
 		}
+		
+		if(tr.position.y > 0){
+			tr.position = new Vector3(tr.position.x, 0, tr.position.z);
+		}
 	}
 	
 	public void ClampCoolDownTime(){

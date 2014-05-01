@@ -5097,28 +5097,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beginAbility: 0
   orbitAbility:
-    amount: 0
-    maxAmount: 0
     damage: 0
     coolDown: 0
     maxCoolDown: 0
-    costPerAmount: 0
     cost: 0
   rockRainAbility:
-    amount: 0
-    maxAmount: 0
     damage: 0
     coolDown: 0
     maxCoolDown: 0
-    costPerAmount: 0
     cost: 0
   strikerAbility:
-    amount: 0
-    maxAmount: 0
     damage: 0
     coolDown: 0
     maxCoolDown: 0
-    costPerAmount: 0
     cost: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -5236,7 +5227,6 @@ MonoBehaviour:
   gunPos: {fileID: 400134}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  magazine: {fileID: 100000, guid: ded91ba2888381448ab17a831c82344a, type: 2}
   isReloading: 0
   isAutomatic: 1
   isFiring: 0
@@ -5279,7 +5269,6 @@ MonoBehaviour:
   gunPos: {fileID: 400132}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  magazine: {fileID: 100000, guid: 059ee51086c65974189b6593cd0bc7de, type: 2}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0
@@ -5322,7 +5311,6 @@ MonoBehaviour:
   gunPos: {fileID: 400138}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
-  magazine: {fileID: 0}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0
@@ -5365,7 +5353,6 @@ MonoBehaviour:
   gunPos: {fileID: 400136}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
-  magazine: {fileID: 0}
   isReloading: 0
   isAutomatic: 1
   isFiring: 0
@@ -5408,7 +5395,6 @@ MonoBehaviour:
   gunPos: {fileID: 400134}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  magazine: {fileID: 100000, guid: ded91ba2888381448ab17a831c82344a, type: 2}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0
@@ -5451,7 +5437,6 @@ MonoBehaviour:
   gunPos: {fileID: 400134}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  magazine: {fileID: 100000, guid: 33b52f3ecc0149e4abf5a5bd3cd48055, type: 2}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0
@@ -5494,7 +5479,6 @@ MonoBehaviour:
   gunPos: {fileID: 400138}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
-  magazine: {fileID: 0}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0
@@ -5537,7 +5521,6 @@ MonoBehaviour:
   gunPos: {fileID: 400136}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
-  magazine: {fileID: 0}
   isReloading: 0
   isAutomatic: 1
   isFiring: 0
@@ -5584,7 +5567,6 @@ MonoBehaviour:
   gunPos: {fileID: 400132}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  magazine: {fileID: 100000, guid: 059ee51086c65974189b6593cd0bc7de, type: 2}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0
@@ -5627,7 +5609,6 @@ MonoBehaviour:
   gunPos: {fileID: 400132}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  magazine: {fileID: 100000, guid: 059ee51086c65974189b6593cd0bc7de, type: 2}
   isReloading: 0
   isAutomatic: 1
   isFiring: 0
@@ -5670,7 +5651,6 @@ MonoBehaviour:
   gunPos: {fileID: 400138}
   muzzleFlash: {fileID: 2300000, guid: 0f50b0f87a71755459788e1885a79760, type: 2}
   lightFlash: {fileID: 10800000, guid: f62393d9f8f535241a9c156646467149, type: 2}
-  magazine: {fileID: 0}
   isReloading: 0
   isAutomatic: 1
   isFiring: 0
@@ -5714,7 +5694,6 @@ MonoBehaviour:
   gunPos: {fileID: 400136}
   muzzleFlash: {fileID: 0}
   lightFlash: {fileID: 0}
-  magazine: {fileID: 0}
   isReloading: 0
   isAutomatic: 0
   isFiring: 0

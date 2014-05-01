@@ -262,7 +262,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
@@ -283,7 +283,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1

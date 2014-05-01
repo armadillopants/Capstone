@@ -54,8 +54,8 @@ public class Spawner : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("WaveData", typeof(TextAsset));
-		doc.LoadXml(asset.text);
-		//doc.Load(Application.dataPath + "/WaveData.xml");
+		//doc.LoadXml(asset.text);
+		doc.Load(Application.dataPath + "/WaveData.xml");
 	}
 	
 	public void SetWaveData(Wave wave, int waveNum){
@@ -279,7 +279,7 @@ public class Spawner : MonoBehaviour {
 			rot = Quaternion.identity;
 		}
 		
-		GameObject enemyToSpawn = SpawnEnemy(enemy.name, pos, rot);//ObjectPool.Spawn(enemy, pos, rot);
+		GameObject enemyToSpawn = SpawnEnemy(enemy.name, pos, rot);
 		enemyToSpawn.name = enemy.name;
 		if(enemy.name != "Worm"){
 			if(canDig && pos == digPoint.position){

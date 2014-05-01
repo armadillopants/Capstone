@@ -51,7 +51,6 @@ public class StrikerAbility : MonoBehaviour {
 	}
 	
 	void BeginAbility(){
-		AbilitiesManager.Instance.strikerAbility.amount--;
 		StartCoroutine("SpawnOrbitHolders");
 	}
 	

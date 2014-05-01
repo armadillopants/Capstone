@@ -29,7 +29,6 @@ public class BaseWeapon : MonoBehaviour {
 	private Light gunFlash;
 	public Renderer muzzleFlash;
 	public Light lightFlash;
-	public GameObject magazine;
 	
 	public bool isReloading = false;
 	public bool isAutomatic = false;
@@ -220,10 +219,7 @@ public class BaseWeapon : MonoBehaviour {
 	private IEnumerator Reload(){
 		// Wait for reload time first and then add more bullets!
 		isReloading = true;
-		if(magazine){
-			Instantiate(magazine, transform.position, Quaternion.identity);
-		}
-		
+
 		GameController.Instance.canShoot = false;
 		
 		if(audio){

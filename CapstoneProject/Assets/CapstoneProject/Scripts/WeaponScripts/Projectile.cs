@@ -18,9 +18,12 @@ public class Projectile : MonoBehaviour {
 		trans = transform;
 		spawnTime = Time.time;
 		if(isPlayers){
-			weapon = GameController.Instance.GetPlayer().GetComponentInChildren<BaseWeapon>();
+			weapon = GameController.Instance.GetPlayer().GetComponentInChildren<WeaponManager>().allWeapons[6];
 			lifeTime = weapon.range;
 			distance = 1000f;
+			bulletSpeed = weapon.projectile.GetComponent<Projectile>().bulletSpeed;
+			isHoming = weapon.projectile.GetComponent<Projectile>().isHoming;
+			damp = weapon.projectile.GetComponent<Projectile>().damp;
 		} else {
 			lifeTime = 3f;
 			distance = 1000f;

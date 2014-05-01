@@ -28,7 +28,8 @@ public class AbilitiesManager : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("AbilityData", typeof(TextAsset));
-		doc.LoadXml(asset.text);
+		//doc.LoadXml(asset.text);
+		doc.Load(Application.dataPath + "/AbilityData.xml");
 		
 		Initialize();
 	}
@@ -52,12 +53,9 @@ public class AbilitiesManager : MonoBehaviour {
 	
 	public void ResetValues(Ability ability, string path){
 		XmlNode firstNode = doc.SelectSingleNode(path);
-		ability.maxAmount = int.Parse(firstNode.Attributes.GetNamedItem("amount").Value);
-		ability.amount = ability.maxAmount;
 		ability.damage = float.Parse(firstNode.Attributes.GetNamedItem("damage").Value);
 		ability.maxCoolDown = float.Parse(firstNode.Attributes.GetNamedItem("cooldown").Value);
 		ability.coolDown = ability.maxCoolDown;
-		ability.costPerAmount = int.Parse(firstNode.Attributes.GetNamedItem("costPerAmount").Value);
 		ability.cost = int.Parse(firstNode.Attributes.GetNamedItem("cost").Value);
 	}
 	
@@ -88,23 +86,18 @@ public class AbilitiesManager : MonoBehaviour {
 	void Update(){
 		if(GameController.Instance.canShoot){
 			if(Input.GetKeyDown(KeyCode.E) && beginAbility){
-				if(holder.transform.GetComponent<OrbitAbility>() != null && orbitAbility.amount > 0){
+				if(holder.transform.GetComponent<OrbitAbility>() != null){
 					holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
 					beginAbility = false;
-				} else if(holder.transform.GetComponent<RockRainAbility>() != null && rockRainAbility.amount > 0){
+				} else if(holder.transform.GetComponent<RockRainAbility>() != null){
 					holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
 					beginAbility = false;
-				} else if(holder.transform.GetComponent<StrikerAbility>() != null && strikerAbility.amount > 0){
+				} else if(holder.transform.GetComponent<StrikerAbility>() != null){
 					holder.SendMessage("BeginAbility", SendMessageOptions.DontRequireReceiver);
 					beginAbility = false;
 				}
 			}
 		}
-	}
-	
-	public void AddAmount(Ability ability, int howMuch){
-	 	ability.maxAmount += howMuch;
-		ability.amount = ability.maxAmount;
 	}
 	
 	public void SetCoolDown(Ability ability){

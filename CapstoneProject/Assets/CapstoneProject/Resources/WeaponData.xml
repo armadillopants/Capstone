@@ -125,7 +125,7 @@
 			bulletsPerClip= "25"
 			clips= "6"
 			reloadSpeed= "1.5"
-			damage= "15"
+			damage= "5"
 			coneAngle= "1.7"
 			costPerBullet= "1"
 			cost= "150">

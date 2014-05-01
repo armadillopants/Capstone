@@ -37,7 +37,6 @@ public class OrbitAbility : MonoBehaviour {
 	}
 	
 	void BeginAbility(){
-		AbilitiesManager.Instance.orbitAbility.amount--;
 		Collider[] hits = Physics.OverlapSphere(player.position, Mathf.Infinity);
 		foreach(Collider hit in hits){
 			if(hit.tag == Globals.INTERACTABLE_ITEM){
