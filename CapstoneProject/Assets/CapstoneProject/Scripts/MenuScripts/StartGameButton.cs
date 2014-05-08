@@ -60,6 +60,7 @@ public class StartGameButton : MonoBehaviour {
 	private IEnumerator RenderMenu(){
 		yield return new WaitForSeconds(3f);
 		GameObject.Find("MainMenu").GetComponent<MenuContainer>().UnRenderMenu();
+		GameObject.Find("MainMenu").GetComponent<MeshRenderer>().enabled = true;
 		MenuManager.Instance.menuState = MenuManager.MenuState.MAINMENU;
 		lerpToStart = false;
 	}

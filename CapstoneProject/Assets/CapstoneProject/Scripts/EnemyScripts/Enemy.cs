@@ -10,8 +10,8 @@ public class Enemy : AIPath {
 	protected Animation anim;
 	public float animationSpeed = 0.2f;
 	
-	private Transform playerTarget;
-	private Transform shipTarget;
+	protected Transform playerTarget;
+	protected Transform shipTarget;
 	public Transform lastTarget;
 	public Transform curTarget;
 	
@@ -27,6 +27,8 @@ public class Enemy : AIPath {
 	public float targetHeight = 1f;
 	private int amountToGive = 0;
 	protected float sleepVelocity = 0.4f;
+	public float attackRange = 3f;
+	public float attackShipRange = 3f;
 
 	protected bool isTakingExtraDamage = false;
 	protected ParticleEmitter emitter;
@@ -73,6 +75,8 @@ public class Enemy : AIPath {
 	}
 	
 	void Reset(){
+		rigid.isKinematic = false;
+		GetComponent<Collider>().enabled = true;
 		playerTarget = GameController.Instance.GetPlayer();
 		shipTarget = GameController.Instance.GetShip();
 		SwitchTarget(Globals.PLAYER);
@@ -80,8 +84,6 @@ public class Enemy : AIPath {
 		health.IsDead = false;
 		state = EnemyState.CHASING;
 		isDead = false;
-		rigid.isKinematic = false;
-		GetComponent<Collider>().enabled = true;
 		health.ModifyHealth(Spawner.spawner.SetEnemyHealth(gameObject.name));
 		speed = Spawner.spawner.SetEnemyMoveSpeed(gameObject.name);
 		turningSpeed = Spawner.spawner.SetEnemyTurnSpeed(gameObject.name);
@@ -97,6 +99,7 @@ public class Enemy : AIPath {
 		}
 		
 		currentCoolDown = coolDownLength;
+		rigid.velocity = Vector3.zero;
 	}
 	
 	public Animation GetAnim(){
@@ -174,8 +177,30 @@ public class Enemy : AIPath {
 		if(health.IsDead){
 			state = EnemyState.DEAD;
 			rigid.isKinematic = true;
+		} else {
+			if(target != null){
+				Vector3 distance = (tr.position - target.position);
+				float sqrLength = distance.sqrMagnitude;
+				if(target.tag == Globals.PLAYER || target.tag == Globals.FORTIFICATION){
+					if(sqrLength <= attackRange){
+						// Start dealing damage
+						doDamage = true;
+						Attack(target.gameObject);
+					} else {
+						doDamage = false;
+					}
+				} else if(target.tag == Globals.SHIP){
+					if(sqrLength <= attackShipRange){
+						// Start dealing damage
+						doDamage = true;
+						Attack(target.gameObject);
+					} else {
+						doDamage = false;
+					}
+				}
+			}
 		}
-		
+	
 		ClampCoolDownTime();
 		
 		if(!isTakingExtraDamage){
@@ -205,20 +230,9 @@ public class Enemy : AIPath {
 		curTarget = target; // Store current target
 	}
 	
-	void OnCollisionStay(Collision collision){
-		// If we collide with the target
-		if(target != null){
-			if(collision.gameObject.tag == target.tag){
-				// Start dealing damage
-				doDamage = true;
-				Attack(collision.gameObject);
-			}
-		}
-	}
-	
 	void OnCollisionExit(){
 		if(!rigid.isKinematic){
-			rigid.velocity = new Vector3(0,0,0);
+			rigid.velocity = Vector3.zero;
 		}
 		doDamage = false;
 	}
@@ -247,10 +261,6 @@ public class Enemy : AIPath {
 		} else {
 			return false;
 		}
-	}
-	
-	public override void OnTargetReached(){
-		Debug.Log("Reached Target");
 	}
 	
 	public virtual void FixedUpdate(){

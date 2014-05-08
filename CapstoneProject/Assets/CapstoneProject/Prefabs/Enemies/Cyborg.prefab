@@ -1169,13 +1169,13 @@ GameObject:
   - 4: {fileID: 400162}
   - 111: {fileID: 11100000}
   - 54: {fileID: 5400000}
-  - 136: {fileID: 13600000}
   - 114: {fileID: 11400012}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 82: {fileID: 8200000}
+  - 65: {fileID: 6500000}
   m_Layer: 13
   m_Name: Cyborg
   m_TagString: Enemy
@@ -2218,6 +2218,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100162}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 6, z: 2}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2312,7 +2324,6 @@ MonoBehaviour:
   spawnPoint: {fileID: 400004}
   distance: 10
   loseWeapon: {fileID: 8300000, guid: c7e7edea85f1f6649a0393b2b703720e, type: 3}
-  targetAquired: {fileID: 8300000, guid: 01016e33f6581b64c9c379483794f248, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2344,7 +2355,7 @@ MonoBehaviour:
   turningSpeed: 1.5
   slowdownDistance: .600000024
   pickNextWaypointDist: 2
-  forwardLook: 2
+  forwardLook: 1
   endReachedDistance: 0
   closestOnPathCheck: 1
   state: 0
@@ -2358,12 +2369,14 @@ MonoBehaviour:
   damageAmount: 15
   distance: 10
   targetHeight: 0
+  attackRange: 1.5
+  attackShipRange: 15
   burnDamage: .5
   lightningDamage: 3
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
   fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
   lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 1f824402f49a4b04e8305528dd67c4d6, type: 3}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2405,7 +2418,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHealth: 50
   maxHealth: 50
-  canTakeDamage: 1
   explosion: {fileID: 100004, guid: 8e988db245bca8b4f9abd996259c277d, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}
@@ -2414,19 +2426,6 @@ MonoBehaviour:
   healthColor: {r: 1, g: 0, b: 0, a: 0}
   damageTex: {fileID: 0}
   healthBarFrame: {fileID: 2800000, guid: 32ff7161735413d4aa3ecb8dcd4cdc44, type: 3}
---- !u!136 &13600000
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100162}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 6
-  m_Direction: 1
-  m_Center: {x: 0, y: 3, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

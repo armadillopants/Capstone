@@ -76,38 +76,40 @@ public class BuildPanelGUI : MonoBehaviour {
 		Rect drawArea = drawRect;
 		int regionHeight = labelHeight + (labelOffset*3);
 		
-		GUI.BeginGroup(drawArea);
-	    GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
-	    for(int i=0; i<allForts.Count; i++){
-			
-			GUI.BeginGroup(new Rect(labelOffset*2, i*regionHeight+labelOffset, drawArea.width, regionHeight*labelOffset));
-
-			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost){
-				itemLabelStyle.normal.background = labelCanBuy;
-			} else {
-				itemLabelStyle.normal.background = labelCantBuy;
-			}
-			
-			GUI.Label(new Rect(labelOffset, 0, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().itemName, itemLabelStyle);
-			
-			GUI.Label(new Rect(labelOffset, buttonHeight+labelOffset, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().description, descriptionStyle);
-			
-			if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut && GameController.Instance.GetWaveController().GetWaveNumber() >= 3){
-				if(GUI.Button(new Rect(buttonPosX, labelOffset/2, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
-					itemVendor.Purchase(allForts[i]);
-					if(allForts[i].name == "SatelliteTower"){
-						allForts[i].GetComponent<SellableItem>().soldOut = true;
-					}
+		if(!UIManager.Instance.isPaused){
+			GUI.BeginGroup(drawArea);
+		    GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
+		    for(int i=0; i<allForts.Count; i++){
+				
+				GUI.BeginGroup(new Rect(labelOffset*2, i*regionHeight+labelOffset, drawArea.width, regionHeight*labelOffset));
+	
+				if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost){
+					itemLabelStyle.normal.background = labelCanBuy;
+				} else {
+					itemLabelStyle.normal.background = labelCantBuy;
 				}
-			} else if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut && GameController.Instance.GetWaveController().GetWaveNumber() < 3){
-				if(allForts[i].name.Contains("Barrier")){
+				
+				GUI.Label(new Rect(labelOffset, 0, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().itemName, itemLabelStyle);
+				
+				GUI.Label(new Rect(labelOffset, buttonHeight+labelOffset, labelWidth, labelHeight), allForts[i].GetComponent<SellableItem>().description, descriptionStyle);
+				
+				if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut && GameController.Instance.GetWaveController().GetWaveNumber() >= 3){
 					if(GUI.Button(new Rect(buttonPosX, labelOffset/2, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
 						itemVendor.Purchase(allForts[i]);
+						if(allForts[i].name == "SatelliteTower"){
+							allForts[i].GetComponent<SellableItem>().soldOut = true;
+						}
+					}
+				} else if(GameController.Instance.GetResources() >= allForts[i].GetComponent<SellableItem>().cost && !allForts[i].GetComponent<SellableItem>().soldOut && GameController.Instance.GetWaveController().GetWaveNumber() < 3){
+					if(allForts[i].name.Contains("Barrier")){
+						if(GUI.Button(new Rect(buttonPosX, labelOffset/2, buttonWidth, buttonHeight), "BUY: "+allForts[i].GetComponent<SellableItem>().cost, buttonStyle)){
+							itemVendor.Purchase(allForts[i]);
+						}
 					}
 				}
-			}
-			GUI.EndGroup();
-	    }
-	    GUI.EndGroup();
+				GUI.EndGroup();
+		    }
+		    GUI.EndGroup();
+		}
 	}
 }

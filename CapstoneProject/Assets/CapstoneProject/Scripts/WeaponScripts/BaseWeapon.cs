@@ -45,6 +45,7 @@ public class BaseWeapon : MonoBehaviour {
 	public AudioClip reloadClip;
 	public AudioClip emptyClip;
 	public bool oneShot = false;
+	private int clickCount = 0;
 	
 	public void Replenish(){
 		bulletsLeft = bulletsPerClip;
@@ -88,6 +89,12 @@ public class BaseWeapon : MonoBehaviour {
 			}
 		
 			if(Input.GetMouseButtonDown(0) && bulletsLeft <= 0 && clips <= 0){
+				clickCount++;
+				if(clickCount > 2){
+					Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+					tut.SetKey("OutOfAmmo", 5f);
+					clickCount = 0;
+				}
 				if(audio){
 					audio.PlayOneShot(emptyClip);
 				}

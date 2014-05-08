@@ -43,12 +43,12 @@ public class Wave : MonoBehaviour {
 			
 			if(waveNumber == 2){
 				Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
-				tut.SetKey("BuildScreen");
+				tut.SetKey("BuildScreen", 5f);
 			}
 			
 			if(waveNumber % 5 == 0){
 				Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
-				tut.SetKey("DisplayEnemyIncrease");
+				tut.SetKey("DisplayEnemyIncrease", 5f);
 			}
 			
 		} else {

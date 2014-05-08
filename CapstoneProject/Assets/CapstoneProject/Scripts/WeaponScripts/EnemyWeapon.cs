@@ -27,6 +27,7 @@ public class EnemyWeapon : MonoBehaviour {
 	}
 
 	void OnEnable(){
+		dropGun = false;
 		gunObject = (GameObject)Instantiate(gunPrefab, spawnPoint.position, spawnPoint.rotation);
 		gunObject.transform.parent = spawnPoint;
 		guns = GetComponentsInChildren<BaseWeapon>();
@@ -59,6 +60,7 @@ public class EnemyWeapon : MonoBehaviour {
 					gunObject.AddComponent<DestroyTimer>();
 					gunObject.transform.parent = null;
 					gunObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+					gunObject.GetComponent<Collider>().enabled = true;
 					gunObject = null;
 					anim.CrossFade("Walk", 0.2f);
 					cyborg.speed = tempSpeed+0.5f;

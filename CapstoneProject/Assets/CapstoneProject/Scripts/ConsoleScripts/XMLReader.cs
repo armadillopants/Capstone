@@ -12,8 +12,8 @@ public class XMLReader : MonoBehaviour {
 	void Awake(){
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("WeaponData", typeof(TextAsset));
-		//doc.LoadXml(asset.text);
-		doc.Load(Application.dataPath + "/WeaponData.xml");
+		doc.LoadXml(asset.text);
+		//doc.Load(Application.dataPath + "/WeaponData.xml");
 		
 		Reset();
 		

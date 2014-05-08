@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-public class RoboTiger : Enemy {
+public class Crusher : Enemy {
 	
 	private float spawningTime = Random.Range(30f, 60f);
 	private int amountToSpawn = Random.Range(1, 5);
-	public GameObject cyberCat;
-	public GameObject beamDown;
-	public AudioClip tigerGrowl;
+	public GameObject scavenger;
+	public AudioClip crusherGrowl;
 	
 	void OnDisable(){
 		spawningTime = Random.Range(30f, 60f);
@@ -23,15 +23,16 @@ public class RoboTiger : Enemy {
 				Vector3 pos = tr.position + new Vector3(Mathf.Cos(Random.Range(0,360)), 
 											1, 
 											Mathf.Sin(Random.Range(0,360)))*(Random.Range(5,5));
-				ObjectPool.Spawn(beamDown, pos, Quaternion.identity);
-				GameObject cat = ObjectPool.Spawn(cyberCat, pos, Quaternion.identity);
+				GameObject scav = ObjectPool.Spawn(scavenger, new Vector3(pos.x, -1f, pos.z), Quaternion.Euler(-90f,0,0));
 				// Don't want any more objects than needed, these are temps
-				cat.AddComponent<DestroyWhenDead>();
-				cat.name = cyberCat.name;
+				scav.GetComponent<Enemy>().isUnderground = true;
+				scav.AddComponent<DigOutOfGround>();
+				scav.AddComponent<DestroyWhenDead>();
+				scav.name = scavenger.name;
 			}
 			spawningTime = Random.Range(30f, 60f);
 			amountToSpawn = Random.Range(1, 5);
-			audio.PlayOneShot(tigerGrowl);
+			audio.PlayOneShot(crusherGrowl);
 		}
 	}
 }

@@ -1295,7 +1295,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHealth: 75
   maxHealth: 75
-  canTakeDamage: 1
   explosion: {fileID: 100002, guid: 7fb876ca4b374314f9997ec647025060, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}
@@ -1335,7 +1334,7 @@ MonoBehaviour:
   turningSpeed: 2
   slowdownDistance: .600000024
   pickNextWaypointDist: 2
-  forwardLook: 2
+  forwardLook: 1
   endReachedDistance: 0
   closestOnPathCheck: 1
   state: 0
@@ -1349,6 +1348,8 @@ MonoBehaviour:
   damageAmount: 10
   distance: 10
   targetHeight: 0
+  attackRange: 1.5
+  attackShipRange: 15
   burnDamage: 4
   lightningDamage: .300000012
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}

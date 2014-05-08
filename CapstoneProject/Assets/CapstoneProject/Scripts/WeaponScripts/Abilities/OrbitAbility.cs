@@ -31,6 +31,14 @@ public class OrbitAbility : MonoBehaviour {
 			}
 		}
 		
+		if(GameController.Instance.GetWaveController().GetComponent<Fortification>() != null || MenuManager.Instance.menuState == MenuManager.MenuState.ENDGAME){
+			for(int i=0; i<hold.Length; i++){
+				Destroy(hold[i].gameObject);
+				items[i].GetComponent<Health>().TakeDamage(100f);
+			}
+			attachItemsToPlayer = false;
+		}
+		
 		if(attachItemsToPlayer){
 			CollectItems();
 		}
@@ -70,11 +78,11 @@ public class OrbitAbility : MonoBehaviour {
 	
 	void CollectItems(){
 		for(int i=0; i<hold.Length; i++){
-			if(items[i]){
+			if(items[i].GetComponent<Health>() != null){
 				items[i].transform.position = Vector3.Lerp(items[i].transform.position, hold[i].position, 10*Time.deltaTime);
 			}
 			
-			if(items[i] == null){
+			if(items[i].GetComponent<Health>() == null){
 				if(hold[i]){
 					Destroy(hold[i].gameObject);
 				}

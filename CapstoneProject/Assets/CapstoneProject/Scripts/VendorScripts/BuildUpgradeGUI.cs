@@ -49,19 +49,19 @@ public class BuildUpgradeGUI : MonoBehaviour {
 	
 	public void Draw(Rect drawRect){
 		Rect drawArea = drawRect;
-		
-		switch(state){
-		case State.FORTINFO:
-			DrawFortInfo(drawArea, style);
-			break;
-		case State.YESORNO:
-			DrawYesOrNoScreen(drawArea, style);
-			break;
-		case State.UPGRADE:
-			DrawUpgradeScreen(drawArea, style);
-			break;
+		if(!UIManager.Instance.isPaused){
+			switch(state){
+			case State.FORTINFO:
+				DrawFortInfo(drawArea, style);
+				break;
+			case State.YESORNO:
+				DrawYesOrNoScreen(drawArea, style);
+				break;
+			case State.UPGRADE:
+				DrawUpgradeScreen(drawArea, style);
+				break;
+			}
 		}
-
 	}
 	
 	void DrawFortInfo(Rect drawRect, GUIStyle style){

@@ -11,7 +11,6 @@ public class ShipIndicator : MonoBehaviour {
 	private float angle;
 	
 	private Rect indicatorRect;
-	private Vector2 pivot;
 	
 	private Texture2D shipHealthBar;
 	private Texture2D grayBar;
@@ -81,7 +80,6 @@ public class ShipIndicator : MonoBehaviour {
 				shipPos += screenCenter;
 				
 				indicatorRect = new Rect(shipPos.x, Screen.height-shipPos.y, 100, 100);
-				pivot = new Vector2(indicatorRect.xMin + indicatorRect.width * 0.5f, indicatorRect.yMin + indicatorRect.height * 0.5f);
 				
 			}
 			if(data.IsVisibleFrom(Camera.main)){

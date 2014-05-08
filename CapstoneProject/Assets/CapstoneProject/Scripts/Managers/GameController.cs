@@ -133,6 +133,11 @@ public class GameController : MonoBehaviour {
 			
 			if((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) && UIManager.Instance.uiState != UIManager.UIState.GAMEOVER && MenuManager.Instance.menuState == MenuManager.MenuState.INGAME){
 				UIManager.Instance.isPaused = true;
+				if(current){
+					Destroy(current);
+					current = null;
+					originalMats.Clear();
+				}
 			}
 			
 			if(current){
@@ -151,6 +156,7 @@ public class GameController : MonoBehaviour {
 	
 	public IEnumerator RestartGame(){
 		DestroyEnemies();
+		Spawner.spawner.Reset();
 		DestroyFortifications();
 		amountOfWavesLeft = 5;
 		curWave = 0;
@@ -171,6 +177,7 @@ public class GameController : MonoBehaviour {
 		yield return new WaitForSeconds(0.1f);
 		SpawnPlayer();
 		GameObject.Find("XMLReader").GetComponent<XMLReader>().Reset();
+		GameObject.Find("XMLReader").GetComponent<XMLVendorReader>().Reset();
 		GetPlayer().GetComponentInChildren<WeaponManager>().Reset();
 		GameObject.Find("Sun").GetComponent<DayNightCycle>().Initialize();
 		Reset();

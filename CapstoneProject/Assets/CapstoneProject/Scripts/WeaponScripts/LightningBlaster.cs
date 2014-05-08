@@ -38,7 +38,7 @@ public class LightningBlaster : BaseWeapon {
 		float timez = Time.time * speed * 2.5564f;
 		
 		for(int i=0; i<particles.Length; i++){
-			Vector3 position = Vector3.Lerp(muzzlePos.position, muzzlePos.position+muzzlePos.TransformDirection(muzzlePos.position.x,muzzlePos.position.y,range), oneOverZigs * (float)i);
+			Vector3 position = Vector3.Lerp(transform.position, transform.position+transform.TransformDirection(transform.position.x,transform.position.y,range), oneOverZigs * (float)i);
 			Vector3 offset = new Vector3(noise.Noise(timex + position.x, timex + position.y, timex + position.z),
 										noise.Noise(timey + position.x, timey + position.y, timey + position.z),
 										noise.Noise(timez + position.x, timez + position.y, timez + position.z));

@@ -20,6 +20,7 @@ public class RoboTigerWeapon : MonoBehaviour {
 	}
 
 	void OnEnable(){
+		dropGun = false;
 		gunObject = (GameObject)Instantiate(gunPrefab, spawnPoint.position, spawnPoint.rotation);
 		gunObject.transform.parent = spawnPoint;
 		gun = GetComponentInChildren<BaseWeapon>();

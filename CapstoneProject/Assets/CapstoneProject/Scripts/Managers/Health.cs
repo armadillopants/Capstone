@@ -100,7 +100,7 @@ public class Health : MonoBehaviour {
 				}
 			}
 			Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
-			tut.SetKey("ShipAttacked");
+			tut.SetKey("ShipAttacked", 5f);
 				gameObject.GetComponent<ShipDecay>().Release();
 			}
 		} else {
@@ -143,12 +143,10 @@ public class Health : MonoBehaviour {
 			rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 		} else if(gameObject.tag == Globals.INTERACTABLE_ITEM){
 			int i = Random.Range(0, GameObject.Find("InteractableItems").GetComponent<InteractableItems>().itemsPos.Count);
-			GameObject temp = (GameObject)Instantiate(gameObject, GameObject.Find("InteractableItems").GetComponent<InteractableItems>().itemsPos[i], Quaternion.identity);
-			temp.transform.parent = GameObject.Find("InteractableItems").transform;
-			temp.GetComponent<Rigidbody>().useGravity = true;
-			Destroy(temp.GetComponent<BarrelDamage>());
-			Destroy(temp.GetComponent<Health>());
-			Destroy(gameObject);
+			gameObject.transform.position = GameObject.Find("InteractableItems").GetComponent<InteractableItems>().itemsPos[i];
+			gameObject.GetComponent<Rigidbody>().useGravity = true;
+			Destroy(gameObject.GetComponent<BarrelDamage>());
+			Destroy(this);
 		} else {
 			Destroy(gameObject);
 		}

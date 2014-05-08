@@ -102,12 +102,29 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
-  resolutionDialogBanner: {fileID: 0}
+  resolutionDialogBanner: {fileID: 2800000, guid: d17c02debd9519b43950e055d903506e,
+    type: 3}
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
     - m_Icon: {fileID: 0}
       m_Size: 128
+  - m_BuildTarget: Standalone
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 9abe2adac889d85499cb451ff828c4f8, type: 3}
+      m_Size: 1024
+    - m_Icon: {fileID: 0}
+      m_Size: 512
+    - m_Icon: {fileID: 0}
+      m_Size: 256
+    - m_Icon: {fileID: 0}
+      m_Size: 128
+    - m_Icon: {fileID: 0}
+      m_Size: 48
+    - m_Icon: {fileID: 0}
+      m_Size: 32
+    - m_Icon: {fileID: 0}
+      m_Size: 16
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
@@ -157,7 +174,7 @@ PlayerSettings:
       second: 
     data:
       first: 4
-      second: Machine;Gun
+      second: 
     data:
       first: 7
       second: Machine;Gun

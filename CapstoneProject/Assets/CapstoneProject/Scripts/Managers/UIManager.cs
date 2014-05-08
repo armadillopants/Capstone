@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour {
 			DrawCurWaveScreen();
 		}
 		
-		if(GameController.Instance.EndWave() > 0){
+		if(GameController.Instance.EndWave() > 0 && uiState != UIState.GAMEOVER){
 			if(GameController.Instance.amountOfWavesLeft > 0){
 				DrawFinalWaveCountdown();
 			}
@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour {
 		
 		GUI.BeginGroup(finalWaveRect);
 		
-		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Waves until Rescue Ship's arrival: "
+		GUI.Label(new Rect(0, 0, finalWaveRect.width, finalWaveRect.height), "Waves until Rescue Ships arrival: "
 			+GameController.Instance.amountOfWavesLeft, skin.customStyles[6]);
 		
 		GUI.EndGroup();
@@ -238,6 +238,10 @@ public class UIManager : MonoBehaviour {
 		GUI.EndGroup();
 		
 		displayUI = false;
+		
+		if(GameObject.Find("Cursor")){
+			Destroy(GameObject.Find("Cursor"));
+		}
 		
 		if(GUI.Button(new Rect((Screen.width/2) - (100/2), (Screen.height/2) - (50/2), 100, 50),content,skin.customStyles[3])){
 			isPaused = false;

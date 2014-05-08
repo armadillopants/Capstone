@@ -23,7 +23,7 @@ public class FilmCameraScript : MonoBehaviour {
 		cycle = GameObject.Find("Sun").GetComponent<DayNightCycle>();
 	}
 	
-	void Update(){
+	/*void Update(){
 		if(Input.GetKeyDown(KeyCode.Space)){
 			EnableCamera();
 		}
@@ -60,7 +60,7 @@ public class FilmCameraScript : MonoBehaviour {
 				cam.fieldOfView += 5f*Time.deltaTime;
 			}
 		}
-	}
+	}*/
 	
 	void EnableCamera(){
 		cam.enabled = !cam.enabled;

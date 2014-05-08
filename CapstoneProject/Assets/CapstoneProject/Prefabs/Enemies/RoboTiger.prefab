@@ -1269,7 +1269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHealth: 120
   maxHealth: 120
-  canTakeDamage: 1
   explosion: {fileID: 100004, guid: 8e988db245bca8b4f9abd996259c277d, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}
@@ -1301,7 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786c0d05fe3b7c74dbf0b795196dc160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repathRate: .5
+  repathRate: .300000012
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
@@ -1310,7 +1309,7 @@ MonoBehaviour:
   slowdownDistance: .600000024
   pickNextWaypointDist: 2
   forwardLook: 1
-  endReachedDistance: .200000003
+  endReachedDistance: 0
   closestOnPathCheck: 1
   state: 0
   animationSpeed: .200000003
@@ -1323,8 +1322,10 @@ MonoBehaviour:
   damageAmount: 10
   distance: 15
   targetHeight: 1
-  burnDamage: 0
-  lightningDamage: 0
+  attackRange: 3
+  attackShipRange: 15
+  burnDamage: .100000001
+  lightningDamage: 2
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
   fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
   lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}

@@ -145,9 +145,9 @@ public class PooledObjects {
 		// The object should be inactive. If it's not, log a warning and use
 		// the object created the longest ago even though it's still active.
 		if(obj.activeSelf){
-			Debug.LogWarning("Spawn of " + prefab.name + 
+			/*Debug.LogWarning("Spawn of " + prefab.name + 
 				" exceeds cache size of " + cacheSize + 
-				"! Reusing already active object.", obj);
+				"! Reusing already active object.", obj);*/
 			ObjectPool.DestroyCachedObject(obj);
 		}
 		

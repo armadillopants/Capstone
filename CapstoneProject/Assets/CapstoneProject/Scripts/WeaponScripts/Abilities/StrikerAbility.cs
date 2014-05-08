@@ -39,14 +39,19 @@ public class StrikerAbility : MonoBehaviour {
 		
 		if(attachStrikerToHolder){
 			AttachStriker();
-			
 			timer -= Time.deltaTime;
+			
 			if(timer <= 0){
-				foreach(GameObject strike in GameObject.FindGameObjectsWithTag(Globals.ABILITY)){
-					Destroy(strike);
-				}
 				timer = maxTimer;
 			}
+		}
+		
+		if(GameController.Instance.GetWaveController().GetComponent<Fortification>() != null || MenuManager.Instance.menuState == MenuManager.MenuState.ENDGAME){
+			for(int i=0; i<hold.Length; i++){
+				Destroy(hold[i].gameObject);
+				Destroy(strikers[i].gameObject);
+			}
+			attachStrikerToHolder = false;
 		}
 	}
 	

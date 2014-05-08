@@ -28,8 +28,8 @@ public class AbilitiesManager : MonoBehaviour {
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("AbilityData", typeof(TextAsset));
-		//doc.LoadXml(asset.text);
-		doc.Load(Application.dataPath + "/AbilityData.xml");
+		doc.LoadXml(asset.text);
+		//doc.Load(Application.dataPath + "/AbilityData.xml");
 		
 		Initialize();
 	}

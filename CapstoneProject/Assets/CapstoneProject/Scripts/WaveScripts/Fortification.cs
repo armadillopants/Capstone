@@ -48,6 +48,7 @@ public class Fortification : MonoBehaviour {
 	
 	void Update(){
 		FortifyHandling();
+		GameController.Instance.canShoot = false;
 		
 		if(Vector3.Distance(GameController.Instance.GetPlayer().position, GameController.Instance.GetShip().position) > 20){
 			GameController.Instance.GetPlayer().position = Vector3.Lerp(GameController.Instance.GetPlayer().position, GameController.Instance.GetShip().position, 5*Time.deltaTime);
@@ -79,7 +80,7 @@ public class Fortification : MonoBehaviour {
 			GameController.Instance.current = null;
 			Tutorial tut = GameObject.Find("Tutorial").GetComponent<Tutorial>();
 			tut.key = "";
-			tut.SetKey("");
+			tut.SetKey("", 0f);
 			buildWave.BeginWave();
 			Destroy(this);
 		}

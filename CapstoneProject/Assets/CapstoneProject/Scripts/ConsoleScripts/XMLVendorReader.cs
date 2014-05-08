@@ -10,13 +10,17 @@ public class XMLVendorReader : MonoBehaviour {
 	public XmlNode firstNode;
 	
 	void Awake(){
-		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
-		manager = player.GetComponentInChildren<WeaponManager>();
+		Reset();
 		
 		TextAsset asset = new TextAsset();
 		asset = (TextAsset)Resources.Load("VendorData", typeof(TextAsset));
-		//doc.LoadXml(asset.text);
-		doc.Load(Application.dataPath + "/VendorData.xml");
+		doc.LoadXml(asset.text);
+		//doc.Load(Application.dataPath + "/VendorData.xml");
+	}
+	
+	public void Reset(){
+		GameObject player = GameObject.FindWithTag(Globals.PLAYER);
+		manager = player.GetComponentInChildren<WeaponManager>();
 	}
 	
 	public int GetCurrentWeaponCost(int cost, int i, string itemName, int currentUpgrade){

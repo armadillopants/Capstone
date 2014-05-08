@@ -7,8 +7,6 @@ public class MenuContainer : MonoBehaviour {
 	private float waitTime = 3f;
 	public bool renderMenu = false;
 	
-	public Texture2D[] frames;
-	
 	public Texture2D playNormal;
 	public Texture2D playHover;
 	public Texture2D playActive;
@@ -31,8 +29,6 @@ public class MenuContainer : MonoBehaviour {
 		if(target.curWaypoint == target.totalWayPoints){
 			if(MenuManager.Instance.menuState != MenuManager.MenuState.INGAME && !renderMenu){
 				StartCoroutine("FadeMenu");
-			} else if(MenuManager.Instance.menuState == MenuManager.MenuState.INGAME && renderMenu){
-				//UnRenderMenu();
 			}
 		}
 		
@@ -59,19 +55,7 @@ public class MenuContainer : MonoBehaviour {
 		renderMenu = false;
 	}
 	
-	private IEnumerator WaitToDrawNextFrame(){
-		yield return new WaitForSeconds(5f);
-	}
-	
 	void OnGUI(){
-		/*int index = (int)(Time.time * 10);
-		if(MenuManager.Instance.menuState == MenuManager.MenuState.MAINMENU){
-			if(index < frames.Length){
-				GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), frames[index]);
-			} else {
-				GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), frames[60]);
-			}
-		}*/
 		
 		if(renderMenu && MenuManager.Instance.menuState == MenuManager.MenuState.MAINMENU){
 			GUIContent content = new GUIContent();
@@ -83,6 +67,7 @@ public class MenuContainer : MonoBehaviour {
 			
 			if(GUI.Button(new Rect((Screen.width/2)+150,(Screen.height/2)+200,200,100),content,playButton)){
 				GameObject.Find("PlayButton").GetComponent<StartGameButton>().Execute();
+				renderer.enabled = false;
 			}
 			
 			GUIStyle quitButton = new GUIStyle();

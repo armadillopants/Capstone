@@ -50,6 +50,16 @@ public class Worm : Enemy {
 			}
 		}
 		
+		if(shipTarget){
+			if(Vector3.Distance(playerTarget.position, tr.position) > distance){
+				SwitchTarget(Globals.SHIP);
+				lastTarget = playerTarget;
+			} else if(Vector3.Distance(playerTarget.position, tr.position) <= distance){
+				SwitchTarget(Globals.PLAYER);
+				lastTarget = shipTarget;
+			}
+		}
+		
 		if(health.IsDead){
 			StopAllCoroutines();
 			state = EnemyState.DEAD;
@@ -95,10 +105,6 @@ public class Worm : Enemy {
 		}
 	}
 	
-	public override void Attack(GameObject target){
-		// Do not enter attack state, i hate hacks
-	}
-	
 	public override void FixedUpdate(){
 		switch(state){
 		case EnemyState.CHASING:
@@ -125,6 +131,7 @@ public class Worm : Enemy {
 				}
 				popUp = false;
 				popUpTimer = Random.Range(5f, 20f);
+				shootTimer = Random.Range(5f, 10f);
 				isDead = true;
 			}
 			break;
@@ -132,7 +139,6 @@ public class Worm : Enemy {
 	}
 	
 	void PlayHoverAnimation(){
-		collider.isTrigger = true;
 		anim["Attack"].wrapMode = WrapMode.Once;
 		anim.CrossFade("Attack", 0.2f);
 		StartCoroutine(WaitToEnterShootMode());
@@ -189,17 +195,16 @@ public class Worm : Enemy {
 	public override void ChaseObject(){
 		Vector3 velocity = new Vector3();
 		if(canMove){
+			collider.isTrigger = true;
 			Vector3 dir = CalculateVelocity(GetFeetPosition());
 			
-			if(popUpTimer <= 0){
-				if(Vector3.Distance(target.position, tr.position) < distance){
+			if(popUpTimer <= 0 && Vector3.Distance(target.position, tr.position) < distance){
 					popUp = true;
 					state = Enemy.EnemyState.HOVER;
 					canMove = false;
 					audio.Stop();
 					ObjectPool.Spawn(Spawner.spawner.explosion, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
 					ObjectPool.Spawn(Spawner.spawner.hole, new Vector3(tr.position.x, 0.1f, tr.position.z), Quaternion.identity);
-				}
 			} else {
 				Vector3 adjustedTargetHeight = tr.position; // Set position to variable
 				adjustedTargetHeight.y = targetHeight; // Adjust height to a set target

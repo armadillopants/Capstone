@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0935e226d06954fb1275bc724fa364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repathRate: .5
+  repathRate: .300000012
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
@@ -1202,7 +1202,7 @@ MonoBehaviour:
   slowdownDistance: .600000024
   pickNextWaypointDist: 2
   forwardLook: 1
-  endReachedDistance: .200000003
+  endReachedDistance: 0
   closestOnPathCheck: 1
   state: 0
   animationSpeed: .200000003
@@ -1215,6 +1215,8 @@ MonoBehaviour:
   damageAmount: 10
   distance: 15
   targetHeight: -2
+  attackRange: 3
+  attackShipRange: 15
   burnDamage: 2
   lightningDamage: 1
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
@@ -1266,7 +1268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHealth: 150
   maxHealth: 150
-  canTakeDamage: 1
   explosion: {fileID: 100002, guid: 7fb876ca4b374314f9997ec647025060, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}

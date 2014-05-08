@@ -97,81 +97,83 @@ public class MainPanelGUI : MonoBehaviour {
 		GUI.DrawTexture(new Rect(Screen.width-110, Screen.height-(Screen.height-2), 90, 90), emblem);
 		GUI.DrawTexture(new Rect(Screen.width-128, Screen.height-(Screen.height-65), 128, 365), frameRight);
 		GUI.DrawTexture(new Rect(Screen.width-256, Screen.height-64, 256, 64), frameBottom);
-
-		if(tut.key == "BuildScreen" || tut.tutorialFinished){
-			if(GUI.Button(buildRect, content, buildButtonstyle)){
+		
+		if(!UIManager.Instance.isPaused){
+			if(tut.key == "BuildScreen" || tut.tutorialFinished){
+				if(GUI.Button(buildRect, content, buildButtonstyle)){
+					if(UIManager.Instance.uiState != UIManager.UIState.FORT_BUILD_SCREEN){
+						UIManager.Instance.uiState = UIManager.UIState.FORT_BUILD_SCREEN;
+					} else {
+						UIManager.Instance.uiState = UIManager.UIState.NONE;
+					}
+				}
+				
 				if(UIManager.Instance.uiState != UIManager.UIState.FORT_BUILD_SCREEN){
-					UIManager.Instance.uiState = UIManager.UIState.FORT_BUILD_SCREEN;
+					if(buildRect.Contains(Event.current.mousePosition) || tut.key == "BuildScreen"){
+						GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-125), 256, 64), buildTextHover);
+					}
 				} else {
-					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-125), 256, 64), buildTextActive);
 				}
 			}
-			
-			if(UIManager.Instance.uiState != UIManager.UIState.FORT_BUILD_SCREEN){
-				if(buildRect.Contains(Event.current.mousePosition)){
-					GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-125), 256, 64), buildTextHover);
+			if(tut.key == "WeaponScreen" || tut.tutorialFinished){
+				if(GUI.Button(weaponRect, content, weaponButtonstyle)){
+					if(UIManager.Instance.uiState != UIManager.UIState.FORT_WEAPON_SCREEN){
+						UIManager.Instance.uiState = UIManager.UIState.FORT_WEAPON_SCREEN;
+					} else {
+						UIManager.Instance.uiState = UIManager.UIState.NONE;
+					}
 				}
-			} else {
-				GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-125), 256, 64), buildTextActive);
-			}
-		}
-		if(tut.key == "WeaponScreen" || tut.tutorialFinished){
-			if(GUI.Button(weaponRect, content, weaponButtonstyle)){
+				
 				if(UIManager.Instance.uiState != UIManager.UIState.FORT_WEAPON_SCREEN){
-					UIManager.Instance.uiState = UIManager.UIState.FORT_WEAPON_SCREEN;
+					if(weaponRect.Contains(Event.current.mousePosition) || tut.key == "WeaponScreen"){
+						GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-205), 256, 64), weaponsTextHover);
+					}
 				} else {
-					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-205), 256, 64), weaponsTextActive);
 				}
 			}
-			
-			if(UIManager.Instance.uiState != UIManager.UIState.FORT_WEAPON_SCREEN){
-				if(weaponRect.Contains(Event.current.mousePosition)){
-					GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-205), 256, 64), weaponsTextHover);
+			if(tut.key == "AbilityScreen" || tut.tutorialFinished){
+				if(GUI.Button(abilitiesRect, content, abilitiesButtonstyle)){
+					if(UIManager.Instance.uiState != UIManager.UIState.FORT_ABILITY_SCREEN){
+						UIManager.Instance.uiState = UIManager.UIState.FORT_ABILITY_SCREEN;
+					} else {
+						UIManager.Instance.uiState = UIManager.UIState.NONE;
+					}
 				}
-			} else {
-				GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-205), 256, 64), weaponsTextActive);
-			}
-		}
-		if(tut.key == "AbilityScreen" || tut.tutorialFinished){
-			if(GUI.Button(abilitiesRect, content, abilitiesButtonstyle)){
+				
 				if(UIManager.Instance.uiState != UIManager.UIState.FORT_ABILITY_SCREEN){
-					UIManager.Instance.uiState = UIManager.UIState.FORT_ABILITY_SCREEN;
+					if(abilitiesRect.Contains(Event.current.mousePosition) || tut.key == "AbilityScreen"){
+						GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-285), 256, 64), abilitiesTextHover);
+					}
 				} else {
+					GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-285), 256, 64), abilitiesTextActive);
+				}
+			}
+			if(tut.tutorialFinished){
+				if(GUI.Button(beginRect, content, beginButtonstyle)){
 					UIManager.Instance.uiState = UIManager.UIState.NONE;
+					UIManager.Instance.displayUI = true;
+					GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
+					selection.UpdateWeaponsSlots();
+					selection.ChangeToNewWeapon();
+					GameController.Instance.canShoot = true;
+					GameController.Instance.canChangeWeapons = true;
+					GameController.Instance.UpdateGraph();
+					foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
+						vendor.Cancel();
+					}
+					Destroy(GameController.Instance.current);
+					GameController.Instance.current = null;
+					tut.key = "";
+					tut.SetKey("", 0f);
+					buildWave.BeginWave();
+					Destroy(GameObject.Find("WaveController").GetComponent<Fortification>());
 				}
-			}
-			
-			if(UIManager.Instance.uiState != UIManager.UIState.FORT_ABILITY_SCREEN){
-				if(abilitiesRect.Contains(Event.current.mousePosition)){
-					GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-285), 256, 64), abilitiesTextHover);
+				
+				if(beginRect.Contains(Event.current.mousePosition)){
+					GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-365), 256, 64), beginTextHover);
 				}
-			} else {
-				GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-285), 256, 64), abilitiesTextActive);
-			}
-		}
-		if(tut.tutorialFinished){
-			if(GUI.Button(beginRect, content, beginButtonstyle)){
-				UIManager.Instance.uiState = UIManager.UIState.NONE;
-				UIManager.Instance.displayUI = true;
-				GameObject.Find("GridContainer").GetComponent<GridSpawner>().DisableGrid();
-				selection.UpdateWeaponsSlots();
-				selection.ChangeToNewWeapon();
-				GameController.Instance.canShoot = true;
-				GameController.Instance.canChangeWeapons = true;
-				GameController.Instance.UpdateGraph();
-				foreach(AmmoVendor vendor in GameObject.Find("Vendor").GetComponent<AmmoVendorContainer>().ammoVendors){
-					vendor.Cancel();
-				}
-				Destroy(GameController.Instance.current);
-				GameController.Instance.current = null;
-				tut.key = "";
-				tut.SetKey("");
-				buildWave.BeginWave();
-				Destroy(GameObject.Find("WaveController").GetComponent<Fortification>());
-			}
-			
-			if(beginRect.Contains(Event.current.mousePosition)){
-				GUI.DrawTexture(new Rect(Screen.width-360, Screen.height-(Screen.height-365), 256, 64), beginTextHover);
 			}
 		}
 	}

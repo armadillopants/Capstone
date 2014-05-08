@@ -48,15 +48,14 @@ public class Tutorial : MonoBehaviour {
 				if(GameController.Instance.GetResources() >= 1000 
 					&& GameController.Instance.GetWaveController().GetComponent<Fortification>() != null 
 					&& !GameObject.Find("SatelliteTower")){
-					
-					waitTime = 10f;
-					curKey = "DisplaySatelliteInfo";
+
+					SetKey("DisplaySatelliteInfo", 10f);
 					displaySatelliteInfo = false;
 				}
 			}
 			
 			if(GameController.Instance.GetShipHealth().curHealth <= 0 && !shipDead){
-				curKey = "ShipDead";
+				SetKey("ShipDead", 5f);
 				shipDead = true;
 			}
 			
@@ -92,13 +91,15 @@ public class Tutorial : MonoBehaviour {
 				ShipAttacked();
 			} else if(curKey == "ShipDead"){
 				ShipDead();
+			} else if(curKey == "OutOfAmmo"){
+				OutOfAmmo();
 			}
 		}
 	}
 	
-	public void SetKey(string cur){
+	public void SetKey(string cur, float time){
 		curKey = cur;
-		waitTime = 10f;
+		waitTime = time;
 	}
 	
 	public void ResetTutorial(){
@@ -324,6 +325,15 @@ public class Tutorial : MonoBehaviour {
 		}
 	}
 	
+	void OutOfAmmo(){
+		waitTime -= Time.deltaTime;
+		if(waitTime < 0){
+			key = "";
+			curKey = "";
+			waitTime = 10f;
+		}
+	}
+	
 	void DrawScreen(string text){
 		Rect rect = new Rect((Screen.width/2) - (900/2),(Screen.height-Screen.height)+80, 900, 80);
 		
@@ -345,7 +355,7 @@ public class Tutorial : MonoBehaviour {
 		if(key == "ProtectShip"){
 			DrawScreen("PROTECT the SHIP at ALL COSTS");
 		} else if(key == "BuildScreen"){
-			DrawScreen("Click BUILD to access fortifications");
+			DrawScreen("Click BUILD icon to access fortifications");
 			curKey = key;
 		} else if(key == "PurchaseFort"){
 			DrawScreen("Purchase the BARRIER");
@@ -361,10 +371,10 @@ public class Tutorial : MonoBehaviour {
 		} else if(key == "RightClick"){
 			DrawScreen("RIGHT CLICK over fortification to UPGRADE it");
 		} else if(key == "WeaponScreen"){
-			DrawScreen("Click WEAPONS to access weaponry");
+			DrawScreen("Click WEAPONS icon to access weaponry");
 			curKey = key;
 		} else if(key == "AbilityScreen"){
-			DrawScreen("Click ABILITIES to access abilities");
+			DrawScreen("Click ABILITIES icon to access abilities");
 			curKey = key;
 		} else if(key == "BeginWaveScreen"){
 			DrawScreen("Click BEGIN when ready to begin the next wave");
@@ -394,6 +404,8 @@ public class Tutorial : MonoBehaviour {
 			DrawScreen("Mayday, mayday, ship under attack!");
 		} else if(curKey == "ShipDead"){
 			DrawScreen("The Ship was destroyed! No more build phases");
+		} else if(curKey == "OutOfAmmo"){
+			DrawScreen("Out of ammo! Hold Left Shift to switch weapons");
 		}
 	}
 }

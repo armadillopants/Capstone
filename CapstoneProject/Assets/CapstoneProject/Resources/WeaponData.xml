@@ -43,7 +43,7 @@
 			reloadSpeed= "1.5"
 			damage= "25"
 			coneAngle= "2"
-			costPerBullet= "20"
+			costPerBullet= "50"
 			cost= "400">
 		</RocketLauncher>
 		<FlameThrower
@@ -115,7 +115,7 @@
 			reloadSpeed= "2.0"
 			damage= "20"
 			coneAngle= "1.5"
-			costPerBullet= "2"
+			costPerBullet= "15"
 			cost= "100">
 		</Revolver>
 		<SMG
@@ -139,7 +139,7 @@
 			reloadSpeed= "2"
 			damage= "10"
 			coneAngle= "1.5"
-			costPerBullet= "5"
+			costPerBullet= "15"
 			cost= "300">
 		</GrenadeLauncher>
 		<ThunderGun
@@ -151,7 +151,7 @@
 			reloadSpeed= "3"
 			damage= "30"
 			coneAngle= "2.5"
-			costPerBullet= "25"
+			costPerBullet= "80"
 			cost= "1000">
 		</ThunderGun>
 	</WeaponData>

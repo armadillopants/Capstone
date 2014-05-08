@@ -97,79 +97,81 @@ public class AbilityPanelGUI : MonoBehaviour {
 		
 		int abilityRegionHeight = labelHeight + (4*labelHeight);
 		
-		GUI.BeginGroup(drawArea);
+		if(!UIManager.Instance.isPaused){
+			GUI.BeginGroup(drawArea);
+			
+			GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
+		    for(int i=0; i<allAbilities.Count; i++){
+				
+				GUI.BeginGroup(new Rect(labelOffset, i * abilityRegionHeight, drawArea.width, abilityRegionHeight+labelOffset));
+				
+				GameObject curAbility = allAbilities[i];
+				
+				if(allAbilities[i].GetComponent<SellableItem>().purchased && abilityHolder.GetComponent(allAbilities[i].name) != null){
+					abilityLabelStyle.normal.background = labelEquipped;
+				} else if(allAbilities[i].GetComponent<SellableItem>().purchased && abilityHolder.GetComponent(allAbilities[i].name) == null){
+					abilityLabelStyle.normal.background = labelOwned;
+				} else {
+					abilityLabelStyle.normal.background = labelLocked;
+				}
 		
-		GUI.DrawTexture(new Rect(0, 0, drawArea.width, drawArea.height), backGround);
-	    for(int i=0; i<allAbilities.Count; i++){
-			
-			GUI.BeginGroup(new Rect(labelOffset, i * abilityRegionHeight, drawArea.width, abilityRegionHeight+labelOffset));
-			
-			GameObject curAbility = allAbilities[i];
-			
-			if(allAbilities[i].GetComponent<SellableItem>().purchased && abilityHolder.GetComponent(allAbilities[i].name) != null){
-				abilityLabelStyle.normal.background = labelEquipped;
-			} else if(allAbilities[i].GetComponent<SellableItem>().purchased && abilityHolder.GetComponent(allAbilities[i].name) == null){
-				abilityLabelStyle.normal.background = labelOwned;
-			} else {
-				abilityLabelStyle.normal.background = labelLocked;
-			}
-	
-	      	GUI.Label(new Rect(labelOffset, labelOffset, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
-			
-			GUI.Label(new Rect(labelOffset, labelHeight+buttonHeight, labelWidth, labelHeight), allAbilities[i].GetComponent<SellableItem>().description, descriptionStyle);
-			
-			if(allAbilities[i].GetComponent<SellableItem>().purchased){
-				buttonStyle.normal.background = upgradeNormal;
-				buttonStyle.hover.background = upgradeHover;
-				buttonStyle.active.background = upgradeActive;
+		      	GUI.Label(new Rect(labelOffset, labelOffset, labelWidth, labelHeight), allAbilities[i].name, abilityLabelStyle);
 				
-				if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost && allAbilities[i].GetComponent<SellableItem>().currentUpgrade <= 2){
-					if(GUI.Button(new Rect(buttonColUpgrade, labelOffset+5, upgradeButtonWidth, buttonHeight), "UPGRADE: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
-						abilityVendor.Upgrade(allAbilities[i]);
-					}
-				}
+				GUI.Label(new Rect(labelOffset, labelHeight+buttonHeight, labelWidth, labelHeight), allAbilities[i].GetComponent<SellableItem>().description, descriptionStyle);
 				
-				equipStyle.normal.background = equipNormal;
-				equipStyle.hover.background = equipHover;
-				equipStyle.active.background = equipActive;
-				if(GUI.Button(new Rect(buttonColEquip, labelOffset+5, equipButtonWidth, buttonHeight), "EQUIP", equipStyle)){
-					if(curAbility == allAbilities[0]){
-						if(abilityHolder.GetComponent(allAbilities[0].name) == null){
-							abilityHolder.AddComponent(allAbilities[0].name);
-							Destroy(abilityHolder.GetComponent(allAbilities[1].name));
-							Destroy(abilityHolder.GetComponent(allAbilities[2].name));
-						}
-					} else if(curAbility == allAbilities[1]){
-						if(abilityHolder.GetComponent(allAbilities[1].name) == null){
-							abilityHolder.AddComponent(allAbilities[1].name);
-							Destroy(abilityHolder.GetComponent(allAbilities[0].name));
-							Destroy(abilityHolder.GetComponent(allAbilities[2].name));
-						}
-					} else {
-						if(abilityHolder.GetComponent(allAbilities[2].name) == null){
-							abilityHolder.AddComponent(allAbilities[2].name);
-							Destroy(abilityHolder.GetComponent(allAbilities[0].name));
-							Destroy(abilityHolder.GetComponent(allAbilities[1].name));
-						}
-					}
-				}
-        	} else {
-				if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost && GameController.Instance.GetWaveController().GetWaveNumber() >= 3){
-					buttonStyle.normal.background = buyNormal;
-					buttonStyle.hover.background = buyHover;
-					buttonStyle.active.background = buyActive;
+				if(allAbilities[i].GetComponent<SellableItem>().purchased){
+					buttonStyle.normal.background = upgradeNormal;
+					buttonStyle.hover.background = upgradeHover;
+					buttonStyle.active.background = upgradeActive;
 					
-					if(GUI.Button(new Rect(buttonColBuy, labelOffset+5, buyButtonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
-						abilityVendor.Purchase(allAbilities[i]);
-						if(useAbility){
-							GameObject.Find("Tutorial").GetComponent<Tutorial>().SetKey("BoughtAbility");
-							useAbility = false;
+					if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost && allAbilities[i].GetComponent<SellableItem>().currentUpgrade <= 2){
+						if(GUI.Button(new Rect(buttonColUpgrade, labelOffset+5, upgradeButtonWidth, buttonHeight), "UPGRADE: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
+							abilityVendor.Upgrade(allAbilities[i]);
 						}
 					}
-				}
-        	}
+					
+					equipStyle.normal.background = equipNormal;
+					equipStyle.hover.background = equipHover;
+					equipStyle.active.background = equipActive;
+					if(GUI.Button(new Rect(buttonColEquip, labelOffset+5, equipButtonWidth, buttonHeight), "EQUIP", equipStyle)){
+						if(curAbility == allAbilities[0]){
+							if(abilityHolder.GetComponent(allAbilities[0].name) == null){
+								abilityHolder.AddComponent(allAbilities[0].name);
+								Destroy(abilityHolder.GetComponent(allAbilities[1].name));
+								Destroy(abilityHolder.GetComponent(allAbilities[2].name));
+							}
+						} else if(curAbility == allAbilities[1]){
+							if(abilityHolder.GetComponent(allAbilities[1].name) == null){
+								abilityHolder.AddComponent(allAbilities[1].name);
+								Destroy(abilityHolder.GetComponent(allAbilities[0].name));
+								Destroy(abilityHolder.GetComponent(allAbilities[2].name));
+							}
+						} else {
+							if(abilityHolder.GetComponent(allAbilities[2].name) == null){
+								abilityHolder.AddComponent(allAbilities[2].name);
+								Destroy(abilityHolder.GetComponent(allAbilities[0].name));
+								Destroy(abilityHolder.GetComponent(allAbilities[1].name));
+							}
+						}
+					}
+	        	} else {
+					if(GameController.Instance.GetResources() >= allAbilities[i].GetComponent<SellableItem>().cost && GameController.Instance.GetWaveController().GetWaveNumber() >= 3){
+						buttonStyle.normal.background = buyNormal;
+						buttonStyle.hover.background = buyHover;
+						buttonStyle.active.background = buyActive;
+						
+						if(GUI.Button(new Rect(buttonColBuy, labelOffset+5, buyButtonWidth, buttonHeight), "BUY: "+allAbilities[i].GetComponent<SellableItem>().cost, buttonStyle)){
+							abilityVendor.Purchase(allAbilities[i]);
+							if(useAbility){
+								GameObject.Find("Tutorial").GetComponent<Tutorial>().SetKey("BoughtAbility", 5f);
+								useAbility = false;
+							}
+						}
+					}
+	        	}
+				GUI.EndGroup();
+		    }
 			GUI.EndGroup();
-	    }
-		GUI.EndGroup();
+		}
 	}
 }

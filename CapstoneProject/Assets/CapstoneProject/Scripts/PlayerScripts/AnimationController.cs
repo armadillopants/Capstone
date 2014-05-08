@@ -37,7 +37,7 @@ public class AnimationController : MonoBehaviour {
 			}
 			
 			if(GameController.Instance.GetPlayerHealth().IsDead){
-				//animator.SetBool(Dead, GameController.Instance.GetPlayerHealth().IsDead);
+				animator.SetBool(Dead, GameController.Instance.GetPlayerHealth().IsDead);
 			} else {
 				animator.SetFloat(VelZ, input.controller.moveDirection.z);
 				animator.SetFloat(VelX, input.controller.moveDirection.x);

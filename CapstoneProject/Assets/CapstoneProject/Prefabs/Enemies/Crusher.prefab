@@ -1594,6 +1594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curHealth: 150
+  maxHealth: 100
   explosion: {fileID: 100002, guid: 7fb876ca4b374314f9997ec647025060, type: 2}
   waitTime: 3
   damageClip: {fileID: 0}
@@ -1622,7 +1623,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b699bc3744f84e801a18731ef59e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7763f5f725ecd47428259addd8d22854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   repathRate: .300000012
@@ -1633,7 +1634,7 @@ MonoBehaviour:
   turningSpeed: 1.5
   slowdownDistance: .600000024
   pickNextWaypointDist: 2
-  forwardLook: 2
+  forwardLook: 1
   endReachedDistance: 0
   closestOnPathCheck: 1
   state: 0
@@ -1647,12 +1648,16 @@ MonoBehaviour:
   damageAmount: 30
   distance: 10
   targetHeight: 0
+  attackRange: 3
+  attackShipRange: 15
   burnDamage: 2
   lightningDamage: .100000001
   money: {fileID: 100000, guid: cf3482bb214f6164db64683134656629, type: 2}
   fireMat: {fileID: 2100000, guid: 642367443312c224bb40c297365867ac, type: 2}
   lightningMat: {fileID: 2100000, guid: c9025d7ef45e7f5418df543202537f9d, type: 2}
   attackSound: {fileID: 0}
+  scavenger: {fileID: 100076, guid: aa3ee0965b91f144881c14a07c53621f, type: 2}
+  crusherGrowl: {fileID: 8300000, guid: 933311812d5e7ba40bbc01b35e8151b9, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

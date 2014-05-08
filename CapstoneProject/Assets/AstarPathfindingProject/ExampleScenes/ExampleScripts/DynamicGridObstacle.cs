@@ -15,7 +15,7 @@ using Pathfinding;
 public class DynamicGridObstacle : MonoBehaviour {
 	
 	Collider col;
-	public float updateError = 1; /**< The minimum change along one of the axis of the bounding box of collider to trigger a graph update */
+	public float updateError = 0.1f; /**< The minimum change along one of the axis of the bounding box of collider to trigger a graph update */
 	public float checkTime = 0.2F; /**< Time in seconds between bounding box checks */
 	
 	/** Use this for initialization */
